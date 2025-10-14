@@ -1,11 +1,103 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="cs">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Genetia – Úvod</title>
+  <meta name="description" content="Genetia – analytické služby, produkty z konopí a zakázková výroba.">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg bg-white sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+        <span class="rounded-circle" style="width:10px;height:10px;background:var(--brand);"></span>
+        <strong>Genetia</strong>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="o-spolecnosti.html" data-href>O společnosti</a></li>
+          <li class="nav-item"><a class="nav-link" href="analyticke-sluzby.html" data-href>Analytické služby</a></li>
+          <li class="nav-item"><a class="nav-link" href="produkty.html" data-href>Produkty</a></li>
+          <li class="nav-item"><a class="nav-link" href="certifikace.html" data-href>Certifikace</a></li>
+          <li class="nav-item"><a class="nav-link" href="kontakt.html" data-href>Kontakt</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-6">
+          <span class="badge text-bg-dark mb-3">Genetia</span>
+          <h1 class="display-5 mb-3">Analytické služby a produkty z konopí</h1>
+          <p class="lead mb-4">Placeholder text: stručný claim/kredibilita. Prolinkujeme na služby a produkty.
+          </p>
+          <div class="d-flex gap-2">
+            <a class="btn btn-brand" href="analyticke-sluzby.html">Analytické služby</a>
+            <a class="btn btn-outline-secondary" href="produkty.html">Produkty</a>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <img class="img-fluid rounded-4" src="https://picsum.photos/960/640?random=11" alt="Hero placeholder">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- SECTIONS (ukázkové boxy) -->
+  <section class="section">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body p-4">
+              <div class="card-icon mb-3">🧪</div>
+              <h3 class="h5">Analytická laboratoř</h3>
+              <p class="text-secondary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam facilisis lectus felis.</p>
+              <a href="analyticke-sluzby.html" class="btn btn-sm btn-outline-secondary">Více</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body p-4">
+              <div class="card-icon mb-3">🌿</div>
+              <h3 class="h5">Produkty z konopí</h3>
+              <p class="text-secondary">Vivamus placerat, massa at scelerisque facilisis, justo lorem eleifend sem.</p>
+              <a href="produkty.html" class="btn btn-sm btn-outline-secondary">Více</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body p-4">
+              <div class="card-icon mb-3">📜</div>
+              <h3 class="h5">Certifikace</h3>
+              <p class="text-secondary">Integer vehicula, magna eget euismod luctus, arcu ante consectetur dui.</p>
+              <a href="certifikace.html" class="btn btn-sm btn-outline-secondary">Více</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center gap-3">
+      <small>© <span id="year"></span> Genetia s.r.o.</small>
+      <small>Vyvinul: M. Gronych</small>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>

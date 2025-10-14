@@ -1,0 +1,172 @@
+/* ==========================
+   Genetia – Base CSS (v1.1)
+   Cíl: čitelné, rychlé, škálovatelné
+   - Design tokens v :root
+   - Lehký reset
+   - Preferuje systémové fonty
+   - Připravené na dark mode & reduced motion
+========================== */
+
+/* ---------- Design tokens ---------- */
+:root{
+  /* Brand palette */
+  --brand-50:#ecf8f2; 
+  --brand-100:#d8f1e5;
+  --brand-200:#b6e3cf;
+  --brand-300:#8fd4b8;
+  --brand-400:#5fbe98;
+  --brand-500:#2ca577; /* primary */
+  --brand-600:#1e8d5a; /* hover */
+  --brand-700:#0b5d3a; /* deep */
+
+  /* Semantic colors */
+  --bg: #ffffff;
+  --surface: #f7faf9;
+  --text: #1f2937;           /* gray-800 */
+  --text-muted:#6b7280;      /* gray-500 */
+  --border:#e5e7eb;          /* gray-200 */
+  --focus:#2563eb;           /* blue-600 */
+  --success:#16a34a;
+  --warning:#f59e0b;
+  --danger:#dc2626;
+
+  /* Typography */
+  --ff-sans: system-ui,-apple-system,Seg\"oe UI\",Roboto,Ubuntu,Cantarell,Inter,\"Helvetica Neue\",Arial,\"Noto Sans\",sans-serif;
+  --fs-1: clamp(2.2rem, 2.5vw + 1rem, 3.2rem); /* h1 */
+  --fs-2: clamp(1.8rem, 1.8vw + .9rem, 2.4rem); /* h2 */
+  --fs-3: clamp(1.4rem, 1.2vw + .8rem, 1.8rem); /* h3 */
+  --fs-base: 16px; 
+  --lh: 1.6;
+
+  /* Spacing scale (8pt) */
+  --space-1: .25rem; /* 4 */
+  --space-2: .5rem;  /* 8 */
+  --space-3: .75rem; /* 12 */
+  --space-4: 1rem;   /* 16 */
+  --space-5: 1.5rem; /* 24 */
+  --space-6: 2rem;   /* 32 */
+  --space-8: 3rem;   /* 48 */
+
+  /* Radius & shadows */
+  --radius-sm: .5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.25rem;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.06);
+  --shadow-md: 0 4px 16px rgba(0,0,0,.08);
+  --shadow-lg: 0 8px 28px rgba(0,0,0,.12);
+
+  /* Layout */
+  --container-max: 1140px; /* odpovídá ~bootstrap lg */
+}
+
+/* Dark mode (auto) */
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0b0f0e;
+    --surface:#121816;
+    --text:#e5e7eb;
+    --text-muted:#9ca3af;
+    --border:#22312b;
+  }
+}
+
+/* Reduced motion (a11y & výdrž baterie) */
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important;}
+}
+
+/* ---------- Lehký reset & base ---------- */
+*{box-sizing:border-box}
+html,body{height:100%}
+html{font-size:16px}
+body{margin:0; font-family:var(--ff-sans); color:var(--text); background:var(--bg); line-height:var(--lh); -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility}
+img,svg,video{max-width:100%; height:auto; display:block}
+button,input,select,textarea{font:inherit}
+:focus-visible{outline:2px solid var(--focus); outline-offset:2px}
+
+/* ---------- Layout helpers ---------- */
+.container{width:100%; max-width:var(--container-max); margin-inline:auto; padding-inline:var(--space-4)}
+.section{padding-block: var(--space-8)}
+.section h2{font-size:var(--fs-2); margin-bottom:var(--space-4)}
+
+/* content-visibility pro větší bloky (lazy render) */
+.cv-auto{content-visibility:auto; contain-intrinsic-size: 1px 600px}
+
+/* ---------- Components ---------- */
+.navbar{background:var(--bg); box-shadow: var(--shadow-sm)}
+.navbar-brand strong{color:var(--brand-600)}
+
+.hero{position:relative; padding-block: clamp(4rem, 8vh, 7rem); background: linear-gradient(180deg, var(--surface), var(--bg))}
+.hero .badge{background:var(--brand-600)}
+.hero h1{font-size:var(--fs-1); font-weight:700; letter-spacing:.2px}
+.hero p.lead{color:var(--text-muted)}
+
+.card{border:1px solid var(--border); border-radius:var(--radius-lg); box-shadow:var(--shadow-sm)}
+.card-icon{width:56px; height:56px; border-radius:14px; display:grid; place-items:center; background:var(--brand-50); color:var(--brand-600)}
+
+.footer{background:var(--surface); padding-block: var(--space-5); color:var(--text-muted)}
+
+/* Buttons */
+.btn-brand{display:inline-flex; align-items:center; gap:.5rem; padding:.625rem 1rem; border-radius: .75rem; border:1px solid var(--brand-600); background:var(--brand-500); color:#fff; transition:transform .12s ease, background .2s ease}
+.btn-brand:hover{background:var(--brand-600)}
+.btn-brand:active{transform: translateY(1px)}
+.btn-outline{background:transparent; border:1px solid var(--border); color:var(--text)}
+.btn-outline:hover{border-color: var(--brand-300)}
+
+/* Tabs (produkty) */
+.products-tab .nav-link.active{color:var(--brand-700)}
+
+/* Utilities */
+.text-muted{color:var(--text-muted) !important}
+.rounded{border-radius: var(--radius-md)}
+.shadow-md{box-shadow: var(--shadow-md)}
+
+/*css*/
+:root{
+  --brand:#1e8d5a; /* bio/green */
+  --brand-2:#0b5d3a;
+  --ink:#1f2937; /* text */
+  --muted:#6b7280; /* secondary text */
+  --bg:#ffffff;
+  --bg-soft:#f7faf9;
+}
+
+html,body{height:100%;}
+body{
+  font-family: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Inter,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+  color:var(--ink);
+  background:var(--bg);
+}
+
+.navbar-brand strong{color:var(--brand);}
+.navbar{box-shadow:0 2px 10px rgba(0,0,0,.04);}
+
+.hero{
+  position:relative;
+
+  padding: clamp(64px, 10vh, 120px) 0;
+  background: linear-gradient(180deg, var(--bg-soft), #fff);
+}
+.hero .badge{background: var(--brand);}
+.hero h1{font-weight:700; letter-spacing:.2px;}
+.hero p.lead{color:var(--muted);}
+
+
+.section{padding:64px 0;}
+.section h2{font-weight:700;}
+.card-icon{
+  width:56px; height:56px; border-radius:14px; display:grid; place-items:center; background:#e9f6f0;
+}
+.card-icon svg{width:26px; height:26px; color:var(--brand);}
+
+.footer{
+  background:var(--bg-soft);
+  padding:32px 0;
+  color:var(--muted);
+}
+
+.btn-brand{background:var(--brand); border-color:var(--brand);}
+.btn-brand:hover{background:var(--brand-2); border-color:var(--brand-2);}
+
+/* products gate (modal helpers) */
+.products-tab .nav-link.active {color: var(--brand-2);}
