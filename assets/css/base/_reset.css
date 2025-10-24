@@ -1,0 +1,73 @@
+/* ==================================================
+   GENETIA – Reset & Typography
+   --------------------------------------------------
+   ▸ Reset stylů
+   ▸ Základní typografie
+   ▸ Smooth transitions
+================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--ff-sans);
+  color: var(--text);
+  background: var(--bg);
+  line-height: var(--lh);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition:
+    background-color 1.5s ease,
+    color 1.5s ease,
+    border-color 1.5s ease,
+    box-shadow 1.5s ease;
+}
+
+/* Smooth přechod pro hlavní prvky */
+html,
+.navbar,
+.hero,
+.section,
+.footer,
+.card {
+  transition:
+    background-color 1.5s ease,
+    color 1.5s ease,
+    border-color 1.5s ease,
+    box-shadow 1.5s ease;
+}
+
+/* Obrázky a SVG – jemný fade efekt */
+img,
+svg,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  transition: filter 1.5s ease, opacity 1.5s ease;
+}
+
+/* Inputs a focus */
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}

@@ -1,0 +1,60 @@
+/* ==================================================
+   GENETIA – Base Tokens
+   Autor: Martin Gronych
+   --------------------------------------------------
+   ▸ Brand & UI colors
+   ▸ Typography
+   ▸ Spacing
+   ▸ Radius & Shadows
+   ▸ Layout sizes
+================================================== */
+
+:root {
+  /* ===== Brand palette – podle loga Genetia ===== */
+  --brand-50: #f9faf3;
+  --brand-100: #f1f5da;
+  --brand-300: #c9d3a3;
+  --brand-500: #a4b86f;
+  --brand-600: #8aa05a;
+  --brand-700: #667d3d;
+  --brand-secondary: #bdb497;
+
+  /* ===== Neutral & UI ===== */
+  --bg: #ffffff;
+  --surface: #fbfcf9;
+  --text: #2b2b2b;
+  --text-muted: #6b6b6b;
+  --border: #e5e7eb;
+  --focus: var(--brand-600);
+  --success: #16a34a;
+  --warning: #f59e0b;
+  --danger: #dc2626;
+
+  /* ===== Typography ===== */
+  --ff-sans: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Inter, Arial, sans-serif;
+  --fs-1: clamp(2.2rem, 2.5vw + 1rem, 3.2rem);
+  --fs-2: clamp(1.8rem, 1.8vw + 0.9rem, 2.4rem);
+  --fs-3: clamp(1.4rem, 1.2vw + 0.8rem, 1.8rem);
+  --lh: 1.6;
+
+  /* ===== Spacing scale ===== */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-8: 3rem;
+
+  /* ===== Radius & Shadows ===== */
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.25rem;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 28px rgba(0, 0, 0, 0.12);
+
+  /* ===== Layout ===== */
+  --container-max: 1140px;
+}

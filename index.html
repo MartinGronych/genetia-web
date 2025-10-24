@@ -6,7 +6,7 @@
     <title>Genetia – Úvod</title>
     <meta
       name="description"
-      content="Genetia – analytické služby, produkty z konopí a zakázková výroba."
+      content="Genetia Production – farmaceutická kvalita v oblasti léčebného konopí. Analytické služby, vývoj a výroba API, produkty pro lékárny."
     />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -14,14 +14,15 @@
     />
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
+
   <body>
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg bg-white sticky-top">
-      <div class="container">
-        <a
-          class="navbar-brand d-flex align-items-center gap-2"
-          href="index.html"
-        >
+    <!-- ================================
+         NAVIGACE
+    =================================== -->
+    <nav class="navbar navbar-expand-lg bg-white sticky-top shadow-sm">
+      <div class="container align-items-center justify-content-between">
+        <!-- Logo vlevo -->
+        <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
           <img
             src="assets/images/logo/GENETIA-LOGO.png"
             alt="Genetia logo"
@@ -29,111 +30,195 @@
           />
         </a>
 
+        <!-- Středové menu -->
+        <div class="d-none d-lg-flex mx-auto nav-center">
+          <ul class="navbar-nav text-center gap-4">
+            <li class="nav-item"><a class="nav-link" href="o-spolecnosti.html">O společnosti</a></li>
+            <li class="nav-item"><a class="nav-link" href="analyticke-sluzby.html">Analytické služby</a></li>
+            <li class="nav-item"><a class="nav-link" href="vyvoj-vyzkum.html">Vývoj a výzkum</a></li>
+            <li class="nav-item"><a class="nav-link" href="produkty.html">Produkty</a></li>
+            <li class="nav-item"><a class="nav-link" href="kontakt.html">Kontakt</a></li>
+          </ul>
+        </div>
+
+        <!-- Klientská zóna vpravo -->
+        <button class="btn btn-accent" id="openClientModal">Klientská zóna</button>
+
+        <!-- Bootstrap collapse pro mobile -->
         <button
           class="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#nav"
+          data-bs-target="#navMobile"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
+      </div>
 
-        <div class="collapse navbar-collapse" id="nav">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item"><a class="nav-link" href="o-spolecnosti.html" data-href>O společnosti</a></li>
-            <li class="nav-item"><a class="nav-link" href="analyticke-sluzby.html" data-href>Analytické služby</a></li>
-            <li class="nav-item"><a class="nav-link active" href="vyvoj-vyzkum.html" aria-current="page" data-href>Vývoj a výzkum</a></li>
-            <li class="nav-item"><a class="nav-link" href="produkty.html" data-href>Produkty</a></li>
-            <li class="nav-item"><a class="nav-link" href="certifikace.html" data-href>Certifikace</a></li>
-            <li class="nav-item"><a class="nav-link" href="kontakt.html" data-href>Kontakt</a></li>
-          </ul>
-        </div>
+      <!-- Mobilní menu -->
+      <div class="collapse navbar-collapse" id="navMobile">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center">
+          <li class="nav-item"><a class="nav-link" href="o-spolecnosti.html">O společnosti</a></li>
+          <li class="nav-item"><a class="nav-link" href="analyticke-sluzby.html">Analytické služby</a></li>
+          <li class="nav-item"><a class="nav-link" href="vyvoj-vyzkum.html">Vývoj a výzkum</a></li>
+          <li class="nav-item"><a class="nav-link" href="produkty.html">Produkty</a></li>
+          <li class="nav-item"><a class="nav-link" href="kontakt.html">Kontakt</a></li>
+        </ul>
       </div>
     </nav>
 
-    <!-- HERO -->
-    <header class="hero">
+    <!-- ================================
+         MODAL – KLIENTSKÁ ZÓNA
+    =================================== -->
+    <div id="clientModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Přihlášení do klientské zóny</h2>
+        <form id="clientForm">
+          <label for="email">E-mail:</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="password">Heslo:</label>
+          <input type="password" id="password" name="password" required />
+
+          <label for="certUpload">Nahrát certifikát:</label>
+          <input
+            type="file"
+            id="certUpload"
+            name="certUpload"
+            accept=".crt,.pem,.pfx"
+          />
+
+          <button type="submit" class="btn btn-accent w-100 mt-3">
+            Ověřit přístup
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- ================================
+         SEKCE 1 – HERO / FARMACEUTICKÁ KVALITA
+    =================================== -->
+    <header class="hero-section text-center text-lg-start py-5">
       <div class="container">
-        <div class="row align-items-center g-4">
+        <div class="row align-items-center g-5">
           <div class="col-lg-6">
-            <span class="badge text-bg-dark mb-3">Genetia</span>
-            <h1 class="display-5 mb-3">
-              Analytické služby a produkty z konopí
+            <h1 class="display-5 fw-bold">
+              Farmaceutická kvalita v oblasti léčebného konopí
             </h1>
-            <p class="lead mb-4">
-              Placeholder text: stručný claim/kredibilita. Prolinkujeme na
-              služby a produkty.
+            <p class="lead text-secondary mb-4">
+              Jsme spolehlivý partner v oblasti výzkumu, výroby a analýz účinných látek
+              pro léčebné účely. Naše procesy splňují standardy EU-GMP.
             </p>
-            <div class="d-flex gap-2">
-              <a class="btn btn-brand" href="analyticke-sluzby.html"
-                >Analytické služby</a
-              >
-              <a class="btn btn-outline-secondary" href="produkty.html"
-                >Produkty</a
-              >
+
+            <div class="d-flex flex-wrap gap-3">
+              <a href="analyticke-sluzby.html" class="btn btn-accent">Analytické služby</a>
+              <a href="vyvoj-vyzkum.html" class="btn btn-outline-accent">Vývoj &amp; výroba API</a>
+              <a href="produkty.html" class="btn btn-outline-accent">Pro lékárny</a>
             </div>
           </div>
+
           <div class="col-lg-6">
             <img
-              class="img-fluid rounded-4"
-              src="https://picsum.photos/960/640?random=11"
-              alt="Hero placeholder"
+              src="assets/images/hero-konopi.jpg"
+              alt="Farmaceutická kvalita – Genetia"
+              class="img-fluid rounded-4 shadow-sm"
             />
           </div>
         </div>
       </div>
     </header>
 
-    <!-- SECTIONS -->
-    <section class="section">
-      <div class="container">
+    <!-- ================================
+         SEKCE 2 – USP / PROČ GENETIA PRODUCTION
+    =================================== -->
+    <section class="usp-section py-5 bg-light">
+      <div class="container text-center">
+        <h2 class="mb-4 fw-bold">Proč si vybrat Genetia Production</h2>
+        <p class="text-secondary mb-5">
+          Certifikovaná výroba, přesné analytické postupy a zkušený tým
+          zajišťují nejvyšší kvalitu našich produktů i služeb.
+        </p>
         <div class="row g-4">
-          <div class="col-lg-4">
-            <div class="card h-100 border-0 shadow-sm">
-              <div class="card-body p-4">
-                <div class="card-icon mb-3">🧪</div>
-                <h3 class="h5">Analytická laboratoř</h3>
-                <p class="text-secondary">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-                  facilisis lectus felis.
+          <div class="col-md-4">
+            <div class="usp-item p-4 border rounded-4 h-100">
+              <h5 class="fw-semibold mb-2">EU-GMP standard</h5>
+              <p class="small text-secondary">
+                Výroba probíhá dle správné výrobní praxe pro léčiva (Good Manufacturing Practice).
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="usp-item p-4 border rounded-4 h-100">
+              <h5 class="fw-semibold mb-2">Kompletní kontrola kvality</h5>
+              <p class="small text-secondary">
+                Každý krok od pěstování po analýzu probíhá pod dohledem zkušených odborníků.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="usp-item p-4 border rounded-4 h-100">
+              <h5 class="fw-semibold mb-2">Spolupráce s lékárnami</h5>
+              <p class="small text-secondary">
+                Podporujeme odbornou komunitu dodávkami produktů a laboratorních služeb.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================
+         SEKCE 3 – PRODUKTY
+    =================================== -->
+    <section class="products-section py-5">
+      <div class="container">
+        <h2 class="text-center mb-5 fw-bold">Naše produkty</h2>
+        <div class="row g-4">
+          <!-- Produktová karta -->
+          <div class="col-md-3 col-sm-6">
+            <div class="card h-100 shadow-sm border-0">
+              <img src="assets/images/products/produkt1.jpg" class="card-img-top" alt="Produkt 1" />
+              <div class="card-body">
+                <h5 class="card-title">Produkt 1</h5>
+                <p class="card-text small text-secondary">
+                  Krátký popis produktu a jeho využití.
                 </p>
-                <a
-                  href="analyticke-sluzby.html"
-                  class="btn btn-sm btn-outline-secondary"
-                  >Více</a
-                >
+                <a href="produkty.html#produkt1" class="btn btn-outline-accent btn-sm">Detail</a>
               </div>
             </div>
           </div>
-          <div class="col-lg-4">
-            <div class="card h-100 border-0 shadow-sm">
-              <div class="card-body p-4">
-                <div class="card-icon mb-3">🌿</div>
-                <h3 class="h5">Produkty z konopí</h3>
-                <p class="text-secondary">
-                  Vivamus placerat, massa at scelerisque facilisis, justo lorem
-                  eleifend sem.
-                </p>
-                <a href="produkty.html" class="btn btn-sm btn-outline-secondary"
-                  >Více</a
-                >
+
+          <!-- Další karty - produkt 2–4 -->
+          <div class="col-md-3 col-sm-6">
+            <div class="card h-100 shadow-sm border-0">
+              <img src="assets/images/products/produkt2.jpg" class="card-img-top" alt="Produkt 2" />
+              <div class="card-body">
+                <h5 class="card-title">Produkt 2</h5>
+                <p class="card-text small text-secondary">Krátký popis produktu a jeho využití.</p>
+                <a href="produkty.html#produkt2" class="btn btn-outline-accent btn-sm">Detail</a>
               </div>
             </div>
           </div>
-          <div class="col-lg-4">
-            <div class="card h-100 border-0 shadow-sm">
-              <div class="card-body p-4">
-                <div class="card-icon mb-3">📜</div>
-                <h3 class="h5">Certifikace</h3>
-                <p class="text-secondary">
-                  Integer vehicula, magna eget euismod luctus, arcu ante
-                  consectetur dui.
-                </p>
-                <a
-                  href="certifikace.html"
-                  class="btn btn-sm btn-outline-secondary"
-                  >Více</a
-                >
+
+          <div class="col-md-3 col-sm-6">
+            <div class="card h-100 shadow-sm border-0">
+              <img src="assets/images/products/produkt3.jpg" class="card-img-top" alt="Produkt 3" />
+              <div class="card-body">
+                <h5 class="card-title">Produkt 3</h5>
+                <p class="card-text small text-secondary">Krátký popis produktu a jeho využití.</p>
+                <a href="produkty.html#produkt3" class="btn btn-outline-accent btn-sm">Detail</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6">
+            <div class="card h-100 shadow-sm border-0">
+              <img src="assets/images/products/produkt4.jpg" class="card-img-top" alt="Produkt 4" />
+              <div class="card-body">
+                <h5 class="card-title">Produkt 4</h5>
+                <p class="card-text small text-secondary">Krátký popis produktu a jeho využití.</p>
+                <a href="produkty.html#produkt4" class="btn btn-outline-accent btn-sm">Detail</a>
               </div>
             </div>
           </div>
@@ -141,18 +226,63 @@
       </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-      <div
-        class="container d-flex flex-wrap justify-content-between align-items-center gap-3"
-      >
-        <small>© <span id="year"></span> Genetia s.r.o.</small>
+    <!-- ================================
+         SEKCE 4 – KONTAKT / SPOLUPRÁCE
+    =================================== -->
+    <section class="contact-section bg-light py-5">
+      <div class="container">
+        <div class="row g-5 align-items-center">
+          <div class="col-lg-5">
+            <h2 class="fw-bold mb-4">Zaujala vás naše práce?</h2>
+            <p class="text-secondary mb-4">
+              Jsme otevřeni novým partnerstvím a zakázkám.  
+              Napište nám – společně vytvoříme řešení na míru.
+            </p>
+            <ul class="list-unstyled">
+              <li><strong>Email:</strong> info@genetia.cz</li>
+              <li><strong>Telefon:</strong> +420 123 456 789</li>
+              <li><strong>Sídlo:</strong> Genetia Production s.r.o., Praha</li>
+            </ul>
+          </div>
+
+          <div class="col-lg-7">
+            <form class="contact-form">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <input type="text" class="form-control" placeholder="Vaše jméno" required />
+                </div>
+                <div class="col-md-6">
+                  <input type="email" class="form-control" placeholder="Váš e-mail" required />
+                </div>
+                <div class="col-12">
+                  <textarea class="form-control" rows="5" placeholder="Vaše zpráva" required></textarea>
+                </div>
+                <div class="col-12 text-end">
+                  <button type="submit" class="btn btn-accent">Odeslat zprávu</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================
+         FOOTER
+    =================================== -->
+    <footer class="footer py-3 border-top">
+      <div class="container d-flex flex-wrap justify-content-between align-items-center gap-3">
+        <small>© <span id="year"></span> Genetia Production s.r.o.</small>
         <small>Vyvinul: M. Gronych</small>
       </div>
     </footer>
 
+    <!-- ================================
+         SCRIPTS
+    =================================== -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/homepage.js"></script>
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
     </script>

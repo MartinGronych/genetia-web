@@ -1,0 +1,72 @@
+/* ==================================================
+   GENETIA – Components
+   --------------------------------------------------
+   ▸ Karty
+   ▸ Tlačítka
+   ▸ Badge, ikony
+================================================== */
+
+/* Karty */
+.card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  background: var(--bg);
+  color: var(--text);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.card-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: var(--brand-50);
+  color: var(--brand-600);
+}
+
+/* Tlačítka */
+.btn-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--brand-600);
+  background: var(--brand-500);
+  color: #fff;
+  transition: transform 0.12s ease, background 0.2s ease;
+}
+
+.btn-brand:hover {
+  background: var(--brand-600);
+}
+
+.btn-brand:active {
+  transform: translateY(1px);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.btn-outline:hover {
+  border-color: var(--brand-300);
+}
+
+.badge {
+  background: var(--brand-600);
+  color: #fff;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.5rem;
+  letter-spacing: 0.02em;
+}
