@@ -1,0 +1,38 @@
+/* ==================================================
+   GENETIA – Footer
+   Autor: Martin Gronych
+   --------------------------------------------------
+   ▸ Spodní sekce webu
+   ▸ Dva textové bloky
+   ▸ Responsivní zarovnání
+================================================== */
+
+.footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  padding-block: var(--space-5);
+  font-size: 0.95rem;
+}
+
+.footer small {
+  color: var(--text-muted);
+}
+
+.footer a {
+  color: var(--brand-600);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: var(--brand-700);
+}
+
+/* Responsivní zarovnání */
+@media (max-width: 768px) {
+  .footer {
+    text-align: center;
+    flex-direction: column;
+  }
+}

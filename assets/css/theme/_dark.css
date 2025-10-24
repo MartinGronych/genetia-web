@@ -1,0 +1,95 @@
+/* ==================================================
+   GENETIA – Dark Theme (Redesign 2025)
+   Autor: Martin Gronych
+   --------------------------------------------------
+   ▸ Přepsání proměnných
+   ▸ Kontrastní úpravy komponent
+   ▸ Plynulé přechody mezi světlým/tmavým režimem
+================================================== */
+
+html[data-theme='dark'] {
+  --bg: #0c0f0d;
+  --surface: #151b18;
+  --text: #e8ebed;
+  --text-muted: #a3a7ad;
+  --border: #27312a;
+
+  /* Brand – světlejší odstíny */
+  --brand-50: #2e342b;
+  --brand-100: #3f4a3a;
+  --brand-300: #627957;
+  --brand-500: #8ea975;
+  --brand-600: #a8c88b;
+  --brand-700: #dce9be;
+
+  color-scheme: dark;
+}
+
+/* Globální pozadí a kontrast */
+html[data-theme='dark'] body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Sekce */
+html[data-theme='dark'] .section,
+html[data-theme='dark'] .products-section,
+html[data-theme='dark'] .contact-section {
+  background: var(--surface);
+  color: var(--text);
+}
+
+/* Karty */
+html[data-theme='dark'] .card {
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+/* Navbar a footer */
+html[data-theme='dark'] .navbar,
+html[data-theme='dark'] .footer {
+  background: var(--surface);
+  box-shadow: none;
+  border-color: var(--border);
+}
+
+/* Hero */
+html[data-theme='dark'] .hero-section {
+  background: linear-gradient(180deg, var(--surface), var(--bg));
+}
+
+/* USP boxy */
+html[data-theme='dark'] .usp-item {
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+/* Buttons */
+html[data-theme='dark'] .btn-accent {
+  background: var(--brand-600);
+  color: #fff;
+}
+
+html[data-theme='dark'] .btn-outline-accent {
+  color: var(--brand-700);
+  border-color: var(--brand-600);
+}
+
+/* Formuláře */
+html[data-theme='dark'] .contact-form {
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+html[data-theme='dark'] input,
+html[data-theme='dark'] textarea {
+  background: var(--bg);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+/* Modal */
+html[data-theme='dark'] .modal-content {
+  background: var(--surface);
+  color: var(--text);
+}
