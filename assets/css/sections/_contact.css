@@ -1,0 +1,90 @@
+/* ==================================================
+   GENETIA – Contact Section
+   Autor: Martin Gronych
+   --------------------------------------------------
+   ▸ Blok "Zaujala vás naše práce?"
+   ▸ Kontaktní údaje vlevo
+   ▸ Formulář vpravo
+================================================== */
+
+.contact-section {
+  background: var(--surface);
+  padding-block: var(--space-8);
+  position: relative;
+}
+
+.contact-section h2 {
+  font-size: var(--fs-2);
+  font-weight: 700;
+  margin-bottom: var(--space-4);
+  color: var(--text);
+}
+
+.contact-section p {
+  color: var(--text-muted);
+  margin-bottom: var(--space-5);
+}
+
+/* Levý blok s kontakty */
+.contact-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contact-section ul li {
+  margin-bottom: 0.5rem;
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.contact-section ul strong {
+  color: var(--brand-700);
+}
+
+/* Pravý blok – formulář */
+.contact-form {
+  background: var(--bg);
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  transition: border-color 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--brand-600);
+}
+
+.contact-form button {
+  background: var(--brand-600);
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 2rem;
+  transition: all 0.3s ease;
+}
+
+.contact-form button:hover {
+  background: var(--brand-700);
+}
+
+/* Responsivní úpravy */
+@media (max-width: 992px) {
+  .contact-section {
+    text-align: center;
+  }
+
+  .contact-form {
+    margin-top: 2rem;
+  }
+}

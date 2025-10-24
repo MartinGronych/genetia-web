@@ -1,0 +1,88 @@
+/* ==================================================
+   GENETIA – Products Section
+   Autor: Martin Gronych
+   --------------------------------------------------
+   ▸ Karty produktů (obrázek, název, popis)
+   ▸ Hover efekt a jemné stíny
+   ▸ Responsivní rozvržení
+================================================== */
+
+.products-section {
+  background: var(--bg);
+  padding-block: var(--space-8);
+}
+
+.products-section h2 {
+  font-size: var(--fs-2);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: var(--space-6);
+  color: var(--text);
+}
+
+/* Karta produktu */
+.products-section .card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.products-section .card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Obrázek v kartě */
+.products-section .card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.products-section .card:hover img {
+  transform: scale(1.03);
+}
+
+/* Obsah karty */
+.products-section .card-body {
+  padding: 1.25rem;
+  background: var(--surface);
+}
+
+.products-section .card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--brand-700);
+  margin-bottom: 0.5rem;
+}
+
+.products-section .card-text {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+/* Tlačítko detail */
+.products-section .btn-outline-accent {
+  border-color: var(--brand-600);
+  color: var(--brand-700);
+  border-radius: 25px;
+  padding: 0.4rem 1rem;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.products-section .btn-outline-accent:hover {
+  background: var(--brand-600);
+  color: #fff;
+}
+
+/* Responsivní mřížka */
+@media (max-width: 768px) {
+  .products-section .card img {
+    height: 180px;
+  }
+}
