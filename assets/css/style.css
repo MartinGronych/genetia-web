@@ -1,25 +1,44 @@
-/* =======================================
-   GENETIA – STYLE.CSS (v3.0 modular)
+/* ==================================================
+   GENETIA PRODUCTION – STYLE.CSS (v3.0 modular)
    Autor: Martin Gronych
-   ======================================= */
+   --------------------------------------------------
+   Hlavní vstupní bod pro všechny CSS soubory projektu.
+   Struktura:
+   ▸ BASE  – globální proměnné, reset, layout, komponenty
+   ▸ SECTIONS – jednotlivé části stránky
+   ▸ MODAL – klientská zóna
+   ▸ THEME – dark mode + přepínač
+================================================== */
 
-/* ---------- BASE ---------- */
-@import url("base/_tokens.css");
-@import url("base/_reset.css");
-@import url("base/_layout.css");
-@import url("base/_components.css");
 
-/* ---------- SECTIONS ---------- */
-@import url("sections/_navbar.css");
-@import url("sections/_hero.css");
-@import url("sections/_usp.css");
-@import url("sections/_products.css");
-@import url("sections/_contact.css");
-@import url("sections/_footer.css");
+/* ================================
+   BASE STYLES
+================================ */
+@import url("base/_tokens.css");     /* 🎨 Designové proměnné (barvy, fonty, spacing) */
+@import url("base/_reset.css");      /* 🧼 Reset stylů + základní typografie */
+@import url("base/_layout.css");     /* 📐 Kontejnery, sekce, utilitní třídy */
+@import url("base/_components.css"); /* ⚙️ Karty, tlačítka, badge, drobné prvky */
 
-/* ---------- MODAL ---------- */
-@import url("_modal.css");
 
-/* ---------- THEME ---------- */
-@import url("theme/_dark.css");
-@import url("theme/_switch.css");
+/* ================================
+   SECTIONS (Homepage + globální)
+================================ */
+@import url("sections/_navbar.css");   /* 🔝 Navigace + Klientská zóna (tlačítko) */
+@import url("sections/_hero.css");     /* 🎯 Hlavní hero blok (farmaceutická kvalita) */
+@import url("sections/_usp.css");      /* 💎 Proč si vybrat Genetia Production */
+@import url("sections/_products.css"); /* 📦 Karty produktů s obrázky */
+@import url("sections/_contact.css");  /* ✉️ Zaujala vás naše práce? (formulář) */
+@import url("sections/_footer.css");   /* ⚓ Spodní část webu */
+
+
+/* ================================
+   MODAL (Klientská zóna)
+================================ */
+@import url("_modal.css"); /* 💬 Přihlašovací okno Klientské zóny */
+
+
+/* ================================
+   THEME (Light/Dark režim)
+================================ */
+@import url("theme/_dark.css");   /* 🌙 Přepsání proměnných pro tmavý režim */
+@import url("theme/_switch.css"); /* 🌗 Styl přepínače (Uiverse 00Kubi varianta) */
