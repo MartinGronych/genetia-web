@@ -8,9 +8,12 @@
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg bg-white sticky-top">
-      <div class="container">
+    <!-- ================================
+         NAVIGACE
+    =================================== -->
+    <nav class="navbar navbar-expand-lg bg-white sticky-top shadow-sm">
+      <div class="container align-items-center justify-content-between">
+        <!-- Logo -->
         <a
           class="navbar-brand d-flex align-items-center gap-2"
           href="index.html"
@@ -22,27 +25,61 @@
           />
         </a>
 
+        <!-- Desktop navigace (centrálně) -->
+        <div class="d-none d-lg-flex mx-auto nav-center">
+          <ul class="navbar-nav text-center gap-4"></ul>
+        </div>
+
+        <!-- Klientská zóna -->
+        <button class="btn btn-accent" id="openClientModal">
+          Klientská zóna
+        </button>
+
+        <!-- Mobile toggle -->
         <button
           class="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#nav"
+          data-bs-target="#navMobile"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
+      </div>
 
-        <div class="collapse navbar-collapse" id="nav">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item"><a class="nav-link" href="o-spolecnosti.html" data-href>O společnosti</a></li>
-            <li class="nav-item"><a class="nav-link" href="analyticke-sluzby.html" data-href>Analytické služby</a></li>
-            <li class="nav-item"><a class="nav-link active" href="vyvoj-vyzkum.html" aria-current="page" data-href>Vývoj a výzkum</a></li>
-            <li class="nav-item"><a class="nav-link" href="produkty.html" data-href>Produkty</a></li>
-            <li class="nav-item"><a class="nav-link" href="certifikace.html" data-href>Certifikace</a></li>
-            <li class="nav-item"><a class="nav-link" href="kontakt.html" data-href>Kontakt</a></li>
-          </ul>
-        </div>
+      <!-- Mobile menu (collapse) -->
+      <div class="collapse navbar-collapse" id="navMobile">
+        <ul class="navbar-nav text-center gap-3 py-3"></ul>
       </div>
     </nav>
+
+    <!-- ================================
+         MODAL – KLIENTSKÁ ZÓNA
+    =================================== -->
+    <div id="clientModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Přihlášení do klientské zóny</h2>
+        <form id="clientForm">
+          <label for="email">E-mail:</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="password">Heslo:</label>
+          <input type="password" id="password" name="password" required />
+
+          <label for="certUpload">Nahrát certifikát:</label>
+          <input
+            type="file"
+            id="certUpload"
+            name="certUpload"
+            accept=".crt,.pem,.pfx"
+          />
+
+          <button type="submit" class="btn btn-accent w-100 mt-3">
+            Ověřit přístup
+          </button>
+        </form>
+      </div>
+    </div>
 
   <header class="hero">
     <div class="container">

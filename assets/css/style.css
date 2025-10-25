@@ -30,6 +30,11 @@
 @import url("sections/_contact.css");  /* ✉️ Zaujala vás naše práce? (formulář) */
 @import url("sections/_footer.css");   /* ⚓ Spodní část webu */
 
+/* ================================
+   CSS Efekty
+================================ */
+@import url("sections/_carousel.css");  /* 🎠 3D Carousel – rotující produkty (interaktivní sekce) */
+
 
 /* ================================
    MODAL (Klientská zóna)

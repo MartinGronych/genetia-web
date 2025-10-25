@@ -4,8 +4,15 @@
    ▸ Kontejnery
    ▸ Sekce
    ▸ Utility třídy
+   ▸ Kompenzace fixní navigace
+   ▸ Responsivní typografie
+   ▸ Grid systém
+   ▸ Section spacing
 ================================================== */
 
+/* ==============================================
+   KONTEJNERY
+============================================== */
 .container {
   width: 100%;
   max-width: var(--container-max);
@@ -13,7 +20,9 @@
   padding-inline: var(--space-4);
 }
 
-/* Základní sekce */
+/* ==============================================
+   SEKCE (základní styl)
+============================================== */
 .section {
   padding-block: var(--space-8);
   background: var(--surface);
@@ -26,7 +35,9 @@
   margin-bottom: var(--space-4);
 }
 
-/* Utility třídy */
+/* ==============================================
+   UTILITY TŘÍDY
+============================================== */
 .text-muted {
   color: var(--text-muted) !important;
 }
@@ -37,4 +48,100 @@
 
 .shadow-md {
   box-shadow: var(--shadow-md);
+}
+
+/* ==============================================
+   KOMPENZACE FIXNÍ NAVIGACE
+   --------------------------------------------------
+   Zabraňuje překrývání hero sekce navigací
+============================================== */
+body {
+  padding-top: var(--nav-height);
+}
+
+:root {
+  scroll-padding-top: var(--nav-height);
+}
+
+/* ==============================================
+   RESPONSIVE TYPOGRAPHY & SPACING
+   --------------------------------------------------
+   Mobile-first typografie a odsazení sekcí
+============================================== */
+
+/* 📱 Menší zařízení */
+@media (max-width: 480px) {
+  h1 { font-size: 1.8rem; }
+  h2 { font-size: 1.4rem; }
+  p  { font-size: 0.95rem; }
+  .section { padding-block: 2.5rem; }
+}
+
+/* 🧩 Tablety (768–991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  h1 { font-size: 2.2rem; }
+  h2 { font-size: 1.6rem; }
+  .section { padding-block: 3.5rem; }
+}
+
+/* 💻 Notebooky a větší (992px +) */
+@media (min-width: 992px) {
+  h1 { font-size: var(--fs-1); }
+  h2 { font-size: var(--fs-2); }
+  .section { padding-block: var(--space-8); }
+}
+
+/* ==============================================
+   GRID SYSTEM (Custom responsive grid)
+   --------------------------------------------------
+   Mobile-first grid pro vlastní sekce
+   ▸ grid-2, grid-3, grid-4 podle šířky
+============================================== */
+
+.grid-2,
+.grid-3,
+.grid-4 {
+  display: grid;
+  gap: 1.5rem;
+}
+
+/* 📱 Mobilní výchozí stav (1 sloupec) */
+.grid-2 { grid-template-columns: 1fr; }
+.grid-3 { grid-template-columns: 1fr; }
+.grid-4 { grid-template-columns: 1fr; }
+
+/* 🧩 Tablety (≥768px) */
+@media (min-width: 768px) {
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ==============================================
+   SECTION SPACING – mezery mezi sekcemi
+   --------------------------------------------------
+   ▸ Zajišťuje konzistentní vertikální rytmus
+   ▸ Mobile-first přístup
+============================================== */
+
+/* 📱 Výchozí (mobily) – menší mezery */
+.hero-section + .section,
+.section + .section {
+  margin-top: var(--space-5); /* ~1.5rem */
+}
+
+/* 🧩 Tablety (≥768px) – střední mezery */
+@media (min-width: 768px) {
+  .hero-section + .section,
+  .section + .section {
+    margin-top: var(--space-6); /* ~2rem */
+  }
+}
+
+/* 💻 Notebooky a desktopy (≥992px) – větší "vzduch" */
+@media (min-width: 992px) {
+  .hero-section + .section,
+  .section + .section {
+    margin-top: var(--space-8); /* ~3rem */
+  }
 }

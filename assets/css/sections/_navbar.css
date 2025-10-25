@@ -2,124 +2,207 @@
    GENETIA – Navbar (Homepage redesign 2025)
    Autor: Martin Gronych
    --------------------------------------------------
-   ▸ Logo & rozložení
-   ▸ Menu na střed
-   ▸ Tlačítko Klientská zóna
-   ▸ Mobilní verze
+   ▸ Mobile-first přístup
+   ▸ Vertikální zarovnání loga, menu, tlačítka
+   ▸ Kompaktní vzhled kolem 1024 px
+   ▸ Plynulý přechod mezi breakpointy
 ================================================== */
 
+/* =============================
+   ZÁKLADNÍ STYL – MOBIL FIRST
+============================= */
 .navbar {
   position: fixed;
   top: 0;
-  width: 100%;
+  left: 0;
+  width: 100% !important;
+  height: var(--nav-height);
   background: var(--surface);
-  padding: 1rem 3rem;
+  padding: 0.6rem 1rem;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: space-between;
   z-index: 1000;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   transition: background 0.4s ease, box-shadow 0.4s ease;
 }
 
-/* Kontejner v rámci Bootstrapu */
+/* Kontejner */
 .navbar .container {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
   max-width: 1400px;
+  margin-inline: auto;
+  width: 100%;
 }
 
 /* Logo vlevo */
 .logo-img {
-  height: 80px;
+  height: 55px;
   width: auto;
-  transition: transform 0.4s ease, opacity 0.4s ease;
+  display: block;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
-
 .logo-img:hover {
   transform: scale(1.05);
   opacity: 0.9;
 }
 
-/* Menu vycentrované na desktopu */
+/* Skryté menu (hamburger verze bude doplněna později) */
 .nav-center {
-  flex: 1;
-  display: flex;
-  justify-content: center;
+  display: none;
 }
 
-.nav-center .nav-link {
-  color: var(--text);
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  padding: 0.5rem 1rem;
-  position: relative;
-  transition: color 0.3s ease;
-}
-
-.nav-center .nav-link:hover,
-.nav-center .nav-link.active {
-  color: var(--brand-600);
-}
-
-/* Malý underline efekt při hover */
-.nav-center .nav-link::after {
-  content: "";
-  position: absolute;
-  bottom: 2px;
-  left: 50%;
-  transform: translateX(-50%) scaleX(0);
-  transform-origin: center;
-  width: 60%;
-  height: 2px;
-  background: var(--brand-600);
-  transition: transform 0.3s ease;
-}
-
-.nav-center .nav-link:hover::after {
-  transform: translateX(-50%) scaleX(1);
-}
-
-/* Tlačítko Klientská zóna vpravo */
+/* Tlačítko Klientská zóna – základní styl */
 .btn-accent {
-  background: var(--brand-600);
+  background: var(--brand-800);
   color: #fff;
   border: none;
-  padding: 0.6rem 1.4rem;
-  border-radius: 25px;
+  padding: 0.5rem 1.2rem;
+  border-radius: var(--radius-md);
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
-
 .btn-accent:hover {
-  background: var(--brand-700);
-}
-
-/* Varianta outline */
-.btn-outline-accent {
-  background: transparent;
-  color: var(--brand-700);
-  border: 1px solid var(--brand-600);
-  padding: 0.6rem 1.4rem;
-  border-radius: 25px;
-  transition: all 0.3s ease;
-}
-
-.btn-outline-accent:hover {
   background: var(--brand-600);
-  color: #fff;
+  transform: translateY(-2px);
 }
 
-/* Responsive úpravy */
-@media (max-width: 992px) {
-  .navbar {
-    padding: 0.75rem 1.25rem;
+/* =====================================
+   STŘEDNÍ ZAŘÍZENÍ (≥768px – ≤1199px)
+===================================== */
+@media (min-width: 768px) and (max-width: 1199px) {
+  :root {
+    --nav-height: 70px;
   }
+
+  .navbar {
+    padding: 0.7rem 1.5rem;
+  }
+
   .logo-img {
     height: 60px;
   }
+
+  /* Zobrazíme menu vycentrované */
   .nav-center {
-    display: none;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    gap: 1.2rem;
+  }
+
+  .nav-center .nav-link {
+    color: var(--text);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+    padding: 0.25rem 0.5rem;
+    position: relative;
+    transition: color 0.3s ease;
+  }
+
+  .nav-center .nav-link:hover,
+  .nav-center .nav-link.active {
+    color: var(--brand-600);
+  }
+
+  /* underline efekt */
+  .nav-center .nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: center;
+    width: 60%;
+    height: 2px;
+    background: var(--brand-600);
+    transition: transform 0.3s ease;
+  }
+  .nav-center .nav-link:hover::after {
+    transform: translateX(-50%) scaleX(1);
+  }
+
+  /* tlačítko menší a zarovnané na střed */
+  .btn-accent {
+    font-size: 0.9rem;
+    padding: 0.45rem 1.1rem;
+    align-self: center;
+  }
+}
+
+/* =====================================
+   DESKTOP (≥1200px)
+===================================== */
+@media (min-width: 1200px) {
+  :root {
+    --nav-height: 90px;
+  }
+
+  .navbar {
+    padding: 0.8rem 2rem;
+  }
+
+  .logo-img {
+    height: 90px;
+  }
+
+  .nav-center {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    gap: 1.75rem;
+  }
+
+  .nav-center .nav-link {
+    color: var(--text);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    font-size: 1rem;
+    padding: 0.4rem 0.6rem;
+    position: relative;
+    transition: color 0.3s ease;
+  }
+
+  .nav-center .nav-link:hover,
+  .nav-center .nav-link.active {
+    color: var(--brand-600);
+  }
+
+  /* underline efekt */
+  .nav-center .nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: center;
+    width: 60%;
+    height: 2px;
+    background: var(--brand-600);
+    transition: transform 0.3s ease;
+  }
+
+  .nav-center .nav-link:hover::after {
+    transform: translateX(-50%) scaleX(1);
+  }
+
+  .btn-accent {
+    background: var(--brand-800);
+    color: #fff;
+    border: none;
+    padding: 0.6rem 1.4rem;
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  .btn-accent:hover {
+    background: var(--brand-700);
+    transform: translateY(-2px);
   }
 }

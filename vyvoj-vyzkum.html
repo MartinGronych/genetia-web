@@ -18,371 +18,395 @@
   </head>
 
   <body>
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg bg-white sticky-top">
-      <div class="container">
-        <a
-          class="navbar-brand d-flex align-items-center gap-2"
-          href="index.html"
-        >
-          <img
-            src="assets/images/logo/GENETIA-LOGO.png"
-            alt="Genetia logo"
-            class="logo-img"
-          />
-        </a>
-
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#nav"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="nav">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="o-spolecnosti.html" data-href
-                >O společnosti</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="analyticke-sluzby.html" data-href
-                >Analytické služby</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link active"
-                href="vyvoj-vyzkum.html"
-                aria-current="page"
-                data-href
-                >Vývoj a výzkum</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="produkty.html" data-href>Produkty</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="certifikace.html" data-href
-                >Certifikace</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="kontakt.html" data-href>Kontakt</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-    <!-- HERO -->
-    <header class="hero">
-      <div class="container">
-        <div class="row align-items-center g-4">
-          <div class="col-lg-7">
-            <h1 class="display-5 mb-3">
-              Inovace, validace metod a aplikovaný výzkum
-            </h1>
-            <p class="lead mb-0">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-              lobortis, mi vitae scelerisque fringilla, sem tortor tempor
-              libero, vitae suscipit arcu urna quis elit.
-            </p>
-          </div>
-          <div class="col-lg-5">
+    <!-- ================================
+         HEADER
+    =================================== -->
+    <header class="site-header">
+      <nav class="navbar navbar-expand-lg bg-white sticky-top shadow-sm">
+        <div class="container align-items-center justify-content-between">
+          <!-- Logo -->
+          <a
+            class="navbar-brand d-flex align-items-center gap-2"
+            href="index.html"
+          >
             <img
-              class="img-fluid rounded-4 shadow-md"
-              src="https://picsum.photos/960/640?random=21"
-              alt="Research hero placeholder"
+              src="assets/images/logo/GENETIA-LOGO.png"
+              alt="Genetia logo"
+              class="logo-img"
             />
+          </a>
+
+          <!-- Desktop navigace -->
+          <div class="d-none d-lg-flex mx-auto nav-center">
+            <ul class="navbar-nav text-center gap-4"></ul>
           </div>
+
+          <!-- Klientská zóna -->
+          <button class="btn btn-accent" id="openClientModal">
+            Klientská zóna
+          </button>
+
+          <!-- Mobile toggle -->
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navMobile"
+            aria-controls="navMobile"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
         </div>
-      </div>
+
+        <!-- Mobile menu -->
+        <div class="collapse navbar-collapse" id="navMobile">
+          <ul class="navbar-nav text-center gap-3 py-3"></ul>
+        </div>
+      </nav>
     </header>
 
-    <!-- SEKCE: Zaměření výzkumu -->
-    <section class="section">
-      <div class="container">
-        <h2 class="mb-4">Zaměření výzkumu</h2>
-        <div class="row g-4">
-          <div class="col-md-4">
-            <div class="card h-100 border-0 shadow-sm">
-              <div class="card-body p-4">
-                <div class="card-icon mb-3">🧬</div>
-                <h3 class="h5">Validace metod</h3>
-                <p class="text-secondary">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Aenean malesuada libero quis.
-                </p>
-                <ul class="mb-0">
-                  <li>Metodiky LC-MS/MS</li>
-                  <li>Linearity, LOD/LOQ</li>
-                  <li>Robustnost & přesnost</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card h-100 border-0 shadow-sm">
-              <div class="card-body p-4">
-                <div class="card-icon mb-3">🧪</div>
-                <h3 class="h5">Formulace & stabilita</h3>
-                <p class="text-secondary">
-                  Integer vehicula magna eget euismod luctus. Proin tempor orci
-                  a metus dignissim.
-                </p>
-                <ul class="mb-0">
-                  <li>Studie stability</li>
-                  <li>Matriční efekty</li>
-                  <li>Škálování výroby</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card h-100 border-0 shadow-sm">
-              <div class="card-body p-4">
-                <div class="card-icon mb-3">🌿</div>
-                <h3 class="h5">Cannabinoidní profil</h3>
-                <p class="text-secondary">
-                  Vivamus placerat massa at scelerisque facilisis. Cras porta,
-                  ex et vulputate.
-                </p>
-                <ul class="mb-0">
-                  <li>Standardizace šarží</li>
-                  <li>Kontaminanty & čistota</li>
-                  <li>Stabilitní křivky</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
+    <!-- ================================
+         MODAL – KLIENTSKÁ ZÓNA
+    =================================== -->
+    <div id="clientModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Přihlášení do klientské zóny</h2>
+        <form id="clientForm">
+          <label for="email">E-mail:</label>
+          <input type="email" id="email" name="email" required />
 
-        <!-- CTA řádek -->
-        <div class="d-flex flex-wrap gap-2 mt-4">
-          <a href="kontakt.html" class="btn btn-brand">Konzultace výzkumu</a>
-          <a href="analyticke-sluzby.html" class="btn btn-outline"
-            >Analytické služby</a
-          >
-        </div>
+          <label for="password">Heslo:</label>
+          <input type="password" id="password" name="password" required />
+
+          <label for="certUpload">Nahrát certifikát:</label>
+          <input
+            type="file"
+            id="certUpload"
+            name="certUpload"
+            accept=".crt,.pem,.pfx"
+          />
+
+          <button type="submit" class="btn btn-accent w-100 mt-3">
+            Ověřit přístup
+          </button>
+        </form>
       </div>
-    </section>
+    </div>
 
-    <!-- SEKCE: Běžící projekty -->
-    <section class="section">
-      <div class="container">
-        <h2 class="mb-4">Běžící projekty</h2>
-        <div class="row g-4">
-          <!-- Projekt 1 -->
-          <div class="col-lg-6">
-            <div class="card h-100 border-0 shadow-sm">
-              <div class="card-body p-4">
-                <div
-                  class="d-flex justify-content-between align-items-start mb-2"
-                >
-                  <h3 class="h5 mb-0">Projekt A – Optimalizace LC-MS</h3>
-                  <span class="badge text-bg-dark">2025</span>
-                </div>
-                <p class="text-secondary mb-3">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Praesent interdum, nisl id pellentesque gravida, arcu risus
-                  posuere.
-                </p>
-                <ul class="mb-0">
-                  <li>Cíl: zkrácení analýz o 30 %</li>
-                  <li>Výstup: interní SOP + validace</li>
-                  <li>Partner: lorem ipsum s.r.o.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <!-- Projekt 2 -->
-          <div class="col-lg-6">
-            <div class="card h-100 border-0 shadow-sm">
-              <div class="card-body p-4">
-                <div
-                  class="d-flex justify-content-between align-items-start mb-2"
-                >
-                  <h3 class="h5 mb-0">Projekt B – Stabilita extraktů</h3>
-                  <span class="badge text-bg-dark">2025</span>
-                </div>
-                <p class="text-secondary mb-3">
-                  Integer mattis, risus in tempor bibendum, dolor est
-                  pellentesque dui, ut tincidunt sapien lorem quis tortor.
-                </p>
-                <ul class="mb-0">
-                  <li>Cíl: definice stabilitních křivek</li>
-                  <li>Výstup: report + doporučení balení</li>
-                  <li>Partner: University Lab</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Sekundární CTA -->
-        <div class="text-center mt-4">
-          <a href="kontakt.html" class="btn btn-outline"
-            >Spolupracujme na výzkumu</a
-          >
-        </div>
-      </div>
-    </section>
-
-    <!-- SEKCE: Metodiky & vybavení -->
-    <section class="section">
-      <div class="container">
-        <h2 class="mb-4">Metodiky a laboratorní vybavení</h2>
-        <div class="row g-4">
-          <div class="col-md-6">
-            <div class="card h-100 border-0 shadow-sm">
-              <div class="card-body p-4">
-                <h3 class="h6 text-uppercase text-muted mb-3">Metodiky</h3>
-                <ul class="mb-0">
-                  <li>LC-MS/MS – kvantifikace vybraných markerů</li>
-                  <li>GC-FID – profil těkavých látek</li>
-                  <li>HPLC-DAD – čistota a stabilita</li>
-                  <li>ICP-MS – anorganické kontaminanty</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="card h-100 border-0 shadow-sm">
-              <div class="card-body p-4">
-                <h3 class="h6 text-uppercase text-muted mb-3">Vybavení</h3>
-                <ul class="mb-0">
-                  <li>Vysoce citlivé LC-MS/MS</li>
-                  <li>HPLC s více detektory</li>
-                  <li>Stabilitní komory</li>
-                  <li>Validovaná měřicí infrastruktura</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Obrázkový placeholder řádek -->
-        <div class="row g-3 mt-3">
-          <div class="col-6 col-md-3">
-            <img
-              class="img-fluid rounded-3"
-              src="https://picsum.photos/400/300?random=31"
-              alt=""
-            />
-          </div>
-          <div class="col-6 col-md-3">
-            <img
-              class="img-fluid rounded-3"
-              src="https://picsum.photos/400/300?random=32"
-              alt=""
-            />
-          </div>
-          <div class="col-6 col-md-3">
-            <img
-              class="img-fluid rounded-3"
-              src="https://picsum.photos/400/300?random=33"
-              alt=""
-            />
-          </div>
-          <div class="col-6 col-md-3">
-            <img
-              class="img-fluid rounded-3"
-              src="https://picsum.photos/400/300?random=34"
-              alt=""
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SEKCE: Publikace / výstupy -->
-    <section class="section">
-      <div class="container">
-        <h2 class="mb-4">Publikace a výstupy</h2>
-        <div class="list-group shadow-sm">
-          <a
-            href="#"
-            class="list-group-item list-group-item-action d-flex justify-content-between align-items-start"
-          >
-            <div class="me-3">
-              <h3 class="h6 mb-1">Lorem ipsum – titul publikace (2025)</h3>
-              <p class="mb-0 text-secondary small">
-                Auctor A., B auctor B. – Journal of Applied Research, 12(3),
-                123–130.
+    <!-- ================================
+         MAIN CONTENT
+    =================================== -->
+    <main>
+      <!-- HERO -->
+      <section class="hero py-5">
+        <div class="container">
+          <div class="row align-items-center g-4">
+            <div class="col-lg-7">
+              <h1 class="display-5 mb-3">
+                Inovace, validace metod a aplikovaný výzkum
+              </h1>
+              <p class="lead mb-0">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                lobortis, mi vitae scelerisque fringilla, sem tortor tempor
+                libero, vitae suscipit arcu urna quis elit.
               </p>
             </div>
-            <span class="badge text-bg-dark">PDF</span>
-          </a>
-          <a
-            href="#"
-            class="list-group-item list-group-item-action d-flex justify-content-between align-items-start"
-          >
-            <div class="me-3">
-              <h3 class="h6 mb-1">Dolor sit amet – interní report (2025)</h3>
-              <p class="mb-0 text-secondary small">
-                Genetia s.r.o. – Interní dokument, verze 1.0.
+            <div class="col-lg-5">
+              <img
+                class="img-fluid rounded-4 shadow-md"
+                src="https://picsum.photos/960/640?random=21"
+                alt="Research hero placeholder"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ZAMĚŘENÍ VÝZKUMU -->
+      <section class="section">
+        <div class="container">
+          <h2 class="mb-4">Zaměření výzkumu</h2>
+          <div class="row g-4">
+            <div class="col-md-4">
+              <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body p-4">
+                  <div class="card-icon mb-3">🧬</div>
+                  <h3 class="h5">Validace metod</h3>
+                  <p class="text-secondary">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Aenean malesuada libero quis.
+                  </p>
+                  <ul class="mb-0">
+                    <li>Metodiky LC-MS/MS</li>
+                    <li>Linearity, LOD/LOQ</li>
+                    <li>Robustnost & přesnost</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body p-4">
+                  <div class="card-icon mb-3">🧪</div>
+                  <h3 class="h5">Formulace & stabilita</h3>
+                  <p class="text-secondary">
+                    Integer vehicula magna eget euismod luctus. Proin tempor
+                    orci a metus dignissim.
+                  </p>
+                  <ul class="mb-0">
+                    <li>Studie stability</li>
+                    <li>Matriční efekty</li>
+                    <li>Škálování výroby</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body p-4">
+                  <div class="card-icon mb-3">🌿</div>
+                  <h3 class="h5">Cannabinoidní profil</h3>
+                  <p class="text-secondary">
+                    Vivamus placerat massa at scelerisque facilisis. Cras porta,
+                    ex et vulputate.
+                  </p>
+                  <ul class="mb-0">
+                    <li>Standardizace šarží</li>
+                    <li>Kontaminanty & čistota</li>
+                    <li>Stabilitní křivky</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex flex-wrap gap-2 mt-4">
+            <a href="kontakt.html" class="btn btn-brand">Konzultace výzkumu</a>
+            <a href="analyticke-sluzby.html" class="btn btn-outline">
+              Analytické služby
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- BĚŽÍCÍ PROJEKTY -->
+      <section class="section">
+        <div class="container">
+          <h2 class="mb-4">Běžící projekty</h2>
+          <div class="row g-4">
+            <div class="col-lg-6">
+              <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body p-4">
+                  <div
+                    class="d-flex justify-content-between align-items-start mb-2"
+                  >
+                    <h3 class="h5 mb-0">Projekt A – Optimalizace LC-MS</h3>
+                    <span class="badge text-bg-dark">2025</span>
+                  </div>
+                  <p class="text-secondary mb-3">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Praesent interdum, nisl id pellentesque gravida, arcu risus
+                    posuere.
+                  </p>
+                  <ul class="mb-0">
+                    <li>Cíl: zkrácení analýz o 30 %</li>
+                    <li>Výstup: interní SOP + validace</li>
+                    <li>Partner: lorem ipsum s.r.o.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body p-4">
+                  <div
+                    class="d-flex justify-content-between align-items-start mb-2"
+                  >
+                    <h3 class="h5 mb-0">Projekt B – Stabilita extraktů</h3>
+                    <span class="badge text-bg-dark">2025</span>
+                  </div>
+                  <p class="text-secondary mb-3">
+                    Integer mattis, risus in tempor bibendum, dolor est
+                    pellentesque dui, ut tincidunt sapien lorem quis tortor.
+                  </p>
+                  <ul class="mb-0">
+                    <li>Cíl: definice stabilitních křivek</li>
+                    <li>Výstup: report + doporučení balení</li>
+                    <li>Partner: University Lab</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center mt-4">
+            <a href="kontakt.html" class="btn btn-outline">
+              Spolupracujme na výzkumu
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- METODIKY A VYBAVENÍ -->
+      <section class="section">
+        <div class="container">
+          <h2 class="mb-4">Metodiky a laboratorní vybavení</h2>
+          <div class="row g-4">
+            <div class="col-md-6">
+              <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body p-4">
+                  <h3 class="h6 text-uppercase text-muted mb-3">Metodiky</h3>
+                  <ul class="mb-0">
+                    <li>LC-MS/MS – kvantifikace vybraných markerů</li>
+                    <li>GC-FID – profil těkavých látek</li>
+                    <li>HPLC-DAD – čistota a stabilita</li>
+                    <li>ICP-MS – anorganické kontaminanty</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body p-4">
+                  <h3 class="h6 text-uppercase text-muted mb-3">Vybavení</h3>
+                  <ul class="mb-0">
+                    <li>Vysoce citlivé LC-MS/MS</li>
+                    <li>HPLC s více detektory</li>
+                    <li>Stabilitní komory</li>
+                    <li>Validovaná měřicí infrastruktura</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row g-3 mt-3">
+            <div class="col-6 col-md-3">
+              <img
+                class="img-fluid rounded-3"
+                src="https://picsum.photos/400/300?random=31"
+                alt=""
+              />
+            </div>
+            <div class="col-6 col-md-3">
+              <img
+                class="img-fluid rounded-3"
+                src="https://picsum.photos/400/300?random=32"
+                alt=""
+              />
+            </div>
+            <div class="col-6 col-md-3">
+              <img
+                class="img-fluid rounded-3"
+                src="https://picsum.photos/400/300?random=33"
+                alt=""
+              />
+            </div>
+            <div class="col-6 col-md-3">
+              <img
+                class="img-fluid rounded-3"
+                src="https://picsum.photos/400/300?random=34"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PUBLIKACE -->
+      <section class="section">
+        <div class="container">
+          <h2 class="mb-4">Publikace a výstupy</h2>
+          <div class="list-group shadow-sm">
+            <a
+              href="#"
+              class="list-group-item list-group-item-action d-flex justify-content-between align-items-start"
+            >
+              <div class="me-3">
+                <h3 class="h6 mb-1">Lorem ipsum – titul publikace (2025)</h3>
+                <p class="mb-0 text-secondary small">
+                  Auctor A., B auctor B. – Journal of Applied Research, 12(3),
+                  123–130.
+                </p>
+              </div>
+              <span class="badge text-bg-dark">PDF</span>
+            </a>
+            <a
+              href="#"
+              class="list-group-item list-group-item-action d-flex justify-content-between align-items-start"
+            >
+              <div class="me-3">
+                <h3 class="h6 mb-1">Dolor sit amet – interní report (2025)</h3>
+                <p class="mb-0 text-secondary small">
+                  Genetia s.r.o. – Interní dokument, verze 1.0.
+                </p>
+              </div>
+              <span class="badge text-bg-dark">Report</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SPOLUPRÁCE -->
+      <section class="section">
+        <div class="container">
+          <h2 class="mb-4">Spolupráce a partneři</h2>
+          <div class="row g-4 align-items-center">
+            <div class="col-md-8">
+              <p class="mb-3 text-secondary">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Phasellus ut lorem vitae augue fermentum dictum. Pellentesque et
+                rutrum urna. Cras luctus, ipsum sed luctus dignissim, justo arcu
+                interdum lorem, vitae efficitur massa ipsum eu erat.
               </p>
+              <a href="kontakt.html" class="btn btn-brand">
+                Navázat spolupráci
+              </a>
             </div>
-            <span class="badge text-bg-dark">Report</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- SEKCE: Spolupráce / partneři -->
-    <section class="section">
-      <div class="container">
-        <h2 class="mb-4">Spolupráce a partneři</h2>
-        <div class="row g-4 align-items-center">
-          <div class="col-md-8">
-            <p class="mb-3 text-secondary">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-              ut lorem vitae augue fermentum dictum. Pellentesque et rutrum
-              urna. Cras luctus, ipsum sed luctus dignissim, justo arcu interdum
-              lorem, vitae efficitur massa ipsum eu erat.
-            </p>
-            <a href="kontakt.html" class="btn btn-brand">Navázat spolupráci</a>
-          </div>
-          <div class="col-md-4">
-            <div class="d-flex gap-3 flex-wrap">
-              <img
-                src="https://picsum.photos/120/60?random=41"
-                class="img-fluid rounded-2 border"
-                alt="Partner 1"
-              />
-              <img
-                src="https://picsum.photos/120/60?random=42"
-                class="img-fluid rounded-2 border"
-                alt="Partner 2"
-              />
-              <img
-                src="https://picsum.photos/120/60?random=43"
-                class="img-fluid rounded-2 border"
-                alt="Partner 3"
-              />
+            <div class="col-md-4">
+              <div class="d-flex gap-3 flex-wrap">
+                <img
+                  src="https://picsum.photos/120/60?random=41"
+                  class="img-fluid rounded-2 border"
+                  alt="Partner 1"
+                />
+                <img
+                  src="https://picsum.photos/120/60?random=42"
+                  class="img-fluid rounded-2 border"
+                  alt="Partner 2"
+                />
+                <img
+                  src="https://picsum.photos/120/60?random=43"
+                  class="img-fluid rounded-2 border"
+                  alt="Partner 3"
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
-    <!-- FOOTER -->
-    <footer class="footer">
+    <!-- ================================
+         FOOTER
+    =================================== -->
+    <footer class="footer py-3 border-top">
       <div
         class="container d-flex flex-wrap justify-content-between align-items-center gap-3"
       >
         <small>© <span id="year"></span> Genetia s.r.o.</small>
-        <small>Vyvinul: M. Gronych</small>
+        
       </div>
     </footer>
 
-    <!-- Scripts -->
+    <!-- ================================
+         SCRIPTS
+    =================================== -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/main.js"></script>
+    <script type="module" src="js/main.js"></script>
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
     </script>

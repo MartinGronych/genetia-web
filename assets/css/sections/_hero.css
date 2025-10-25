@@ -1,83 +1,159 @@
 /* ==================================================
-   GENETIA – Hero Section
+   GENETIA – Hero Section (Final v2)
    Autor: Martin Gronych
    --------------------------------------------------
-   ▸ Hlavní hero blok (nadpis + claim + tlačítka)
-   ▸ Obrázek vpravo
-   ▸ Responsivní chování
+   ▸ Vycentrovaný layout na všech zařízeních
+   ▸ Font: Inter
+   ▸ Jemný vertikální gradient (brand-300 → bílá)
+   ▸ Přesné zarovnání dle výšky navigace (--nav-height)
+   ▸ Mobile-first responzivita
 ================================================== */
 
 .hero-section {
   position: relative;
-  padding-block: clamp(4rem, 8vh, 7rem);
-  background: linear-gradient(180deg, var(--surface), var(--bg));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   overflow: hidden;
+
+  /* Jemný, decentní gradient pozadí */
+  background: linear-gradient(
+    180deg,
+    rgba(201, 211, 163, 0.25) 0%,  /* brand-300 s 25% opacity */
+    rgba(255, 255, 255, 0.7) 100%
+  );
+
+  /* Mobile-first spacing */
+  padding-block: 4rem;
+  padding-inline: 1rem;
 }
 
-/* Textový blok */
+/* ==========================================
+   TEXTOVÝ BLOK
+========================================== */
+.hero-content {
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+/* ==========================================
+   NADPIS
+========================================== */
 .hero-section h1 {
-  font-size: var(--fs-1);
+  font-family: var(--ff-sans);
+  color: var(--brand-600);
   font-weight: 700;
+  letter-spacing: -0.01em;
   line-height: 1.2;
-  margin-bottom: var(--space-4);
+  font-size: clamp(2rem, 3vw + 1rem, 3.2rem);
+  margin-bottom: 1.5rem;
 }
 
+.hero-br { display: none; }
+
+@media (min-width: 768px) {
+  .hero-br { display: inline; }
+}
+
+/* ==========================================
+   POPIS
+========================================== */
 .hero-section p.lead {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
   color: var(--text-muted);
+  font-size: 1.1rem;
   max-width: 60ch;
-  margin-bottom: var(--space-5);
+  margin: 0 auto 2rem auto;
 }
 
-/* Obrázek */
-.hero-section img {
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
-  transition: transform 0.8s ease, box-shadow 0.8s ease;
+/* ==========================================
+   CTA TLAČÍTKA
+========================================== */
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.9rem;
 }
 
-.hero-section img:hover {
-  transform: scale(1.02);
-  box-shadow: var(--shadow-lg);
-}
-
-/* Tlačítka v hero */
-.hero-section .btn {
-  font-weight: 500;
-  padding: 0.75rem 1.5rem;
-}
-
-.hero-section .btn-accent {
-  background: var(--brand-600);
+.btn-hero {
+  font-family: 'Inter', sans-serif;
+  background: var(--brand-800);
   color: #fff;
-  border-radius: 2rem;
   border: 1px solid transparent;
-  transition: all 0.3s ease;
+  border-radius: var(--radius-md);
+  padding: 0.7rem 1.3rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  transition: transform 0.2s ease, background 0.25s ease, box-shadow 0.25s ease;
 }
 
-.hero-section .btn-accent:hover {
+.btn-hero:hover {
   background: var(--brand-700);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
 }
 
-.hero-section .btn-outline-accent {
-  background: transparent;
-  color: var(--brand-700);
-  border: 1px solid var(--brand-600);
-  border-radius: 2rem;
-}
+/* ==================================================
+   RESPONSIVE (Mobile-first)
+================================================== */
 
-.hero-section .btn-outline-accent:hover {
-  background: var(--brand-600);
-  color: #fff;
-}
-
-/* Responsivní zarovnání */
-@media (max-width: 992px) {
+/* 🧩 Tablety (≥768px) */
+@media (min-width: 768px) {
   .hero-section {
+    padding-inline: 2rem;
+    padding-block: 5rem;
+  }
+
+  .hero-content {
+    max-width: 740px;
+  }
+}
+
+/* 💻 Desktop (≥992px) */
+@media (min-width: 992px) {
+  .hero-section {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    padding-block: 4rem;
+    padding-inline: 4rem;
+
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .hero-content {
+    max-width: 760px;
+    margin-inline: auto;
+  }
+
+  .hero-section h1,
+  .hero-section p.lead,
+  .hero-buttons {
+    text-align: center;
+    margin-inline: auto;
   }
 
   .hero-section img {
-    margin-top: 2rem;
+    max-width: 520px;
+    margin-top: 0;
+    margin-left: 3rem;
+  }
+}
+
+/* 🖥️ Velké displeje (≥1400px) */
+@media (min-width: 1400px) {
+  .hero-section {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .hero-section h1 {
+    font-size: clamp(2.6rem, 2vw + 1rem, 3.6rem);
   }
 }

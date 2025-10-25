@@ -1,90 +1,83 @@
 /* ==================================================
-   GENETIA – Contact Section
-   Autor: Martin Gronych
-   --------------------------------------------------
-   ▸ Blok "Zaujala vás naše práce?"
-   ▸ Kontaktní údaje vlevo
-   ▸ Formulář vpravo
+   GENETIA – SEKCE 5 / KONTAKT (Final)
 ================================================== */
-
 .contact-section {
-  background: var(--surface);
-  padding-block: var(--space-8);
-  position: relative;
+  background: var(--brand-800); /* brand zelená */
+  color: #1a1a1a;
+  padding-block: 5rem;
 }
 
 .contact-section h2 {
-  font-size: var(--fs-2);
   font-weight: 700;
-  margin-bottom: var(--space-4);
-  color: var(--text);
+  font-size: var(--fs-2, 2rem);
+  margin-bottom: 1rem;
 }
 
 .contact-section p {
-  color: var(--text-muted);
-  margin-bottom: var(--space-5);
+  color: #2e2e2e;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
 }
 
-/* Levý blok s kontakty */
-.contact-section ul {
+.contact-info {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.contact-section ul li {
-  margin-bottom: 0.5rem;
-  color: var(--text);
+.contact-info li {
+  margin-bottom: 0.4rem;
   font-size: 0.95rem;
 }
 
-.contact-section ul strong {
-  color: var(--brand-700);
-}
-
-/* Pravý blok – formulář */
+/* --- FORM --- */
 .contact-form {
-  background: var(--bg);
+  background: var(--brand-800);
+  border-radius: 16px;
   padding: 2rem;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
 .contact-form input,
 .contact-form textarea {
   width: 100%;
-  padding: 0.6rem 0.8rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
+  border: 1px solid #e4e4e4;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
   font-size: 0.95rem;
+  outline: none;
   transition: border-color 0.3s ease;
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
-  border-color: var(--brand-600);
+  border-color: #a2c800;
 }
 
 .contact-form button {
-  background: var(--brand-600);
+  display: block;
+  width: 100%;
+  background: #a2c800;
   color: #fff;
   border: none;
-  padding: 0.6rem 1.5rem;
-  border-radius: 2rem;
-  transition: all 0.3s ease;
+  border-radius: 8px;
+  padding: 0.9rem 1.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background 0.3s ease, transform 0.15s ease;
 }
 
 .contact-form button:hover {
-  background: var(--brand-700);
+  background: #8db800;
+  transform: translateY(-2px);
 }
 
-/* Responsivní úpravy */
-@media (max-width: 992px) {
+/* --- Responzivní --- */
+@media (max-width: 768px) {
   .contact-section {
     text-align: center;
   }
-
-  .contact-form {
-    margin-top: 2rem;
+  .contact-info {
+    margin-bottom: 2rem;
   }
 }
