@@ -1,49 +1,65 @@
 /* ==================================================
-   GENETIA PRODUCTION – STYLE.CSS (v3.0 modular)
+   GENETIA PRODUCTION – STYLE.CSS (v3.1 modular)
    Autor: Martin Gronych
    --------------------------------------------------
    Hlavní vstupní bod pro všechny CSS soubory projektu.
    Struktura:
-   ▸ BASE  – globální proměnné, reset, layout, komponenty
-   ▸ SECTIONS – jednotlivé části stránky
-   ▸ MODAL – klientská zóna
-   ▸ THEME – dark mode + přepínač
+   ▸ BASE      – globální proměnné, reset, layout, komponenty
+   ▸ SECTIONS  – jednotlivé sekce stránky (modulárně oddělené)
+   ▸ MODAL     – klientská zóna
+   ▸ THEME     – dark mode + přepínač
 ================================================== */
 
 
 /* ================================
    BASE STYLES
 ================================ */
-@import url("base/_tokens.css");     /* 🎨 Designové proměnné (barvy, fonty, spacing) */
-@import url("base/_reset.css");      /* 🧼 Reset stylů + základní typografie */
-@import url("base/_layout.css");     /* 📐 Kontejnery, sekce, utilitní třídy */
-@import url("base/_components.css"); /* ⚙️ Karty, tlačítka, badge, drobné prvky */
+@import url("base/_tokens.css");      /* 🎨 Designové proměnné (barvy, fonty, spacing) */
+@import url("base/_reset.css");       /* 🧼 Reset stylů + základní typografie */
+@import url("base/_layout.css");      /* 📐 Globální rozvržení sekcí a kontejnerů */
+@import url("base/_components.css");  /* ⚙️ Komponenty: tlačítka, badge, karty, utility */
 
 
 /* ================================
-   SECTIONS (Homepage + globální)
+   SECTIONS (Homepage + Globální)
 ================================ */
-@import url("sections/_navbar.css");   /* 🔝 Navigace + Klientská zóna (tlačítko) */
-@import url("sections/_hero.css");     /* 🎯 Hlavní hero blok (farmaceutická kvalita) */
-@import url("sections/_usp.css");      /* 💎 Proč si vybrat Genetia Production */
-@import url("sections/_products.css"); /* 📦 Karty produktů s obrázky */
-@import url("sections/_contact.css");  /* ✉️ Zaujala vás naše práce? (formulář) */
-@import url("sections/_footer.css");   /* ⚓ Spodní část webu */
+
+/* === Navigace === */
+@import url("sections/_navbar.css");     /* 🔝 Navigace + Klientská zóna */
+
+/* === Hero sekce === */
+@import url("sections/_hero.css");       /* 🎯 Úvodní hero blok (farmaceutická kvalita) */
+
+/* === Services sekce === */
+@import url("sections/_services.css");   /* ⚗️ Analytické služby, Vývoj API, Produkty pro lékárny */
+
+/* === USP sekce === */
+@import url("sections/_usp.css");        /* 💎 Proč si vybrat Genetia Production */
+
+/* === Products sekce === */
+@import url("sections/_products.css");   /* 📦 3D carousel produktů pro lékárny */
+
+/* === Contact sekce === */
+@import url("sections/_contact.css");    /* ✉️ Formulář a kontaktní informace */
+
+/* === Footer === */
+@import url("sections/_footer.css");     /* ⚓ Patička webu */
+
 
 /* ================================
-   CSS Efekty
+   INTERAKTIVNÍ EFEKTY
 ================================ */
-@import url("sections/_carousel.css");  /* 🎠 3D Carousel – rotující produkty (interaktivní sekce) */
+@import url("sections/_carousel.css");   /* 🎠 Rotující 3D carousel (produkty, efekty) */
 
 
 /* ================================
    MODAL (Klientská zóna)
 ================================ */
-@import url("_modal.css"); /* 💬 Přihlašovací okno Klientské zóny */
+@import url("theme/_modal.css");         /* 💬 Přihlašovací okno klientské zóny */
 
 
 /* ================================
-   THEME (Light/Dark režim)
+   THEME (Light / Dark režim)
 ================================ */
-@import url("theme/_dark.css");   /* 🌙 Přepsání proměnných pro tmavý režim */
-@import url("theme/_switch.css"); /* 🌗 Styl přepínače (Uiverse 00Kubi varianta) */
+@import url("theme/_dark.css");          /* 🌙 Tmavý režim – přepis barev a kontrastu */
+@import url("theme/_switch.css");        /* 🌗 Styl přepínače (Uiverse 00Kubi varianta) */

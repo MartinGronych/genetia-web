@@ -19,9 +19,9 @@
   height: var(--nav-height);
   background: var(--surface);
   padding: 0.6rem 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
   z-index: 1000;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   transition: background 0.4s ease, box-shadow 0.4s ease;
@@ -29,9 +29,9 @@
 
 /* Kontejner */
 .navbar .container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
   position: relative;
   max-width: 1400px;
   margin-inline: auto;
@@ -40,7 +40,7 @@
 
 /* Logo vlevo */
 .logo-img {
-  height: 55px;
+  height: 45px;
   width: auto;
   display: block;
   transition: transform 0.3s ease, opacity 0.3s ease;
@@ -84,7 +84,7 @@
   }
 
   .logo-img {
-    height: 60px;
+    height: 55px;
   }
 
   /* Zobrazíme menu vycentrované */
@@ -148,7 +148,7 @@
   }
 
   .logo-img {
-    height: 90px;
+    height: 80px;
   }
 
   .nav-center {

@@ -9,6 +9,7 @@ export async function initNavigation() {
 
   // Selektory navigačních kontejnerů
   const desktopMenu = document.querySelector(".navbar-nav.text-center.gap-4");
+  
 
   // Pokud chybí navigační kontejnery, ukonči funkci
   if (!desktopMenu && !mobileMenu) return;

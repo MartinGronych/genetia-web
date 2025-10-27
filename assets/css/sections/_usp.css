@@ -1,46 +1,41 @@
 /* ==================================================
-   GENETIA – USP / SERVICES SECTION 
+   GENETIA – USP SECTION ("Proč si vybrat Genetia Production")
    Autor: Martin Gronych
-   --------------------------------------------------
-   ▸ 3 výhody / služby – Analytické testování, API, Lékárny
-   ▸ Mobile-first grid layout
-   ▸ Moderní vzhled, jemné hover efekty, brand barvy
-   ▸ Glass / glow efekt s hloubkou
 ================================================== */
 
 /* ===============================================
-   SEKCE – wrapper
+   SEKCE – WRAPPER
 =============================================== */
 .usp-section {
   position: relative;
   z-index: 1;
-  background: var(--brand-800);
-  padding-block: var(--space-8);
+  background:var(--brand-800);
+  padding-block: var(--space-5);
   text-align: center;
   overflow: hidden;
 }
 
-/* Jemný světelný gradient v pozadí */
-.usp-section::before {
+/* Jemné laboratorní pozadí dole */
+.usp-section::after {
   content: "";
   position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    circle at 50% 0%,
-    rgba(160, 200, 160, 0.12),
-    transparent 70%
-  );
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(90%, 900px);
+  height: 360px;
+  background: var(--brand-800);
+  opacity: 0.35;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   z-index: 0;
 }
 
-.services-section.bg-light {
-  background: linear-gradient(
-    180deg,
-    rgba(249, 250, 243, 0.85) 0%,
-    rgba(255, 255, 255, 0.85) 100%
-  ) !important;
+/* Ujistíme se, že obsah sekce je nad pozadím */
+.usp-section > * {
+  position: relative;
+  z-index: 1;
 }
-
 
 /* ===============================================
    NADPIS A ÚVODNÍ TEXT
@@ -63,56 +58,68 @@
 }
 
 /* ===============================================
-   GRID – mobile-first
+   GRID – MOBILE-FIRST
 =============================================== */
 .usp-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-  margin-top: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  justify-content: center;
+  gap: 2rem;
 }
 
 @media (min-width: 768px) {
   .usp-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
   }
 }
 
 @media (min-width: 992px) {
   .usp-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
     gap: 2rem;
-  }
-  .usp-section .container {
-    max-width: 1000px; /* 🔹 zúžení gridu */
+    justify-content: center;
   }
 
-  .usp-item {
-    padding: 1.75rem 1.25rem;
+  /* Horní trojice */
+  .usp-item:nth-child(1) { grid-column: 1; grid-row: 1; }
+  .usp-item:nth-child(2) { grid-column: 2; grid-row: 1; }
+  .usp-item:nth-child(3) { grid-column: 3; grid-row: 1; }
+
+  /* Spodní dvojice – vystředěně */
+  .usp-item:nth-child(4) {
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: center;
+    max-width: 300px;
+  }
+  .usp-item:nth-child(5) {
+    grid-column: 3;
+    grid-row: 2;
+    justify-self: center;
+    max-width: 300px;
   }
 }
 
 /* ===============================================
-   USP ITEM – boxy
+   USP ITEM – BOXY
 =============================================== */
 .usp-item {
-  position: relative;
+  position: relative; 
   background: rgba(255, 255, 255, 0.65);
   border: 1px solid rgba(220, 220, 220, 0.6) !important;
-  border-radius: 1rem;
+  border-radius: var(--radius-md);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
   backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px); /* Safari podpora */
+  -webkit-backdrop-filter: blur(10px);
+
   transition:
     transform 0.35s ease,
     box-shadow 0.35s ease,
     background-color 0.35s ease,
     border-color 0.35s ease;
+  z-index: 2;
 }
 
-
-/* Hover efekt – zvýšení, světlo, glow */
 .usp-item:hover {
   transform: translateY(-6px);
   background: rgba(255, 255, 255, 0.95);
@@ -122,7 +129,7 @@
     0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
-/* Světelný efekt při hoveru */
+/* Glow efekt */
 .usp-item::before {
   content: "";
   position: absolute;
@@ -142,10 +149,10 @@
 }
 
 /* ===============================================
-   OBSAH BOXU
+   OBSAH BOXŮ
 =============================================== */
 .usp-item h5 {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 600;
   color: var(--brand-700);
   margin-bottom: 0.75rem;
@@ -157,26 +164,11 @@
 }
 
 .usp-item p {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 0.96rem;
   color: var(--text-muted);
   line-height: 1.6;
   margin-bottom: 1rem;
-}
-
-/* ===============================================
-   TLAČÍTKO uvnitř boxu
-=============================================== */
-.usp-item .btn-accent {
-  margin-top: auto;
-  font-size: 0.9rem;
-  border-radius: 2rem;
-  padding: 0.5rem 1.25rem;
-  transition: all 0.25s ease;
-}
-.usp-item .btn-accent:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
 }
 
 /* ===============================================
@@ -213,4 +205,13 @@
   }
 }
 
-
+/* ===============================================
+   MOBILNÍ ÚPRAVY
+=============================================== */
+@media (max-width: 768px) {
+  .usp-section::after {
+    width: 95%;
+    height: 240px;
+    opacity: 0.45;
+  }
+}

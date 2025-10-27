@@ -1,22 +1,23 @@
 /* ==================================================
-   GENETIA – PRODUCTS 3D CAROUSEL (Final Fixed v2)
+   GENETIA – PRODUCTS 3D CAROUSEL (v4.0 Final Polished)
    --------------------------------------------------
    ▸ 4 obrázky v kruhovém 3D karuselu
-   ▸ Plná responzivita a popisky (figcaption)
-   ▸ Původní geometrie zachována
+   ▸ Moderní nadpis + popis sekce (typografie optimalizovaná)
+   ▸ Vyvážený glow a 3D hloubka
+   ▸ Plná responzivita (desktop / tablet / mobil)
 ================================================== */
 
-/* Sekce */
+/* === Sekce wrapper === */
 .products-carousel-section {
   position: relative;
   background: linear-gradient(180deg, #f9faf3 0%, #ffffff 100%);
-  padding-block: calc(var(--space-8) * 1.6);
+  padding-block: clamp(4rem, 8vw, 7rem);
   text-align: center;
   overflow: hidden;
-  min-height: 730px;
+  min-height: 680px;
 }
 
-/* Glow pod karuselem */
+/* === Glow pod karuselem === */
 .products-carousel-section::before {
   content: "";
   position: absolute;
@@ -36,33 +37,62 @@
   z-index: 0;
 }
 
-/* Typografie sekce */
+/* ===============================================
+   NADPIS A POPIS SEKCE
+=============================================== */
+
+/* === Nadpis === */
 .products-carousel-section h2 {
   font-family: var(--ff-sans);
-  color: var(--brand-700);
   font-weight: 700;
-  max-width: 100%;
-  margin-inline: auto;
-  white-space: wrap;
-}
-.products-carousel-section p.lead {
-  display: block;
-  max-width: 90%;
-  margin: 0 auto var(--space-8);
-  font-size: 1rem;
-  color: var(--text-muted);
+  color: var(--brand-700);
+  font-size: clamp(1.9rem, 5vw + 0.5rem, 2.4rem); /* větší rozsah, čitelnější */
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  text-align: center;
+  margin: 0 auto 0.75rem;
+  max-width: 95vw;               /* ✅ téměř celá šířka viewportu */
+  text-wrap: balance;            /* lepší zalomení – 2 řádky */
+  word-break: keep-all;
 }
 
-/* 3D prostor */
+
+/* === Popis === */
+.products-carousel-section .section-desc {
+  font-family: var(--ff-sans);
+  color: var(--text-muted);
+  opacity: 0.95;
+  font-size: clamp(1rem, 1vw + 0.5rem, 1.2rem);
+  line-height: 1.45;
+  text-align: center;
+  max-width: 95vw;               /* ✅ plná šířka textu */
+  margin: 0.4rem auto 2rem;
+  text-wrap: pretty;
+  
+}
+
+/* === Desktop: omezení délky řádku === */
+@media (min-width: 992px) {
+  .products-carousel-section h2 {
+    max-width: 70ch;
+  }
+  .products-carousel-section .section-desc {
+    max-width: 65ch;
+  }
+}
+
+/* ===============================================
+   3D CAROUSEL
+=============================================== */
+
 .products-carousel-section .container {
-  width: 400px;
+  width: 500px;
   perspective: 1000px;
-  margin: 0 auto;
+  margin:  10px 10px;
   position: relative;
   z-index: 1;
 }
 
-/* Carousel */
 .carousel {
   transform-style: preserve-3d;
   animation: rotate 55s linear infinite;
@@ -81,28 +111,26 @@
   cursor: grabbing;
 }
 
-/* Obrázky */
+/* === Obrázky === */
 .carousel figure img {
   position: absolute;
-  width: 100%;
-  height: auto;
+  top: 30px;
+  width: 60%;
+  height: 60px;
   border-radius: 1rem;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
   border: 2px solid rgba(102, 125, 61, 0.15);
-  cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   user-select: none;
   -webkit-user-drag: none;
   pointer-events: auto;
 }
-
-/* Hover efekt */
 .carousel figure img:hover {
   transform: scale(1.05);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25);
 }
 
-/* --- kruh: rozmístění 4 obrázků + popisků po obvodu --- */
+/* === Rozmístění obrázků === */
 .carousel figure img:nth-of-type(1) {
   transform: rotateY(0deg) translateZ(360px);
 }
@@ -116,21 +144,59 @@
   transform: rotateY(270deg) translateZ(360px);
 }
 
-/* Popisky se otáčejí synchronně s obrázky */
-.carousel figure figcaption:nth-of-type(1) {
-  transform: rotateY(0deg) translateZ(360px) translateY(140px);
-}
-.carousel figure figcaption:nth-of-type(2) {
-  transform: rotateY(90deg) translateZ(360px) translateY(140px);
-}
-.carousel figure figcaption:nth-of-type(3) {
-  transform: rotateY(180deg) translateZ(360px) translateY(140px);
-}
-.carousel figure figcaption:nth-of-type(4) {
-  transform: rotateY(270deg) translateZ(360px) translateY(140px);
+/* === Popisky === */
+.carousel figure figcaption {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  font-family: var(--ff-sans);
+  pointer-events: none;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(255, 255, 255, 0.25) 100%
+  );
+  border-radius: 1rem;
 }
 
-/* Rotace */
+.carousel figure figcaption h3 {
+  margin-top: -2.5rem;
+  font-size: clamp(1rem, 1vw + 0.5rem, 1.25rem);
+  font-weight: 600;
+  color: var(--brand-700);
+}
+
+.carousel figure figcaption p {
+  margin-bottom: -12rem;
+  font-size: clamp(0.85rem, 0.6vw + 0.4rem, 1rem);
+  color: var(--text-muted);
+  opacity: 0.9;
+  max-width: 90%;
+}
+
+/* === Pozice popisků === */
+.carousel figure figcaption:nth-of-type(1) {
+  transform: rotateY(0deg) translateZ(360px);
+}
+.carousel figure figcaption:nth-of-type(2) {
+  transform: rotateY(90deg) translateZ(360px);
+}
+.carousel figure figcaption:nth-of-type(3) {
+  transform: rotateY(180deg) translateZ(360px);
+}
+.carousel figure figcaption:nth-of-type(4) {
+  transform: rotateY(270deg) translateZ(360px);
+}
+
+/* === Animace rotace === */
 @keyframes rotate {
   0% {
     transform: rotateY(0deg);
@@ -140,185 +206,64 @@
   }
 }
 
-/* =========================
-   Responsivita 
-========================= */
+/* ===============================================
+   RESPONSIVITA
+=============================================== */
 
-/* Tablet ≤ 991px */
+/* === Tablet ≤ 991px === */
 @media (max-width: 991px) {
   .products-carousel-section {
     min-height: 580px;
   }
   .products-carousel-section .container {
-    width: 240px;
+    width: 260px;
+    margin-top: -0.5rem;
   }
 
-  .carousel figure img:nth-of-type(1) {
-    transform: rotateY(0deg) translateZ(280px);
-  }
-  .carousel figure img:nth-of-type(2) {
-    transform: rotateY(90deg) translateZ(280px);
-  }
-  .carousel figure img:nth-of-type(3) {
-    transform: rotateY(180deg) translateZ(280px);
-  }
-  .carousel figure img:nth-of-type(4) {
-    transform: rotateY(270deg) translateZ(280px);
-  }
-
-  .carousel figure figcaption:nth-of-type(1) {
-    transform: rotateY(0deg) translateZ(280px) translateY(120px);
-  }
-  .carousel figure figcaption:nth-of-type(2) {
-    transform: rotateY(90deg) translateZ(280px) translateY(120px);
-  }
-  .carousel figure figcaption:nth-of-type(3) {
-    transform: rotateY(180deg) translateZ(280px) translateY(120px);
-  }
-  .carousel figure figcaption:nth-of-type(4) {
-    transform: rotateY(270deg) translateZ(280px) translateY(120px);
+  .carousel figure img:nth-of-type(n),
+  .carousel figure figcaption:nth-of-type(n) {
+    transform: rotateY(calc((var(--n) - 1) * 90deg)) translateZ(280px);
   }
 }
 
-/* Mobil ≤ 576px */
+/* === Mobil ≤ 576px === */
 @media (max-width: 576px) {
   .products-carousel-section {
-    min-height: 520px;
-    padding-block: var(--space-6);
+    min-height: 480px;
+    padding-block: var(--space-3);
   }
   .products-carousel-section .container {
-    width: 180px;
+    width:300px;
     perspective: 800px;
   }
+  .products-carousel-section h2 {
+  font-family: var(--ff-sans);
+  font-weight: 700;
+  font-size: 2.5rem;
+  padding-left: 10px;
+  margin: 0.75rem;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--brand-700);
+}
 
-  .carousel figure img:nth-of-type(1) {
+  .carousel figure img:nth-of-type(1),
+  .carousel figure figcaption:nth-of-type(1) {
     transform: rotateY(0deg) translateZ(210px);
   }
-  .carousel figure img:nth-of-type(2) {
+  .carousel figure img:nth-of-type(2),
+  .carousel figure figcaption:nth-of-type(2) {
     transform: rotateY(90deg) translateZ(210px);
   }
-  .carousel figure img:nth-of-type(3) {
+  .carousel figure img:nth-of-type(3),
+  .carousel figure figcaption:nth-of-type(3) {
     transform: rotateY(180deg) translateZ(210px);
   }
-  .carousel figure img:nth-of-type(4) {
+  .carousel figure img:nth-of-type(4),
+  .carousel figure figcaption:nth-of-type(4) {
     transform: rotateY(270deg) translateZ(210px);
   }
 
-  .carousel figure figcaption:nth-of-type(1) {
-    transform: rotateY(0deg) translateZ(210px) translateY(100px);
-  }
-  .carousel figure figcaption:nth-of-type(2) {
-    transform: rotateY(90deg) translateZ(210px) translateY(100px);
-  }
-  .carousel figure figcaption:nth-of-type(3) {
-    transform: rotateY(180deg) translateZ(210px) translateY(100px);
-  }
-  .carousel figure figcaption:nth-of-type(4) {
-    transform: rotateY(270deg) translateZ(210px) translateY(100px);
-  }
-}
-
-/* ===============================================
-   FIGCAPTION – Název nahoře, popis dole (final)
-=============================================== */
-/* ===== PATCH: FIGCAPTION OVERLAY (title nahoře, popis dole) ===== */
-
-/* 1) Základní overlay přes celý obrázek */
-.carousel figure figcaption {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* h3 nahoře, p dole */
-  align-items: center;
-  text-align: center;
-  font-family: var(--ff-sans);
-  pointer-events: none;
-  padding: 1rem 1.5rem;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.6) 0%,
-    rgba(255, 255, 255, 0.3) 100%
-  ); /* jemný světelný závoj */
-  border-radius: 1rem;
-}
-
-/* 2) Zrušení starého „spodního“ posunu */
-.carousel figure figcaption,
-.caption-item {
-  bottom: auto !important;
-}
-
-/* 3) Figcaptiony se točí po stejném kruhu jako obrázky (bez translateY) */
-.carousel figure figcaption:nth-of-type(1) {
-  transform: rotateY(0deg) translateZ(360px) !important;
-}
-.carousel figure figcaption:nth-of-type(2) {
-  transform: rotateY(90deg) translateZ(360px) !important;
-}
-.carousel figure figcaption:nth-of-type(3) {
-  transform: rotateY(180deg) translateZ(360px) !important;
-}
-.carousel figure figcaption:nth-of-type(4) {
-  transform: rotateY(270deg) translateZ(360px) !important;
-}
-
-/* 4) Typografie uvnitř overlaye */
-.carousel figure figcaption h3 {
-  margin-top: -2.75rem;
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--brand-700);
-}
-.carousel figure figcaption p {
-  margin-bottom: -12.75rem;
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  opacity: 0.9;
-  max-width: 90%;
-}
-
-/* 5) Responsivní radius pro figcaptiony (stejně jako pro img) */
-@media (max-width: 991px) {
-  .carousel figure figcaption:nth-of-type(1) {
-    transform: rotateY(0deg) translateZ(280px) !important;
-  }
-  .carousel figure figcaption:nth-of-type(2) {
-    transform: rotateY(90deg) translateZ(280px) !important;
-  }
-  .carousel figure figcaption:nth-of-type(3) {
-    transform: rotateY(180deg) translateZ(280px) !important;
-  }
-  .carousel figure figcaption:nth-of-type(4) {
-    transform: rotateY(270deg) translateZ(280px) !important;
-  }
-}
-@media (max-width: 576px) {
-  .carousel figure figcaption {
-    padding: 0.5rem 0.25rem;
-  }
-  .carousel figure figcaption h3 {
-    font-size: 0.9rem;
-  }
-  .carousel figure figcaption p {
-    font-size: 0.8rem;
-  }
-
-  .carousel figure figcaption:nth-of-type(1) {
-    transform: rotateY(0deg) translateZ(210px) !important;
-  }
-  .carousel figure figcaption:nth-of-type(2) {
-    transform: rotateY(90deg) translateZ(210px) !important;
-  }
-  .carousel figure figcaption:nth-of-type(3) {
-    transform: rotateY(180deg) translateZ(210px) !important;
-  }
-  .carousel figure figcaption:nth-of-type(4) {
-    transform: rotateY(270deg) translateZ(210px) !important;
-  }
   .carousel figure figcaption {
     padding: 0.5rem;
   }
