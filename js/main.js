@@ -8,10 +8,9 @@
 
 import { initNavigation } from "./nav.js";
 import { initCardHover }  from "./cardHover.js";
-import { initProductsCarousel } from "./productsCarousel.js";
+import "./components/carousel.js"; // ✅ načte se automaticky (GSAP se spustí samo)
 
 document.addEventListener("DOMContentLoaded", () => {
   initNavigation(); // 🚀 Spustí generování navigace z JSON
   initCardHover(); // aktivuje světelný hover na USP boxech
-  initProductsCarousel(); // aktivuje carousel na produktech
 });

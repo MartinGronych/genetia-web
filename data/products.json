@@ -26,5 +26,12 @@
     "image": "assets/images/products/produkt4.webp",
     "description": "THC 10 mg/ml, CBD 1 mg/ml – extrakt určený pro lékárny.",
     "link": "produkty.html#produkt4"
+  },
+  {
+    "id": "produkt5",
+    "title": "THC 10 mg/ml – Olejový extrakt",
+    "image": "assets/images/products/produkt1.webp",
+    "description": "Vyvážený poměr účinné látky pro léčebné použití.",
+    "link": "produkty.html#produkt1"
   }
 ]
