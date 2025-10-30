@@ -1,5 +1,5 @@
 /* ==================================================
-   GENETIA PRODUCTION – STYLE.CSS (v3.1 modular)
+   GENETIA PRODUCTION – STYLE.CSS (v.1 modular)
    Autor: Martin Gronych
    --------------------------------------------------
    Hlavní vstupní bod pro všechny CSS soubory projektu.
@@ -44,7 +44,6 @@
 
 /* === Footer === */
 @import url("sections/_footer.css");     /* ⚓ Patička webu */
-
 
 /* ================================
    INTERAKTIVNÍ EFEKTY

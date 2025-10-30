@@ -31,7 +31,6 @@
 .navbar .container {
   display: flex !important;
   align-items: center !important;
-  justify-content: space-between !important;
   position: relative;
   max-width: 1400px;
   margin-inline: auto;
@@ -153,7 +152,6 @@
 
   .nav-center {
     display: flex;
-    flex: 1;
     justify-content: center;
     gap: 1.75rem;
   }

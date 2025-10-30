@@ -152,7 +152,7 @@
 @media (min-width: 1400px) {
   .hero-section {
     padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
+    padding-bottom: 0.5rem;
   }
 
   .hero-section h1 {

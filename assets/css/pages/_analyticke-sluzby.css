@@ -1,0 +1,164 @@
+/* ==================================================
+   GENETIA – Analytické služby (scoped CSS)
+   Optimalizováno: bez duplicit, sjednocené vrstvy
+   Prefix: .page-analyticke-sluzby
+================================================== */
+
+.page-analyticke-sluzby .services-section {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding-block: clamp(3rem, 6vw, 6rem);
+  background: linear-gradient(180deg, #f9faf3 0%, #ffffff 100%);
+  overflow: hidden;
+}
+
+/* === Pozadí skla a gradient === */
+.page-analyticke-sluzby .services-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("../images/laboratory-bg.jpg") center/cover no-repeat;
+  opacity: 0.25;
+  filter: blur(8px) grayscale(10%) brightness(0.9);
+  z-index: 0;
+}
+
+.page-analyticke-sluzby .services-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 0.9) 0%,
+    transparent 25%,
+    transparent 75%,
+    rgba(255, 255, 255, 0.9) 100%
+  );
+  z-index: 1;
+}
+
+/* === Obsah === */
+.page-analyticke-sluzby .services-section .container {
+  position: relative;
+  width: min(1100px, 92vw);
+  z-index: 2;
+}
+
+/* ===============================================
+   TYPOGRAFIE A LAYOUT SLUŽEB
+=============================================== */
+.page-analyticke-sluzby h1 {
+  font-family: var(--ff-sans, "Poppins", sans-serif);
+  font-weight: 700;
+  color: var(--brand-700, #12323b);
+  font-size: clamp(1.9rem, 5vw, 2.4rem);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.page-analyticke-sluzby .intro {
+  text-align: center;
+  max-width: 700px;
+  margin-inline: auto;
+  font-size: 1.05rem;
+  color: #444;
+  margin-bottom: 3rem;
+}
+
+/* === GRID boxů === */
+.page-analyticke-sluzby .services-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  margin-bottom: 3.5rem;
+}
+
+.page-analyticke-sluzby .service-box {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 20px;
+  padding: 1.75rem 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  backdrop-filter: blur(6px);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.page-analyticke-sluzby .service-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.page-analyticke-sluzby .service-box h3 {
+  color: var(--brand-700, #12323b);
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.page-analyticke-sluzby .service-box p {
+  color: #555;
+  line-height: 1.55;
+  font-size: 0.98rem;
+}
+
+/* ===============================================
+   SEZNAM ANALYTICKÝCH METOD
+=============================================== */
+.page-analyticke-sluzby .methods-section {
+  background: var(--brand-800);
+  border-radius: 24px;
+  padding: clamp(2rem, 5vw, 3rem);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  backdrop-filter: blur(8px);
+  position: relative;
+  z-index: 2;
+}
+
+.page-analyticke-sluzby .methods-section h2 {
+  text-align: center;
+  color: var(--brand-700, #12323b);
+  font-size: clamp(1.4rem, 4vw, 1.9rem);
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+/* === Grid layout === */
+.page-analyticke-sluzby .methods-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.page-analyticke-sluzby .methods-list li {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 16px;
+  padding: 0.9rem 1rem 0.9rem 2rem;
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  line-height: 1.5;
+  color: #222;
+  font-size: 0.98rem;
+  transition: all 0.25s ease;
+}
+
+.page-analyticke-sluzby .methods-list li::before {
+  content: "";
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.75;
+  font-size: 1rem;
+}
+
+.page-analyticke-sluzby .methods-list li:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+}
