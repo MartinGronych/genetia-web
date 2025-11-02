@@ -1,27 +1,27 @@
 /* ==================================================
-   GENETIA – Navbar (Homepage redesign 2025)
+   GENETIA – Navbar & Hamburger (Final Optimized 2025)
    Autor: Martin Gronych
    --------------------------------------------------
-   ▸ Mobile-first přístup
+   ▸ Mobile-first 
    ▸ Vertikální zarovnání loga, menu, tlačítka
-   ▸ Kompaktní vzhled kolem 1024 px
-   ▸ Plynulý přechod mezi breakpointy
+   ▸ Optimalizace pro 1024px, 1440px+
+   ▸ Responsivní hamburger s glass efektem
 ================================================== */
 
-/* =============================
-   ZÁKLADNÍ STYL – MOBIL FIRST
-============================= */
+/* =====================================
+   1️⃣  ZÁKLADNÍ STYL 
+===================================== */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100% !important;
+  width: 100%;
   height: var(--nav-height);
   background: var(--surface);
   padding: 0.6rem 1rem;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   z-index: 1000;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   transition: background 0.4s ease, box-shadow 0.4s ease;
@@ -29,8 +29,9 @@
 
 /* Kontejner */
 .navbar .container {
-  display: flex !important;
-  align-items: center !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   position: relative;
   max-width: 1400px;
   margin-inline: auto;
@@ -49,12 +50,12 @@
   opacity: 0.9;
 }
 
-/* Skryté menu (hamburger verze bude doplněna později) */
+/* Skryté menu (desktop nav) */
 .nav-center {
   display: none;
 }
 
-/* Tlačítko Klientská zóna – základní styl */
+/* Tlačítko Klientská zóna */
 .btn-accent {
   background: var(--brand-800);
   color: #fff;
@@ -71,7 +72,7 @@
 }
 
 /* =====================================
-   STŘEDNÍ ZAŘÍZENÍ (≥768px – ≤1199px)
+   2️⃣  STŘEDNÍ ZAŘÍZENÍ (768px–1199px)
 ===================================== */
 @media (min-width: 768px) and (max-width: 1199px) {
   :root {
@@ -79,14 +80,13 @@
   }
 
   .navbar {
-    padding: 0.7rem 1.5rem;
+    padding: 0.1rem 1.5rem;
   }
 
   .logo-img {
     height: 55px;
   }
 
-  /* Zobrazíme menu vycentrované */
   .nav-center {
     display: flex;
     flex: 1;
@@ -98,7 +98,7 @@
     color: var(--text);
     font-weight: 500;
     letter-spacing: 0.02em;
-    font-size: 0.95rem;
+    font-size: 1.2rem;
     padding: 0.25rem 0.5rem;
     position: relative;
     transition: color 0.3s ease;
@@ -109,7 +109,6 @@
     color: var(--brand-600);
   }
 
-  /* underline efekt */
   .nav-center .nav-link::after {
     content: "";
     position: absolute;
@@ -122,11 +121,11 @@
     background: var(--brand-600);
     transition: transform 0.3s ease;
   }
+
   .nav-center .nav-link:hover::after {
     transform: translateX(-50%) scaleX(1);
   }
 
-  /* tlačítko menší a zarovnané na střed */
   .btn-accent {
     font-size: 0.9rem;
     padding: 0.45rem 1.1rem;
@@ -135,7 +134,7 @@
 }
 
 /* =====================================
-   DESKTOP (≥1200px)
+   3️⃣  DESKTOP (1200px+)
 ===================================== */
 @media (min-width: 1200px) {
   :root {
@@ -171,7 +170,6 @@
     color: var(--brand-600);
   }
 
-  /* underline efekt */
   .nav-center .nav-link::after {
     content: "";
     position: absolute;
@@ -190,17 +188,262 @@
   }
 
   .btn-accent {
-    background: var(--brand-800);
-    color: #fff;
-    border: none;
     padding: 0.6rem 1.4rem;
-    border-radius: var(--radius-md);
-    font-weight: 500;
-    cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease;
   }
-  .btn-accent:hover {
+}
+
+/* =====================================
+   4️⃣  DOLADĚNÍ 1024px & 1440px+
+===================================== */
+
+/* Fix pro notebooky */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .nav-center {
+    gap: 1rem;
+  }
+  .nav-center .nav-link {
+    font-size: 0.80rem;
+    letter-spacing: 0.01em;
+  }
+  .btn-accent {
+    font-size: 0.8rem;
+    padding: 0.45rem 1rem;
+  }
+}
+
+/* Fix pro velké monitory */
+@media (min-width: 1440px) {
+  .navbar .container {
+    max-width: 2400px;
+    justify-content: center;
+  }
+  .nav-center {
+    gap: 2.2rem;
+  }
+  .nav-center .nav-link {
+    font-size: 1.25rem;
+  }
+  .btn-accent {
+    right: 8%;
+  }
+}
+@media (min-width: 2560px) {
+  .navbar .container {
+    max-width: 2600px;
+    justify-content: center;
+  }
+  .nav-center {
+    gap: 2.2rem;
+  }
+  .nav-center .nav-link {
+    font-size: 1.8rem;
+  }
+  .btn-accent {
+    right: 12%;
+  }
+}
+
+/* =====================================
+   5️⃣  HAMBURGER MENU (≤991px)
+===================================== */
+@media (max-width: 991px) {
+  /* Reset */
+  .navbar .container {
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .btn-accent {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  /* Menší tlačítko pro extrémně úzké mobily */
+  @media (max-width: 360px) {
+    .btn-accent {
+      font-size: 0.8rem;
+      padding: 0.35rem 0.7rem;
+    }
+  }
+
+  /* Hamburger */
+  .hamburger-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .hamburger-wrapper input {
+    display: none;
+  }
+
+  .hamburger-wrapper .menu {
+    position: relative;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+    z-index: 1001;
+  }
+
+  .hamburger-wrapper .menu:hover {
+    background: var(--brand-100);
+  }
+
+  .hamburger-wrapper .hamburger,
+  .hamburger-wrapper .hamburger::before,
+  .hamburger-wrapper .hamburger::after {
     background: var(--brand-700);
-    transform: translateY(-2px);
+  }
+
+  .hamburger-wrapper .hamburger {
+    position: relative;
+    width: 20px;
+    height: 2px;
+    transition: 0.4s ease;
+  }
+
+  .hamburger-wrapper .hamburger::before,
+  .hamburger-wrapper .hamburger::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    transition: 0.4s ease;
+  }
+
+  .hamburger-wrapper .hamburger::before {
+    top: -6px;
+  }
+  .hamburger-wrapper .hamburger::after {
+    bottom: -6px;
+  }
+
+  /* Aktivní stav hamburgeru */
+  .hamburger-wrapper input:checked + .menu {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: none;
+  }
+  .hamburger-wrapper input:checked + .menu .hamburger {
+    transform: rotate(45deg);
+  }
+  .hamburger-wrapper input:checked + .menu .hamburger::before {
+    transform: rotate(90deg);
+    top: 0;
+  }
+  .hamburger-wrapper input:checked + .menu .hamburger::after {
+    transform: rotate(90deg);
+    bottom: 0;
+  }
+
+  /* Mobilní navigace */
+  .hamburger-wrapper .mobile-nav {
+    position: absolute;
+    top: calc(100% + 4px);
+    right: 16px;
+    width: 60vw;
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.6rem;
+    padding: 0.5rem 0.7rem;
+    list-style: none;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-5px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    z-index: 999;
+  }
+
+  /* Responzivní šířka */
+  @media (min-width: 480px) {
+    .hamburger-wrapper .mobile-nav {
+      width: 50vw;
+    }
+  }
+  @media (min-width: 640px) {
+    .hamburger-wrapper .mobile-nav {
+      width: 40vw;
+    }
+  }
+  @media (min-width: 768px) {
+    .hamburger-wrapper .mobile-nav {
+      width: 30vw;
+    }
+  }
+
+  /* Aktivace menu */
+  .hamburger-wrapper input:checked + .menu + .mobile-nav {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  /* Položky navigace */
+  .hamburger-wrapper .mobile-nav li {
+    width: 100%;
+    text-align: right;
+    padding: 5px;
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  .hamburger-wrapper .mobile-nav a {
+    display: inline-block;
+    color: var(--brand-black);
+    font-size: 1.05rem;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    transition: color 0.25s ease, transform 0.25s ease;
+  }
+
+  .hamburger-wrapper .mobile-nav a:hover {
+    color: var(--brand-600);
+    transform: translateX(-4px);
+  }
+
+  /* Animace položek */
+  .hamburger-wrapper input:checked + .menu + .mobile-nav li {
+    animation: navItemFade 0.4s forwards ease;
+  }
+
+  .hamburger-wrapper input:checked + .menu + .mobile-nav li:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  .hamburger-wrapper input:checked + .menu + .mobile-nav li:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .hamburger-wrapper input:checked + .menu + .mobile-nav li:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  .hamburger-wrapper input:checked + .menu + .mobile-nav li:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+  .hamburger-wrapper input:checked + .menu + .mobile-nav li:nth-child(5) {
+    animation-delay: 0.5s;
+  }
+
+  @keyframes navItemFade {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
