@@ -11,12 +11,12 @@
 .services-section {
   position: relative;
   background: linear-gradient(180deg, #f9faf3 0%, #ffffff 100%);
-  padding-block: calc(var(--space-8) * 0.7);
+  padding-block: calc(var(--space-6) * 0.7);
   overflow: hidden;
   text-align: center;
+  margin-top: 0;
   z-index: 1;
 }
-
 /* === GRID === */
 .services-section .row > div {
   transition: transform 0.3s ease, box-shadow 0.3s ease;

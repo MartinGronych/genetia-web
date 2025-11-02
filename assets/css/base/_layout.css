@@ -134,7 +134,7 @@ body {
 @media (min-width: 768px) {
   .hero-section + .section,
   .section + .section {
-    margin-top: var(--space-6); /* ~2rem */
+    margin-top: var(--space-1) /* ~2rem */
   }
 }
 
@@ -142,6 +142,6 @@ body {
 @media (min-width: 992px) {
   .hero-section + .section,
   .section + .section {
-    margin-top: var(--space-8); /* ~3rem */
+    margin-top: var(--space-1); /* ~3rem */
   }
 }
