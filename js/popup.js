@@ -27,3 +27,18 @@ document.getElementById('denyAccess')?.addEventListener('click', () => {
   window.location.href = 'index.html';
   }, 500);
 });
+
+// === Aktivace modálu při kliknutí na oko v carouselu ===
+document.addEventListener('click', (e) => {
+  const eyeIcon = e.target.closest('.eye-icon');
+  if (!eyeIcon) return; // klik mimo oko
+
+  e.preventDefault();
+
+  // otevři Bootstrap modal (používáme existující #gateModal)
+  const gateModal = document.getElementById('gateModal');
+  if (!gateModal) return;
+
+  const modalInstance = new bootstrap.Modal(gateModal);
+  modalInstance.show();
+});

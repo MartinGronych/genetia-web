@@ -107,7 +107,7 @@
           src="https://www.youtube.com/embed/iP_4_OHW7aI?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&playlist=iP_4_OHW7aI&modestbranding=1"
           title="Genetia Hero Video"
           frameborder="0"
-          allow="autoplay; fullscreen"
+          allow="autoplay"
           allowfullscreen
         ></iframe>
       </div>
@@ -263,21 +263,71 @@
 
     <!-- ================================
      SEKCE 4 – PRODUKTY (CAROUSEL)
-    =================================== -->
+=================================== -->
     <section class="products-carousel-section">
-      <div class="container">
+      <div class="container text-center">
         <h2>Naše produkty pro lékárny</h2>
         <p class="section-desc">
           Standardizované léčebné extrakty a formulace připravené pro
           distribuci.
         </p>
 
+        <!-- Carousel -->
         <ul class="carousel-list"></ul>
+
+        <!-- Ikona oka pro odemknutí obsahu -->
+        <div class="carousel-lock"></div>
+
+        <!-- Swipe zóna -->
         <div class="swipe"></div>
       </div>
     </section>
 
-    <!-- knihovna Hammer.js -->
+    <!-- GATE MODAL -->
+    <div class="modal fade" id="gateModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header border-0">
+            <h5 class="modal-title fw-semibold text-center w-100">
+              Jste Odborný Pracovník Ve Zdravotnictví?
+            </h5>
+          </div>
+
+          <div class="modal-body text-start">
+            <p>
+              Jsem odborníkem ve smyslu §2a Zákona č. 40/1995 Sb. o regulaci
+              reklamy, ve znění pozdějších předpisů, čili jsem osobou oprávněnou
+              předepisovat léčivé přípravky nebo osobou vydávat léčivé
+              přípravky.
+            </p>
+            <p>
+              Potvrzuji, že jsem se seznámil/a s definicí odborníka dle zákona
+              č. 40/1995 Sb.
+            </p>
+            <p>
+              Potvrzuji, že jsem se seznámil/a s riziky, jimž se jiná osoba než
+              odborník vystavuje, vstoupím-li na stránky určené převážně pro
+              odborníky.
+            </p>
+          </div>
+
+          <div class="modal-footer justify-content-center border-0">
+            <button type="button" class="btn btn-accent px-4" data-continue>
+              ANO, VSTOUPIT
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-secondary px-4"
+              id="denyAccess"
+            >
+              NE, ODEJÍT
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hammer.js  -->
     <script src="https://hammerjs.github.io/dist/hammer.js"></script>
 
     <!-- ==================================================

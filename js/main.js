@@ -1,16 +1,16 @@
 // ==================================================
-// GENETIA – MAIN SCRIPT
-// --------------------------------------------------
-// 1) Dynamické načtení navigace z JSON
-// 2) CardHover efekt 
-// 3) Carousel v homepage/product
+// GENETIA – MAIN SCRIPT (Final Fixed Lucide)
 // ==================================================
 
 import { initNavigation } from "./nav.js";
-import { initCardHover }  from "./cardHover.js";
-import "./components/carousel.js"; // ✅ načte se automaticky (GSAP se spustí samo)
+import { initCardHover } from "./cardHover.js";
+import "./components/carousel.js";
+import "./components/carousel-lock.js";
 
+// 🟢 Po načtení DOM
 document.addEventListener("DOMContentLoaded", () => {
-  initNavigation(); // 🚀 Spustí generování navigace z JSON
-  initCardHover(); // aktivuje světelný hover na USP boxech
+  initNavigation();
+  initCardHover();
+
+  
 });

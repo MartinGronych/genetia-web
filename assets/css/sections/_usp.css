@@ -42,9 +42,9 @@
 =============================================== */
 .usp-section h2 {
   font-size: var(--fs-2);
-  font-weight: 700 !important;
-  color: rgba(0, 0, 0, 0.91);
-  text-shadow: 2px 2px rgba(219, 219, 219, 0.95);
+  font-weight: 500 !important;
+  color: var(--bg);
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.774);
   margin-bottom: var(--space-4) !important;
   letter-spacing: -0.01em;
 }

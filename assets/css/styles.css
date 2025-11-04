@@ -54,7 +54,7 @@
 /* ================================
    MODAL (Klientská zóna)
 ================================ */
-@import url("theme/_modal.css");         /* 💬 Přihlašovací okno klientské zóny */
+@import url("_modal.css");         /* 💬 Přihlašovací okno klientské zóny */
 
 
 /* ================================

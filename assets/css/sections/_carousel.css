@@ -1,29 +1,177 @@
 /* ==================================================
-   GENETIA – PRODUCTS CAROUSEL (v3 Hammer.js)
+   GENETIA – PRODUCTS CAROUSEL (v4.5 Final)
+   --------------------------------------------------
+   ▸ Jedno centrální oko (odemknutí obsahu)
+   ▸ Blur pouze na carousel část
+   ▸ Oko vždy klikatelné, nad všemi vrstvami
+   ▸ Plná responzivita a čisté vrstvy
 ================================================== */
 
+/* === Sekce === */
 .products-carousel-section {
-  background: linear-gradient(180deg, var(--brand-50) 0%, #ffffff 100%);
-  text-align: center;
-  padding-block: clamp(4rem, 8vw, 7rem);
   position: relative;
+  text-align: center;
+  background: linear-gradient(180deg, var(--brand-50) 0%, #fff 100%);
+  padding-block: clamp(4rem, 8vw, 7rem);
   overflow: hidden;
+  transition: filter 0.35s ease, opacity 0.35s ease;
 }
 
+/* === Nadpis a popis === */
 .products-carousel-section h2 {
   font-size: clamp(2rem, 4vw, 2.6rem);
   color: var(--brand-700);
   font-weight: 700;
   margin-bottom: var(--space-3);
+  position: relative;
+  z-index: 5;
 }
 
 .products-carousel-section .section-desc {
   color: var(--brand-600);
   max-width: 50ch;
-  margin-inline: auto;
-  margin-bottom: var(--space-6);
+  margin: 0 auto var(--space-6);
   font-size: 1.1rem;
+  position: relative;
+  z-index: 5;
 }
+
+/* === Blur – pouze carousel, ne text === */
+.products-carousel-section.is-locked .carousel-list,
+.products-carousel-section.is-locked .swipe {
+  filter: blur(8px) brightness(0.95);
+  opacity: 0.75;
+  pointer-events: none;
+  transition: filter 0.35s ease, opacity 0.35s ease;
+}
+
+/* === Centrální oko === */
+.carousel-lock {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50; /* nad swipe i carousel */
+  pointer-events: auto;
+  animation: fadeIn 0.6s ease both;
+  
+}
+/* === Fade-in animace === */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translate(-50%, -55%) scale(0.95); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+/* ==================================================
+   GENETIA – EYE GATE v4.2 (Aqua Mint Pulse Smooth + Hover Glow)
+   --------------------------------------------------
+   ▸ 10 plynulých přechodů v aqua-mint barevné paletě
+   ▸ Plynulý reverzní pohyb (alternate)
+   ▸ Jemný světelný posun při hoveru
+================================================== */
+
+.eye-icon-animated.v3 {
+  width: 84px;
+  height: 84px;
+  cursor: pointer;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 45% 45%,
+    #f9fff9 0%,
+    #f5fff9 10%,
+    #f0fff9 20%,
+    #e9fdfa 30%,
+    #e3fbf8 40%,
+    #dbfaf6 50%,
+    #d3f8f3 60%,
+    #c8f6ef 70%,
+    #bcf3ea 80%,
+    #b0f0e5 90%,
+    #a6fbe2 100%
+  );
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+  animation: eyePulse 7s cubic-bezier(0.37, 0, 0.63, 1) infinite alternate;
+  transition: transform 0.3s ease ease-in-out, box-shadow 0.3s ease ease-in-out, background-position 1s ease;
+  z-index: 50;
+}
+
+/* Hover – lehký světelný záblesk + zvětšení */
+.eye-icon-animated.v3:hover {
+  transform: scale(1.08);
+  background-position: 60% 40%;
+  box-shadow: 0 0 28px rgba(64, 179, 255, 0.5),
+              0 0 60px rgba(160, 255, 235, 0.4);
+}
+
+/* === Pulz oka === */
+@keyframes eyePulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+    background: radial-gradient(circle at 45% 45%, #f9fff9 0%, #f5fff9 10%, #f0fff9 20%, #e9fdfa 30%, #e3fbf8 40%, #dbfaf6 50%, #d3f8f3 60%, #c8f6ef 70%, #bcf3ea 80%, #b0f0e5 90%, #a6fbe2 100%);
+  }
+
+  25% {
+    transform: scale(1.08);
+    box-shadow: 0 7px 18px rgba(0, 0, 0, 0.28);
+  }
+
+  50% {
+    transform: scale(1.18);
+    box-shadow: 0 0 26px rgba(0, 255, 179, 0.45);
+    background: radial-gradient(circle at 45% 45%, #a6fbe2 0%, #aefbe6 10%, #b8fcea 20%, #c2fdee 30%, #cbfff1 40%, #d4fff4 50%, #ddfff7 60%, #e7fffa 70%, #f1fffc 80%, #f8fffd 90%, #ffffff 100%);
+  }
+
+  75% {
+    transform: scale(1.08);
+    box-shadow: 0 7px 18px rgba(0, 0, 0, 0.28);
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+    background: radial-gradient(circle at 45% 45%, #f9fff9 0%, #f5fff9 10%, #f0fff9 20%, #e9fdfa 30%, #e3fbf8 40%, #dbfaf6 50%, #d3f8f3 60%, #c8f6ef 70%, #bcf3ea 80%, #b0f0e5 90%, #a6fbe2 100%);
+  }
+}
+
+
+
+
+/* === MRKNUTÍ – realističtější === */
+.eyelid {
+  transform-origin: 60px 30px; /* přesně místo, kde je horní oblouk oka */
+  fill: #f2f2f2;
+  opacity: 1;
+  transition: transform 0.3s ease ease-in-out;
+}
+
+
+/* === Duhovka – pohyb pohledem === */
+.iris-group {
+  animation: irisMove 4s infinite ease-in-out;
+}
+
+@keyframes irisMove {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(2px, 1px); }
+  50% { transform: translate(-3px, -1px); }
+  75% { transform: translate(1px, -2px); }
+}
+
+/* === Lesk oka – jemné „dýchání světla“ === */
+.iris-group circle:last-child {
+  animation: eyeShine 5s infinite ease-in-out;
+}
+
+@keyframes eyeShine {
+  0%, 100% { opacity: 1; transform: translate(0, 0); }
+  50% { opacity: 0.8; transform: translate(-1px, 1px); }
+}
+
 
 /* === Carousel === */
 .carousel-list {
@@ -33,7 +181,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  perspective: 1000px;
+  perspective: 800px;
+  margin: 0;
+  padding: 0;
+  z-index: 1;
 }
 
 .carousel-list li {
@@ -47,37 +198,35 @@
   opacity: 0.25;
   transition: transform 0.7s ease, opacity 0.7s ease;
   cursor: pointer;
+  overflow: hidden;
+  z-index: 2;
 }
 
-/* Active a okolní */
-.carousel-list .act {
-  opacity: 1;
-  transform: translateX(0) scale(1);
+/* === Blur overlay (jen při locku) === */
+.carousel-list li::after {
+  content: "";
+  position: absolute;
+  inset: 0;
   z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.6s ease;
 }
-.carousel-list .prev {
-  transform: translateX(-260px) scale(0.9);
-  opacity: 0.7;
-  z-index: 2;
-}
-.carousel-list .next {
-  transform: translateX(260px) scale(0.9);
-  opacity: 0.7;
-  z-index: 2;
+.products-carousel-section.is-locked .carousel-list li::after {
+  opacity: 1;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  background: rgba(255, 255, 255, 0.15);
 }
 
-/* Mimo scénu */
-.carousel-list .hide {
-  transform: translateX(-480px) scale(0.8);
-  opacity: 0;
-  z-index: 1;
-}
-.carousel-list .new-next {
-  transform: translateX(480px) scale(0.8);
-  opacity: 0;
-  z-index: 1;
-}
+/* === Pozice snímků === */
+.carousel-list .act { opacity: 1; transform: translateX(0) scale(1); z-index: 3; }
+.carousel-list .prev { transform: translateX(-260px) scale(0.9); opacity: 0.7; }
+.carousel-list .next { transform: translateX(260px) scale(0.9); opacity: 0.7; }
+.carousel-list .hide { transform: translateX(-480px) scale(0.8); opacity: 0; }
+.carousel-list .new-next { transform: translateX(480px) scale(0.8); opacity: 0; }
 
+/* === Swipe zóna === */
 .swipe {
   width: 300px;
   height: 320px;
@@ -86,5 +235,37 @@
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: var(--radius-lg);
-  background: rgba(0, 0, 0, 0);
+  background: transparent;
+  cursor: pointer;
+  z-index: 3; /* nižší než oko */
+}
+
+/* === Responsivita === */
+@media (max-width: 768px) {
+  .carousel-list {
+    height: 260px;
+  }
+  .carousel-list li {
+    width: 180px;
+    height: 260px;
+  }
+  .carousel-list .prev { transform: translateX(-180px) scale(0.9); }
+  .carousel-list .next { transform: translateX(180px) scale(0.9); }
+  .swipe {
+    width: 240px;
+    height: 260px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .carousel-list li {
+    width: 280px;
+    height: 380px;
+  }
+  .carousel-list .prev { transform: translateX(-300px) scale(0.9); }
+  .carousel-list .next { transform: translateX(300px) scale(0.9); }
+  .swipe {
+    width: 340px;
+    height: 380px;
+  }
 }
