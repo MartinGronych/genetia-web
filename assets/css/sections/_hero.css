@@ -72,7 +72,7 @@
   line-height: 1.2;
   font-size: clamp(2rem, 3vw + 1rem, 3.2rem);
   margin-bottom: 1.5rem;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+  text-shadow: 1px 2px 10px rgba(0, 0, 0, 0.85);
 }
 
 .hero-br {
@@ -98,7 +98,7 @@
   text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
 }
 
-/* === CTA TLAČÍTKA === */
+/* === CTA TLAČÍTKA (fix bez odskakování) === */
 .hero-buttons {
   display: flex;
   justify-content: center;
@@ -108,27 +108,35 @@
 
 .btn-hero {
   font-family: "Inter", sans-serif;
-  background: var(--brand-800); /* tmavší zelená */
-  color: #fff; /* bílý text */
+  background: var(--brand-800);
+  color: #fff;
   border: none;
   border-radius: var(--radius-md);
   padding: 0.7rem 1.3rem;
-  font-weight: 500;
+  font-weight: 600;            /* ✅ sjednoceno – žádné přepínání na hover */
   letter-spacing: 0.01em;
   text-decoration: none;
   cursor: pointer;
-  transition: background 0.5s ease, color 0.5s ease, transform 0.5s ease;
+  white-space: nowrap;         /* ✅ zabrání přelomení textu při hoveru */
+  transition: background 0.35s ease, color 0.35s ease,
+              box-shadow 0.35s ease, transform 0.25s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(4px);
+  will-change: transform;
 }
 
 .btn-hero:hover {
-  background: var(--brand-600); /* světlejší zelená */
-  color: var(--brand-black); /* tmavý text při hoveru */
-  transform: translateY(-2px);
+  background: var(--brand-600);
+  color: var(--brand-black);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
-  font-weight: 600;
+  transform: scale(1.03);      /* ✨ vizuální „vystoupení“, neovlivní layout */
+  /* font-weight NEMĚNIT */
 }
+
+.btn-hero:active {
+  transform: scale(0.79);      /* příjemný „stisk“ */
+}
+
 
 /* === PLYNULÝ PŘECHOD DO DALŠÍ SEKCE === */
 .hero-section::after {

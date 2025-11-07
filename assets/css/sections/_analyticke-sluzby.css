@@ -1,0 +1,451 @@
+/* ==================================================
+   GENETIA – Analytické služby (v2 Visual Layered Edition)
+   Autor: Martin Gronych
+   --------------------------------------------------
+   ▸ Hero (video-ready) + Analytické metody
+   ▸ Testovací panely + Tabulka + Proces objednávky
+   ▸ Požadavky + Ke stažení + FAQ + CTA
+   ▸ Plynulé gradienty, světelná atmosféra, farmaceutická čistota
+================================================== */
+
+
+/* ==================================================
+   1️⃣ HERO – Analytické testování léčebného konopí
+   --------------------------------------------------
+   ▸ Fullwidth video layer
+   ▸ Glass overlay + text kontrast
+================================================== */
+
+.hero-analyticke {
+  position: relative;
+  text-align: center;
+  color: var(--brand-900);
+  overflow: hidden;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Video vrstva */
+.hero-analyticke video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 80%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* Překryv (jemné světlo + brand tón) */
+.hero-analyticke::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(249, 250, 251, 0.85) 100%
+  );
+  backdrop-filter: blur(4px) saturate(80%);
+  -webkit-backdrop-filter: blur(2px) saturate(80%);
+  z-index: 1;
+}
+
+/* Obsah */
+.hero-analyticke .container {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+}
+
+.hero-analyticke h1 {
+  color: var(--bg);
+  font-size: 5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: 0.01em;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.hero-analyticke p {
+  color: var(--brand-black);
+  font-size: 1.15rem;
+  line-height: 1.65;
+  margin-bottom: 2rem;
+  text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
+}
+
+/* =======================================
+   Přechod mezi HERO → METHODS
+   jemný vlnový gradient (optický klid)
+======================================= */
+
+.hero-analyticke::before {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(to bottom, transparent, #ffffff);
+  z-index: 2;
+}
+
+
+/* ==================================================
+   2️⃣ ANALYTICKÉ METODY
+   --------------------------------------------------
+   ▸ Sekce s kartami metod
+   ▸ Pozadí: jemná textura + gradient světla
+================================================== */
+
+.methods-section {
+  position: relative;
+  background: linear-gradient(180deg, #ffffff 0%, #f9fafb 60%, #eef2f8 100%);
+  padding-block: clamp(4rem, 8vw, 6rem);
+  overflow: hidden;
+}
+
+.methods-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 10%,
+    rgba(102, 178, 255, 0.05),
+    transparent 70%
+  );
+  z-index: 0;
+}
+
+.methods-section .container {
+  position: relative;
+  z-index: 2;
+  width: min(1000px, 92vw);
+  margin-inline: auto;
+}
+
+/* Nadpisy */
+.methods-section h2 {
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-weight: 700;
+  text-align: center;
+  color: var(--brand-800);
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+  letter-spacing: 0.01em;
+}
+
+.methods-section p {
+  color: var(--text-700);
+  font-size: 1.05rem;
+  text-align: center;
+  line-height: 1.6;
+  margin-bottom: 3rem;
+}
+
+/* Karty metod */
+.method-block {
+  background: #ffffff;
+  border: 1px solid var(--brand-100);
+  border-left: 4px solid var(--brand-400);
+  border-radius: var(--radius-md);
+  padding: 1.75rem 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s ease;
+}
+
+.method-block:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  border-left-color: var(--brand-600);
+}
+
+.method-block h3 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--brand-700);
+  margin-bottom: 1rem;
+}
+
+.method-block li {
+  font-size: 1rem;
+  color: var(--text-800);
+  line-height: 1.6;
+  margin-bottom: 0.4rem;
+  position: relative;
+  padding-left: 1.4rem;
+}
+
+.method-block li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  color: var(--brand-600);
+  font-size: 1rem;
+  top: 0;
+}
+
+/* ==================================================
+   3️⃣ JAK PROBÍHÁ OBJEDNÁVKA A TESTOVÁNÍ
+   --------------------------------------------------
+   ▸ 4 kroky + spojovací linka
+   ▸ Brand ikony + hover efekty
+================================================== */
+
+/* ==================================================
+   GENETIA – Proces objednávky a testování (v2)
+   --------------------------------------------------
+   ▸ Lucide ikony v kruhu
+   ▸ Plynulý gradient, hover animace a konzistentní brand styl
+================================================== */
+
+#proces {
+  position: relative;
+  background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);
+  padding-block: clamp(4rem, 8vw, 6rem);
+  overflow: hidden;
+  z-index: 2;
+}
+
+/* Jemný horní přechod pro spojení se sekcí metod */
+#proces::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 160px;
+  background: linear-gradient(to top, #ffffff, rgba(255, 255, 255, 0));
+  z-index: 0;
+}
+
+/* Nadpis a text */
+#proces h2 {
+  color: var(--brand-800);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+#proces p {
+  color: var(--text-700);
+  line-height: 1.6;
+}
+
+/* Jednotlivé kroky */
+#proces .process-step {
+  position: relative;
+  text-align: center;
+  border: 1px solid var(--brand-100);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  background: #ffffff;
+  transition: all 0.35s ease;
+  z-index: 1;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+#proces .process-step:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+  border-color: var(--brand-200);
+}
+
+/* === Ikony v kruhu === */
+#proces .process-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  margin: 0 auto 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, var(--brand-50), var(--brand-100));
+  color: var(--brand-700);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+#proces .process-step:hover .process-icon {
+  background: linear-gradient(145deg, var(--brand-600), var(--brand-500));
+  color: #fff;
+  transform: scale(1.05);
+}
+
+/* === Lucide SVG === */
+#proces .process-icon i,
+#proces .process-icon svg {
+  width: 28px;
+  height: 28px;
+  stroke-width: 2.2px;
+}
+
+/* Nadpis kroku */
+#proces .process-step h3 {
+  color: var(--brand-800);
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+/* Text popisu kroku */
+#proces .process-step p {
+  color: var(--text-700);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* === Responsivita === */
+@media (max-width: 768px) {
+  #proces .process-step {
+    padding: 1.25rem 1rem;
+  }
+
+  #proces .process-icon {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 0.8rem;
+  }
+
+  #proces .process-icon i,
+  #proces .process-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  #proces .process-step h3 {
+    font-size: 1rem;
+  }
+
+  #proces .process-step p {
+    font-size: 0.9rem;
+  }
+}
+
+
+/* Spojovací linka mezi kroky (desktop only) */
+@media (min-width: 992px) {
+  #proces .row.g-4 {
+    position: relative;
+  }
+
+  #proces .row.g-4::before {
+    content: "";
+    position: absolute;
+    top: 45px;
+    left: 6%;
+    right: 6%;
+    height: 2px;
+    background: var(--brand-100);
+    z-index: 0;
+  }
+}
+
+/* CTA tlačítka */
+#proces .btn-accent {
+  padding: 0.65rem 1.6rem;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.25s ease;
+}
+
+#proces .btn-accent:hover {
+  background: var(--brand-600);
+  transform: translateY(-2px);
+}
+
+#proces .btn-outline-secondary {
+  border: 2px solid var(--brand-200);
+  color: var(--brand-700);
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+#proces .btn-outline-secondary:hover {
+  background: var(--brand-100);
+  color: var(--brand-800);
+}
+
+/* ==================================================
+   4️⃣ CTA – Závěrečný blok
+   --------------------------------------------------
+   ▸ Jemný gradient a světelné pozadí
+================================================== */
+
+.cta-section {
+  position: relative;
+  background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);
+  padding-block: clamp(4rem, 8vw, 6rem);
+  text-align: center;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 90%,
+    rgba(90, 160, 255, 0.05) 0%,
+    transparent 70%
+  );
+}
+
+.cta-section h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  font-weight: 700;
+  color: var(--brand-800);
+  margin-bottom: 1rem;
+}
+
+.cta-section p {
+  font-size: 1.05rem;
+  color: var(--text-700);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.cta-section .btn-accent {
+  background: var(--brand-700);
+  color: #fff;
+  border-radius: var(--radius-md);
+  padding: 0.8rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: background 0.3s ease, transform 0.25s ease;
+}
+
+.cta-section .btn-accent:hover {
+  background: var(--brand-600);
+  transform: translateY(-3px);
+}
+
+/* Responsivita */
+@media (max-width: 768px) {
+  .hero-analyticke h1 {
+    font-size: 1.9rem;
+  }
+  .hero-analyticke p {
+    font-size: 1rem;
+  }
+
+  .method-block {
+    padding: 1.25rem 1.3rem;
+  }
+  #proces .process-step {
+    padding: 1.25rem;
+  }
+  .cta-section h2 {
+    font-size: 1.6rem;
+  }
+  .cta-section .btn-accent {
+    font-size: 1rem;
+  }
+}
+
+
+

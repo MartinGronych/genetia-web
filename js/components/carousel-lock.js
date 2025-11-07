@@ -8,6 +8,17 @@
 const section = document.querySelector(".products-carousel-section");
 const gateModal = document.getElementById("gateModal");
 const lockWrapper = document.querySelector(".carousel-lock");
+const eyeIcon = section?.querySelector(
+  ".carousel-lock svg, .carousel-lock img, .carousel-lock .eye-icon"
+);
+
+if (!section || !gateModal || !eyeIcon) {
+  console.warn("⚠️ Carousel lock elements not found", { section, gateModal, eyeIcon });
+} else {
+  // spustí se pouze, pokud jsou elementy dostupné
+  initCarouselLock();
+}
+
 if (lockWrapper) {
   lockWrapper.innerHTML = `
   <svg class="eye-icon-animated v3" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
@@ -45,9 +56,7 @@ if (lockWrapper) {
 `;
 }
 
-const eyeIcon = section?.querySelector(
-  ".carousel-lock svg, .carousel-lock img, .carousel-lock .eye-icon"
-);
+
 
 if (section && gateModal && eyeIcon) {
   console.log("🔒 Carousel Lock script loaded");

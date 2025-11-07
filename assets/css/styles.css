@@ -33,6 +33,9 @@
 /* === Services sekce === */
 @import url("sections/_services.css");   /* ⚗️ Analytické služby, Vývoj API, Produkty pro lékárny */
 
+/* === Analytické služby === */
+@import url("sections/_analyticke-sluzby.css"); /* 🧪 Kompletní stránka analytických služeb (panely, tabulky, FAQ, CTA) */
+
 /* === USP sekce === */
 @import url("sections/_usp.css");        /* 💎 Proč si vybrat Genetia Production */
 

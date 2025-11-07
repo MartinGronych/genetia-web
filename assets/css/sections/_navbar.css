@@ -79,6 +79,15 @@
     --nav-height: 70px;
   }
 
+  .btn-accent {
+    display: inline-block;
+    font-size: 0.9rem;
+    padding: 0.45rem 1.1rem;
+  }
+  .hamburger-wrapper .mobile-nav {
+    width: 35vw !important ;
+  }
+
   .navbar {
     padding: 0.1rem 1.5rem;
   }
@@ -124,12 +133,6 @@
 
   .nav-center .nav-link:hover::after {
     transform: translateX(-50%) scaleX(1);
-  }
-
-  .btn-accent {
-    font-size: 0.9rem;
-    padding: 0.45rem 1.1rem;
-    align-self: center;
   }
 }
 
@@ -186,10 +189,6 @@
   .nav-center .nav-link:hover::after {
     transform: translateX(-50%) scaleX(1);
   }
-
-  .btn-accent {
-    padding: 0.6rem 1.4rem;
-  }
 }
 
 /* =====================================
@@ -202,7 +201,7 @@
     gap: 1rem;
   }
   .nav-center .nav-link {
-    font-size: 0.80rem;
+    font-size: 0.8rem;
     letter-spacing: 0.01em;
   }
   .btn-accent {
@@ -223,23 +222,13 @@
   .nav-center .nav-link {
     font-size: 1.25rem;
   }
-  .btn-accent {
-    right: 8%;
-  }
 }
 @media (min-width: 2560px) {
   .navbar .container {
     max-width: 2600px;
-    justify-content: center;
-  }
-  .nav-center {
-    gap: 2.2rem;
   }
   .nav-center .nav-link {
     font-size: 1.8rem;
-  }
-  .btn-accent {
-    right: 12%;
   }
 }
 
@@ -247,7 +236,6 @@
    5️⃣  HAMBURGER MENU (≤991px)
 ===================================== */
 @media (max-width: 991px) {
-  /* Reset */
   .navbar .container {
     justify-content: space-between;
     align-items: center;
@@ -266,7 +254,7 @@
     }
   }
 
-  /* Hamburger */
+  /* Hamburger wrapper */
   .hamburger-wrapper {
     position: relative;
     display: flex;
@@ -277,6 +265,7 @@
     display: none;
   }
 
+  /* Ikona hamburgeru */
   .hamburger-wrapper .menu {
     position: relative;
     width: 42px;
@@ -342,58 +331,41 @@
     bottom: 0;
   }
 
-  /* Mobilní navigace */
+  /* Mobilní navigace – centrovaný glass panel */
   .hamburger-wrapper .mobile-nav {
     position: absolute;
-    top: calc(100% + 4px);
-    right: 16px;
+    top: calc(100% + 6px);
+    transform: translateX(-50%) translateY(-5px);
     width: 60vw;
     background: rgba(255, 255, 255, 0.18);
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border-radius: 0.75rem;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    border-radius: 0.9rem;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    gap: 0.6rem;
-    padding: 0.5rem 0.7rem;
+    align-items: center;      /* Položky horizontálně doprostřed */
+    justify-content: center;  /* Vertikálně doprostřed */
+    gap: 1rem;
+    padding: 2.2rem 1rem;
     list-style: none;
     opacity: 0;
     pointer-events: none;
-    transform: translateY(-5px);
     transition: opacity 0.35s ease, transform 0.35s ease;
     z-index: 999;
-  }
-
-  /* Responzivní šířka */
-  @media (min-width: 480px) {
-    .hamburger-wrapper .mobile-nav {
-      width: 50vw;
-    }
-  }
-  @media (min-width: 640px) {
-    .hamburger-wrapper .mobile-nav {
-      width: 40vw;
-    }
-  }
-  @media (min-width: 768px) {
-    .hamburger-wrapper .mobile-nav {
-      width: 30vw;
-    }
   }
 
   /* Aktivace menu */
   .hamburger-wrapper input:checked + .menu + .mobile-nav {
     opacity: 1;
     pointer-events: auto;
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0);
   }
 
   /* Položky navigace */
   .hamburger-wrapper .mobile-nav li {
     width: 100%;
-    text-align: right;
+    text-align: center;
     padding: 5px;
     opacity: 0;
     transform: translateY(-10px);
@@ -402,7 +374,7 @@
   .hamburger-wrapper .mobile-nav a {
     display: inline-block;
     color: var(--brand-black);
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     font-weight: 600;
     text-decoration: none;
     letter-spacing: 0.02em;
@@ -412,7 +384,7 @@
 
   .hamburger-wrapper .mobile-nav a:hover {
     color: var(--brand-600);
-    transform: translateX(-4px);
+    transform: translateY(-2px);
   }
 
   /* Animace položek */
@@ -420,21 +392,11 @@
     animation: navItemFade 0.4s forwards ease;
   }
 
-  .hamburger-wrapper input:checked + .menu + .mobile-nav li:nth-child(1) {
-    animation-delay: 0.1s;
-  }
-  .hamburger-wrapper input:checked + .menu + .mobile-nav li:nth-child(2) {
-    animation-delay: 0.2s;
-  }
-  .hamburger-wrapper input:checked + .menu + .mobile-nav li:nth-child(3) {
-    animation-delay: 0.3s;
-  }
-  .hamburger-wrapper input:checked + .menu + .mobile-nav li:nth-child(4) {
-    animation-delay: 0.4s;
-  }
-  .hamburger-wrapper input:checked + .menu + .mobile-nav li:nth-child(5) {
-    animation-delay: 0.5s;
-  }
+  .hamburger-wrapper input:checked + .menu + .mobile-nav li:nth-child(1) { animation-delay: 0.1s; }
+  .hamburger-wrapper input:checked + .menu + .mobile-nav li:nth-child(2) { animation-delay: 0.2s; }
+  .hamburger-wrapper input:checked + .menu + .mobile-nav li:nth-child(3) { animation-delay: 0.3s; }
+  .hamburger-wrapper input:checked + .menu + .mobile-nav li:nth-child(4) { animation-delay: 0.4s; }
+  .hamburger-wrapper input:checked + .menu + .mobile-nav li:nth-child(5) { animation-delay: 0.5s; }
 
   @keyframes navItemFade {
     from {
