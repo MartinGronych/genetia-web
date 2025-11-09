@@ -1,0 +1,59 @@
+/* ==================================================
+   GENETIA – HOMEPAGE ENTRY (Multi-entry architecture)
+   Autor: Martin Gronych
+   --------------------------------------------------
+   Dočasná fáze: plná kompatibilita s původním styles.css.
+   Importuje všechny globální i sekční styly.
+   Po ověření funkčnosti začneme modularizovat.
+================================================== */
+
+/* ================================
+   BASE STYLES
+================================ */
+@import url("../../base/_tokens.css");
+@import url("../../base/_reset.css");
+@import url("../../base/_layout.css");
+@import url("../../base/_components.css");
+
+/* ================================
+   SECTIONS (Homepage + Globální)
+================================ */
+
+/* === Navigace === */
+@import url("../../components/_navbar.css");
+
+/* === Hero sekce === */
+@import url("./_hero.css");
+
+/* === Services sekce === */
+@import url("./_services.css");
+
+/* === USP sekce === */
+@import url("./_usp.css");
+
+/* === Products sekce === */
+@import url("./_products.css");
+
+/* === Contact sekce === */
+@import url("./_cta.css");
+
+/* === Footer === */
+@import url("../../components/_footer.css");
+
+/* ================================
+   INTERAKTIVNÍ EFEKTY
+================================ */
+@import url("./_carousel.css");
+@import url("../../components/_card.css");
+
+/* ================================
+   MODAL (Klientská zóna)
+================================ */
+@import url("../../components/_modal.css");
+@import url("../homepage/_form-contact.css");
+
+/* ================================
+   THEME (Light / Dark režim)
+================================ */
+@import url("../../theme/_dark.css");
+@import url("../../theme/_switch.css");

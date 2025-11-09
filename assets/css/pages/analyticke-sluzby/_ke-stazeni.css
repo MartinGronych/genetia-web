@@ -1,0 +1,64 @@
+/* ==================================================
+   GENETIA – Analytické služby / Ke stažení
+   Autor: Martin Gronych
+   --------------------------------------------------
+   Karty s PDF dokumenty – Objednávky, CoC, Pokyny
+================================================== */
+
+#ke-stazeni {
+  position: relative;
+  background: var(--brand-50);
+  padding-block: clamp(4rem, 8vw, 6rem);
+  z-index: 1;
+}
+
+/* Nadpis a text */
+#ke-stazeni h2 {
+  font-weight: 700;
+  color: var(--brand-800);
+}
+
+#ke-stazeni p {
+  color: var(--text-700);
+  line-height: 1.6;
+}
+
+/* === Karty ke stažení === */
+.download-card {
+  transition: all 0.3s ease;
+  border-color: var(--brand-100);
+}
+
+.download-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--brand-300);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.07);
+}
+
+.download-card h3 {
+  color: var(--brand-800);
+  font-weight: 600;
+}
+
+.download-card p {
+  color: var(--text-600);
+}
+
+/* === Responsivita === */
+@media (max-width: 768px) {
+  #ke-stazeni h2 {
+    font-size: 1.6rem;
+  }
+
+  .download-card {
+    padding: 1.25rem 1rem;
+  }
+
+  .download-card h3 {
+    font-size: 1rem;
+  }
+
+  .download-card p {
+    font-size: 0.9rem;
+  }
+}

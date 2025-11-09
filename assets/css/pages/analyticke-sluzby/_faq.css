@@ -1,0 +1,97 @@
+/* ==================================================
+   GENETIA – Analytické služby / FAQ (Často kladené otázky)
+   Autor: Martin Gronych
+   --------------------------------------------------
+   Interaktivní blok s <details> a <summary>.
+================================================== */
+
+#faq {
+  position: relative;
+  background: #ffffff;
+  padding-block: clamp(4rem, 8vw, 6rem);
+  z-index: 1;
+}
+
+/* Nadpis */
+#faq h2 {
+  color: var(--brand-800);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Obal */
+.faq-wrapper {
+  max-width: 800px;
+}
+
+/* Jednotlivé otázky */
+#faq details {
+  background: #ffffff;
+  border: 1px solid var(--brand-100);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 1rem 1.25rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+#faq details[open] {
+  border-color: var(--brand-300);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* Nadpis otázky */
+#faq summary {
+  color: var(--brand-800);
+  font-weight: 600;
+  list-style: none;
+  position: relative;
+  padding-right: 1.5rem;
+}
+
+/* Odstranění defaultní šipky */
+#faq summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Vlastní šipka */
+#faq summary::after {
+  content: "▾";
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: var(--brand-600);
+  transition: transform 0.3s ease;
+}
+
+#faq details[open] summary::after {
+  transform: rotate(-180deg);
+}
+
+/* Text odpovědi */
+#faq p {
+  color: var(--text-700);
+  margin-top: 0.75rem;
+  line-height: 1.6;
+}
+
+/* Hover efekt */
+#faq details:hover {
+  border-color: var(--brand-200);
+}
+
+/* === RESPONSIVITA === */
+@media (max-width: 768px) {
+  #faq h2 {
+    font-size: 1.6rem;
+  }
+
+  #faq summary {
+    font-size: 1rem;
+  }
+
+  #faq p {
+    font-size: 0.9rem;
+  }
+}

@@ -12,8 +12,10 @@
     />
 
     <!-- Globální styl (importuje všechny sekce vč. analytických služeb) -->
-    <link rel="stylesheet" href="assets/css/styles.css" />
-    <link rel="stylesheet" href="assets/css/sections/_analyticke-sluzby.css" />
+    <link
+      rel="stylesheet"
+      href="assets/css/pages/analyticke-sluzby/analyticke-sluzby.css"
+    />
   </head>
 
   <body class="page-analyticke-sluzby">
@@ -21,49 +23,52 @@
          2️⃣ NAVIGACE
     ========================================== -->
     <nav class="navbar navbar-expand-lg bg-white sticky-top shadow-sm">
-        <div class="container align-items-center justify-content-between">
-          <!-- Logo -->
-          <a
-            class="navbar-brand d-flex align-items-center gap-2"
-            href="index.html"
-          >
-            <img
-              src="assets/images/logo/GENETIA-LOGO.png"
-              alt="Genetia logo"
-              class="logo-img"
-            />
-          </a>
+      <div class="container align-items-center justify-content-between">
+        <!-- Logo -->
+        <a
+          class="navbar-brand d-flex align-items-center gap-2"
+          href="index.html"
+        >
+          <img
+            src="assets/images/logo/GENETIA-LOGO.png"
+            alt="Genetia logo"
+            class="logo-img"
+          />
+        </a>
 
-          <!-- Desktop navigace (centrálně) -->
-          <div class="d-none d-lg-flex mx-auto nav-center">
-            <ul class="navbar-nav text-center gap-4"></ul>
-          </div>
-
-          <!-- Klientská zóna -->
-          <button class="btn btn-accent d-none d-md-inline-block" id="openClientModal">
-            Klientská zóna
-          </button>
-
-          <label class="hamburger-wrapper d-lg-none">
-            <input type="checkbox" id="menu-toggle" />
-            <span class="menu">
-              <span class="hamburger"></span>
-            </span>
-            <ul class="mobile-nav">
-              <li><a href="index.html">Domů</a></li>
-              <li><a href="o-spolecnosti.html">O společnosti</a></li>
-              <li><a href="produkty.html">Produkty</a></li>
-              <li><a href="analyticke-sluzby.html">Analytické služby</a></li>
-              <li><a href="kontakt.html">Kontakt</a></li>
-            </ul>
-          </label>
+        <!-- Desktop navigace (centrálně) -->
+        <div class="d-none d-lg-flex mx-auto nav-center">
+          <ul class="navbar-nav text-center gap-4"></ul>
         </div>
 
-        <!-- Mobile menu (collapse) -->
-        <div class="collapse navbar-collapse" id="navMobile">
-          <ul class="navbar-nav text-center gap-3 py-3"></ul>
-        </div>
-      </nav>
+        <!-- Klientská zóna -->
+        <button
+          class="btn btn-accent d-none d-md-inline-block"
+          id="openClientModal"
+        >
+          Klientská zóna
+        </button>
+
+        <label class="hamburger-wrapper d-lg-none">
+          <input type="checkbox" id="menu-toggle" />
+          <span class="menu">
+            <span class="hamburger"></span>
+          </span>
+          <ul class="mobile-nav">
+            <li><a href="index.html">Domů</a></li>
+            <li><a href="o-spolecnosti.html">O společnosti</a></li>
+            <li><a href="produkty.html">Produkty</a></li>
+            <li><a href="analyticke-sluzby.html">Analytické služby</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+          </ul>
+        </label>
+      </div>
+
+      <!-- Mobile menu (collapse) -->
+      <div class="collapse navbar-collapse" id="navMobile">
+        <ul class="navbar-nav text-center gap-3 py-3"></ul>
+      </div>
+    </nav>
 
     <!-- =========================================
          3️⃣ MODAL – KLIENTSKÁ ZÓNA
@@ -441,6 +446,8 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/pages/analyticke-sluzby/index.js"></script>
+
     <!-- Lucide ikony -->
     <script type="module">
       import {

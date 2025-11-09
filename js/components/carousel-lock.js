@@ -1,65 +1,46 @@
 // ==================================================
-// GENETIA – Carousel Expert Lock (v1.7 Always Ask)
+// GENETIA – Carousel Expert Lock (v2.5 Minimal Static Eye)
+// Autor: Martin Gronych
 // --------------------------------------------------
-// ▸ Žádné ukládání do localStorage (potvrzení vždy znovu)
-// ▸ Oko uprostřed sekce, blur do potvrzení
+// ▸ Jednoduché šedé oko uprostřed carouselu
+// ▸ Žádné animace ani gradienty
+// ▸ Odemčení po potvrzení v Gate modalu
 // ==================================================
 
-const section = document.querySelector(".products-carousel-section");
-const gateModal = document.getElementById("gateModal");
-const lockWrapper = document.querySelector(".carousel-lock");
-const eyeIcon = section?.querySelector(
-  ".carousel-lock svg, .carousel-lock img, .carousel-lock .eye-icon"
-);
+export function initCarouselLock() {
+  const section = document.querySelector(".products-carousel-section");
+  const gateModal = document.getElementById("gateModal");
+  const lockWrapper = document.querySelector(".carousel-lock");
 
-if (!section || !gateModal || !eyeIcon) {
-  console.warn("⚠️ Carousel lock elements not found", { section, gateModal, eyeIcon });
-} else {
-  // spustí se pouze, pokud jsou elementy dostupné
-  initCarouselLock();
-}
+  if (!section || !gateModal || !lockWrapper) {
+    console.warn("⚠️ Carousel lock prerequisites missing");
+    return;
+  }
 
-if (lockWrapper) {
-  lockWrapper.innerHTML = `
-  <svg class="eye-icon-animated v3" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-    <!-- Kontura oka – mandlový tvar -->
-    <path 
-      d="M10,60 Q60,10 110,60 Q60,110 10,60 Z" 
-      fill="#fff" 
-      stroke="#0b2038" 
-      stroke-width="4"
-      stroke-linejoin="round"
-      stroke-linecap="round"
-    />
+  // Zabrání opakovanému renderu
+  if (!lockWrapper.innerHTML.trim()) {
+    lockWrapper.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#777"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="eye-icon-static">
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+        <circle cx="12" cy="12" r="3"/>
+        <!-- Přeškrtnutí -->
+        <line y1="2" x1="2" x2="22" y2="22"/>
+      </svg>
+    `;
+  }
 
-    <!-- Duhovka (pohyblivá) -->
-    <g class="iris-group">
-      <circle cx="60" cy="60" r="14" fill="url(#irisGradient)" />
-      <circle cx="60" cy="60" r="7" fill="#000"/>
-      <circle cx="64" cy="56" r="3" fill="rgba(255,255,255,0.9)" />
-    </g>
-
-    <!-- Horní víčko -->
-      <path 
-      class="eyelid" 
-      d="M10,60 Q60,10 110,60 Q60,30 10,60 Z"
-      fill="#f5f5f5"
-    />
-
-    <defs>
-      <radialGradient id="irisGradient" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stop-color="#4db3ff"/>
-        <stop offset="100%" stop-color="#0e2f57"/>
-      </radialGradient>
-    </defs>
-  </svg>
-`;
-}
-
-
-
-if (section && gateModal && eyeIcon) {
-  console.log("🔒 Carousel Lock script loaded");
+  const eyeIcon = lockWrapper.querySelector(".eye-icon-static");
+  if (!eyeIcon) {
+    console.warn("⚠️ Eye icon not found after injection");
+    return;
+  }
 
   // === Pomocné funkce ===
   const lock = () => {
@@ -81,15 +62,14 @@ if (section && gateModal && eyeIcon) {
     section.querySelector(".carousel-lock")?.remove();
   };
 
-  // === Výchozí stav – vždy zamčeno
+  // === Výchozí stav – zamčeno ===
   lock();
 
-  // === Klik na oko otevře modál
+  // === Kliknutí na oko otevře modal ===
   eyeIcon.addEventListener("click", () => {
     const modal = new bootstrap.Modal(gateModal);
     modal.show();
 
-    // Po kliknutí na „ANO, VSTOUPIT“
     gateModal.querySelector("[data-continue]")?.addEventListener(
       "click",
       () => {
@@ -99,7 +79,6 @@ if (section && gateModal && eyeIcon) {
       { once: true }
     );
 
-    // Po kliknutí na „NE, ODEJÍT“
     gateModal.querySelector("#denyAccess")?.addEventListener(
       "click",
       () => {
@@ -109,10 +88,6 @@ if (section && gateModal && eyeIcon) {
       { once: true }
     );
   });
-} else {
-  console.warn("⚠️ Carousel lock elements not found", {
-    section,
-    gateModal,
-    eyeIcon,
-  });
+
+  console.log("🔒 Carousel Lock initialized with static eye");
 }

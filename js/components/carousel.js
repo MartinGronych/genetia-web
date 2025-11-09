@@ -1,129 +1,128 @@
 // ==================================================
-// GENETIA – PRODUCTS CAROUSEL (v4.1 Stable)
+// GENETIA – PRODUCTS CAROUSEL (v5.0 Modular Edition)
+// Autor: Martin Gronych
 // --------------------------------------------------
-// ▸ Načítání z JSON
-// ▸ Hammer.js ovládání
-// ▸ Eye Overlay + Expert Lock
-// ▸ Lucide ikony
+// ▸ Načítání z JSON (products.json)
+// ▸ Hammer.js ovládání (swipe)
+// ▸ Lucide ikony aktivace
+// ▸ Export funkce initCarousel() pro multi-entry architekturu
 // ==================================================
 
-const $ = (sel) => document.querySelector(sel);
-const $$ = (sel) => document.querySelectorAll(sel);
-const JSON_URL = "data/products.json";
+export async function initCarousel() {
+  const $ = (sel) => document.querySelector(sel);
+  const $$ = (sel) => document.querySelectorAll(sel);
+  const JSON_URL = "data/products.json";
 
-let products = [];
-let currentIndex = 0;
+  let products = [];
+  let currentIndex = 0;
 
-// === 1️⃣ Načtení dat ===
-document.addEventListener("DOMContentLoaded", async () => {
+  const list = $(".carousel-list");
+  if (!list) {
+    console.warn("⚠️ Carousel container not found – skipping initialization");
+    return;
+  }
+
   try {
     const res = await fetch(JSON_URL);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
     products = await res.json();
-    initCarousel();
   } catch (err) {
     console.error("❌ Chyba při načítání produktů:", err);
-  }
-});
-
-// === 2️⃣ Inicializace ===
-function initCarousel() {
-  if (!products.length) return; // Bezpečnostní kontrola
-
-  const list = $(".carousel-list");
-  list.innerHTML = "";
-
-  // 5 viditelných slotů
-  for (let i = -2; i <= 2; i++) {
-    const index = getIndex(currentIndex + i);
-    const li = createItem(products[index]);
-    list.appendChild(li);
+    return;
   }
 
-  const items = $$(".carousel-list li");
-  if (items.length < 5) return;
+  if (!products.length) {
+    console.warn("⚠️ Žádná data pro carousel");
+    return;
+  }
 
-  items[0].classList.add("hide");
-  items[1].classList.add("prev");
-  items[2].classList.add("act");
-  items[3].classList.add("next");
-  items[4].classList.add("new-next");
+  init();
 
-  activateCarousel();
+  // === Inicializace carouselu ===
+  function init() {
+    list.innerHTML = "";
+    for (let i = -2; i <= 2; i++) {
+      const index = getIndex(currentIndex + i);
+      const li = createItem(products[index]);
+      list.appendChild(li);
+    }
 
-  // 🔹 Po načtení znovu aktivuj Lucide ikony
-  if (window.lucide) lucide.createIcons({ icons: window.lucide.icons });
-}
+    const items = $$(".carousel-list li");
+    if (items.length < 5) return;
 
-// === 3️⃣ Posuv vpřed / vzad ===
-function next() {
-  currentIndex = getIndex(currentIndex + 1);
+    items[0].classList.add("hide");
+    items[1].classList.add("prev");
+    items[2].classList.add("act");
+    items[3].classList.add("next");
+    items[4].classList.add("new-next");
 
-  const list = $(".carousel-list");
-  const items = $$(".carousel-list li");
+    activateCarousel();
 
-  if (items.length < 5) return;
+    if (window.lucide) lucide.createIcons({ icons: window.lucide.icons });
 
-  // posun tříd
-  items[0].remove(); // odstraníme první (vlevo mimo scénu)
-  items[1].className = "hide";
-  items[2].className = "prev";
-  items[3].className = "act";
-  items[4].className = "next";
+    console.log("🎠 Carousel initialized with", products.length, "items");
+  }
 
-  // přidáme nový prvek vpravo
-  const newItem = createItem(products[getIndex(currentIndex + 2)]);
-  newItem.className = "new-next";
-  list.appendChild(newItem);
+  // === Funkce posuvu ===
+  function next() {
+    currentIndex = getIndex(currentIndex + 1);
+    const items = $$(".carousel-list li");
+    if (items.length < 5) return;
 
-  if (window.lucide) lucide.createIcons({ icons: window.lucide.icons });
-}
+    items[0].remove();
+    items[1].className = "hide";
+    items[2].className = "prev";
+    items[3].className = "act";
+    items[4].className = "next";
 
-function prev() {
-  currentIndex = getIndex(currentIndex - 1);
+    const newItem = createItem(products[getIndex(currentIndex + 2)]);
+    newItem.className = "new-next";
+    list.appendChild(newItem);
 
-  const list = $(".carousel-list");
-  const items = $$(".carousel-list li");
+    if (window.lucide) lucide.createIcons({ icons: window.lucide.icons });
+  }
 
-  if (items.length < 5) return;
+  function prev() {
+    currentIndex = getIndex(currentIndex - 1);
+    const items = $$(".carousel-list li");
+    if (items.length < 5) return;
 
-  // odstraníme poslední (vpravo mimo scénu)
-  items[4].remove();
-  items[3].className = "new-next";
-  items[2].className = "next";
-  items[1].className = "act";
-  items[0].className = "prev";
+    items[4].remove();
+    items[3].className = "new-next";
+    items[2].className = "next";
+    items[1].className = "act";
+    items[0].className = "prev";
 
-  // přidáme nový prvek vlevo
-  const newItem = createItem(products[getIndex(currentIndex - 2)]);
-  newItem.className = "hide";
-  list.insertBefore(newItem, list.firstChild);
+    const newItem = createItem(products[getIndex(currentIndex - 2)]);
+    newItem.className = "hide";
+    list.insertBefore(newItem, list.firstChild);
 
-  if (window.lucide) lucide.createIcons({ icons: window.lucide.icons });
-}
+    if (window.lucide) lucide.createIcons({ icons: window.lucide.icons });
+  }
 
-// === 4️⃣ Pomocné funkce ===
-function createItem(product) {
-  const li = document.createElement("li");
-  li.style.backgroundImage = `url(${product.image})`;
+  // === Pomocné funkce ===
+  function createItem(product) {
+    const li = document.createElement("li");
+    li.style.backgroundImage = `url(${product.image})`;
+    return li;
+  }
 
-  return li;
-}
+  function getIndex(i) {
+    const len = products.length;
+    return (i + len) % len;
+  }
 
-function getIndex(i) {
-  const len = products.length;
-  return (i + len) % len; // cyklické otáčení indexu
-}
+  // === Aktivace ovládání ===
+  function activateCarousel() {
+    const swipe = new Hammer($(".swipe"));
+    const slider = $(".carousel-list");
 
-// === 5️⃣ Aktivace ovládání ===
-function activateCarousel() {
-  const slider = $(".carousel-list");
-  const swipe = new Hammer($(".swipe"));
+    slider.onclick = (e) => {
+      if (e.target.classList.contains("next")) next();
+      else if (e.target.classList.contains("prev")) prev();
+    };
 
-  slider.onclick = (e) => {
-    if (e.target.classList.contains("next")) next();
-    else if (e.target.classList.contains("prev")) prev();
-  };
-
-  swipe.on("swipeleft", () => next());
-  swipe.on("swiperight", () => prev());
+    swipe.on("swipeleft", () => next());
+    swipe.on("swiperight", () => prev());
+  }
 }

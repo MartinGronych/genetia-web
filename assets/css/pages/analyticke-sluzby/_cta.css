@@ -1,0 +1,65 @@
+/* ==================================================
+   4️⃣ CTA – Závěrečný blok
+   --------------------------------------------------
+   ▸ Jemný gradient a světelné pozadí
+================================================== */
+
+.cta-section {
+  position: relative;
+  background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);
+  padding-block: clamp(4rem, 8vw, 6rem);
+  text-align: center;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 90%,
+    rgba(90, 160, 255, 0.05) 0%,
+    transparent 70%
+  );
+}
+
+.cta-section h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  font-weight: 700;
+  color: var(--brand-800);
+  margin-bottom: 1rem;
+}
+
+.cta-section p {
+  font-size: 1.05rem;
+  color: var(--text-700);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.cta-section .btn-accent {
+  background: var(--brand-700);
+  color: #fff;
+  border-radius: var(--radius-md);
+  padding: 0.8rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: background 0.3s ease, transform 0.25s ease;
+}
+
+.cta-section .btn-accent:hover {
+  background: var(--brand-600);
+  transform: translateY(-3px);
+}
+
+/* Responsivita */
+@media (max-width: 768px) {
+    
+  .cta-section h2 {
+    font-size: 1.6rem;
+  }
+  .cta-section .btn-accent {
+    font-size: 1rem;
+  }
+}

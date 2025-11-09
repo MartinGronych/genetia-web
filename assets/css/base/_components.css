@@ -7,29 +7,71 @@
 ================================================== */
 
 /* Karty */
+/* ==================================================
+   GENETIA – Global Card Component (v2.0 Unified)
+   Autor: Martin Gronych
+   --------------------------------------------------
+   ▸ Sjednocený vzhled všech karet
+   ▸ Čistý white-glass efekt bez rozmazání
+   ▸ Konzistentní border, radius a stíny
+================================================== */
+
 .card {
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
-  background: var(--bg);
-  color: var(--text);
-  transition: all 0.3s ease;
+  position: relative;
+  background: rgba(255, 255, 255, 0.9); /* průsvitné, ale čitelné */
+  border: 1px solid rgba(210, 220, 210, 0.6); /* jemný outline */
+  border-radius: var(--radius-md);
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.08),
+    0 1px 3px rgba(0, 0, 0, 0.04);
+  color: var(--text-800);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 .card:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
+  transform: translateY(-6px);
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.1),
+    0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
+/* === Nadpis a text === */
+.card h3,
+.card h5,
+.card-title {
+  color: var(--brand-800);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.card p,
+.card-text {
+  color: var(--text-700);
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+/* === Ikona v kartě (např. USP, Services) === */
 .card-icon {
   width: 56px;
   height: 56px;
-  border-radius: 14px;
-  display: grid;
-  place-items: center;
+  border-radius: var(--radius-md);
   background: var(--brand-50);
   color: var(--brand-600);
+  display: grid;
+  place-items: center;
+  margin: 0 auto 1rem auto;
+  transition: background 0.3s ease, transform 0.3s ease;
 }
+
+.card:hover .card-icon {
+  background: var(--brand-200);
+  transform: scale(1.05);
+}
+
 
 /* Tlačítka */
 .btn-brand {

@@ -1,0 +1,127 @@
+/* ==================================================
+   GENETIA – SERVICES SECTION (v2.0 – Unified Hover)
+   Autor: Martin Gronych
+   --------------------------------------------------
+   ▸ 3 sloupce služeb (Bootstrap grid)
+   ▸ Sdílený hover efekt z card.css
+   ▸ Zachováno laboratorní pozadí
+================================================== */
+
+/* ==================================================
+   1️⃣ WRAPPER
+================================================== */
+.services-section {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  text-align: center;
+  margin-top: 0;
+  background: linear-gradient(180deg, #f9faf3 0%, #ffffff 100%);
+  padding-block: calc(var(--space-6) * 0.7);
+}
+
+/* ==================================================
+   2️⃣ GRID
+================================================== */
+.services-section .row > div {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Bootstrap grid se postará o rozložení, karty samy přebírají hover z card.css */
+
+/* ==================================================
+   3️⃣ KARTY (layout, bez vlastního hoveru)
+================================================== */
+.services-section .usp-item {
+  position: relative;
+  background: #ffffff;
+  border: 0.5px solid rgba(220, 220, 220, 0.6);
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  color: var(--text-800);
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    background-color 0.35s ease,
+    border-color 0.35s ease;
+  z-index: 2;
+}
+
+/* Nadpis a text uvnitř karet */
+.services-section h5 {
+  color: var(--brand-700);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.services-section p {
+  color: var(--text-700);
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+/* Tlačítko */
+.services-section .btn {
+  margin-top: 0.5rem;
+}
+
+/* ==================================================
+   4️⃣ POZADÍ SKLA (dekorativní vrstva)
+================================================== */
+.services-section .usp-image-wrapper-sklo {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 270px;
+  z-index: 0;
+
+  opacity: 0.2;
+  filter: grayscale(20%) brightness(0.92);
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.services-section .usp-image-wrapper-sklo .usp-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ==================================================
+   5️⃣ RESPONSIVE (Mobile-first)
+================================================== */
+@media (max-width: 768px) {
+  .services-section {
+    padding-block: var(--space-6);
+  }
+
+  /* Pozadí skla – vyplní celou sekci */
+  .services-section .usp-image-wrapper-sklo {
+    top: 0;
+    bottom: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 100%;
+    opacity: 0.15;
+    filter: grayscale(15%) brightness(0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .services-section .usp-image-wrapper-sklo .usp-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* Karty – menší radius a jemnější shadow */
+  .services-section .usp-item {
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm);
+  }
+}

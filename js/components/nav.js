@@ -9,7 +9,7 @@ export async function initNavigation() {
 
   // Selektory navigačních kontejnerů
   const desktopMenu = document.querySelector(".navbar-nav.text-center.gap-4");
-  
+  const mobileMenu  = document.querySelector(".mobile-nav");
 
   // Pokud chybí navigační kontejnery, ukonči funkci
   if (!desktopMenu && !mobileMenu) return;
@@ -52,4 +52,5 @@ export async function initNavigation() {
   } catch (err) {
     console.error("❌ Navigace se nepodařila načíst:", err);
   }
+  return true;
 }

@@ -1,0 +1,140 @@
+/* ==================================================
+   GENETIA – SEKCE 5 / KONTAKT & SPOLUPRÁCE (Final v2.0)
+   --------------------------------------------------
+   ▸ sjednoceno s designem _contact.css
+   ▸ přizpůsobeno brand paletě Genetia
+   ▸ bez blur efektu, vysoká čitelnost
+================================================== */
+
+/* === WRAPPER === */
+.contact-section {
+  position: relative;
+  z-index: 1;
+  background: var(--brand-800) !important;
+  color: var(--text-800);
+  padding-block: clamp(3rem, 6vw, 6rem);
+}
+
+/* === NADPIS A POPIS === */
+.contact-section h2 {
+  font-weight: 700;
+  font-size: clamp(1.9rem, 4vw, 2.3rem);
+  margin-bottom: 1rem;
+  color: var(--brand-black);
+  text-shadow: 2px 6px 18px rgba(83, 83, 83, 0.82);
+}
+
+.contact-section p {
+  color: var(--text-700);
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+/* === KONTAKTNÍ INFO (levý blok) === */
+.contact-info {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0 0;
+}
+
+.contact-info li {
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--text-700);
+}
+
+.contact-info a {
+  color: var(--brand-700);
+  text-decoration: none;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.contact-info a:hover {
+  color: var(--brand-800);
+  text-shadow: 0 0 6px rgba(201, 211, 163, 0.35);
+}
+
+/* === FORM WRAPPER === */
+.contact-form {
+  background: #cfcbcb !important;
+  border: 1px solid rgb(220, 220, 220);
+  border-radius: var(--radius-md, 16px);
+  padding: 1.3rem;
+  box-shadow: 2px 8px 24px rgba(0, 0, 0, 0.6) !important;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* === INPUTS & TEXTAREAS === */
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  border: 1px solid rgba(200, 200, 200, 0.8);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  color: var(--text-800);
+  background: #fff;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: var(--text-500);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--brand-500);
+  box-shadow: 0 0 0 4px rgba(201, 211, 163, 0.25);
+}
+
+/* === BUTTON === */
+.contact-form button {
+  display: block;
+  width: fit-content; /* tlačítko podle obsahu */
+  margin-inline: auto; /* zarovnání na střed */
+  background: var(--brand-800);
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  cursor: pointer;
+  transform: translateY(5%); /* mírný posun dolů */
+  transition: background 0.3s ease, transform 0.25s ease, box-shadow 0.3s ease;
+}
+
+.contact-form button:hover {
+  background: var(--brand-600);
+  transform: translateY(0); /* efekt „zvednutí“ */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* === SPACING === */
+.row > * {
+  margin-top: 25px !important;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .contact-section {
+    text-align: center;
+    padding-block: var(--space-6);
+  }
+
+  .contact-info {
+    margin-bottom: 2rem;
+  }
+
+  .contact-form {
+    padding: 1.25rem;
+  }
+  .contact-form button {
+    width: 100%;
+  }
+  .contact-section h2 {
+    font-size: 1.8rem;
+  }
+}

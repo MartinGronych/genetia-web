@@ -1,0 +1,43 @@
+/* ==================================================
+   GENETIA – Analytické služby (Multi-entry v10)
+   Autor: Martin Gronych
+================================================== */
+
+/* 0️⃣ BASE – Základy a proměnné */
+@import url("../../base/_tokens.css");
+@import url("../../base/_reset.css");
+@import url("../../base/_layout.css");
+@import url("../../base/_components.css");
+
+/* 1️⃣ NAVIGACE – Hlavní menu */
+@import url("../../components/_navbar.css");
+
+/* 2️⃣ MODAL – Klientská zóna */
+@import url("../../components/_modal.css");
+
+/* 3️⃣ HERO – Úvodní video sekce */
+@import url("./_hero.css");
+
+/* 4️⃣ METODY – Přehled laboratorních testů */
+@import url("./_methods.css");
+
+/* 5️⃣ PROCES – Objednávka a testování */
+@import url("./_proces.css");
+
+/* 6️⃣ POŽADAVKY – Pokyny pro vzorky */
+@import url("./_pozadavky.css");
+
+/* 7️⃣ KE STAŽENÍ – Formuláře a dokumenty */
+@import url("./_ke-stazeni.css");
+
+/* 8️⃣ FAQ – Často kladené otázky */
+@import url("./_faq.css");
+
+/* 9️⃣ CTA – Výzva ke kontaktování */
+@import url("./_cta.css");
+
+/* 🔟 FOOTER – Patička webu */
+@import url("../../components/_footer.css");
+
+/* 🎨 THEME – Tmavý režim */
+@import url("../../theme/_dark.css");

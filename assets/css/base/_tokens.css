@@ -50,7 +50,7 @@
   --space-6: 2rem;
   --space-8: 3rem;
 
-  /* ===== Radius & Shadows ===== */
+    /* ===== Radius & Shadows ===== */
   --radius-sm: 0.5rem;
   --radius-md: 1rem;
   --radius-lg: 1.25rem;
@@ -58,6 +58,26 @@
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
   --shadow-lg: 0 8px 28px rgba(0, 0, 0, 0.12);
+
+  /* ===== Elevation Tokens (pro cards, glass, modal) ===== */
+  --elevation-card: 0 4px 8px rgba(0, 0, 0, 0.08),
+                    0 1px 3px rgba(0, 0, 0, 0.04);
+  --elevation-card-hover: 0 8px 20px rgba(0, 0, 0, 0.1),
+                          0 4px 10px rgba(0, 0, 0, 0.05);
+  --elevation-glass: 0 8px 24px rgba(255, 255, 255, 0.15),
+                     inset 0 0 12px rgba(255, 255, 255, 0.08);
+
+  /* ===== Surface & Glass Variants ===== */
+  --surface-plain: rgba(255, 255, 255, 0.9);
+  --surface-hover: rgba(255, 255, 255, 0.98);
+  --surface-glass: rgba(255, 255, 255, 0.65);
+  --surface-glass-strong: rgba(255, 255, 255, 0.45);
+
+  /* ===== Border subtle variants ===== */
+  --border-soft: rgba(210, 220, 210, 0.6);
+  --border-strong: rgba(180, 190, 180, 0.75);
+  --border-glass: rgba(255, 255, 255, 0.4);
+
 
   /* ===== Layout ===== */
   --container-max: 1140px;

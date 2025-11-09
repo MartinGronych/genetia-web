@@ -20,7 +20,7 @@
 /* === Nadpis a popis === */
 .products-carousel-section h2 {
   font-size: clamp(2rem, 4vw, 2.6rem);
-  color: var(--brand-700);
+  color: var(--brand-800);
   font-weight: 700;
   margin-bottom: var(--space-3);
   position: relative;
@@ -45,131 +45,35 @@
   transition: filter 0.35s ease, opacity 0.35s ease;
 }
 
-/* === Centrální oko === */
+/* === Wrapper === */
 .carousel-lock {
   position: absolute;
-  top: 60%;
+  bottom: 29%;
   left: 50%;
-  transform: translate(-50%, -50%) scale(1.0);
+  transform: translate(-50%, -50%);
+  z-index: 6;
   display: flex;
-  justify-content: center;
   align-items: center;
-  z-index: 50; /* nad swipe i carousel */
-  pointer-events: auto;
-  animation: fadeIn 0.6s ease both;
-  
-}
-/* === Fade-in animace === */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translate(-50%, -55%) scale(0.95); }
-  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  justify-content: center;
+  pointer-events: all;
 }
 
-/* ==================================================
-   GENETIA – EYE GATE v4.2 (Aqua Mint Pulse Smooth + Hover Glow)
-   --------------------------------------------------
-   ▸ 10 plynulých přechodů v aqua-mint barevné paletě
-   ▸ Plynulý reverzní pohyb (alternate)
-   ▸ Jemný světelný posun při hoveru
-================================================== */
-
-.eye-icon-animated.v3 {
-  width: 84px;
-  height: 84px;
+.carousel-lock .eye-icon-static {
+  width: 72px;
+  height: 72px;
+  opacity: 0.75;
+  stroke: #777;
   cursor: pointer;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle at 45% 45%,
-    #f9fff9 0%,
-    #f5fff9 10%,
-    #f0fff9 20%,
-    #e9fdfa 30%,
-    #e3fbf8 40%,
-    #dbfaf6 50%,
-    #d3f8f3 60%,
-    #c8f6ef 70%,
-    #bcf3ea 80%,
-    #b0f0e5 90%,
-    #a6fbe2 100%
-  );
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(10px);
-  animation: eyePulse 7s cubic-bezier(0.37, 0, 0.63, 1) infinite alternate;
-  transition: transform 0.3s ease ease-in-out, box-shadow 0.3s ease ease-in-out, background-position 1s ease;
-  z-index: 50;
+  transition:
+    opacity 0.35s ease,
+    stroke 0.35s ease,
+    transform 0.35s ease;
 }
 
-/* Hover – lehký světelný záblesk + zvětšení */
-.eye-icon-animated.v3:hover {
-  transform: scale(1.08);
-  background-position: 60% 40%;
-  box-shadow: 0 0 28px rgba(64, 179, 255, 0.5),
-              0 0 60px rgba(160, 255, 235, 0.4);
-}
-
-/* === Pulz oka === */
-@keyframes eyePulse {
-  0% {
-    transform: scale(1);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
-    background: radial-gradient(circle at 45% 45%, #f9fff9 0%, #f5fff9 10%, #f0fff9 20%, #e9fdfa 30%, #e3fbf8 40%, #dbfaf6 50%, #d3f8f3 60%, #c8f6ef 70%, #bcf3ea 80%, #b0f0e5 90%, #a6fbe2 100%);
-  }
-
-  25% {
-    transform: scale(1.08);
-    box-shadow: 0 7px 18px rgba(0, 0, 0, 0.28);
-  }
-
-  50% {
-    transform: scale(1.18);
-    box-shadow: 0 0 26px rgba(0, 255, 179, 0.45);
-    background: radial-gradient(circle at 45% 45%, #a6fbe2 0%, #aefbe6 10%, #b8fcea 20%, #c2fdee 30%, #cbfff1 40%, #d4fff4 50%, #ddfff7 60%, #e7fffa 70%, #f1fffc 80%, #f8fffd 90%, #ffffff 100%);
-  }
-
-  75% {
-    transform: scale(1.08);
-    box-shadow: 0 7px 18px rgba(0, 0, 0, 0.28);
-  }
-
-  100% {
-    transform: scale(1);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
-    background: radial-gradient(circle at 45% 45%, #f9fff9 0%, #f5fff9 10%, #f0fff9 20%, #e9fdfa 30%, #e3fbf8 40%, #dbfaf6 50%, #d3f8f3 60%, #c8f6ef 70%, #bcf3ea 80%, #b0f0e5 90%, #a6fbe2 100%);
-  }
-}
-
-
-
-
-/* === MRKNUTÍ – realističtější === */
-.eyelid {
-  transform-origin: 60px 30px; /* přesně místo, kde je horní oblouk oka */
-  fill: #f2f2f2;
+.carousel-lock .eye-icon-static:hover {
   opacity: 1;
-  transition: transform 0.3s ease ease-in-out;
-}
-
-
-/* === Duhovka – pohyb pohledem === */
-.iris-group {
-  animation: irisMove 4s infinite ease-in-out;
-}
-
-@keyframes irisMove {
-  0%, 100% { transform: translate(0, 0); }
-  25% { transform: translate(2px, 1px); }
-  50% { transform: translate(-3px, -1px); }
-  75% { transform: translate(1px, -2px); }
-}
-
-/* === Lesk oka – jemné „dýchání světla“ === */
-.iris-group circle:last-child {
-  animation: eyeShine 5s infinite ease-in-out;
-}
-
-@keyframes eyeShine {
-  0%, 100% { opacity: 1; transform: translate(0, 0); }
-  50% { opacity: 0.8; transform: translate(-1px, 1px); }
+  stroke: #444;
+  transform: scale(1.12);
 }
 
 

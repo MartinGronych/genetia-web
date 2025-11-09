@@ -1,0 +1,94 @@
+/* ==================================================
+   1️⃣ HERO – Analytické testování léčebného konopí
+   --------------------------------------------------
+   ▸ Hero (video-ready) + Analytické metody
+   ▸ Fullwidth video layer
+   ▸ Glass overlay + text kontrast
+================================================== */
+
+.hero-analyticke {
+  position: relative;
+  text-align: center;
+  color: var(--brand-900);
+  overflow: hidden;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Video vrstva */
+.hero-analyticke video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 80%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* Překryv (jemné světlo + brand tón) */
+.hero-analyticke::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(249, 250, 251, 0.85) 100%
+  );
+  backdrop-filter: blur(4px) saturate(80%);
+  -webkit-backdrop-filter: blur(2px) saturate(80%);
+  z-index: 1;
+}
+
+/* Obsah */
+.hero-analyticke .container {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+}
+
+.hero-analyticke h1 {
+  color: var(--bg);
+  font-size: 5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: 0.01em;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.hero-analyticke p {
+  color: var(--brand-black);
+  font-size: 1.15rem;
+  line-height: 1.65;
+  margin-bottom: 2rem;
+  text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
+}
+
+/* =======================================
+   Přechod mezi HERO → METHODS
+   jemný vlnový gradient (optický klid)
+======================================= */
+
+.hero-analyticke::before {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(to bottom, transparent, #ffffff);
+  z-index: 2;
+}
+
+/* Responzivita */
+@media (max-width: 768px) {
+  .hero-analyticke h1 {
+    font-size: 1.9rem;
+  }
+  .hero-analyticke p {
+    font-size: 1rem;
+  }
+}
