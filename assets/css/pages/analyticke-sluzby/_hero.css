@@ -1,94 +1,182 @@
 /* ==================================================
-   1️⃣ HERO – Analytické testování léčebného konopí
+   GENETIA – ANALYTICKÉ SLUŽBY HERO (Final v3.0)
+   Autor: Martin Gronych
    --------------------------------------------------
-   ▸ Hero (video-ready) + Analytické metody
-   ▸ Fullwidth video layer
-   ▸ Glass overlay + text kontrast
+   ▸ Mobile-first layout
+   ▸ Jemný brand gradient
+   ▸ Lepší čitelnost textu na videu
+   ▸ Vyvážené výšky, žádné mezery
 ================================================== */
 
-.hero-analyticke {
+/* ==================================================
+   1️⃣ WRAPPER
+================================================== */
+.page-analyticke-sluzby .hero-analyticke {
   position: relative;
-  text-align: center;
-  color: var(--brand-900);
-  overflow: hidden;
-  min-height: 50vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  min-height: calc(65vh - var(--nav-height));
+  padding-inline: 1rem;
+
+  /* Jemný laboratorní gradient s jemným fade do bíla */
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(245, 247, 240, 0.07) 25%,
+    rgba(240, 245, 235, 0.12) 70%,
+    rgba(255, 255, 255, 0.9) 100%
+  );
+
+  margin: 0;
+  color: var(--brand-800);
+  z-index: 1;
 }
 
-/* Video vrstva */
-.hero-analyticke video {
+/* ==================================================
+   2️⃣ VIDEO BACKGROUND
+================================================== */
+.page-analyticke-sluzby .hero-analyticke video {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 80%;
+  height: 100%;
   object-fit: cover;
+  filter: brightness(65%) contrast(105%); /* ✅ lehce ztmavené a zvýšený kontrast */
   z-index: 0;
 }
 
-/* Překryv (jemné světlo + brand tón) */
-.hero-analyticke::after {
+/* Overlay gradient nad videem pro plynulý fade */
+.page-analyticke-sluzby .hero-analyticke::before {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.25) 0%,
-    rgba(249, 250, 251, 0.85) 100%
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.12) 40%,
+    rgba(255, 255, 255, 0.4) 100%
   );
-  backdrop-filter: blur(4px) saturate(80%);
-  -webkit-backdrop-filter: blur(2px) saturate(80%);
   z-index: 1;
 }
 
-/* Obsah */
-.hero-analyticke .container {
+/* ==================================================
+   3️⃣ OBSAH
+================================================== */
+.page-analyticke-sluzby .hero-analyticke .container {
   position: relative;
   z-index: 2;
-  max-width: 900px;
+  max-width: 760px;
+  margin-inline: auto;
 }
 
-.hero-analyticke h1 {
-  color: var(--bg);
-  font-size: 5rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
+.page-analyticke-sluzby .hero-analyticke h1 {
+ font-family: var(--ff-sans);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  font-size: clamp(2rem, 3vw + 1rem, 3.2rem);
+  margin-bottom: 1.5rem;
+  color: var(--brand-50);
+  text-shadow: 1px 2px 10px rgba(0, 0, 0, 0.85);
+}
+
+.page-analyticke-sluzby .hero-analyticke p.lead {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
   letter-spacing: 0.01em;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+  color: var(--brand-100);
+  font-size: 1.1rem;
+  max-width: 60ch;
+  margin: 0 auto 2rem auto;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
 }
 
-.hero-analyticke p {
+/* ==================================================
+   4️⃣ CTA TLAČÍTKO
+================================================== */
+.page-analyticke-sluzby .hero-analyticke .btn-accent {
+  font-family: "Inter", sans-serif;
+  background: var(--brand-800);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 0.7rem 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.35s ease, color 0.35s ease, box-shadow 0.35s ease,
+    transform 0.25s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(4px);
+  will-change: transform;
+}
+
+.page-analyticke-sluzby .hero-analyticke .btn-accent:hover {
+  background: var(--brand-600);
   color: var(--brand-black);
-  font-size: 1.15rem;
-  line-height: 1.65;
-  margin-bottom: 2rem;
-  text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  transform: scale(1.03);
 }
 
-/* =======================================
-   Přechod mezi HERO → METHODS
-   jemný vlnový gradient (optický klid)
-======================================= */
+.page-analyticke-sluzby .hero-analyticke .btn-accent:active {
+  transform: scale(0.79);
+}
 
-.hero-analyticke::before {
+/* ==================================================
+   5️⃣ PŘECHOD DO DALŠÍ SEKCE
+================================================== */
+.page-analyticke-sluzby .hero-analyticke::after {
   content: "";
   position: absolute;
-  bottom: -1px;
+  bottom: -3px;
   left: 0;
   width: 100%;
-  height: 120px;
-  background: linear-gradient(to bottom, transparent, #ffffff);
+  height: 160px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.5) 60%,
+    rgba(255, 255, 255, 1) 100%
+  );
   z-index: 2;
+  pointer-events: none;
 }
 
-/* Responzivita */
-@media (max-width: 768px) {
-  .hero-analyticke h1 {
-    font-size: 1.9rem;
+/* ==================================================
+   6️⃣ RESPONSIVE BREAKPOINTS
+================================================== */
+@media (min-width: 768px) {
+  .page-analyticke-sluzby .hero-analyticke {
+    min-height: calc(65vh - var(--nav-height));
   }
-  .hero-analyticke p {
-    font-size: 1rem;
+
+  .page-analyticke-sluzby .hero-analyticke h1 {
+    font-size: clamp(2.4rem, 3vw + 1rem, 3.6rem);
+  }
+
+  .page-analyticke-sluzby .hero-analyticke p.lead {
+    font-size: 1.15rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .page-analyticke-sluzby .hero-analyticke {
+    min-height: calc(68vh - var(--nav-height));
+  }
+
+  .page-analyticke-sluzby .hero-analyticke video {
+    filter: brightness(70%) contrast(110%);
+  }
+
+  .page-analyticke-sluzby .hero-analyticke::after {
+    height: 200px;
   }
 }

@@ -17,6 +17,10 @@
 
 /* 3️⃣ HERO – Úvodní video sekce */
 @import url("./_hero.css");
+@import url("./_test-panels.css");
+@import url("./_section-bg.css");
+
+@import url("./_usp-bar.css");
 
 /* 4️⃣ METODY – Přehled laboratorních testů */
 @import url("./_methods.css");

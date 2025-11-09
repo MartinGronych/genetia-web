@@ -1,13 +1,14 @@
 /* ==================================================
-   GENETIA – Analytické služby / FAQ (Často kladené otázky)
-   Autor: Martin Gronych
+   GENETIA – Analytické služby / FAQ (Final v4.2)
    --------------------------------------------------
-   Interaktivní blok s <details> a <summary>.
+   ▸ Kompatibilní s Bootstrap strukturou
+   ▸ Plynulé fade-in / fade-out animace
+   ▸ Responzivní šířka tlačítka
 ================================================== */
 
 #faq {
   position: relative;
-  background: #ffffff;
+  background: #fff;
   padding-block: clamp(4rem, 8vw, 6rem);
   z-index: 1;
 }
@@ -16,38 +17,52 @@
 #faq h2 {
   color: var(--brand-800);
   font-weight: 700;
-  text-align: center;
   margin-bottom: 2rem;
 }
 
-/* Obal */
-.faq-wrapper {
+/* Wrapper */
+#faq .faq-wrapper {
   max-width: 800px;
+  margin-inline: auto;
 }
 
-/* Jednotlivé otázky */
+/* === DETAILY (otázky) === */
 #faq details {
-  background: #ffffff;
   border: 1px solid var(--brand-100);
   border-radius: var(--radius-lg);
+  background: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  padding: 1rem 1.25rem;
-  transition: all 0.3s ease;
+  transition: all 0.35s ease;
+  overflow: hidden;
   cursor: pointer;
 }
 
-#faq details[open] {
-  border-color: var(--brand-300);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+#faq details:hover {
+  border-color: var(--brand-200);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
 }
 
-/* Nadpis otázky */
+/* Aktivní (otevřený) stav */
+#faq details.active {
+  border-color: var(--brand-400);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(180deg, #fff 0%, #fafbf7 100%);
+  transform: scale(1.01);
+}
+
+/* === OTÁZKA (summary) === */
 #faq summary {
+  position: relative;
   color: var(--brand-800);
   font-weight: 600;
+  font-size: 1.05rem;
   list-style: none;
-  position: relative;
   padding-right: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+#faq details:hover summary {
+  color: var(--brand-700);
 }
 
 /* Odstranění defaultní šipky */
@@ -62,36 +77,78 @@
   right: 0;
   top: 0;
   color: var(--brand-600);
-  transition: transform 0.3s ease;
+  transition: transform 0.4s ease, color 0.3s ease;
 }
 
-#faq details[open] summary::after {
+#faq details.active summary::after {
   transform: rotate(-180deg);
+  color: var(--brand-500);
 }
 
-/* Text odpovědi */
+/* === ODPOVĚĎ (p) === */
 #faq p {
   color: var(--text-700);
   margin-top: 0.75rem;
   line-height: 1.6;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.45s ease;
 }
 
-/* Hover efekt */
-#faq details:hover {
-  border-color: var(--brand-200);
+/* Otevřená odpověď */
+#faq details.active p {
+  opacity: 1;
+  max-height: 1000px;
+  transition: all 0.55s ease;
+}
+
+/* === CTA tlačítko (Kontaktujte nás) === */
+#faq .btn-cta {
+  display: block;
+  margin: 2.5rem auto 0 auto;
+  background: var(--brand-700);
+  color: #fff;
+  font-weight: 600;
+  padding: 0.9rem 2rem;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.35s ease;
+  text-align: center;
+  min-width: 220px;
+}
+
+#faq .btn-cta:hover {
+  background: var(--brand-500);
+  color: var(--brand-black);
+  transform: scale(1.04);
+  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.25);
+}
+
+#faq .btn-cta:active {
+  transform: scale(0.97);
 }
 
 /* === RESPONSIVITA === */
-@media (max-width: 768px) {
-  #faq h2 {
-    font-size: 1.6rem;
-  }
 
-  #faq summary {
-    font-size: 1rem;
+/* 🧩 Tablet – zúžení o cca 35 % */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  #faq .btn-cta {
+    width: 65%;
   }
+}
 
-  #faq p {
-    font-size: 0.9rem;
+/* 💻 Notebook – zúžení o cca 45 % */
+@media (min-width: 992px) and (max-width: 1399.98px) {
+  #faq .btn-cta {
+    width: 55%;
+  }
+}
+
+/* 🖥️ Velké displeje */
+@media (min-width: 1400px) {
+  #faq .btn-cta {
+    width: auto;
   }
 }

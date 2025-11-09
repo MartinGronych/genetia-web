@@ -1,0 +1,102 @@
+/* ==================================================
+   GENETIA – SECTION BACKGROUNDS & GRADIENTS (v1)
+   Použití:
+   - .bg-brand-50 / 100 / 500 / 700 / 800 pro sekce
+   - .hero-analyticke má overlay gradient (viz níže)
+   - .bg-download-gradient pro "Ke stažení"
+================================================== */
+
+/* Brandové plochy (jen background-color) */
+.bg-brand-50  { background-color: var(--brand-50) !important; }
+.bg-brand-100 { background-color: var(--brand-100) !important; }
+.bg-brand-500 { background-color: var(--brand-500) !important; }
+.bg-brand-700 { background-color: var(--brand-700) !important; }
+.bg-brand-800 { background-color: var(--brand-800) !important; }
+
+/* Pomocná třída pro tmavé podklady (text kontrastní) */
+.on-brand-dark,
+.bg-brand-700 .on-brand,
+.bg-brand-800 .on-brand {
+  color: #fff !important;
+}
+.bg-brand-700 h1, .bg-brand-700 h2, .bg-brand-700 h3,
+.bg-brand-800 h1, .bg-brand-800 h2, .bg-brand-800 h3 {
+  color: #fff;
+}
+
+/* Jemný přechod pro "Ke stažení" (živější střed stránky) */
+.bg-download-gradient {
+  background: linear-gradient(90deg, var(--brand-500) 0%, #ffffff 100%);
+}
+
+/* ----------------------------------------------
+   HERO overlay: brand-800 -> transparent -> white
+   (překryv přes video, aby text byl čitelný
+   a spodek plynule mizel do bílé bez linky)
+---------------------------------------------- */
+.hero-analyticke {
+  position: relative;
+  background: #fff;         /* fallback */
+  overflow: hidden;
+}
+
+.hero-analyticke > video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Gradientový overlay (tmavší nahoře, rozplynutí dolů) */
+.hero-analyticke::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* 180deg: shora dolů; nahoře výraznější pro čitelnost titulku */
+  background: linear-gradient(
+    180deg,
+    rgba(73, 95, 38, 0.85) 0%,     /* brand-800 s alfa – čitelný titulek */
+    rgba(73, 95, 38, 0.35) 35%,    /* zjemnění nad středem */
+    rgba(255, 255, 255, 0.0) 70%,  /* průhledný střed – video vynikne */
+    rgba(255, 255, 255, 0.85) 92%, /* lehké rozplynutí u spodku */
+    rgba(255, 255, 255, 1) 100%    /* úplné do bílé – bez linky */
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Obsah hera nad overlayem */
+.hero-analyticke .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* Jemné vyvážení výšky na velkých displejích */
+.hero-analyticke {
+  min-height: clamp(52vh, 58vh, 64vh);
+}
+@media (min-width: 1400px) {
+  .hero-analyticke { min-height: 60vh; }
+}
+
+/* Oddělovací jemný fade mezi sekcemi (volitelné – můžeš nasadit na vybrané sekce)
+   .section-fade-bottom přidej na sekci, která má plynule zmizet do bíla dole */
+.section-fade-bottom {
+  position: relative;
+  overflow: hidden;
+}
+.section-fade-bottom::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 120px;                 /* prodloužené kvůli velkým monit. */
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.6) 45%,
+    rgba(255,255,255,1) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}

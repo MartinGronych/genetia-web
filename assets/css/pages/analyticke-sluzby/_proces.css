@@ -1,8 +1,6 @@
 /* ==================================================
-   3️⃣ JAK PROBÍHÁ OBJEDNÁVKA A TESTOVÁNÍ
-   --------------------------------------------------
-   ▸ 4 kroky + spojovací linka
-   ▸ Brand ikony + hover efekty
+   GENETIA – PROCES (Final v3.5 – Fixed Overlay)
+   Autor: Martin Gronych
 ================================================== */
 
 #proces {
@@ -10,35 +8,43 @@
   background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);
   padding-block: clamp(4rem, 8vw, 6rem);
   overflow: hidden;
-  z-index: 2;
+  z-index: 1; /* sníženo, aby ::before byl pod textem */
 }
 
-/* Jemný horní přechod pro spojení se sekcí metod */
+/* Jemný horní přechod – FIX: menší výška, průhlednost, pod obsahem */
 #proces::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 160px;
-  background: linear-gradient(to top, #ffffff, rgba(255, 255, 255, 0));
-  z-index: 0;
+  height: 80px; /* původně 160px */
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.85) 60%,
+    #ffffff 100%
+  );
+  z-index: -1; /* přesun pod obsah */
 }
 
-/* Nadpis a text */
+/* Nadpis */
 #proces h2 {
   color: var(--brand-800);
   font-weight: 700;
   text-align: center;
   margin-bottom: 1rem;
+  position: relative;
+  z-index: 1; /* jistota nad overlayem */
 }
 
+/* Text popisu */
 #proces p {
   color: var(--text-700);
   line-height: 1.6;
 }
 
-/* Jednotlivé kroky */
+/* === Kroky === */
 #proces .process-step {
   position: relative;
   text-align: center;
@@ -48,8 +54,7 @@
   background: #ffffff;
   transition: all 0.35s ease;
   z-index: 1;
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
+  padding-block: 1.5rem;
 }
 
 #proces .process-step:hover {
@@ -58,7 +63,7 @@
   border-color: var(--brand-200);
 }
 
-/* === Ikony v kruhu === */
+/* === Ikony === */
 #proces .process-icon {
   width: 64px;
   height: 64px;
@@ -79,8 +84,7 @@
   transform: scale(1.05);
 }
 
-/* === Lucide SVG === */
-#proces .process-icon i,
+/* SVG ikony */
 #proces .process-icon svg {
   width: 28px;
   height: 28px;
@@ -94,14 +98,15 @@
   margin-top: 0.5rem;
 }
 
-/* Text popisu kroku */
+/* Popis kroku */
 #proces .process-step p {
   color: var(--text-700);
   font-size: 0.95rem;
   line-height: 1.5;
 }
+
 /* === Responsivita === */
-@media (max-width: 768px) {
+@media (min-width: 768px) {
   #proces .process-step {
     padding: 1.25rem 1rem;
   }
@@ -112,7 +117,6 @@
     margin-bottom: 0.8rem;
   }
 
-  #proces .process-icon i,
   #proces .process-icon svg {
     width: 24px;
     height: 24px;
@@ -127,7 +131,7 @@
   }
 }
 
-/* Spojovací linka mezi kroky (desktop only) */
+/* Spojovací linka (desktop only) */
 @media (min-width: 992px) {
   #proces .row.g-4 {
     position: relative;
@@ -143,29 +147,4 @@
     background: var(--brand-100);
     z-index: 0;
   }
-}
-
-/* CTA tlačítka */
-#proces .btn-accent {
-  padding: 0.65rem 1.6rem;
-  font-size: 1rem;
-  font-weight: 600;
-  transition: background 0.3s ease, transform 0.25s ease;
-}
-
-#proces .btn-accent:hover {
-  background: var(--brand-600);
-  transform: translateY(-2px);
-}
-
-#proces .btn-outline-secondary {
-  border: 2px solid var(--brand-200);
-  color: var(--brand-700);
-  font-weight: 500;
-  transition: all 0.3s ease;
-}
-
-#proces .btn-outline-secondary:hover {
-  background: var(--brand-100);
-  color: var(--brand-800);
 }

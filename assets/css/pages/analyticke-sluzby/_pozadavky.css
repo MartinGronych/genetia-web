@@ -7,14 +7,14 @@
 
 #pozadavky {
   position: relative;
-  background: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
   padding-block: clamp(4rem, 8vw, 6rem);
   z-index: 1;
 }
 
 /* Nadpis + popis */
 #pozadavky h2 {
-  color: var(--brand-800);
+  color: var(--bg);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
   font-weight: 700;
   text-align: center;
 }
