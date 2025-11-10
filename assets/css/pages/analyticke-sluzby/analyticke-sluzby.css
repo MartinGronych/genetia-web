@@ -1,47 +1,75 @@
 /* ==================================================
-   GENETIA – Analytické služby (Multi-entry v10)
+   GENETIA – Analytické služby (Multi-entry)
    Autor: Martin Gronych
+   --------------------------------------------------
+   Struktura načítání stylů:
+   ▸ BASE        – základní proměnné a reset
+   ▸ COMPONENTS  – opakovaně použitelné prvky
+   ▸ SECTIONS    – sekce specifické pro stránku
+   ▸ THEME       – barevné varianty (light/dark)
 ================================================== */
 
-/* 0️⃣ BASE – Základy a proměnné */
+/* ==================================================
+   0️⃣ BASE – Základy, proměnné, layout, komponenty
+================================================== */
 @import url("../../base/_tokens.css");
 @import url("../../base/_reset.css");
 @import url("../../base/_layout.css");
 @import url("../../base/_components.css");
 
-/* 1️⃣ NAVIGACE – Hlavní menu */
-@import url("../../components/_navbar.css");
+/* ==================================================
+   1️⃣ COMPONENTS – Navigace a modální okna
+================================================== */
+@import url("../../components/_navbar.css");  /* Navigace a hamburger menu */
+@import url("../../components/_modal.css");   /* Klientská zóna – přihlašovací modal */
 
-/* 2️⃣ MODAL – Klientská zóna */
-@import url("../../components/_modal.css");
+/* ==================================================
+   2️⃣ HERO & USP – Úvodní sekce a klíčové benefity
+================================================== */
+@import url("./_hero.css");        /* Úvodní hero s videem */
+@import url("./_usp-bar.css");     /* Krátké benefity pod hero sekcí */
 
-/* 3️⃣ HERO – Úvodní video sekce */
-@import url("./_hero.css");
-@import url("./_test-panels.css");
-@import url("./_section-bg.css");
+/* ==================================================
+   3️⃣ TEST PANELY – Nabídka analytických testů
+================================================== */
+@import url("./_test-panels.css"); /* Grid a tabulky testovacích panelů */
 
-@import url("./_usp-bar.css");
-
-/* 4️⃣ METODY – Přehled laboratorních testů */
+/* ==================================================
+   4️⃣ METODY – Přehled laboratorních postupů
+================================================== */
 @import url("./_methods.css");
 
-/* 5️⃣ PROCES – Objednávka a testování */
+/* ==================================================
+   5️⃣ PROCES – Průběh objednávky a testování
+================================================== */
 @import url("./_proces.css");
 
-/* 6️⃣ POŽADAVKY – Pokyny pro vzorky */
+/* ==================================================
+   6️⃣ POŽADAVKY – Pokyny k přípravě vzorků
+================================================== */
 @import url("./_pozadavky.css");
 
-/* 7️⃣ KE STAŽENÍ – Formuláře a dokumenty */
+/* ==================================================
+   7️⃣ KE STAŽENÍ – Formuláře a dokumenty
+================================================== */
 @import url("./_ke-stazeni.css");
 
-/* 8️⃣ FAQ – Často kladené otázky */
+/* ==================================================
+   8️⃣ FAQ – Často kladené otázky
+================================================== */
 @import url("./_faq.css");
 
-/* 9️⃣ CTA – Výzva ke kontaktování */
+/* ==================================================
+   9️⃣ CTA – Výzva ke kontaktování
+================================================== */
 @import url("./_cta.css");
 
-/* 🔟 FOOTER – Patička webu */
+/* ==================================================
+   🔟 FOOTER – Patička webu
+================================================== */
 @import url("../../components/_footer.css");
 
-/* 🎨 THEME – Tmavý režim */
+/* ==================================================
+   🎨 THEME – Tmavý režim a varianty vzhledu
+================================================== */
 @import url("../../theme/_dark.css");
