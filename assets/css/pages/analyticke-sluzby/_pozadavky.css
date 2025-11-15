@@ -1,70 +1,95 @@
 /* ==================================================
-   GENETIA – Analytické služby / Požadavky na vzorek
-   Autor: Martin Gronych
-   --------------------------------------------------
-   Tři karty s pokyny: množství, balení, doprava.
+   GENETIA – POŽADAVKY NA VZOREK (Final v6.1 – no HTML changes)
+   ▸ Respektuje původní HTML
+   ▸ Fix nadpisu (h2)
+   ▸ Cards stylované bezpečně
 ================================================== */
 
+
+/* ==================================================
+   1️⃣ WRAPPER
+================================================== */
 #pozadavky {
+  padding-block: var(--space-6);
   position: relative;
-  padding-block: clamp(4rem, 8vw, 6rem);
   z-index: 1;
 }
 
-/* Nadpis + popis */
+
+/* ==================================================
+   2️⃣ NADPIS SEKCE (H2)
+================================================== */
+/* původní HTML používá jen <h2 class="text-center mb-4"> */
+
 #pozadavky h2 {
-  color: var(--bg);
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  font-size: clamp(2rem, 5vw, 3.2rem);
   font-weight: 700;
+  color: var(--brand-800);
   text-align: center;
+  margin-bottom: var(--space-5);
+  letter-spacing: -0.01em;
 }
 
-#pozadavky p {
+
+/* ==================================================
+   3️⃣ INFO TEXT POD NADPISEM
+================================================== */
+
+#pozadavky > .container > p {
   color: var(--text-700);
-  line-height: 1.6;
+  font-size: 1.05rem;
+  max-width: 65ch;
+  margin-inline: auto;
+  margin-bottom: var(--space-5);
 }
 
-/* Karty s požadavky */
-#pozadavky .bg-white {
-  transition: all 0.3s ease;
-  border-color: var(--brand-100);
+
+/* ==================================================
+   4️⃣ KARTY (původní HTML používá Bootstrap .p-4)
+================================================== */
+
+/* bez zásahu do globální .p-4 — pouze uvnitř #pozadavky */
+
+#pozadavky .p-4 {
+  background: #fff;
+  border: none;
+  border-radius: var(--radius-lg);
+  height: 100%;
+
+  /* jednotný Genetia shadow */
+  box-shadow: var(--elevation-card);
+
+  transition: all 0.35s ease;
 }
 
-#pozadavky .bg-white:hover {
-  transform: translateY(-6px);
-  border-color: var(--brand-300);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.07);
+#pozadavky .p-4:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--elevation-card-hover);
 }
+
+
+/* ==================================================
+   5️⃣ NADPISY KARET (H3)
+================================================== */
 
 #pozadavky h3 {
   color: var(--brand-800);
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-bottom: var(--space-2);
+}
+
+
+/* ==================================================
+   6️⃣ TEXTY V KARTÁCH
+================================================== */
+
+#pozadavky p {
+  color: var(--text-700);
+  font-size: 0.95rem;
+  line-height: 1.55;
 }
 
 #pozadavky p strong {
   color: var(--brand-700);
-}
-
-/* Odkaz v poznámce pod sekcí */
-#pozadavky a {
-  color: var(--brand-700);
-  text-decoration: underline;
-  transition: color 0.3s ease;
-}
-
-#pozadavky a:hover {
-  color: var(--brand-500);
-}
-
-/* === RESPONSIVITA === */
-@media (max-width: 768px) {
-  #pozadavky h2 {
-    font-size: 1.6rem;
-  }
-  #pozadavky h3 {
-    font-size: 1.05rem;
-  }
-  #pozadavky p {
-    font-size: 0.95rem;
-  }
 }

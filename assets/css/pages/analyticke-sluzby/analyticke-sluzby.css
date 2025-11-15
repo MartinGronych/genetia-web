@@ -40,6 +40,11 @@
 @import url("./_methods.css");
 
 /* ==================================================
+   3️⃣b SECTION BACKGROUNDS – Utility pro pozadí sekcí
+================================================== */
+@import url("./_section-bg.css");
+
+/* ==================================================
    5️⃣ PROCES – Průběh objednávky a testování
 ================================================== */
 @import url("./_proces.css");

@@ -2,7 +2,6 @@
 // GENETIA – Analytické služby (Page Entry)
 // ==================================================
 import { initNavigation } from "../../components/nav.js";
-import { initModal } from "../../components/modal.js";
 import { initFaqFade } from "./faq-fade.js";
 
 document.addEventListener("DOMContentLoaded", async () => {

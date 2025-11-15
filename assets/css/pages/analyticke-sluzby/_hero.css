@@ -1,182 +1,201 @@
 /* ==================================================
-   GENETIA – ANALYTICKÉ SLUŽBY HERO (Final v3.0)
-   Autor: Martin Gronych
-   --------------------------------------------------
-   ▸ Mobile-first layout
-   ▸ Jemný brand gradient
-   ▸ Lepší čitelnost textu na videu
-   ▸ Vyvážené výšky, žádné mezery
+   GENETIA – ANALYTICKÉ SLUŽBY HERO (v6.0 Final)
+   Mobile-first + fallback foto → video od 426px
+   Čisté gradienty, jednotný overlay, sjednocený CTA
 ================================================== */
 
+
 /* ==================================================
-   1️⃣ WRAPPER
+   1️⃣ HERO WRAPPER – MOBILE FIRST (0–425px)
 ================================================== */
+
 .page-analyticke-sluzby .hero-analyticke {
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
   text-align: center;
   overflow: hidden;
-  min-height: calc(65vh - var(--nav-height));
-  padding-inline: 1rem;
 
-  /* Jemný laboratorní gradient s jemným fade do bíla */
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.05) 0%,
-    rgba(245, 247, 240, 0.07) 25%,
-    rgba(240, 245, 235, 0.12) 70%,
-    rgba(255, 255, 255, 0.9) 100%
-  );
+  min-height: calc(62vh - var(--nav-height));
+  padding-inline: 1.2rem;
 
-  margin: 0;
-  color: var(--brand-800);
+  /* Fallback foto pro mobily */
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.02) 0%,
+      rgba(255, 255, 255, 0.05) 40%,
+      rgba(255, 255, 255, 0.10) 100%
+    ),
+    url("/assets/images/section/analyticke-hero-fallback-mobile.png")
+      center/cover no-repeat;
+
+  color: var(--brand-50);
   z-index: 1;
 }
 
-/* ==================================================
-   2️⃣ VIDEO BACKGROUND
-================================================== */
+/* Video skryté na mobilech */
 .page-analyticke-sluzby .hero-analyticke video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(65%) contrast(105%); /* ✅ lehce ztmavené a zvýšený kontrast */
-  z-index: 0;
+  display: none;
 }
 
-/* Overlay gradient nad videem pro plynulý fade */
+
+/* ==================================================
+   2️⃣ OVERLAYS
+================================================== */
+
+/* Jemný overlay (univerzální film přes obraz i video) */
 .page-analyticke-sluzby .hero-analyticke::before {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.05) 0%,
-    rgba(255, 255, 255, 0.12) 40%,
-    rgba(255, 255, 255, 0.4) 100%
+    rgba(255, 255, 255, 0.02) 0%,
+    rgba(255, 255, 255, 0.06) 40%,
+    rgba(255, 255, 255, 0.12) 100%
   );
   z-index: 1;
 }
 
-/* ==================================================
-   3️⃣ OBSAH
-================================================== */
-.page-analyticke-sluzby .hero-analyticke .container {
-  position: relative;
-  z-index: 2;
-  max-width: 760px;
-  margin-inline: auto;
-}
-
-.page-analyticke-sluzby .hero-analyticke h1 {
- font-family: var(--ff-sans);
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  line-height: 1.2;
-  font-size: clamp(2rem, 3vw + 1rem, 3.2rem);
-  margin-bottom: 1.5rem;
-  color: var(--brand-50);
-  text-shadow: 1px 2px 10px rgba(0, 0, 0, 0.85);
-}
-
-.page-analyticke-sluzby .hero-analyticke p.lead {
-  font-family: "Inter", sans-serif;
-  font-weight: 400;
-  line-height: 1.6;
-  letter-spacing: 0.01em;
-  color: var(--brand-100);
-  font-size: 1.1rem;
-  max-width: 60ch;
-  margin: 0 auto 2rem auto;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-}
-
-/* ==================================================
-   4️⃣ CTA TLAČÍTKO
-================================================== */
-.page-analyticke-sluzby .hero-analyticke .btn-accent {
-  font-family: "Inter", sans-serif;
-  background: var(--brand-800);
-  color: #fff;
-  border: none;
-  border-radius: var(--radius-md);
-  padding: 0.7rem 1.3rem;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  text-decoration: none;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background 0.35s ease, color 0.35s ease, box-shadow 0.35s ease,
-    transform 0.25s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(4px);
-  will-change: transform;
-}
-
-.page-analyticke-sluzby .hero-analyticke .btn-accent:hover {
-  background: var(--brand-600);
-  color: var(--brand-black);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
-  transform: scale(1.03);
-}
-
-.page-analyticke-sluzby .hero-analyticke .btn-accent:active {
-  transform: scale(0.79);
-}
-
-/* ==================================================
-   5️⃣ PŘECHOD DO DALŠÍ SEKCE
-================================================== */
+/* Fade do další sekce */
 .page-analyticke-sluzby .hero-analyticke::after {
   content: "";
   position: absolute;
-  bottom: -3px;
-  left: 0;
-  width: 100%;
-  height: 160px;
+  inset-inline: 0;
+  bottom: -2px;
+  height: 40px;
   background: linear-gradient(
     to bottom,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.5) 60%,
-    rgba(255, 255, 255, 1) 100%
+    rgba(255, 255, 255, 0.0001) 0%,
+    rgba(255, 255, 255, 0.10) 40%,
+    rgba(255, 255, 255, 0.22) 70%,
+    rgba(255, 255, 255, 0.32) 100%
   );
   z-index: 2;
   pointer-events: none;
 }
 
+
 /* ==================================================
-   6️⃣ RESPONSIVE BREAKPOINTS
+   3️⃣ VIDEO BACKGROUND – OD 426 PX
 ================================================== */
+
+@media (min-width: 426px) {
+  .page-analyticke-sluzby .hero-analyticke {
+    background: none; /* vypnout foto */
+  }
+
+  .page-analyticke-sluzby .hero-analyticke video {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    /* Jemné laboratorní ztmavení */
+    filter: brightness(85%) contrast(102%);
+
+    z-index: 0;
+  }
+
+  .page-analyticke-sluzby .hero-analyticke {
+    min-height: calc(55vh - var(--nav-height));
+  }
+}
+
+
+/* ==================================================
+   4️⃣ CONTENT
+================================================== */
+
+.page-analyticke-sluzby .hero-analyticke .container {
+  position: relative;
+  z-index: 3;
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+
+/* ==================================================
+   5️⃣ TYPOGRAPHY
+================================================== */
+
+.page-analyticke-sluzby .hero-analyticke h1 {
+  font-family: var(--ff-sans);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  font-size: clamp(2rem, 3vw + 1rem, 3.2rem);
+  margin-bottom: 1.3rem;
+  color: var(--brand-50);
+
+  /* jemnější a čistší stín */
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+}
+
+.page-analyticke-sluzby .hero-analyticke p.lead {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--brand-100);
+  font-size: 1.1rem;
+  max-width: 60ch;
+  margin: 0 auto 2rem;
+
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.32);
+}
+
+
+/* ==================================================
+   6️⃣ CTA BUTTON (sjednocený s homepage)
+================================================== */
+
+.page-analyticke-sluzby .hero-analyticke .btn-accent {
+  background: var(--brand-800);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+
+  padding: 0.75rem 1.4rem;
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: background 0.25s ease, transform 0.25s ease;
+  box-shadow: var(--elevation-card);
+}
+
+.page-analyticke-sluzby .hero-analyticke .btn-accent:hover {
+  background: var(--brand-600);
+  color: var(--brand-black);
+  transform: scale(1.03);
+}
+
+.page-analyticke-sluzby .hero-analyticke .btn-accent:active {
+  transform: scale(0.90);
+}
+
+
+/* ==================================================
+   7️⃣ DESKTOP OPTIMALIZACE
+================================================== */
+
 @media (min-width: 768px) {
   .page-analyticke-sluzby .hero-analyticke {
-    min-height: calc(65vh - var(--nav-height));
-  }
-
-  .page-analyticke-sluzby .hero-analyticke h1 {
-    font-size: clamp(2.4rem, 3vw + 1rem, 3.6rem);
-  }
-
-  .page-analyticke-sluzby .hero-analyticke p.lead {
-    font-size: 1.15rem;
+    min-height: calc(52vh - var(--nav-height));
   }
 }
 
 @media (min-width: 1200px) {
-  .page-analyticke-sluzby .hero-analyticke {
-    min-height: calc(68vh - var(--nav-height));
-  }
-
   .page-analyticke-sluzby .hero-analyticke video {
-    filter: brightness(70%) contrast(110%);
+    filter: brightness(88%) contrast(104%);
   }
+}
 
-  .page-analyticke-sluzby .hero-analyticke::after {
-    height: 200px;
+@media (min-width: 1440px) {
+  .page-analyticke-sluzby .hero-analyticke {
+    min-height: 48vh;
   }
 }

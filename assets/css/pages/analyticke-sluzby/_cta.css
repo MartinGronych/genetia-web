@@ -1,79 +1,68 @@
 /* ==================================================
-   4️⃣ CTA – Závěrečný blok
+   GENETIA – CTA SECTION (Final v5.0 – Background-free)
    --------------------------------------------------
-   ▸ Jemný gradient a světelné pozadí
+   ▸ CTA pozadí řeší výhradně .cta-bg ze _section-bg.css
+   ▸ Tento soubor řeší jen typografii + CTA button
+================================================== */
+
+
+/* ==================================================
+   1️⃣ CTA WRAPPER (bez background!)
 ================================================== */
 
 .cta-section {
-  position: relative;
-  padding-block: clamp(4rem, 8vw, 6rem);
+  padding-block: clamp(3.5rem, 7vw, 6rem);
   text-align: center;
-  overflow: hidden;
+  position: relative;
+  z-index: 1;
 }
 
-.cta-section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    circle at 50% 90%,
-    rgba(90, 160, 255, 0.05) 0%,
-    transparent 70%
-  );
-}
+
+/* ==================================================
+   2️⃣ CTA NADPIS (H2)
+================================================== */
 
 .cta-section h2 {
-  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  font-size: clamp(1.9rem, 4vw, 3.2rem);
   font-weight: 700;
   color: var(--bg);
-  text-shadow: 2px 2px rgba(0, 0, 0, 0.6);
   margin-bottom: 1rem;
+  letter-spacing: -0.01em;
 }
+
+
+/* ==================================================
+   3️⃣ CTA TEXT
+================================================== */
 
 .cta-section p {
-  font-size: 1.05rem;
   color: var(--text-700);
+  font-size: 1.05rem;
+  max-width: 60ch;
+  margin: 0 auto 2rem;
   line-height: 1.6;
-  margin-bottom: 2rem;
 }
 
-.cta-section .btn-accent {
-  font-family: "Inter", sans-serif;
-  background: var(--brand-800);
-  color: #fff;
-  border: none;
+
+/* ==================================================
+   4️⃣ CTA BUTTON
+================================================== */
+
+.btn-cta {
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+  padding: 0.85rem 2rem;
   border-radius: var(--radius-md);
-  padding: 0.7rem 1.3rem;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  text-decoration: none;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background 0.35s ease, color 0.35s ease, box-shadow 0.35s ease,
-    transform 0.25s ease;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(4px);
-  will-change: transform;
+  border: 1px solid #00000031;
+  background: var(--brand-800);
+  color: #fff !important;
+  box-shadow: var(--elevation-card);
+  transition: 0.35s ease;
+  display: inline-block;
 }
 
-.cta-section .btn-accent:hover {
+.btn-cta:hover {
   background: var(--brand-600);
-  color: var(--brand-black);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
-  transform: scale(1.03);
-}
-
-.cta-section .btn-accent:active {
-  transform: scale(0.79);
-}
-
-/* Responsivita */
-@media (max-width: 768px) {
-    
-  .cta-section h2 {
-    font-size: 1.6rem;
-  }
-  .cta-section .btn-accent {
-    font-size: 1rem;
-  }
+  color: var(--brand-black) !important;
+  transform: translateY(-2px);
+  box-shadow: var(--elevation-card-hover);
 }

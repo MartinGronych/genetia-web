@@ -1,99 +1,105 @@
 /* ==================================================
-   2️⃣ ANALYTICKÉ METODY
+   GENETIA – ANALYTICKÉ METODY (Light Cards v4.0)
    --------------------------------------------------
-   ▸ Sekce s kartami metod
-   ▸ Pozadí: jemná textura + gradient světla
+   ▸ Jemné pharma karty
+   ▸ Brand akcenty
+   ▸ Laboratorně čistý layout
 ================================================== */
 
+/* === Wrapper sekce === */
 .methods-section {
-  position: relative;
-  background: linear-gradient(180deg, #ffffff 0%, #f9fafb 60%, #eef2f8 100%);
-  padding-block: clamp(4rem, 8vw, 6rem);
-  overflow: hidden;
+  background: linear-gradient(180deg, var(--brand-50) 0%, #ffffff 100%);
+  color: var(--text-800);
 }
 
-.methods-section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    circle at 50% 10%,
-    rgba(102, 178, 255, 0.05),
-    transparent 70%
-  );
-  z-index: 0;
+#methods {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
 }
 
-.methods-section .container {
-  position: relative;
-  z-index: 2;
-  width: min(1000px, 92vw);
-  margin-inline: auto;
-}
-
-/* Nadpisy */
-.methods-section h2 {
-  font-size: clamp(2rem, 4vw, 2.6rem);
+/* === Nadpis sekce === */
+.methods-section .section-title {
+  font-size: clamp(1.9rem, 5vw, 3.2rem);
   font-weight: 700;
-  text-align: center;
   color: var(--brand-800);
-  margin-bottom: clamp(2rem, 4vw, 3rem);
-  letter-spacing: 0.01em;
+  margin-bottom: 0.5rem;
 }
 
-.methods-section p {
-  color: var(--text-700);
+/* Podtitulek */
+.section-subtitle {
+  color: var(--text-600);
+  max-width: 65ch;
+  margin-inline: auto;
   font-size: 1.05rem;
-  text-align: center;
-  line-height: 1.6;
-  margin-bottom: 3rem;
 }
 
-/* Karty metod */
-.method-block {
-  background: #ffffff;
-  border: 1px solid var(--brand-100);
-  border-left: 4px solid var(--brand-400);
-  border-radius: var(--radius-md);
-  padding: 1.75rem 2rem;
-  margin-bottom: 2rem;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
-  transition: all 0.3s ease;
+/* === Grid === */
+.methods-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
 }
 
-.method-block:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-  border-left-color: var(--brand-600);
+/* === Karty metod === */
+.method-card {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  padding: 2rem 2rem 1.5rem;
+  box-shadow: var(--elevation-card);
+  transition: box-shadow 0.35s ease, transform 0.35s ease;
 }
 
-.method-block h3 {
+.method-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--elevation-card-hover);
+}
+
+/* === Nadpisy metod === */
+.method-card h3 {
   font-size: 1.35rem;
   font-weight: 600;
   color: var(--brand-800);
   margin-bottom: 1rem;
 }
 
-.method-block li {
-  font-size: 1rem;
-  color: var(--text-800);
-  line-height: 1.6;
-  margin-bottom: 0.4rem;
-  position: relative;
-  padding-left: 1.4rem;
+/* === Seznamy === */
+.method-card ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.method-block li::before {
+.method-card ul li {
+  color: var(--text-700);
+  font-size: 1rem;
+  padding-left: 1.25rem;
+  position: relative;
+  margin-bottom: 0.45rem;
+  line-height: 1.55;
+}
+
+/* Brand tečka */
+.method-card ul li::before {
   content: "";
   position: absolute;
   left: 0;
-  color: var(--brand-600);
-  font-size: 1rem;
-  top: 0;
+  top: 0.55rem;
+  width: 6px;
+  height: 6px;
+  background: var(--brand-600);
+  border-radius: 50%;
 }
 
-@media (max-width: 768px) {
-  .method-block {
-    padding: 1.25rem 1.3rem;
+/* === Responsivita === */
+@media (min-width: 768px) {
+  .methods-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .methods-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
   }
 }

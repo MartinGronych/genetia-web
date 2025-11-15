@@ -129,7 +129,7 @@
     <!-- =========================================
          2️⃣ USP BAR – Klíčové benefity
     ========================================== -->
-    <section class="usp-bar bg-brand-800 border-top border-bottom">
+    <section class="usp-bar usp-bar-bg border-bottom">
       <div class="container">
         <div class="usp-grid">
           <div class="usp-item">
@@ -152,7 +152,10 @@
     <!-- =========================================
      3️⃣ TESTOVACÍ PANELOVÁ NABÍDKA
     ========================================= -->
-    <section id="testovaci-panely" class="test-panels-section bg-white section-fade-bottom">
+    <section
+      id="testovaci-panely"
+      class="test-panels-section test-panels-bg section-fade-bottom"
+    >
       <div class="container">
         <h2 class="section-title mb-4 text-center">Testovací panely</h2>
 
@@ -281,7 +284,7 @@
     <!-- =========================================
          4️⃣ PROCES OBJEDNÁVKY A TESTOVÁNÍ
     ========================================== -->
-    <section id="proces" class="py-5 bg-brand-50">
+    <section id="proces" class="py-5 proces-bg">
       <div class="container">
         <h2 class="text-center mb-4">Jak probíhá objednávka a testování</h2>
         <p class="text-center text-muted mb-5">
@@ -348,7 +351,7 @@
         </ol>
 
         <div class="d-flex flex-wrap justify-content-center gap-3 mt-4">
-          <a href="kontakt.html" class="btn btn-accent">Objednat analýzu</a>
+          <a href="kontakt.html" class="btn btn-accent-proces">Objednat analýzu</a>
           <a href="#ke-stazeni" class="btn btn-outline-secondary"
             >Stáhnout formuláře</a
           >
@@ -364,7 +367,7 @@
     <!-- =========================================
          5️⃣ POŽADAVKY NA VZOREK
     ========================================== -->
-    <section id="pozadavky" class="py-5 bg-brand-800">
+    <section id="pozadavky" class="pozadavky-bg py-5">
       <div class="container">
         <h2 class="text-center mb-4">Požadavky na vzorek</h2>
         <p class="text-center text-muted mb-5">
@@ -375,7 +378,7 @@
         <div class="row g-4">
           <div class="col-md-4">
             <div class="p-4 bg-white rounded-4 border h-100 shadow-sm">
-              <h3 class="h5 mb-2">💡 Množství vzorku</h3>
+              <h3 class="h5 mb-2">Množství vzorku</h3>
               <p class="text-muted mb-0">
                 <strong>Minimálně 3 g</strong> rostlinného materiálu (suchý
                 květ). Pro vícenásobné analýzy doporučujeme
@@ -386,7 +389,7 @@
 
           <div class="col-md-4">
             <div class="p-4 bg-white rounded-4 border h-100 shadow-sm">
-              <h3 class="h5 mb-2">📦 Balení a označení</h3>
+              <h3 class="h5 mb-2">Balení a označení</h3>
               <p class="text-muted mb-0">
                 Uzavřené, čisté a označené balení (ID vzorku, datum odběru).
                 Přiložte <strong>formulář CoC</strong> s číslem šarže.
@@ -396,7 +399,7 @@
 
           <div class="col-md-4">
             <div class="p-4 bg-white rounded-4 border h-100 shadow-sm">
-              <h3 class="h5 mb-2">🚚 Doprava vzorků</h3>
+              <h3 class="h5 mb-2">Doprava vzorků</h3>
               <p class="text-muted mb-0">
                 Vzorky zasílejte kurýrem nebo využijte
                 <strong>svoz Genetia</strong>. Doručení doporučujeme do
@@ -416,48 +419,59 @@
     <!-- =========================================
          6️⃣ KE STAŽENÍ
     ========================================== -->
-    <section id="ke-stazeni" class="py-5 bg-download-gradient on-brand-dark">
+    <section id="ke-stazeni" class="ke-stazeni-bg py-5">
       <div class="container text-center">
-        <h2 class="mb-4">Ke stažení</h2>
+        <h2 class="section-title mb-4">Ke stažení</h2>
         <p class="text-muted mb-5">
           Stáhněte si potřebné formuláře pro zaslání vzorků a objednávku analýz.
         </p>
 
-        <div class="row justify-content-center g-3">
+        <div class="row justify-content-center g-4">
+          <!-- 1) Objednávkový formulář -->
           <div class="col-md-4 col-sm-6">
             <a
               href="assets/docs/Genetia-Formular-objednavka.pdf"
-              class="d-block p-4 bg-white rounded-4 border shadow-sm download-card"
+              class="download-card"
               target="_blank"
             >
-              <h3 class="h6 mb-2">🧾 Objednávkový formulář</h3>
-              <p class="small text-muted mb-0">
-                Vyplňte pro objednávku analýzy.
-              </p>
+              <div class="download-icon">
+                <i data-lucide="clipboard-list"></i>
+              </div>
+
+              <h3>Objednávkový formulář</h3>
+              <p>Vyplňte pro objednávku analýzy.</p>
             </a>
           </div>
+
+          <!-- 2) CoC -->
           <div class="col-md-4 col-sm-6">
             <a
               href="assets/docs/Genetia-CoC.pdf"
-              class="d-block p-4 bg-white rounded-4 border shadow-sm download-card"
+              class="download-card"
               target="_blank"
             >
-              <h3 class="h6 mb-2">📄 Chain of Custody (CoC)</h3>
-              <p class="small text-muted mb-0">
-                Formulář pro sledování vzorků.
-              </p>
+              <div class="download-icon">
+                <i data-lucide="search-check"></i>
+              </div>
+
+              <h3>Chain of Custody (CoC)</h3>
+              <p>Formulář pro sledování vzorků.</p>
             </a>
           </div>
+
+          <!-- 3) Pokyny -->
           <div class="col-md-4 col-sm-6">
             <a
               href="assets/docs/Genetia-Pokyny-pro-vzorky.pdf"
-              class="d-block p-4 bg-white rounded-4 border shadow-sm download-card"
+              class="download-card"
               target="_blank"
             >
-              <h3 class="h6 mb-2">📘 Pokyny pro odběr a balení</h3>
-              <p class="small text-muted mb-0">
-                Správná příprava a zaslání vzorků.
-              </p>
+              <div class="download-icon">
+                <i data-lucide="package"></i>
+              </div>
+
+              <h3>Pokyny pro odběr a balení</h3>
+              <p>Správná příprava a zaslání vzorků.</p>
             </a>
           </div>
         </div>
@@ -467,42 +481,72 @@
     <!-- =========================================
          7️⃣ FAQ - často kladené otázky
     ========================================== -->
-    <section id="faq" class="py-5 bg-brand-100">
+    <section id="faq" class="py-5 faq-bg">
       <div class="container">
-        <h2 class="text-center mb-4">Často kladené otázky (FAQ)</h2>
+        <h2 class="section-title text-center mb-4">
+          Často kladené otázky (FAQ)
+        </h2>
 
         <div class="faq-wrapper mx-auto" style="max-width: 800px">
-          <details class="mb-3 p-3 bg-white rounded-4 border shadow-sm">
-            <summary>Jak dlouho trvá zpracování analýzy?</summary>
-            <p class="text-muted mt-2 mb-0">
-              Standardní doba je <strong>5 pracovních dnů</strong>. Expresní
-              režim (do 48 hodin) je dostupný po předchozí dohodě.
-            </p>
-          </details>
+          <!-- FAQ ITEM 1 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Jak dlouho trvá zpracování analýzy?
+              <span class="faq-caret">›</span>
+            </button>
 
-          <details class="mb-3 p-3 bg-white rounded-4 border shadow-sm">
-            <summary>Jaké platební metody akceptujete?</summary>
-            <p class="text-muted mt-2 mb-0">
-              Platba převodem na fakturu nebo přes partnerský účet v Klientské
-              zóně.
-            </p>
-          </details>
+            <div class="faq-answer">
+              <p>
+                Standardní doba je <strong>5 pracovních dnů</strong>. Expresní
+                režim (do 48 hodin) je dostupný po předchozí dohodě.
+              </p>
+            </div>
+          </div>
 
-          <details class="mb-3 p-3 bg-white rounded-4 border shadow-sm">
-            <summary>Je možné zaslat vzorky ze zahraničí?</summary>
-            <p class="text-muted mt-2 mb-0">
-              Ano, po dohodě s naším logistickým oddělením. Vzorky musí splňovat
-              legislativní podmínky přepravy biologického materiálu.
-            </p>
-          </details>
+          <!-- FAQ ITEM 2 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Jaké platební metody akceptujete?
+              <span class="faq-caret">›</span>
+            </button>
 
-          <details class="mb-3 p-3 bg-white rounded-4 border shadow-sm">
-            <summary>Poskytujete výsledky v elektronické podobě?</summary>
-            <p class="text-muted mt-2 mb-0">
-              Ano, výsledky jsou k dispozici v PDF certifikátu a na vyžádání i v
-              datovém formátu.
-            </p>
-          </details>
+            <div class="faq-answer">
+              <p>
+                Platba převodem na fakturu nebo přes partnerský účet v Klientské
+                zóně.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ ITEM 3 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Je možné zaslat vzorky ze zahraničí?
+              <span class="faq-caret">›</span>
+            </button>
+
+            <div class="faq-answer">
+              <p>
+                Ano, po dohodě s naším logistickým oddělením. Vzorky musí
+                splňovat legislativní podmínky přepravy biologického materiálu.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ ITEM 4 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Poskytujete výsledky v elektronické podobě?
+              <span class="faq-caret">›</span>
+            </button>
+
+            <div class="faq-answer">
+              <p>
+                Ano, výsledky jsou k dispozici v PDF certifikátu a na vyžádání i
+                v datovém formátu.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -510,63 +554,51 @@
     <!-- =========================================
          8️⃣ ANALYTICKÉ METODY
     ========================================== -->
-    <section class="methods-section py-5" id="analyticke-metody">
+    <section class="methods-section py-5 methods-bg" id="analyticke-metody">
       <div class="container">
-        <h2 class="text-center mb-4">Analytické metody</h2>
-        <p class="text-center mb-5">
+        <h2 class="section-title text-center mb-4">Analytické metody</h2>
+        <p class="section-subtitle text-center mb-5">
           Přehled aktuálních a vyvíjených laboratorních metod, které jsou
           dostupné nebo ve fázi validace v rámci Genetia Production.
         </p>
 
-        <div class="method-block mb-4">
-          <h3>Chemické a fyzikálně-chemické zkoušky</h3>
-          <ul>
-            <li>Celkový popel</li>
-            <li>Síranový popel</li>
-            <li>Ztráta sušením</li>
-            <li>Stanovení peroxidového čísla</li>
-            <li>Stanovení čísla kyselosti</li>
-            <li>Stanovení lihovitosti</li>
-          </ul>
-        </div>
+        <div class="methods-grid">
+          <div class="method-card">
+            <h3>Chemické a fyzikálně-chemické zkoušky</h3>
+            <ul>
+              <li>Celkový popel</li>
+              <li>Síranový popel</li>
+              <li>Ztráta sušením</li>
+              <li>Stanovení peroxidového čísla</li>
+              <li>Stanovení čísla kyselosti</li>
+              <li>Stanovení lihovitosti</li>
+            </ul>
+          </div>
 
-        <div class="method-block mb-4">
-          <h3>Pesticidy (LC-MS/MS)</h3>
-          <ul>
-            <li>
-              Stanovení pesticidů ve vysokopotentní odrůdě konopného květu
-              pomocí LC-MS/MS
-            </li>
-            <li>
-              Stanovení pesticidů ve středněpotentní odrůdě konopného květu
-              pomocí LC-MS/MS
-            </li>
-            <li>
-              Stanovení pesticidů v nízkopotentní odrůdě konopného květu pomocí
-              LC-MS/MS
-            </li>
-            <li>Pesticidy dle lékopisu (rozšířený screening)</li>
-          </ul>
-        </div>
+          <div class="method-card">
+            <h3>Pesticidy (LC-MS/MS)</h3>
+            <ul>
+              <li>Pesticidy ve vysokopotentní odrůdě</li>
+              <li>Pesticidy ve středněpotentní odrůdě</li>
+              <li>Pesticidy v nízkopotentní odrůdě</li>
+              <li>Pesticidy dle lékopisu</li>
+            </ul>
+          </div>
 
-        <div class="method-block mb-4">
-          <h3>Molekulární a mikrobiologická analýza (qPCR)</h3>
-          <ul>
-            <li>
-              Kvalitativní a kvantitativní detekce mikroorganismů v KLP metodou
-              qPCR
-            </li>
-            <li>Detekce HLVd (Hop Latent Viroid) metodou qPCR</li>
-          </ul>
-        </div>
+          <div class="method-card">
+            <h3>Molekulární & mikrobiologická analýza (qPCR)</h3>
+            <ul>
+              <li>Detekce mikroorganismů v KLP metodou qPCR</li>
+              <li>Detekce HLVd (Hop Latent Viroid)</li>
+            </ul>
+          </div>
 
-        <div class="method-block">
-          <h3>Metody ve vývoji</h3>
-          <ul>
-            <li>
-              Stanovení kanabinoidů v KLP pomocí LC-MS/MS (ve fázi validace)
-            </li>
-          </ul>
+          <div class="method-card">
+            <h3>Metody ve vývoji</h3>
+            <ul>
+              <li>LC-MS/MS kanabinoidy (ve fázi validace)</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -574,7 +606,7 @@
     <!-- =========================================
          9️⃣ CTA – Kontaktujte nás
     ========================================== -->
-    <section class="cta-section text-center py-5 bg-brand-800">
+    <section class="cta-section text-center py-5 cta-bg ">
       <div class="container">
         <h2>Začněme spolu tvořit přesné výsledky?</h2>
         <p class="mb-4">

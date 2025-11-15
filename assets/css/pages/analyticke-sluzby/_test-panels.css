@@ -1,145 +1,58 @@
 /* ==================================================
-   GENETIA – Analytické služby / Testovací panely
-   Autor: Martin Gronych
-   --------------------------------------------------
-   ▸ Karty testovacích panelů + tabulka metod
-   ▸ Plně responzivní grid
+   GENETIA – TESTOVACÍ PANELY (Final v5.0)
+   ▸ Čisté pharma UI
+   ▸ Sjednocené karty + tabulka
+   ▸ Sekční nadpis + linka navráceny a optimalizovány
+================================================== */
+
+
+/* ==================================================
+   1️⃣ WRAPPER (pozadí řeší _section-bg.css přes .test-panels-bg)
 ================================================== */
 
 .test-panels-section {
   position: relative;
-  background: #fff;
   padding-block: clamp(3rem, 6vw, 6rem);
+  z-index: 1;
   color: var(--text-800);
 }
 
+
+/* ==================================================
+   2️⃣ SEKČNÍ NADPIS + LINKA (sjednocený systém)
+================================================== */
+
 .test-panels-section .section-title {
-  font-size: clamp(1.8rem, 6vw, 3.4rem) !important;
+  font-size: clamp(1.9rem, 5vw, 3.1rem);
   font-weight: 700;
   color: var(--brand-800);
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: var(--space-5);
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.06);
 }
+
 .test-panels-section .section-title::after {
   content: "";
   display: block;
-  width: 130px;
+  width: 120px;
   height: 3px;
   margin: 0.75rem auto 0;
   background: var(--brand-600);
-  border-radius: 2px;
+  border-radius: 50px;
 }
 
-/* === GRID PANELŮ === */
+
+/* ==================================================
+   3️⃣ GRID
+================================================== */
+
 .test-panels-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.5rem;
+  gap: var(--space-4);
   margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
 }
 
-.panel-card {
-  border: 1px solid var(--brand-100);
-  border-radius: var(--radius-lg);
-  padding: 1.8rem;
-  background: #fff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
-  transition: all 0.35s ease;
-}
-
-.panel-card:hover {
-  border-color: var(--brand-300);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-  transform: translateY(-2px);
-}
-
-.panel-card h3 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--brand-800);
-  margin-bottom: 0.5rem;
-}
-
-.panel-card p {
-  color: var(--text-700);
-  font-size: 0.95rem;
-  margin-bottom: 1rem;
-  line-height: 1.55;
-}
-
-/* meta info */
-.panel-meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: var(--text-600);
-  font-size: 0.9rem;
-}
-
-/* tlačítko */
-.btn-panel {
-  font-family: "Inter", sans-serif;
-  background: var(--brand-800);
-  color: #fff;
-  border: none;
-  border-radius: var(--radius-md);
-  padding: 0.7rem 1.3rem;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  text-decoration: none;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background 0.35s ease, color 0.35s ease, box-shadow 0.35s ease,
-    transform 0.25s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(4px);
-  will-change: transform;
-}
-
-.btn-panel:hover {
-  background: var(--brand-600);
-  color: var(--brand-black);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
-  transform: scale(1.03);
-}
-
-/* === TABULKA === */
-.panels-table-wrapper {
-  overflow-x: auto;
-  margin-top: 2.5rem;
-}
-
-.panels-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.9rem;
-  min-width: 600px;
-  border: 1px solid var(--brand-100);
-}
-
-.panels-table thead {
-  background: var(--brand-50);
-  color: var(--brand-800);
-}
-
-.panels-table th,
-.panels-table td {
-  padding: 0.9rem 1rem;
-  border-top: 1px solid var(--brand-100);
-  text-align: left;
-}
-
-.panels-table tbody tr:hover {
-  background: rgba(156, 191, 76, 0.05);
-}
-
-/* Poznámka */
-.tat-note {
-  font-size: 0.8rem;
-  color: var(--text-500);
-  margin-top: 0.75rem;
-}
-
-/* === RESPONSIVITA === */
 @media (min-width: 768px) {
   .test-panels-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -150,4 +63,147 @@
   .test-panels-grid {
     grid-template-columns: repeat(3, 1fr);
   }
+}
+
+
+/* ==================================================
+   4️⃣ PANEL CARD
+================================================== */
+
+.panel-card {
+  background: #fff;
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: 1.8rem;
+
+  box-shadow: var(--elevation-card);
+  transition: all 0.35s ease;
+}
+
+.panel-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--elevation-card-hover);
+}
+
+
+/* Nadpis panelu */
+.panel-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--brand-800);
+  margin-bottom: 0.5rem;
+}
+
+/* Text panelu */
+.panel-card p {
+  color: var(--text-700);
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  line-height: 1.55;
+}
+
+
+/* ==================================================
+   5️⃣ META INFO
+================================================== */
+
+.panel-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--brand-600);
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin-top: var(--space-2);
+}
+
+
+/* ==================================================
+   6️⃣ BUTTON PANELU
+================================================== */
+
+.btn-panel {
+  background: var(--brand-800);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 0.55rem 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+
+  transition: background 0.25s ease,
+              color 0.25s ease,
+              transform 0.25s ease,
+              box-shadow 0.25s ease;
+
+  box-shadow: var(--elevation-card);
+}
+
+.btn-panel:hover {
+  background: var(--brand-600);
+  color: var(--brand-black);
+  transform: translateY(-1px);
+  box-shadow: var(--elevation-card-hover);
+}
+
+
+/* ==================================================
+   7️⃣ TABULKA
+================================================== */
+
+.panels-table-wrapper {
+  overflow-x: auto;
+  margin-top: 2.5rem;
+}
+
+.panels-table {
+  width: 100%;
+  min-width: 600px;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+
+  box-shadow: var(--elevation-card);
+}
+
+.panels-table thead {
+  background: var(--brand-100);
+}
+
+.panels-table th {
+  padding: 0.9rem 1rem;
+  color: var(--brand-700);
+  font-weight: 600;
+  text-align: left;
+  border-bottom: 1px solid var(--brand-100);
+}
+
+.panels-table td {
+  padding: 0.85rem 1rem;
+  color: var(--text-700);
+  border-bottom: 1px solid var(--brand-100);
+}
+
+.panels-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.panels-table tbody tr:hover {
+  background: rgba(156, 191, 76, 0.06);
+}
+
+
+/* ==================================================
+   8️⃣ POZNÁMKA TAT
+================================================== */
+
+.tat-note {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: var(--space-3);
+  text-align: center;
 }

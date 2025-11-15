@@ -1,85 +1,127 @@
 /* ==================================================
-   GENETIA – Analytické služby / USP BAR (v1.0)
-   Autor: Martin Gronych
-   --------------------------------------------------
-   ▸ Sekce s klíčovými benefity pod hero blokem
-   ▸ Brandový akcent bodu (dot) + jemná typografie
+   GENETIA – USP BAR (Final v4.0)
+   ▸ Clean pharma UI
+   ▸ Stabilní grid
+   ▸ No-wrap text
+   ▸ Unified brand hover
+================================================== */
+
+
+/* ==================================================
+   1️⃣ WRAPPER
 ================================================== */
 
 .usp-bar {
   position: relative;
-  background: #ffffff;
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  padding-block: clamp(1.8rem, 3vw, 2.5rem);
-  color: var(--text-700);
-  font-size: 0.95rem;
-  z-index: 2;
+  padding-block: var(--space-4);
 }
 
-.usp-bar .container {
-  max-width: 1140px;
-  margin-inline: auto;
-  padding-inline: 1.5rem;
-}
 
+
+/* ==================================================
+   2️⃣ GRID – plně responzivní
+================================================== */
+
+/* Mobilní layout (1 sloupec) */
 .usp-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.2rem;
-  align-items: center;
-  justify-items: flex-start;
+  gap: var(--space-3);
 }
 
-.usp-item {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  line-height: 1.5;
-  font-weight: 500;
-  color: var(--text);
-  text-shadow: 1px 1px 5px var(--bg);
-}
-
-/* Brand tečka */
-.brand-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--brand-600);
-  box-shadow: 0 0 6px rgba(156, 191, 76, 0.5);
-  flex-shrink: 0;
-}
-
-/* Hover zvýraznění */
-.usp-item:hover .brand-dot {
-  transform: scale(1.4);
-  background: var(--brand-700);
-  box-shadow: 0 0 10px rgba(156, 191, 76, 0.6);
-  transition: all 0.3s ease;
-}
-
-/* Responsivita */
-@media (min-width: 768px) {
+/* ≥ 500px → 2 sloupce */
+@media (min-width: 500px) {
   .usp-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem 2rem;
   }
 }
 
+/* ≥ 992px → 4 sloupce */
 @media (min-width: 992px) {
   .usp-grid {
     grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-  }
-  .usp-item {
-    justify-content: flex-start;
-    font-size: 1rem;
   }
 }
 
-@media (min-width: 1400px) {
-  .usp-bar {
-    padding-block: 3rem;
+
+
+/* ==================================================
+   3️⃣ USP ITEM – moderní a čistý prvek
+================================================== */
+
+.usp-item {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--brand-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  white-space: nowrap;   
+  padding-inline: var(--space-2);
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+/* Hover */
+.usp-item:hover {
+  color: var(--brand-700);
+  transform: translateY(-2px);
+}
+
+
+
+/* ==================================================
+   4️⃣ DOT – minimalistická značka Genetia
+================================================== */
+
+.brand-dot {
+  width: 13px;
+  height: 13px;
+  background: var(--gene-light-70);
+  border-radius: 50%;
+  transition: background 0.5s ease, transform 0.5s ease;
+}
+
+/* Dot hover */
+.usp-item:hover .brand-dot {
+  background: var(--gene-dark-70);
+  transform: scale(1.12);
+}
+
+/* === 768 px — standardní tablet === */
+@media (min-width: 768px) {
+  .usp-item {
+    font-size: 1.1rem;
+  }
+}
+
+
+/* === 992 px — notebook / desktop === */
+@media (min-width: 992px) {
+  .usp-item {
+    font-size: 0.8rem;
+  }
+}
+
+
+/* === 1200 px — velké displeje === */
+@media (min-width: 1200px) {
+  .usp-item {
+    font-size: 0.97rem;
+  }
+  .usp-grid {
+    justify-content: flex-start;
+  }
+}
+
+
+/* === 1440 px — ultra wide / firemní monitory === */
+@media (min-width: 1440px) {
+  .usp-item {
+    font-size: 1.1rem;
+  }
+  .usp-grid {
+    justify-content: flex-start;
+    transform: translateX(-80px);
   }
 }

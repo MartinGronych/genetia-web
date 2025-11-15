@@ -8,62 +8,63 @@
 // ==================================================
 
 export function initFaqFade() {
-  const details = document.querySelectorAll('#faq details');
-  if (!details.length) return;
+  const items = document.querySelectorAll(".faq-item");
+  if (!items.length) return;
 
-  details.forEach((el) => {
-    const summary = el.querySelector('summary');
-    const content = el.querySelector('p');
+  items.forEach((item) => {
+    const btn = item.querySelector(".faq-question");
+    const answer = item.querySelector(".faq-answer");
 
-    summary.addEventListener('click', (e) => {
-      e.preventDefault();
+    btn.addEventListener("click", () => {
+      const isOpen = item.classList.contains("open");
 
-      const isOpen = el.hasAttribute('open');
-      const currentHeight = content.scrollHeight;
-
-      // Zavřít ostatní
-      details.forEach((other) => {
-        if (other !== el && other.hasAttribute('open')) {
-          closeDetails(other);
-        }
+      // Zavřít všechny ostatní
+      items.forEach((other) => {
+        if (other !== item) closeItem(other);
       });
 
-      if (!isOpen) {
-        openDetails(el, currentHeight);
-      } else {
-        closeDetails(el);
-      }
+      if (isOpen) closeItem(item);
+      else openItem(item);
     });
   });
 
-  // === Pomocné funkce ===
-  function openDetails(el, height) {
-    const content = el.querySelector('p');
-    el.setAttribute('open', true);
-    content.style.maxHeight = `${height}px`;
-    content.style.opacity = '1';
-    el.classList.add('active');
-    setTimeout(() => {
-      content.style.maxHeight = '1000px'; // zaručí plynulé otevření
-    }, 10);
+  function openItem(item) {
+    const answer = item.querySelector(".faq-answer");
+    item.classList.add("open");
+
+    answer.style.display = "block";
+    const height = answer.scrollHeight + "px";
+
+    requestAnimationFrame(() => {
+      answer.style.maxHeight = height;
+      answer.style.opacity = "1";
+    });
   }
 
-  function closeDetails(el) {
-    const content = el.querySelector('p');
-    const height = content.scrollHeight;
+  function closeItem(item) {
+    const answer = item.querySelector(".faq-answer");
+    const height = answer.scrollHeight + "px";
 
-    content.style.maxHeight = `${height}px`; // fix aktuální výšky
+    answer.style.maxHeight = height;
+    answer.style.opacity = "1";
+
     requestAnimationFrame(() => {
-      content.style.maxHeight = '0';
-      content.style.opacity = '0';
+      answer.style.maxHeight = "0";
+      answer.style.opacity = "0";
     });
 
-    el.classList.remove('active');
-    setTimeout(() => {
-      el.removeAttribute('open');
-      content.style.maxHeight = '';
-    }, 450);
+    item.classList.remove("open");
+
+    answer.addEventListener(
+      "transitionend",
+      () => {
+        if (!item.classList.contains("open")) {
+          answer.style.display = "none";
+        }
+      },
+      { once: true }
+    );
   }
 
-  console.log("💬 FAQ Smooth Accordion inicializován");
+  console.log("💬 FAQ Accordion inicializován");
 }

@@ -1,64 +1,118 @@
 /* ==================================================
-   GENETIA – Analytické služby / Ke stažení
-   Autor: Martin Gronych
-   --------------------------------------------------
-   Karty s PDF dokumenty – Objednávky, CoC, Pokyny
+   GENETIA – KE STAŽENÍ (Final v6.0)
+   ▸ Sjednocené pharma UI
+   ▸ Lucide SVG ikony (jemné, zjemněné)
+   ▸ Glass-shadow karty, centrace textu
+   ▸ Oddělené pozadí přes .ke-stazeni-bg
+================================================== */
+
+
+/* ==================================================
+   1️⃣ WRAPPER
 ================================================== */
 
 #ke-stazeni {
+  padding-block: var(--space-6);
   position: relative;
-  background: var(--brand-50);
-  padding-block: clamp(4rem, 8vw, 6rem);
   z-index: 1;
 }
 
-/* Nadpis a text */
-#ke-stazeni h2 {
+
+/* ==================================================
+   2️⃣ SEKČNÍ NADPIS
+================================================== */
+
+#ke-stazeni .section-title {
+  font-size: clamp(2.1rem, 5vw, 3.3rem);
   font-weight: 700;
   color: var(--brand-800);
+  text-align: center;
+  margin-bottom: var(--space-5);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-#ke-stazeni p {
-  color: var(--text-700);
-  line-height: 1.6;
-}
 
-/* === Karty ke stažení === */
+/* ==================================================
+   3️⃣ DOWNLOAD KARTY (hlavní UI blok)
+================================================== */
+
 .download-card {
-  transition: all 0.3s ease;
-  border-color: var(--brand-100);
+  background: #fff;
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: 2.2rem 1.8rem;
+
+  text-align: center;
+  position: relative;
+  text-decoration: none;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  box-shadow: var(--elevation-card);
+  transition: all 0.35s ease;
 }
 
 .download-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--brand-300);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.07);
+  transform: translateY(-2px);
+  box-shadow: var(--elevation-card-hover);
+  text-decoration: none;
 }
+
+
+/* ==================================================
+   4️⃣ SVG IKONY — jemné pharma provedení
+================================================== */
+
+.download-icon {
+  position: absolute;
+  left: 1.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.download-icon svg {
+  width: 35px !important;
+  height: 35px !important;
+
+  stroke: var(--brand-600) !important;
+  stroke-width: 1.6 !important;
+
+  opacity: 0.75 !important;
+  transition: opacity 0.25s ease, stroke 0.25s ease;
+}
+
+.download-card:hover .download-icon svg {
+  opacity: 1 !important;
+  stroke: var(--brand-700) !important;
+}
+
+
+/* ==================================================
+   5️⃣ NADPIS DOKUMENTU
+================================================== */
 
 .download-card h3 {
   color: var(--brand-800);
   font-weight: 600;
+  font-size: 1.3rem;
+  margin-bottom: var(--space-2);
+  padding-left: 1.4rem; /* aby text nebyl překryt ikonou */
+  padding-right: 1rem;
 }
+
+
+/* ==================================================
+   6️⃣ POPIS
+================================================== */
 
 .download-card p {
-  color: var(--text-600);
-}
-
-/* === Responsivita === */
-@media (max-width: 768px) {
-  #ke-stazeni h2 {
-    font-size: 1.6rem;
-  }
-
-  .download-card {
-    padding: 1.25rem 1rem;
-  }
-
-  .download-card h3 {
-    font-size: 1rem;
-  }
-
-  .download-card p {
-    font-size: 0.9rem;
-  }
+  color: var(--text-700);
+  text-decoration: underline;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  margin-bottom: 0;
+  padding-left: 1.4rem;
+  padding-right: 1rem;
 }
