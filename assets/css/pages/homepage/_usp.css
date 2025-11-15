@@ -46,7 +46,6 @@
   font-size: var(--fs-2);
   font-weight: 500 !important;
   color: var(--bg);
-  text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
   margin-bottom: var(--space-4) !important;
   letter-spacing: -0.01em;
 }

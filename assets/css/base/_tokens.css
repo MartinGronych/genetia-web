@@ -22,6 +22,33 @@
   --brand-secondary: #bdb497;
   --brand-black: #000000;
 
+/* ===== Gene – gradient palette ===== */
+  /* Tmavnoucí paleta 0–100 % */
+  --gene-dark-0:  #b9d138;
+  --gene-dark-10: #a7bc32;
+  --gene-dark-20: #94a72d;
+  --gene-dark-30: #829227;
+  --gene-dark-40: #6f7d22;
+  --gene-dark-50: #5d691c;
+  --gene-dark-60: #4a5416;
+  --gene-dark-70: #373f11;
+  --gene-dark-80: #252a0b;
+  --gene-dark-90: #121506;
+  --gene-dark-100:#000000;
+
+  /* Zesvětlující paleta 0–100 % */
+  --gene-light-0:  #b9d138;
+  --gene-light-10: #c0d64c;
+  --gene-light-20: #c7da60;
+  --gene-light-30: #cedf74;
+  --gene-light-40: #d5e388;
+  --gene-light-50: #dce89c;
+  --gene-light-60: #e3edaf;
+  --gene-light-70: #eaf1c3;
+  --gene-light-80: #f1f6d7;
+  --gene-light-90: #f8faeb;
+  --gene-light-100:#ffffff;
+
   /* ===== Neutral & UI ===== */
   --bg: #ffffff;
   --surface: #fbfcf9;
