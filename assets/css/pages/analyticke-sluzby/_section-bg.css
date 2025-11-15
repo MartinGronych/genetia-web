@@ -90,7 +90,7 @@
 ================================================== */
 
 .ke-stazeni-bg {
-  background: var(--gene-light-90) 70%;
+  background: linear-gradient(180deg, #ffffff 0%, var(--gene-light-70) 90% );
 }
 
 /* ==================================================

@@ -64,7 +64,7 @@
 
 /* Hover */
 .usp-item:hover {
-  color: var(--brand-700);
+  color: var(--gene-dark-80);
   transform: translateY(-2px);
 }
 
@@ -77,14 +77,14 @@
 .brand-dot {
   width: 13px;
   height: 13px;
-  background: var(--gene-light-70);
+  background: var(--gene-dark-70);
   border-radius: 50%;
   transition: background 0.5s ease, transform 0.5s ease;
 }
 
 /* Dot hover */
 .usp-item:hover .brand-dot {
-  background: var(--gene-dark-70);
+  background: var(--gene-light-70);
   transform: scale(1.12);
 }
 
