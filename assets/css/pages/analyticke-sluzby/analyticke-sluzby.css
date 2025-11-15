@@ -78,3 +78,5 @@
    🎨 THEME – Tmavý režim a varianty vzhledu
 ================================================== */
 @import url("../../theme/_dark.css");
+
+@import url("./_panel-detail-modal.css");

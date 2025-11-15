@@ -5,18 +5,16 @@
    ▸ Sekční nadpis + linka navráceny a optimalizovány
 ================================================== */
 
-
 /* ==================================================
    1️⃣ WRAPPER (pozadí řeší _section-bg.css přes .test-panels-bg)
 ================================================== */
 
 .test-panels-section {
   position: relative;
-  padding-block: clamp(3rem, 6vw, 6rem);
+  padding-block: clamp(2rem, 6vw, 4rem);
   z-index: 1;
   color: var(--text-800);
 }
-
 
 /* ==================================================
    2️⃣ SEKČNÍ NADPIS + LINKA (sjednocený systém)
@@ -26,9 +24,9 @@
   font-size: clamp(1.9rem, 5vw, 3.1rem);
   font-weight: 700;
   color: var(--brand-800);
-  margin-bottom: var(--space-5);
+  margin-bottom: var(--space-2);
   text-align: center;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.06);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
 }
 
 .test-panels-section .section-title::after {
@@ -40,7 +38,6 @@
   background: var(--brand-600);
   border-radius: 50px;
 }
-
 
 /* ==================================================
    3️⃣ GRID
@@ -65,7 +62,6 @@
   }
 }
 
-
 /* ==================================================
    4️⃣ PANEL CARD
 ================================================== */
@@ -74,17 +70,16 @@
   background: #fff;
   border: none;
   border-radius: var(--radius-lg);
-  padding: 1.8rem;
-
+  padding: 1.1rem;
   box-shadow: var(--elevation-card);
   transition: all 0.35s ease;
+  cursor: pointer;
 }
 
 .panel-card:hover {
   transform: translateY(-2px);
   box-shadow: var(--elevation-card-hover);
 }
-
 
 /* Nadpis panelu */
 .panel-card h3 {
@@ -102,7 +97,6 @@
   line-height: 1.55;
 }
 
-
 /* ==================================================
    5️⃣ META INFO
 ================================================== */
@@ -113,10 +107,9 @@
   justify-content: space-between;
   color: var(--brand-600);
   font-weight: 500;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   margin-top: var(--space-2);
 }
-
 
 /* ==================================================
    6️⃣ BUTTON PANELU
@@ -134,10 +127,8 @@
   cursor: pointer;
   white-space: nowrap;
 
-  transition: background 0.25s ease,
-              color 0.25s ease,
-              transform 0.25s ease,
-              box-shadow 0.25s ease;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease,
+    box-shadow 0.25s ease;
 
   box-shadow: var(--elevation-card);
 }
@@ -149,22 +140,23 @@
   box-shadow: var(--elevation-card-hover);
 }
 
-
 /* ==================================================
    7️⃣ TABULKA
 ================================================== */
 
 .panels-table-wrapper {
   overflow-x: auto;
-  margin-top: 2.5rem;
+  margin-top: 0.5rem;
 }
 
 .panels-table {
-  width: 100%;
+  position: relative;
+  left: 10%;
+  width: 80%;
   min-width: 600px;
   border-collapse: collapse;
   background: #fff;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   overflow: hidden;
 
   box-shadow: var(--elevation-card);
@@ -196,7 +188,6 @@
   background: rgba(156, 191, 76, 0.06);
 }
 
-
 /* ==================================================
    8️⃣ POZNÁMKA TAT
 ================================================== */
@@ -206,4 +197,22 @@
   color: var(--text-muted);
   margin-top: var(--space-3);
   text-align: center;
+}
+
+/* ==================================================
+    Responzivita @media
+===================================================*/
+@media (min-width: 768px) {
+  .panel-meta {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .panel-meta {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1440px) {
 }

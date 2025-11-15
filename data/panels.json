@@ -1,0 +1,117 @@
+{
+  "panels": [
+    {
+      "id": "kanabinoidni-profil",
+      "title": "Kanabinoidní profil (HPLC/GC)",
+      "short": "THC, THCA, CBD, CBDA, CBG, CBGA, CBN a další (až 14 sloučenin).",
+      "tat": "24–48 h",
+      "price": "1 500 Kč",
+      "method": "HPLC-DAD / GC-FID",
+      "instrumentation": "Shimadzu Nexera HPLC, Agilent GC 8890",
+      "description": "Komplexní kvantifikace hlavních i minoritních kanabinoidů dle interní validované metody. Vhodné pro farmaceutické materiály, extrakty i finální výrobky.",
+      "what_we_measure": [
+        "THC / THCA",
+        "CBD / CBDA",
+        "CBG / CBGA",
+        "CBN",
+        "CBC",
+        "další minoritní kanabinoidy (celkem až 14)"
+      ],
+      "turnaround": "Standardně 24–48 h. Expresní zpracování na vyžádání."
+    },
+    {
+      "id": "terpenovy-profil",
+      "title": "Terpenový profil (GC-MS)",
+      "short": "Až 30 terpenů – limonen, myrcen, beta-karyofylen…",
+      "tat": "24–72 h",
+      "price": "1 300 Kč",
+      "method": "GC-MS",
+      "instrumentation": "Agilent 5977B GC-MS",
+      "description": "Identifikace a kvantifikace hlavních i minoritních terpenů pomocí plynové chromatografie s hmotnostní detekcí. Umožňuje detailní aromatický fingerprint.",
+      "what_we_measure": [
+        "β-Myrcen",
+        "Limonen",
+        "β-Karyofylen",
+        "Linalool",
+        "α-Pinen",
+        "Humulen",
+        "Ostatní (celkem až 30 terpenů)"
+      ],
+      "turnaround": "Výsledky obvykle 1–3 dny."
+    },
+    {
+      "id": "rezidua-pesticidu",
+      "title": "Rezidua pesticidů (LC-MS/MS)",
+      "short": "Multireziduální screening dle EU – > 200 látek.",
+      "tat": "3–5 dní",
+      "price": "3 900 Kč",
+      "method": "LC-MS/MS (Multiresidue EU SANTE)",
+      "instrumentation": "Shimadzu LCMS-8060 Triple Quad",
+      "description": "Komplexní screening pesticidů dle pokynů SANTE. Detekce i velmi nízkých koncentrací díky vysoké citlivosti triple-quadrupole systému.",
+      "what_we_measure": [
+        "Organofosfáty",
+        "Karboxamidy",
+        "Pyrethroidy",
+        "Chlornatá pesticida",
+        "Herbicidy",
+        "Fungicidy",
+        "Více než 200 látek"
+      ],
+      "turnaround": "3–5 pracovních dnů podle vytížení."
+    },
+    {
+      "id": "tezke-kovy",
+      "title": "Těžké kovy (ICP-MS)",
+      "short": "Pb, Cd, Hg, As – limity dle Ph. Eur.",
+      "tat": "2–4 dny",
+      "price": "1 800 Kč",
+      "method": "ICP-MS",
+      "instrumentation": "Thermo iCAP Q ICP-MS",
+      "description": "Stanovení toxických kovů s velmi nízkým limitem detekce. Vhodné pro suroviny, extrakty, oleje i potravinové doplňky.",
+      "what_we_measure": [
+        "Olovo (Pb)",
+        "Kadmium (Cd)",
+        "Rtuť (Hg)",
+        "Arsen (As)"
+      ],
+      "turnaround": "Zpravidla do 2–4 dnů."
+    },
+    {
+      "id": "mikrobiologie",
+      "title": "Mikrobiologie",
+      "short": "TPC, kvasinky/plísně, E. coli, Salmonella, Enterobacteriaceae.",
+      "tat": "3–5 dní",
+      "price": "1 200 Kč",
+      "method": "ČSN / ISO mikrobiologické metody",
+      "instrumentation": "Inkubátory Binder, mikrobiologické boxy Thermo",
+      "description": "Rutinní mikrobiologické testování pro širokou škálu produktů. Vhodné pro poživatelné i farmaceutické vzorky.",
+      "what_we_measure": [
+        "TPC – celkový počet mikroorganismů",
+        "Kvasinky a plísně",
+        "E. coli",
+        "Salmonella spp.",
+        "Enterobacteriaceae"
+      ],
+      "turnaround": "3–5 dnů podle potřeb kultivace."
+    },
+    {
+      "id": "rezidualni-rozpoustedla",
+      "title": "Reziduální rozpouštědla & stabilita",
+      "short": "GC-FID/MS pro IPA/EtOH/Heptan aj., stabilitní studie 30/60/90 dní.",
+      "tat": "dle rozsahu",
+      "price": "na dotaz",
+      "method": "GC-FID / GC-MS",
+      "instrumentation": "Agilent GC 8890, PerkinElmer Clarus",
+      "description": "Stanovení reziduálních organických rozpouštědel dle ICH Q3C. Možnost provedení krátkých stabilitních studií v kontrolovaných podmínkách.",
+      "what_we_measure": [
+        "Izopropanol (IPA)",
+        "Ethanol",
+        "Heptan",
+        "Hexan",
+        "Toluene",
+        "Další VOC"
+      ],
+      "turnaround": "Individuálně dle typu vzorku a počtu měření."
+    }
+  ]
+}

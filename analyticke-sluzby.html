@@ -79,18 +79,13 @@
         <h2>Přihlášení do klientské zóny</h2>
         <form id="clientForm">
           <label for="email">E-mail:</label>
-          <input type="email" id="email" name="email" required />
+          <input type="email" id="email" name="email" autocomplete="username" required />
 
           <label for="password">Heslo:</label>
-          <input type="password" id="password" name="password" required />
+          <input type="password" id="password" name="password" autocomplete="current-password" required/>
 
           <label for="certUpload">Nahrát certifikát:</label>
-          <input
-            type="file"
-            id="certUpload"
-            name="certUpload"
-            accept=".crt,.pem,.pfx"
-          />
+          <input type="file" id="certUpload" name="certUpload" accept=".crt,.pem,.pfx" />
 
           <button type="submit" class="btn btn-accent w-100 mt-3">
             Ověřit přístup
@@ -152,78 +147,90 @@
     <!-- =========================================
      3️⃣ TESTOVACÍ PANELOVÁ NABÍDKA
     ========================================= -->
-    <section
-      id="testovaci-panely"
-      class="test-panels-section test-panels-bg section-fade-bottom"
-    >
-      <div class="container">
-        <h2 class="section-title mb-4 text-center">Testovací panely</h2>
+<section
+  id="testovaci-panely"
+  class="test-panels-section test-panels-bg section-fade-bottom"
+>
+  <div class="container">
+    <h2 class="section-title mb-4 text-center">Testovací panely</h2>
 
-        <!-- Grid panelů -->
-        <div class="test-panels-grid">
-          <div class="panel-card">
-            <h3>Kanabinoidní profil (HPLC/GC)</h3>
-            <p>
-              THC, THCA, CBD, CBDA, CBG, CBGA, CBN a další (až 14 sloučenin).
-            </p>
-            <div class="panel-meta">
-              <span>TAT: 24–48 h</span>
-              <a href="#objednat" class="btn-panel">Objednat</a>
-            </div>
-          </div>
+    <!-- Grid panelů -->
+    <div class="test-panels-grid">
 
-          <div class="panel-card">
-            <h3>Terpenový profil (GC-MS)</h3>
-            <p>
-              Až 30 terpenů – limonen, myrcen, beta-karyofylen, linalool aj.
-            </p>
-            <div class="panel-meta">
-              <span>TAT: 24–72 h</span>
-              <a href="#objednat" class="btn-panel">Objednat</a>
-            </div>
-          </div>
-
-          <div class="panel-card">
-            <h3>Rezidua pesticidů (LC-MS/MS)</h3>
-            <p>Multireziduální screening dle EU – &gt; 200 látek.</p>
-            <div class="panel-meta">
-              <span>TAT: 3–5 dní</span>
-              <a href="#objednat" class="btn-panel">Objednat</a>
-            </div>
-          </div>
-
-          <div class="panel-card">
-            <h3>Těžké kovy (ICP-MS)</h3>
-            <p>Pb, Cd, Hg, As – limity dle Ph. Eur.</p>
-            <div class="panel-meta">
-              <span>TAT: 2–4 dny</span>
-              <a href="#objednat" class="btn-panel">Objednat</a>
-            </div>
-          </div>
-
-          <div class="panel-card">
-            <h3>Mikrobiologie</h3>
-            <p>
-              TPC, kvasinky/plísně, E. coli, Salmonella, Enterobacteriaceae.
-            </p>
-            <div class="panel-meta">
-              <span>TAT: 3–5 dní</span>
-              <a href="#objednat" class="btn-panel">Objednat</a>
-            </div>
-          </div>
-
-          <div class="panel-card">
-            <h3>Reziduální rozpouštědla &amp; stabilita</h3>
-            <p>
-              GC-FID/MS pro IPA/EtOH/Heptan aj., krátké stabilitní studie
-              (30/60/90 dní).
-            </p>
-            <div class="panel-meta">
-              <span>TAT: dle rozsahu</span>
-              <a href="#objednat" class="btn-panel">Objednat</a>
-            </div>
-          </div>
+      <!-- 1️⃣ Kanabinoidní profil -->
+      <div class="panel-card" data-panel-id="kanabinoidni-profil">
+        <h3>Kanabinoidní profil (HPLC/GC)</h3>
+        <p>
+          THC, THCA, CBD, CBDA, CBG, CBGA, CBN a další (až 14 sloučenin).
+        </p>
+        <div class="panel-meta">
+          <span>Délka zpracování: 24–48 h</span>
+          <a href="#objednat" class="btn-panel">Objednat</a>
         </div>
+      </div>
+
+      <!-- 2️⃣ Terpenový profil -->
+      <div class="panel-card" data-panel-id="terpenovy-profil">
+        <h3>Terpenový profil (GC-MS)</h3>
+        <p>
+          Až 30 terpenů – limonen, myrcen, beta-karyofylen, linalool aj.
+        </p>
+        <div class="panel-meta">
+          <span>Délka zpracování: 24–72 h</span>
+          <a href="#objednat" class="btn-panel">Objednat</a>
+        </div>
+      </div>
+
+      <!-- 3️⃣ Rezidua pesticidů -->
+      <div class="panel-card" data-panel-id="rezidua-pesticidu">
+        <h3>Rezidua pesticidů (LC-MS/MS)</h3>
+        <p>Multireziduální screening dle EU – &gt; 200 látek.</p>
+        <div class="panel-meta">
+          <span>Délka zpracování: 3–5 dní</span>
+          <a href="#objednat" class="btn-panel">Objednat</a>
+        </div>
+      </div>
+
+      <!-- 4️⃣ Těžké kovy -->
+      <div class="panel-card" data-panel-id="tezke-kovy">
+        <h3>Těžké kovy (ICP-MS)</h3>
+        <p>Pb, Cd, Hg, As – limity dle Ph. Eur.</p>
+        <div class="panel-meta">
+          <span>Délka zpracování: 2–4 dny</span>
+          <a href="#objednat" class="btn-panel">Objednat</a>
+        </div>
+      </div>
+
+      <!-- 5️⃣ Mikrobiologie -->
+      <div class="panel-card" data-panel-id="mikrobiologie">
+        <h3>Mikrobiologie</h3>
+        <p>
+          TPC, kvasinky/plísně, E. coli, Salmonella, Enterobacteriaceae.
+        </p>
+        <div class="panel-meta">
+          <span>Délka zpracování: 3–5 dní</span>
+          <a href="#objednat" class="btn-panel">Objednat</a>
+        </div>
+      </div>
+
+      <!-- 6️⃣ Reziduální rozpouštědla -->
+      <div class="panel-card" data-panel-id="rezidualni-rozpoustedla">
+        <h3>Reziduální rozpouštědla &amp; stabilita</h3>
+        <p>
+          GC-FID/MS pro IPA/EtOH/Heptan aj., krátké stabilitní studie
+          (30/60/90 dní).
+        </p>
+        <div class="panel-meta">
+          <span>Délka zpracování: dle rozsahu</span>
+          <a href="#objednat" class="btn-panel">Objednat</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
 
         <!-- Tabulka -->
         <div class="panels-table-wrapper">
@@ -351,7 +358,9 @@
         </ol>
 
         <div class="d-flex flex-wrap justify-content-center gap-3 mt-4">
-          <a href="kontakt.html" class="btn btn-accent-proces">Objednat analýzu</a>
+          <a href="kontakt.html" class="btn btn-accent-proces"
+            >Objednat analýzu</a
+          >
           <a href="#ke-stazeni" class="btn btn-outline-secondary"
             >Stáhnout formuláře</a
           >
@@ -606,7 +615,7 @@
     <!-- =========================================
          9️⃣ CTA – Kontaktujte nás
     ========================================== -->
-    <section class="cta-section text-center py-5 cta-bg ">
+    <section class="cta-section text-center py-5 cta-bg">
       <div class="container">
         <h2>Začněme spolu tvořit přesné výsledky?</h2>
         <p class="mb-4">
@@ -648,5 +657,58 @@
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
     </script>
+
+    <!-- ======================================================
+     GENETIA – DETAIL TESTOVACÍHO PANELU (Bootstrap Modal)
+    ====================================================== -->
+    <div
+      class="modal fade"
+      id="panelDetailModal"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content panel-detail-modal">
+          <div class="modal-header">
+            <h5 class="modal-title" id="panelDetailTitle">Název panelu</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+
+          <div class="modal-body">
+            <p id="panelDetailDescription" class="mb-3"></p>
+
+            <div class="detail-section">
+              <h6>Metoda</h6>
+              <p id="panelDetailMethod"></p>
+
+              <h6>Přístroj</h6>
+              <p id="panelDetailInstrumentation"></p>
+
+              <h6>Měříme</h6>
+              <ul id="panelDetailMeasures"></ul>
+
+              <h6>Doba zpracování</h6>
+              <p id="panelDetailTurnaround"></p>
+
+              <h6>Cena</h6>
+              <p id="panelDetailPrice" class="fw-bold"></p>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button id="panelOrderBtn" class="btn btn-accent-panel" data-open-order>
+              Objednat
+            </button>
+            <button class="btn btn-secondary-panel" data-bs-dismiss="modal">
+              Zavřít
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

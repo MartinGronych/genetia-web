@@ -9,6 +9,12 @@
    1️⃣ HERO WRAPPER – MOBILE FIRST (0–425px)
 ================================================== */
 
+#openClientModal {
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+
 .page-analyticke-sluzby .hero-analyticke {
   position: relative;
   display: flex;
@@ -102,6 +108,7 @@
   }
 
   .page-analyticke-sluzby .hero-analyticke {
+    position: relative;
     min-height: calc(55vh - var(--nav-height));
   }
 }
@@ -158,11 +165,9 @@
   color: #fff;
   border: none;
   border-radius: var(--radius-md);
-
   padding: 0.75rem 1.4rem;
   font-weight: 600;
   cursor: pointer;
-
   transition: background 0.25s ease, transform 0.25s ease;
   box-shadow: var(--elevation-card);
 }

@@ -11,4 +11,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initNavigation();
   initCardHover();
   initModal();  
+  
 });

@@ -38,29 +38,25 @@ export function initModal() {
         modal.show();
 
         // Po potvrzení → přepnutí na sekci „pro odborníky“
-        gateModal
-          .querySelector("[data-continue]")
-          ?.addEventListener(
-            "click",
-            () => {
-              modal.hide();
-              const target = document.querySelector("#pro-odborniky-tab");
-              if (target) new bootstrap.Tab(target).show();
-              document
-                .getElementById("pro-odborniky")
-                ?.scrollIntoView({ behavior: "smooth" });
-            },
-            { once: true }
-          );
+        gateModal.querySelector("[data-continue]")?.addEventListener(
+          "click",
+          () => {
+            modal.hide();
+            const target = document.querySelector("#pro-odborniky-tab");
+            if (target) new bootstrap.Tab(target).show();
+            document
+              .getElementById("pro-odborniky")
+              ?.scrollIntoView({ behavior: "smooth" });
+          },
+          { once: true }
+        );
       });
     });
 
     // Odmítnutí přístupu
-    document
-      .getElementById("denyAccess")
-      ?.addEventListener("click", () => {
-        setTimeout(() => (window.location.href = "index.html"), 500);
-      });
+    document.getElementById("denyAccess")?.addEventListener("click", () => {
+      setTimeout(() => (window.location.href = "index.html"), 500);
+    });
   }
 
   // --- Aktivace oka v carouselu (společné pro homepage) ---
@@ -76,4 +72,17 @@ export function initModal() {
   });
 
   console.log("💬 Modal system initialized");
+
+  // --- Otevření objednávkového modalu z detailu panelu ---
+  document.addEventListener("click", (e) => {
+    if (e.target.matches("[data-open-order]")) {
+      const orderModal = document.getElementById("orderModal");
+      if (orderModal) {
+        const modal = new bootstrap.Modal(orderModal);
+        modal.show();
+      }
+    }
+  });
+  
+  console.log(" Modal panel initialized")
 }

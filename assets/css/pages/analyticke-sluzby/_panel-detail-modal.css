@@ -1,0 +1,64 @@
+/* ==================================================
+   GENETIA – Panel Detail Modal (v1.0)
+================================================== */
+
+.panel-detail-modal {
+  border-radius: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+}
+
+.panel-detail-modal .modal-header {
+  background: var(--brand-50);
+  border-bottom: 1px solid var(--brand-100);
+}
+
+.panel-detail-modal .modal-title {
+  font-weight: 700;
+  color: var(--brand-800);
+}
+
+.panel-detail-modal .modal-body h6 {
+  margin-top: 1.2rem;
+  font-weight: 600;
+  color: var(--brand-800);
+}
+
+.panel-detail-modal ul {
+  padding-left: 1rem;
+}
+
+.btn-accent-panel {
+  background: var(--brand-800);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1.4rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+  box-shadow: var(--elevation-card);
+}
+
+.btn-accent-panel:hover {
+  background: var(--brand-600);
+  color: var(--brand-black);
+  transform: scale(1.03);
+}
+
+.btn-secondary-panel {
+   background: rgba(255, 14, 14, 0.67);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1.4rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+  box-shadow: var(--elevation-card);
+}
+.btn-secondary-panel:hover {
+  background: rgba(255, 0, 0, 0.87);
+  color: var(--brand-black);
+  transform: scale(1.03);
+}

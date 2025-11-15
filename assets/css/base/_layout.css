@@ -58,6 +58,13 @@
 body {
   padding-top: var(--nav-height);
 }
+body.modal-open {
+  overflow: hidden;
+  padding-right: var(--bs-modal-padding);
+}
+html {
+  overflow-y: scroll;
+}
 
 :root {
   scroll-padding-top: var(--nav-height);
