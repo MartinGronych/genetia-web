@@ -7,7 +7,7 @@ export async function initPanelDetailModal() {
   console.log("🔬 PanelDetailModal init");
 
   // Načteme JSON dataset
-  const response = await fetch("/data/panels.json");
+  const response = await fetch("./data/panels.json");
   const data = await response.json();
   const panels = data.panels;
 
