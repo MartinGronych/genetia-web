@@ -1,0 +1,39 @@
+/* ===========================
+   GENETIA – PRODUCT TABS
+   =========================== */
+
+.products-tab {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  padding: 1rem 0;
+  margin-bottom: 1.5rem;
+  border: none !important;
+}
+
+/* Default pill */
+.products-tab .nav-link {
+  font-size: 1.05rem;
+  font-weight: 600;
+  padding: 0.65rem 1.8rem;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 2px solid var(--brand-200);
+  color: var(--brand-700);
+  transition: all 0.25s ease;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.03);
+}
+
+/* Hover */
+.products-tab .nav-link:hover {
+  border-color: var(--brand-400);
+  background: var(--brand-50);
+}
+
+/* Active pill */
+.products-tab .nav-link.active {
+  background: var(--brand-500);
+  border-color: var(--brand-500);
+  color: white;
+  box-shadow: 0 5px 14px rgba(0,0,0,0.12);
+}

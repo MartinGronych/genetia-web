@@ -1,50 +1,48 @@
 // ==================================================
-// GENETIA – PRODUCTS MODULE
+// GENETIA – Products Render (HCP)
+// Autor: Martin Gronych
 // --------------------------------------------------
-// Dynamické načtení produktů z JSON a vytvoření karet
-// Celá karta i obrázek jsou klikatelné a přenášejí
-// uživatele na produkty.html#produktX
+// ▸ Načtení /data/products.json
+// ▸ Render tří produktových karet
+// ▸ Používá se až po HCP ověření (gate.js)
 // ==================================================
 
-export async function initProducts() {
-  const container = document.getElementById("products-grid");
-  const JSON_URL = "data/products.json";
+import { openProductDetail } from "./detail.js";
 
-  if (!container) return; // ochrana, pokud sekce není na stránce
+export async function initProducts() {
+  const grid = document.getElementById("hcp-products-section");
+  if (!grid) {
+    console.warn("⚠️ HCP grid container nenalezen");
+    return;
+  }
 
   try {
-    const response = await fetch(JSON_URL);
-    const products = await response.json();
+    const res = await fetch("data/products.json");
+    if (!res.ok) throw new Error("HTTP error " + res.status);
 
-    // Vytvoření HTML pro každou kartu
-    const cardsHTML = products
-      .map(
-        (product) => `
-        <div class="col-md-3 col-sm-6">
-          <div class="card h-100 shadow-sm border-0 product-card" data-link="${product.link}">
-            <img src="${product.image}" class="card-img-top" alt="${product.title}" />
-            <div class="card-body">
-              <h5 class="card-title">${product.title}</h5>
-              <p class="card-text small text-secondary">${product.description}</p>
-              <a href="${product.link}" class="btn btn-outline-accent btn-sm">Detail</a>
-            </div>
-          </div>
-        </div>
-      `
-      )
-      .join("");
+    const products = await res.json();
 
-    container.innerHTML = cardsHTML;
-
-    // Kliknutí na celou kartu nebo obrázek → přesměrování
-    container.querySelectorAll(".product-card").forEach((card) => {
-      card.addEventListener("click", (e) => {
-        const link = card.dataset.link;
-        window.location.href = link;
-      });
+    grid.innerHTML = products.map((product) => productCard(product)).join("");
+    // aktivace click handlerů
+    document.querySelectorAll(".hcp-product-card").forEach((card, idx) => {
+      card.addEventListener("click", () => openProductDetail(products[idx]));
     });
   } catch (err) {
     console.error("❌ Chyba při načítání produktů:", err);
-    container.innerHTML = `<p class="text-danger">Nepodařilo se načíst produkty.</p>`;
   }
+}
+
+// ==================================================
+// Vytvoří HTML jedné karty produktu
+// ==================================================
+
+function productCard(product) {
+  return `
+    <div class="hcp-product-card">
+      <img src="${product.image}" alt="${product.name}">
+      <h3>${product.name}</h3>
+      <span class="ratio">${product.ratio}</span>
+      <p>${product.description}</p>
+    </div>
+  `;
 }

@@ -1,0 +1,39 @@
+/* ==================================================
+   GENETIA – Produkty (Main Stylesheet)
+   Autor: Martin Gronych
+================================================== */
+/* ==================================================
+   0️⃣ BASE – Základy, proměnné, layout, komponenty
+================================================== */
+@import url("../../base/_tokens.css");
+@import url("../../base/_reset.css");
+@import url("../../base/_layout.css");
+@import url("../../base/_components.css");
+
+/* ==================================================
+   1️⃣ COMPONENTS – Navigace a modální okna
+================================================== */
+@import url("../../components/_navbar.css");  /* Navigace a hamburger menu */
+@import url("../../components/_modal.css");   /* Klientská zóna – přihlašovací modal */
+@import url("../../components/_card.css");
+
+@import url("./_hero.css");
+@import url("./_grid.css");
+@import url("./_detail.css");
+@import url("./_tabs.css");
+@import url("./_products.css");
+
+/* ==================================================
+   GATE – zamknuté tělo stránky (Produkty)
+================================================== */
+
+body.gate-locked {
+  overflow: hidden;
+}
+
+body.gate-locked main,
+body.gate-locked section {
+  filter: blur(6px);
+  pointer-events: none;
+  user-select: none;
+}

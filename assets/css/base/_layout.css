@@ -20,6 +20,22 @@
   padding-inline: var(--space-4);
 }
 
+/* ==================================================
+   GATE – zamknuté tělo stránky (Produkty)
+================================================== */
+
+body.gate-locked {
+  overflow: hidden;
+}
+
+body.gate-locked main,
+body.gate-locked section,
+body.gate-locked .products-page-wrapper {
+  filter: blur(6px);
+  pointer-events: none;
+  user-select: none;
+}
+
 /* ==============================================
    SEKCE (základní styl)
 ============================================== */

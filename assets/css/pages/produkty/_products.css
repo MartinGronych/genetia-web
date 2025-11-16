@@ -1,0 +1,214 @@
+/* ==================================================
+   GENETIA – PRODUCTS PAGE TABS (PILLS VARIANT B4)
+   Final Clean Version
+================================================== */
+
+.products-tab {
+  display: flex;
+  justify-content: center;
+  gap: 1.7rem;
+  border: none;
+  margin-bottom: 2.5rem;
+}
+
+/* BASE STYLE */
+.products-tab .nav-link {
+  font-size: 1.35rem;
+  padding: 1rem 2.8rem;
+  border-radius: 60px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+
+  background: linear-gradient(145deg, #ffffff 0%, #f6f8f3 100%);
+  border: 1px solid rgba(145, 175, 92, 0.25);
+  color: var(--brand-700);
+
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.05),
+    inset 0 1px 2px rgba(255, 255, 255, 0.7);
+
+  backdrop-filter: blur(6px);
+  transition: all 0.25s ease;
+}
+
+/* HOVER */
+.products-tab .nav-link:hover:not(.active) {
+  background: linear-gradient(145deg, #f8faf2 0%, #eef3e2 100%);
+  border-color: var(--brand-300);
+  color: var(--brand-800);
+  box-shadow:
+    0 6px 20px rgba(90, 120, 40, 0.12),
+    inset 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* ACTIVE */
+.products-tab .nav-link.active {
+  background: linear-gradient(135deg, #9ccc3a 0%, #7fae29 100%);
+  color: white !important;
+  border: 1px solid rgba(120, 160, 50, 0.8);
+  box-shadow:
+    0 6px 22px rgba(114, 168, 26, 0.28),
+    inset 0 1px 3px rgba(255, 255, 255, 0.35);
+  transform: translateY(-1px);
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .products-tab {
+    gap: 1rem;
+  }
+  .products-tab .nav-link {
+    font-size: 1.15rem;
+    padding: 0.85rem 2rem;
+  }
+}
+/* ==================================================
+   GENETIA – Pro odborníky
+   Edukativní sekce pro odborníky
+================================================== */
+/* Nadpis sekce */
+.tab-pane h2 {
+  text-align: center;
+  font-size: 2.9rem;
+  font-weight: 700;
+  color: var(--brand-800);
+  margin-bottom: 0.5rem;
+}
+
+/* podnadpis */
+.tab-pane p {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--brand-700);
+  opacity: 0.9;
+  max-width: 720px;
+  margin: 0 auto 2rem;
+}
+
+
+/* ==================================================
+   GENETIA – PUBLIC PRODUCTS (VERZE A)
+   Edukativní sekce pro veřejnost
+================================================== */
+
+/* Nadpis sekce */
+.public-products h2 {
+  text-align: center;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--brand-800);
+  margin-bottom: 0.5rem;
+}
+
+/* podnadpis */
+.public-products > p {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--brand-700);
+  opacity: 0.9;
+  max-width: 720px;
+  margin: 0 auto 2rem;
+}
+
+/* ====================================
+   KARTY
+==================================== */
+
+.public-card {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 1.8rem 1.5rem;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: 0.25s ease;
+}
+
+.public-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+}
+
+/* ====================================
+   IKONY
+==================================== */
+
+.public-card .public-icon {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: var(--brand-50);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+
+  box-shadow:
+    inset 0 1px 2px rgba(255,255,255,0.8),
+    0 4px 10px rgba(0,0,0,0.05);
+}
+
+.public-card .public-icon svg {
+  width: 32px;
+  height: 32px;
+  stroke: var(--brand-600);
+  stroke-width: 1.8;
+}
+
+.public-card:hover .public-icon {
+  background: var(--brand-100);
+}
+
+.public-card:hover .public-icon svg {
+  stroke: var(--brand-700);
+}
+
+/* ====================================
+   TEXTY V KARTÁCH
+==================================== */
+
+.public-card h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--brand-800);
+  margin-bottom: 0.6rem;
+}
+
+.public-card p {
+  color: var(--brand-700);
+  font-size: 0.95rem;
+  opacity: 0.95;
+  margin-bottom: 1rem;
+}
+
+/* CTA odkazy */
+.public-card .public-link {
+  font-weight: 600;
+  color: var(--brand-700);
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+.public-card .public-link:hover {
+  color: var(--brand-900);
+  text-decoration: underline;
+}
+
+/* ====================================
+   CTA POD KARTAMI
+==================================== */
+
+.public-help p {
+  color: var(--brand-700);
+  font-size: 1rem;
+}
+
+.public-help .btn-accent {
+  padding: 0.65rem 1.8rem;
+  border-radius: 24px;
+  font-size: 1rem;
+  font-weight: 600;
+}
