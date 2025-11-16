@@ -18,10 +18,8 @@
   </head>
 
   <body>
-    <!-- ================================
-         HEADER
-    =================================== -->
     <header class="site-header">
+      <!-- NAVIGACE -->
       <nav class="navbar navbar-expand-lg bg-white sticky-top shadow-sm">
         <div class="container align-items-center justify-content-between">
           <!-- Logo -->
@@ -42,25 +40,34 @@
           </div>
 
           <!-- Klientská zóna -->
-          <button class="btn btn-accent" id="openClientModal">
+          <button
+            class="btn btn-accent d-none d-md-inline-block"
+            id="openClientModal"
+          >
             Klientská zóna
           </button>
 
-          <!-- Mobile toggle -->
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navMobile"
-            aria-controls="navMobile"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
+          <!-- Hamburger -->
+          <div class="hamburger-wrapper d-lg-none">
+            <input type="checkbox" id="menu-toggle" />
+            <label for="menu-toggle" class="menu">
+              <span class="hamburger"></span>
+            </label>
 
-        <!-- Mobile menu -->
+            <!-- Mobile nav -->
+            <ul class="mobile-nav">
+              <li><a href="index.html">Domů</a></li>
+              <li><a href="o-spolecnosti.html">O společnosti</a></li>
+              <li><a href="produkty.html">Produkty</a></li>
+              <li><a href="analyticke-sluzby.html">Analytické služby</a></li>
+              <li><a href="kontakt.html">Kontakt</a></li>
+            </ul>
+          </div>
+          <!-- /hamburger-wrapper -->
+        </div>
+        <!-- /container -->
+
+        <!-- Mobile collapse -->
         <div class="collapse navbar-collapse" id="navMobile">
           <ul class="navbar-nav text-center gap-3 py-3"></ul>
         </div>
@@ -68,7 +75,7 @@
     </header>
 
     <!-- ================================
-         MODAL – KLIENTSKÁ ZÓNA
+     MODAL – KLIENTSKÁ ZÓNA
     =================================== -->
     <div id="clientModal" class="modal">
       <div class="modal-content">
@@ -100,24 +107,26 @@
          MAIN CONTENT
     =================================== -->
     <main>
-      <!-- HERO -->
-      <section class="hero py-5">
+      <!-- ================================
+           GENETIA HERO
+      =================================== -->
+      <section class="products-hero">
         <div class="container text-center">
-          <h1 class="display-6 mb-3">Produkty z konopí</h1>
-          <p class="lead">
-            Dvě sekce: pro veřejnost a pro odborníky (lékaři / lékárny).
+          <h1>Standardizované extrakty Genetia</h1>
+          <p>
+            Veřejná část obsahuje základní informace o produktech, odborná sekce
+            poskytuje detailní parametry dostupné po ověření odbornosti.
           </p>
         </div>
       </section>
 
-      <!-- PRODUKTOVÉ ZÁLOŽKY -->
+      <!-- ================================
+      PRODUKTOVÉ ZÁLOŽKY
+      =================================== -->
       <section class="section">
         <div class="container">
-          <ul
-            class="nav nav-tabs products-tab"
-            id="productTabs"
-            role="tablist"
-          >
+          <!-- GENETIA TABS -->
+          <ul class="nav products-tab" id="productTabs" role="tablist">
             <li class="nav-item" role="presentation">
               <button
                 class="nav-link active"
@@ -130,79 +139,130 @@
                 Pro veřejnost
               </button>
             </li>
+
             <li class="nav-item" role="presentation">
-              <a
+              <button
                 class="nav-link"
                 id="pro-odborniky-tab"
                 data-bs-toggle="tab"
-                href="#pro-odborniky"
+                data-bs-target="#pro-odborniky"
+                type="button"
                 role="tab"
                 data-requires-professional
               >
                 Pro lékaře a lékárny
-              </a>
+              </button>
             </li>
           </ul>
 
-          <div
-            class="tab-content p-4 border border-top-0 rounded-bottom-4"
-            id="productTabsContent"
-          >
-            <!-- PRO VEŘEJNOST -->
+          <!-- GENETIA TAB PANES -->
+          <div class="tab-content" id="productTabsContent">
+            <!-- ==========================================
+            PRO VEŘEJNOST
+            ============================================ -->
             <div
-              class="tab-pane fade show active"
+              class="tab-pane fade show active products-pane public-products"
               id="pro-verejnost"
               role="tabpanel"
+              aria-labelledby="pro-verejnost-tab"
             >
-              <h2 class="h5">Produkty dostupné veřejnosti</h2>
-              <p class="text-secondary">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                (Inspirace: cannabilab.eu)
+              <h2>Produkty dostupné veřejnosti</h2>
+
+              <p class="lead subtitle mb-4">
+                Přehled produktů a informací, které jsou určeny široké
+                veřejnosti. Všechny produkty jsou vyráběny v režimu
+                farmaceutické kvality.
               </p>
+
+              <!-- INFO CARDS -->
               <div class="row g-4 mt-1">
+                <!-- Card 1 -->
                 <div class="col-md-4">
-                  <img
-                    class="img-fluid rounded-4"
-                    src="https://picsum.photos/600/400?random=31"
-                    alt="Produkt"
-                  />
+                  <div class="public-card">
+                    <div class="public-icon">
+                      <i data-lucide="leaf"></i>
+                    </div>
+                    <h4>Co jsou konopné extrakty?</h4>
+                    <p>
+                      Stručné vysvětlení principu, rozdíl mezi THC/CBD a jejich
+                      účinky.
+                    </p>
+                    <a href="#" class="public-link">Zjistit více →</a>
+                  </div>
                 </div>
+
+                <!-- Card 2 -->
                 <div class="col-md-4">
-                  <img
-                    class="img-fluid rounded-4"
-                    src="https://picsum.photos/600/400?random=32"
-                    alt="Produkt"
-                  />
+                  <div class="public-card">
+                    <div class="public-icon">
+                      <i data-lucide="search"></i>
+                    </div>
+                    <h4>Jak vybrat správný produkt</h4>
+                    <p>
+                      Jednoduchý návod, na co si dát pozor při výběru extraktů.
+                    </p>
+                    <a href="#" class="public-link">Poradit se →</a>
+                  </div>
                 </div>
+
+                <!-- Card 3 -->
                 <div class="col-md-4">
-                  <img
-                    class="img-fluid rounded-4"
-                    src="https://picsum.photos/600/400?random=33"
-                    alt="Produkt"
-                  />
+                  <div class="public-card">
+                    <div class="public-icon">
+                      <i data-lucide="shield-check"></i>
+                    </div>
+                    <h4>Bezpečnost a kvalita</h4>
+                    <p>
+                      Jak probíhá kontrola, testování a proč je důležitá
+                      farmaceutická kvalita.
+                    </p>
+                    <a href="analyticke-sluzby.html" class="public-link"
+                      >Analytické služby →</a
+                    >
+                  </div>
                 </div>
               </div>
-            </div>
+              <!-- /row -->
 
-            <!-- PRO ODBORNÍKY -->
-            <div class="tab-pane fade" id="pro-odborniky" role="tabpanel">
-              <h2 class="h5">Informace pro odborníky</h2>
-              <p class="text-secondary">
-                Informace určené zdravotnickým profesionálům a lékárnám.
-                Přístup přes potvrzení v popupu.
+              <!-- CTA -->
+              <div class="public-help text-center mt-5">
+                <p class="mb-2 fw-semibold">
+                  Nejste si jistí, který produkt je pro vás vhodný?
+                </p>
+                <a href="mailto:info@genetia.cz" class="btn btn-accent px-4">
+                  Kontaktovat specialistu
+                </a>
+              </div>
+            </div>
+            <!-- /pro-verejnost -->
+
+            <!-- ==========================================
+            PRO ODBORNÍKY
+            ============================================ -->
+            <div
+              class="tab-pane fade products-pane"
+              id="pro-odborniky"
+              role="tabpanel"
+              aria-labelledby="pro-odborniky-tab"
+            >
+              <h2>Informace pro odborníky</h2>
+              <p>
+                Sekce určená zdravotnickým profesionálům a lékárnám. Přístup
+                bude aktivován po ověření odbornosti v popupu.
               </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      <!-- GATE MODAL (ověření odborníka) -->
-      <div
-        class="modal fade"
-        id="gateModal"
-        tabindex="-1"
-        aria-hidden="true"
-      >
+              <div id="hcp-products-section" class="hcp-products-grid"></div>
+            </div>
+            <!-- /pro-odborniky -->
+          </div>
+          <!-- /tab-content -->
+        </div>
+        <!-- /container -->
+      </section>
+      <!-- /section -->
+
+      <!-- GATE MODAL -->
+      <div class="modal fade" id="gateModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
           <div class="modal-content border-0 rounded-4 overflow-hidden">
             <div
@@ -213,6 +273,7 @@
                 Jste odborný pracovník ve zdravotnictví?
               </h1>
             </div>
+
             <div class="modal-body p-4 text-secondary small lh-base">
               <p>
                 Jsem odborníkem ve smyslu §2a Zákona č. 40/1995 Sb., o regulaci
@@ -226,6 +287,7 @@
                 převážně pro odborníky.
               </p>
             </div>
+
             <div
               class="modal-footer bg-light p-3 d-flex justify-content-center gap-3"
             >
@@ -242,28 +304,136 @@
               </button>
             </div>
           </div>
+          <!-- /modal-content -->
         </div>
+        <!-- /modal-dialog -->
       </div>
-    </main>
+      <!-- /gateModal -->
 
+      <!-- ==================================================
+      GENETIA – HCP PRODUCT DETAIL MODAL 
+      ================================================== -->
+      <div
+        class="modal fade product-detail-modal"
+        id="productDetailModal"
+        tabindex="-1"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+          <div class="modal-content">
+            <button
+              type="button"
+              class="btn-close ms-auto me-2 mt-2"
+              data-bs-dismiss="modal"
+            ></button>
+
+            <div class="modal-body">
+              <div class="product-modal-layout">
+                <!-- LEFT COLUMN – IMAGE -->
+                <div class="product-modal-image-box">
+                  <img id="modalProductImage" src="" alt="" />
+                </div>
+
+                <!-- RIGHT COLUMN – CONTENT -->
+                <div class="product-modal-content">
+                  <h2 id="modalProductName"></h2>
+
+                  <span class="ratio-large">
+                    Poměr <span id="modalProductRatio"></span>
+                  </span>
+
+                  <p
+                    id="modalProductDescription"
+                    class="detail-description"
+                  ></p>
+
+                  <div class="product-params">
+                    <!-- COL 1 -->
+                    <div>
+                      <h5 class="param-heading">Účinné látky / složení</h5>
+                      <table
+                        class="detail-table"
+                        id="modalCompositionTable"
+                      ></table>
+                    </div>
+
+                    <!-- COL 2 -->
+                    <div>
+                      <h5 class="param-heading">Způsob extrakce</h5>
+                      <p id="modalExtractionMethod"></p>
+
+                      <h5 class="param-heading mt-3">Nosič</h5>
+                      <p id="modalCarrier"></p>
+
+                      <h5 class="param-heading mt-3">Certifikace</h5>
+                      <p id="modalCertification"></p>
+                    </div>
+
+                    <!-- COL 3 -->
+                    <div>
+                      <h5 class="param-heading">Možné lékové formy</h5>
+                      <div
+                        id="modalDosageForms"
+                        class="dosage-forms-list"
+                      ></div>
+
+                      <h5 class="param-heading mt-3">Balení</h5>
+                      <p id="modalPackage"></p>
+
+                      <h5 class="param-heading mt-3">Typ obalu</h5>
+                      <p id="modalContainerType"></p>
+
+                      <h5 class="param-heading mt-3">E-recept</h5>
+                      <p id="modalERecept"></p>
+                    </div>
+                  </div>
+                  <!-- /product-params -->
+
+                  <p class="price">Cena ---</p>
+
+                  <div class="mt-4 text-center">
+                    <a
+                      href="mailto:info@genetia.cz"
+                      class="btn btn-accent px-4"
+                    >
+                      Kontaktovat zástupce
+                    </a>
+                  </div>
+                </div>
+                <!-- /product-modal-content -->
+              </div>
+              <!-- /product-modal-layout -->
+            </div>
+            <!-- /modal-body -->
+          </div>
+          <!-- /modal-content -->
+        </div>
+        <!-- /modal-dialog -->
+      </div>
+      <!-- /productDetailModal -->
+    </main>
     <!-- ================================
          FOOTER
     =================================== -->
     <footer class="footer py-3 border-top">
-      <div class="container text-center">
-        <small>© <span id="year"></span> Genetia s.r.o.</small>
+      <div
+        class="container d-flex flex-wrap justify-content-between align-items-center gap-3"
+      >
+        <small>© <span id="year"></span> Genetia Production s.r.o.</small>
+        <small>Vyvinul: M. Gronych</small>
       </div>
     </footer>
-
     <!-- ================================
-         SCRIPTS
-    =================================== -->
+    SCRIPTS
+=================================== -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script type="module" src="js/main.js"></script>
     <script type="module" src="js/pages/produkty/index.js"></script>
 
     <script>
-      document.getElementById("year").textContent = new Date().getFullYear();
+      const yearEl = document.getElementById("year");
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
     </script>
   </body>
 </html>

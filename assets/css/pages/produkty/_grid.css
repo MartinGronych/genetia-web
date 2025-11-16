@@ -1,0 +1,56 @@
+/* ==================================================
+   GENETIA – HCP PRODUCTS GRID
+================================================== */
+
+#hcp-products-section {
+  margin-top: 2rem;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.hcp-product-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 1.6rem;
+  text-align: center;
+  box-shadow: 0 6px 22px rgba(0,0,0,0.06);
+  border: 1px solid rgba(0,0,0,0.04);
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.hcp-product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.1);
+}
+
+.hcp-product-card img {
+  width: auto;
+  height: 160px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
+.hcp-product-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--brand-800);
+}
+
+.hcp-product-card .ratio {
+  display: inline-block;
+  margin: 0.4rem 0;
+  padding: 4px 10px;
+  border-radius: 12px;
+  background: var(--brand-50);
+  color: var(--brand-700);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.hcp-product-card p {
+  color: var(--brand-700);
+  opacity: 0.9;
+  font-size: 0.95rem;
+}

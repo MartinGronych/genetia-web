@@ -1,0 +1,320 @@
+/* ==================================================
+   GENETIA – PRODUCT DETAIL MODAL (Layout A)
+   Mobile-first, breakpoints: 768 / 1024 / 1440 / 2560
+================================================== */
+
+/* ===========================
+   BASE – MOBIL (0–767 px)
+   =========================== */
+
+.product-detail-modal .modal-content {
+  border-radius: 24px;
+  padding: 1.2rem 1.2rem 1.4rem;
+  background: #ffffff;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+}
+
+/* 1 sloupec – obrázek nahoře, text pod tím */
+.product-modal-layout {
+  display: grid;
+  grid-template-columns: 1fr;   /* mobil = 1 sloupec */
+  gap: 1.5rem;
+  min-height: auto;
+}
+
+/* Obrázek – velký detail lahvičky */
+.product-modal-image-box {
+  width: 100%;
+  height: 300px;
+  background: #f3f5ef;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+}
+
+.product-modal-image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+  transform: scale(1.25);  /* větší detail lahvičky na mobilu */
+}
+
+/* Textová část */
+.product-modal-content {
+  padding-right: 0;
+  padding-top: 0.5rem;
+}
+
+.product-modal-content h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--brand-800);
+  margin-bottom: 0.4rem;
+}
+
+.ratio-large {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 5px 12px;
+  background: var(--brand-100);
+  border-radius: 14px;
+  font-weight: 600;
+  color: var(--brand-700);
+  font-size: 0.95rem;
+}
+
+.detail-description {
+  color: var(--brand-700);
+  opacity: 0.95;
+  margin-bottom: 1.4rem;
+}
+
+/* CENA – dole pod parametry */
+.price {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-top: 1.5rem;
+  margin-bottom: 0.8rem;
+  color: var(--brand-800);
+}
+
+/* PARAMETRY – mobil: 1 sloupec */
+.product-params {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.4rem;
+}
+
+.param-heading {
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--brand-800);
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.5px;
+}
+
+/* Složení – tabulka */
+.detail-table td {
+  padding: 4px 0;
+  font-size: 0.95rem;
+}
+
+.detail-table td:first-child {
+  font-weight: 600;
+  color: var(--brand-800);
+}
+
+.detail-table td:last-child {
+  text-align: left; /* na mobilu zarovnané vlevo */
+  color: var(--brand-700);
+}
+
+/* Ikony lékových forem */
+.dosage-forms-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.dosage-form {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--brand-700);
+}
+
+.dosage-form i {
+  width: 18px;
+  height: 18px;
+  stroke: var(--brand-700);
+}
+
+/* CTA – full width na mobilu */
+.product-detail-modal .btn {
+  width: 100%;
+}
+
+/* ===========================
+   BREAKPOINT 1 – TABLET (768–1023)
+   Optimalizovaný jednotný layout
+   =========================== */
+
+@media (min-width: 768px) and (max-width: 1023.98px) {
+
+  /* Širší modal = lepší čitelnost */
+  .product-detail-modal .modal-dialog {
+    max-width: 72%;
+  }
+
+  .product-detail-modal .modal-content {
+    padding: 1.8rem 2rem;
+  }
+
+  /* 1 sloupec – obrázek nahoře, text pod ním */
+  .product-modal-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  /* obrázek */
+  .product-modal-image-box {
+    height: 260px;
+    border-radius: 20px;
+  }
+
+  .product-modal-image-box img {
+    object-fit: cover;
+    object-position: center 80%;
+    transform: scale(1.35);
+  }
+
+  /* text */
+  .product-modal-content h2 {
+    font-size: 1.85rem;
+  }
+
+  .product-modal-content {
+    padding-right: 0;
+  }
+
+  /* 🔥 PARAMETRY: JEDEN SLOUPEC – řeší všechny prázdné díry */
+  .product-params {
+    grid-template-columns: 1fr;
+    gap: 1.8rem;
+  }
+
+  /* tabulky v jednom sloupci zarovnané */
+  .detail-table td:last-child {
+    text-align: right;
+  }
+
+  /* CTA button */
+  .product-detail-modal .btn {
+    width: auto;
+    min-width: 240px;
+    margin-top: 1rem;
+  }
+}
+
+/* ===========================
+   BREAKPOINT 2 – NOTEBOOK
+   min-width: 1024px (1024–1439)
+   =========================== */
+
+@media (min-width: 1024px) and (max-width: 1439.98px) {
+  .product-detail-modal .modal-dialog {
+    max-width: 75%;
+  }
+
+  .product-detail-modal .modal-content {
+    padding: 1.8rem 2.2rem 2rem;
+  }
+
+  .product-modal-layout {
+    grid-template-columns: 280px 1fr;
+    gap: 2rem;
+    min-height: 520px;
+  }
+
+  .product-modal-image-box {
+    height: 300px;
+  }
+
+  .product-modal-image-box img {
+    transform: scale(1.18);
+    object-position: center 35%;
+  }
+
+  .product-modal-content {
+    padding-right: 1rem;
+  }
+
+  .product-modal-content h2 {
+    font-size: 1.9rem;
+  }
+
+  /* parametry – 2 sloupce (čitelné na note) */
+  .product-params {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .detail-table td:last-child {
+    text-align: right;
+  }
+
+  .product-detail-modal .btn {
+    width: auto;
+    max-width: 240px;
+  }
+}
+
+/* ===========================
+   BREAKPOINT 3 – VELKÝ NTB / DESKTOP
+   min-width: 1440px (1440–2559)
+   =========================== */
+
+@media (min-width: 1440px) and (max-width: 2559.98px) {
+  .product-detail-modal .modal-dialog {
+    max-width: 70%;
+  }
+
+  .product-modal-layout {
+    grid-template-columns: 320px 1fr;
+    gap: 3rem;
+    min-height: 540px;
+  }
+
+  .product-modal-image-box {
+    height: 360px;
+  }
+
+  .product-modal-image-box img {
+    transform: scale(1.2);
+    object-position: center 35%;
+  }
+
+  /* parametry – 3 sloupce, víc místa */
+  .product-params {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+
+  .product-modal-content {
+    padding-right: 2rem;
+  }
+}
+
+/* ===========================
+   BREAKPOINT 4 – EXTRA LARGE
+   min-width: 2560px
+   =========================== */
+
+@media (min-width: 2560px) {
+  .product-detail-modal .modal-dialog {
+    max-width: 60%;
+  }
+
+  .product-modal-layout {
+    grid-template-columns: 340px 1fr;
+    gap: 3.2rem;
+    min-height: 560px;
+  }
+
+  .product-modal-image-box {
+    height: 380px;
+  }
+
+  .product-modal-image-box img {
+    transform: scale(1.22);
+    object-position: center 35%;
+  }
+
+  .product-params {
+    gap: 3rem;
+    max-width: 900px;
+  }
+}

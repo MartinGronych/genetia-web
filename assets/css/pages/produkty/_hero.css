@@ -1,0 +1,33 @@
+/* ==================================================
+   GENETIA – PRODUCTS HERO
+================================================== */
+
+.products-hero {
+  padding-block: clamp(4rem, 6vw, 6rem);
+  text-align: center;
+  background: linear-gradient(
+    180deg,
+    rgba(201, 211, 163, 0.2) 0%,
+    rgba(255, 255, 255, 0.85) 100%
+  );
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.products-hero h1 {
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--brand-800);
+}
+
+.products-hero p {
+  font-size: 1.1rem;
+  color: var(--brand-700);
+  opacity: 0.9;
+  max-width: 720px;
+  margin: 0.75rem auto 0;
+}
+
+.section {
+  padding-block: clamp(3rem, 6vw, 5rem);
+}
