@@ -73,13 +73,17 @@ body.gate-locked .products-page-wrapper {
 ============================================== */
 body {
   padding-top: var(--nav-height);
+  overflow-x: hidden;
 }
+
 body.modal-open {
   overflow: hidden;
-  padding-right: var(--bs-modal-padding);
+  padding-right: 0 !important;
 }
+
 html {
-  overflow-y: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 :root {
@@ -94,24 +98,50 @@ html {
 
 /* 📱 Menší zařízení */
 @media (max-width: 480px) {
-  h1 { font-size: 1.8rem; }
-  h2 { font-size: 1.4rem; }
-  p  { font-size: 0.95rem; }
-  .section { padding-block: 2.5rem; }
+  h1 {
+    font-size: 1.8rem;
+  }
+  h2 {
+    font-size: 1.4rem;
+  }
+  p {
+    font-size: 0.95rem;
+  }
+  .section {
+    padding-block: 2.5rem;
+  }
 }
 
 /* 🧩 Tablety (768–991px) */
 @media (min-width: 768px) and (max-width: 991px) {
-  h1 { font-size: 2.2rem; }
-  h2 { font-size: 1.6rem; }
-  .section { padding-block: 3.5rem; }
+  h1 {
+    font-size: 2.2rem;
+  }
+  h2 {
+    font-size: 1.6rem;
+  }
+  .section {
+    padding-block: 3.5rem;
+  }
 }
 
 /* 💻 Notebooky a větší (992px +) */
 @media (min-width: 992px) {
-  h1 { font-size: var(--fs-1); }
-  h2 { font-size: var(--fs-2); }
-  .section { padding-block: var(--space-8); }
+  html {
+    scrollbar-gutter: stable;
+  }
+  :root {
+    scroll-padding-top: var(--nav-height);
+  }
+  h1 {
+    font-size: var(--fs-1);
+  }
+  h2 {
+    font-size: var(--fs-2);
+  }
+  .section {
+    padding-block: var(--space-8);
+  }
 }
 
 /* ==============================================
@@ -129,15 +159,27 @@ html {
 }
 
 /* 📱 Mobilní výchozí stav (1 sloupec) */
-.grid-2 { grid-template-columns: 1fr; }
-.grid-3 { grid-template-columns: 1fr; }
-.grid-4 { grid-template-columns: 1fr; }
+.grid-2 {
+  grid-template-columns: 1fr;
+}
+.grid-3 {
+  grid-template-columns: 1fr;
+}
+.grid-4 {
+  grid-template-columns: 1fr;
+}
 
 /* 🧩 Tablety (≥768px) */
 @media (min-width: 768px) {
-  .grid-2 { grid-template-columns: repeat(2, 1fr); }
-  .grid-3 { grid-template-columns: repeat(3, 1fr); }
-  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+  .grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 /* ==============================================
@@ -157,7 +199,7 @@ html {
 @media (min-width: 768px) {
   .hero-section + .section,
   .section + .section {
-    margin-top: var(--space-1) /* ~2rem */
+    margin-top: var(--space-6); /* ~2rem */
   }
 }
 
@@ -165,6 +207,6 @@ html {
 @media (min-width: 992px) {
   .hero-section + .section,
   .section + .section {
-    margin-top: var(--space-1); /* ~3rem */
+    margin-top: var(--space-7); /* ~3rem */
   }
 }

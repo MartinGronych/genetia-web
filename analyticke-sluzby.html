@@ -5,13 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Analytické služby – Genetia</title>
 
+    <!-- Fonts: IBM Plex Sans (Analytické služby) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- Bootstrap -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
 
-    <!-- Globální styl (importuje všechny sekce vč. analytických služeb) -->
+    <!-- Page CSS (Analytické služby) -->
     <link
       rel="stylesheet"
       href="assets/css/pages/analyticke-sluzby/analyticke-sluzby.css"
@@ -19,9 +27,12 @@
   </head>
 
   <body class="page-analyticke-sluzby">
-    <!-- =========================================
-         2️⃣ NAVIGACE
-    ========================================== -->
+    <!-- =========================================================
+         NAVIGACE
+         - Sticky Top
+         - Desktop menu + mobile hamburger
+         - Tlačítko Klientská zóna
+    ========================================================== -->
     <nav class="navbar navbar-expand-lg bg-white sticky-top shadow-sm">
       <div class="container align-items-center justify-content-between">
         <!-- Logo -->
@@ -41,7 +52,7 @@
           <ul class="navbar-nav text-center gap-4"></ul>
         </div>
 
-        <!-- Klientská zóna -->
+        <!-- Klientská zóna (otevře custom modal) -->
         <button
           class="btn btn-accent d-none d-md-inline-block"
           id="openClientModal"
@@ -49,6 +60,7 @@
           Klientská zóna
         </button>
 
+        <!-- Mobile hamburger + rychlé menu -->
         <label class="hamburger-wrapper d-lg-none">
           <input type="checkbox" id="menu-toggle" />
           <span class="menu">
@@ -64,28 +76,46 @@
         </label>
       </div>
 
-      <!-- Mobile menu (collapse) -->
+      <!-- Mobile menu (Bootstrap collapse placeholder / nav se doplňuje skriptem) -->
       <div class="collapse navbar-collapse" id="navMobile">
         <ul class="navbar-nav text-center gap-3 py-3"></ul>
       </div>
     </nav>
 
-    <!-- =========================================
-         3️⃣ MODAL – KLIENTSKÁ ZÓNA
-    ========================================== -->
+    <!-- =========================================================
+         MODAL: KLIENTSKÁ ZÓNA (Custom modal)
+         - Autentizace + volitelný upload certifikátu
+    ========================================================== -->
     <div id="clientModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
         <h2>Přihlášení do klientské zóny</h2>
         <form id="clientForm">
           <label for="email">E-mail:</label>
-          <input type="email" id="email" name="email" autocomplete="username" required />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            autocomplete="username"
+            required
+          />
 
           <label for="password">Heslo:</label>
-          <input type="password" id="password" name="password" autocomplete="current-password" required/>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            autocomplete="current-password"
+            required
+          />
 
           <label for="certUpload">Nahrát certifikát:</label>
-          <input type="file" id="certUpload" name="certUpload" accept=".crt,.pem,.pfx" />
+          <input
+            type="file"
+            id="certUpload"
+            name="certUpload"
+            accept=".crt,.pem,.pfx"
+          />
 
           <button type="submit" class="btn btn-accent w-100 mt-3">
             Ověřit přístup
@@ -94,476 +124,409 @@
       </div>
     </div>
 
-    <!-- =========================================
-         4️⃣ HERO – Video Background
-    ========================================== -->
-    <section class="hero-analyticke text-center">
-      <video
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="auto"
-        poster="assets/images/lab-preview.webp"
-      >
-        <source src="assets/video/lab-background.mp4" type="video/mp4" />
-      </video>
+    <main id="main-content">
+      <!-- =========================================================
+         SCROLLY VIDEO (Sticky background)
+         - Video běží v sticky vrstvě
+         - Přes video scrolluje obsah v _content
+         - Overlay vrstva používá CSS proměnnou --sv-dim (ztmavení)
+    ========================================================== -->
+      <section class="scrolly-video" id="scrolly-video">
+        <!-- Sticky video vrstva -->
+        <div class="scrolly-video_sticky">
+          <video
+            class="scrolly-video_media"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+          >
+            <source src="assets/video/Genetia1080i_2min.mp4" type="video/mp4" />
+          </video>
 
-      <div class="container position-relative">
-        <h1 class="mb-3">Analytické testování léčebného konopí</h1>
-        <p class="lead mx-auto" style="max-width: 720px">
-          Komplexní, rychlé a spolehlivé analýzy dle interních SOP a
-          farmaceutických standardů EU‑GMP. Online výsledky, certifikát a jasné
-          interpretace.
-        </p>
-        <a href="#analyticke-metody" class="btn btn-accent mt-3"
-          >Zjistit více</a
-        >
-      </div>
-    </section>
-    <!-- =========================================
-         2️⃣ USP BAR – Klíčové benefity
-    ========================================== -->
-    <section class="usp-bar usp-bar-bg border-bottom">
-      <div class="container">
-        <div class="usp-grid">
-          <div class="usp-item">
-            <span class="brand-dot"></span>Výsledky od 24–72 h*
-          </div>
-          <div class="usp-item">
-            <span class="brand-dot"></span>Kontrolní grafy a surová data na
-            vyžádání
-          </div>
-          <div class="usp-item">
-            <span class="brand-dot"></span>Bezpečná evidence řetězce vzorků
-            (CoC)
-          </div>
-          <div class="usp-item">
-            <span class="brand-dot"></span>Podpora pro lékárny i pěstitele
-          </div>
+          <!-- Overlay vrstva pro ztmavení/zesvětlení -->
+          <div class="scrolly-video_overlay" aria-hidden="true"></div>
         </div>
-      </div>
-    </section>
-    <!-- =========================================
-     3️⃣ TESTOVACÍ PANELOVÁ NABÍDKA
-    ========================================= -->
-<section
-  id="testovaci-panely"
-  class="test-panels-section test-panels-bg section-fade-bottom"
->
-  <div class="container">
-    <h2 class="section-title mb-4 text-center">Testovací panely</h2>
 
-    <!-- Grid panelů -->
-    <div class="test-panels-grid">
+        <!-- =========================================================
+           SCROLLY CONTENT (obsah, který scrolluje přes video)
+           - HERO + USP + Panely služeb
+      ========================================================== -->
+        <div class="scrolly-video_content">
+          <!-- HERO: Nadpis + perex (v rámci scrolly obsahu) -->
+          <section class="hero-analyticke text-center">
+            <div class="container position-relative">
+              <h1 class="mb-3">
+                Laboratorní analýza léčebného konopí a
+                výrobků z něj
+              </h1>
+              <p class="lead mx-auto" style="max-width: 720px">
+                Poskytujeme komplexní, rychlé a spolehlivé analýzy s využitím
+                špičkového laboratorního vybavení. Naše laboratoř je držitelem
+                certifikátu GMP/SVP vydaného SOUKL.
+              </p>
+            </div>
+          </section>
 
-      <!-- 1️⃣ Kanabinoidní profil -->
-      <div class="panel-card" data-panel-id="kanabinoidni-profil">
-        <h3>Kanabinoidní profil (HPLC/GC)</h3>
-        <p>
-          THC, THCA, CBD, CBDA, CBG, CBGA, CBN a další (až 14 sloučenin).
-        </p>
-        <div class="panel-meta">
-          <span>Délka zpracování: 24–48 h</span>
-          <a href="#objednat" class="btn-panel">Objednat</a>
+          <!-- USP BAR: Klíčové benefity -->
+          <section class="usp-bar usp-bar-bg border-bottom">
+            <div class="container">
+              <div class="usp-grid">
+                <div class="usp-item">
+                  </span>GMP certifikovaná laboratoř -
+                  testujeme podle nejpřísnějších farmaceutických standardů
+                </div>
+                <div class="usp-item">
+                  </span>Špičkové analytické přístroje
+                  nejnovější generace
+                </div>
+                <div class="usp-item">
+                  </span>Široké spektrum nabízených
+                  testů (CoC)
+                </div>
+                <div class="usp-item">
+                  </span>Špičkový zaměstnanci
+                </div>
+                <div class="usp-item">
+                  </span>Výběr mezi osvědčenými
+                  lékopisnými metodami a našimi vlastními validovanými postupy
+                  pro maximální přesnost.
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- =========================================================
+             Naše SLUŽBY (klik → detail v Bootstrap modalu)
+             - Karty mají data-panel-id (mapuje se na JSON dataset)
+        ========================================================== -->
+          <section
+            id="testovaci-panely"
+            class="test-panels-section test-panels-bg section-fade-bottom"
+          >
+            <div class="container">
+              <h2 class="section-title mb-4 text-center">Naše služby</h2>
+
+              <div class="test-panels-grid">
+                <div class="panel-card" data-panel-id="kanabinoidni-profil">
+                  <h3>Kanabinoidní profil (HPLC/GC)</h3>
+                  <p>
+                    THC, THCA, CBD, CBDA, CBG, CBGA, CBN a další (až 14
+                    sloučenin).
+                  </p>
+                  <div class="panel-meta">
+                    <span>Délka zpracování: 24–48 h</span>
+                    <a href="#objednat" class="btn-panel">více informací</a>
+                  </div>
+                </div>
+
+                <div class="panel-card" data-panel-id="terpenovy-profil">
+                  <h3>Terpenový profil (GC-MS)</h3>
+                  <p>
+                    Až 30 terpenů – limonen, myrcen, beta-karyofylen, linalool
+                    aj.
+                  </p>
+                  <div class="panel-meta">
+                    <span>Délka zpracování: 24–72 h</span>
+                    <a href="#objednat" class="btn-panel">více informací</a>
+                  </div>
+                </div>
+
+                <div class="panel-card" data-panel-id="rezidua-pesticidu">
+                  <h3>Rezidua pesticidů (LC-MS/MS)</h3>
+                  <p>Multireziduální screening dle EU – &gt; 200 látek.</p>
+                  <div class="panel-meta">
+                    <span>Délka zpracování: 3–5 dní</span>
+                    <a href="#objednat" class="btn-panel">více informací</a>
+                  </div>
+                </div>
+
+                <div class="panel-card" data-panel-id="tezke-kovy">
+                  <h3>Těžké kovy (ICP-MS)</h3>
+                  <p>Pb, Cd, Hg, As – limity dle Ph. Eur.</p>
+                  <div class="panel-meta">
+                    <span>Délka zpracování: 2–4 dny</span>
+                    <a href="#objednat" class="btn-panel">více informací</a>
+                  </div>
+                </div>
+
+                <div class="panel-card" data-panel-id="mikrobiologie">
+                  <h3>Mikrobiologie</h3>
+                  <p>
+                    TPC, kvasinky/plísně, E. coli, Salmonella,
+                    Enterobacteriaceae.
+                  </p>
+                  <div class="panel-meta">
+                    <span>Délka zpracování: 3–5 dní</span>
+                    <a href="#objednat" class="btn-panel">více informací</a>
+                  </div>
+                </div>
+
+                <div class="panel-card" data-panel-id="rezidualni-rozpoustedla">
+                  <h3>Reziduální rozpouštědla &amp; stabilita</h3>
+                  <p>
+                    GC-FID/MS pro IPA/EtOH/Heptan aj., krátké stabilitní studie
+                    (30/60/90 dní).
+                  </p>
+                  <div class="panel-meta">
+                    <span>Délka zpracování: dle rozsahu</span>
+                    <a href="#objednat" class="btn-panel">více informací</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Placeholder: další sekce (proces, požadavky, ...) už jsou mimo scrolly wrapper -->
         </div>
-      </div>
+      </section>
 
-      <!-- 2️⃣ Terpenový profil -->
-      <div class="panel-card" data-panel-id="terpenovy-profil">
-        <h3>Terpenový profil (GC-MS)</h3>
-        <p>
-          Až 30 terpenů – limonen, myrcen, beta-karyofylen, linalool aj.
-        </p>
-        <div class="panel-meta">
-          <span>Délka zpracování: 24–72 h</span>
-          <a href="#objednat" class="btn-panel">Objednat</a>
-        </div>
-      </div>
-
-      <!-- 3️⃣ Rezidua pesticidů -->
-      <div class="panel-card" data-panel-id="rezidua-pesticidu">
-        <h3>Rezidua pesticidů (LC-MS/MS)</h3>
-        <p>Multireziduální screening dle EU – &gt; 200 látek.</p>
-        <div class="panel-meta">
-          <span>Délka zpracování: 3–5 dní</span>
-          <a href="#objednat" class="btn-panel">Objednat</a>
-        </div>
-      </div>
-
-      <!-- 4️⃣ Těžké kovy -->
-      <div class="panel-card" data-panel-id="tezke-kovy">
-        <h3>Těžké kovy (ICP-MS)</h3>
-        <p>Pb, Cd, Hg, As – limity dle Ph. Eur.</p>
-        <div class="panel-meta">
-          <span>Délka zpracování: 2–4 dny</span>
-          <a href="#objednat" class="btn-panel">Objednat</a>
-        </div>
-      </div>
-
-      <!-- 5️⃣ Mikrobiologie -->
-      <div class="panel-card" data-panel-id="mikrobiologie">
-        <h3>Mikrobiologie</h3>
-        <p>
-          TPC, kvasinky/plísně, E. coli, Salmonella, Enterobacteriaceae.
-        </p>
-        <div class="panel-meta">
-          <span>Délka zpracování: 3–5 dní</span>
-          <a href="#objednat" class="btn-panel">Objednat</a>
-        </div>
-      </div>
-
-      <!-- 6️⃣ Reziduální rozpouštědla -->
-      <div class="panel-card" data-panel-id="rezidualni-rozpoustedla">
-        <h3>Reziduální rozpouštědla &amp; stabilita</h3>
-        <p>
-          GC-FID/MS pro IPA/EtOH/Heptan aj., krátké stabilitní studie
-          (30/60/90 dní).
-        </p>
-        <div class="panel-meta">
-          <span>Délka zpracování: dle rozsahu</span>
-          <a href="#objednat" class="btn-panel">Objednat</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-
-        <!-- Tabulka -->
-        <div class="panels-table-wrapper">
-          <table class="panels-table">
-            <thead>
-              <tr>
-                <th>Panel</th>
-                <th>Metoda</th>
-                <th>Vzorek</th>
-                <th>TAT</th>
-                <th>Cena (bez DPH)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Kanabinoidy</td>
-                <td>HPLC/GC</td>
-                <td>Květ/Extrakt/Olej</td>
-                <td>24–48 h</td>
-                <td>—</td>
-              </tr>
-              <tr>
-                <td>Terpeny</td>
-                <td>GC-MS</td>
-                <td>Květ/Extrakt/Olej</td>
-                <td>24–72 h</td>
-                <td>—</td>
-              </tr>
-              <tr>
-                <td>Pesticidy</td>
-                <td>LC-MS/MS</td>
-                <td>Květ/Extrakt</td>
-                <td>3–5 dní</td>
-                <td>—</td>
-              </tr>
-              <tr>
-                <td>Těžké kovy</td>
-                <td>ICP-MS</td>
-                <td>Květ/Extrakt/Olej</td>
-                <td>2–4 dny</td>
-                <td>—</td>
-              </tr>
-              <tr>
-                <td>Mikrobiologie</td>
-                <td>Kultivační/rychlé metody</td>
-                <td>Květ/Extrakt</td>
-                <td>3–5 dní</td>
-                <td>—</td>
-              </tr>
-            </tbody>
-          </table>
-          <p class="tat-note">
-            * TAT = předpokládaná doba zpracování. Expresní služby na vyžádání.
+      <!-- =========================================================
+         PROCES OBJEDNÁVKY A TESTOVÁNÍ
+         - 4 kroky + CTA tlačítka
+    ========================================================== -->
+      <section id="proces" class="py-5 proces-bg" data-scrolly-end>
+        <div class="container">
+          <h2 class="text-center mb-4">Průběh testování</h2>
+          <p class="text-center text-muted mb-5">
+            Čtyři jasné kroky od objednávky po doručení certifikátu. Nabízíme
+            také expresní zpracování.
           </p>
-        </div>
-      </div>
-    </section>
-    <!-- =========================================
-         4️⃣ PROCES OBJEDNÁVKY A TESTOVÁNÍ
-    ========================================== -->
-    <section id="proces" class="py-5 proces-bg">
-      <div class="container">
-        <h2 class="text-center mb-4">Jak probíhá objednávka a testování</h2>
-        <p class="text-center text-muted mb-5">
-          Čtyři jasné kroky od objednávky po doručení certifikátu. Nabízíme také
-          expresní zpracování.
-        </p>
 
-        <ol class="row g-4 list-unstyled mb-0">
-          <li class="col-md-3">
-            <div
-              class="p-4 bg-white rounded-4 border h-100 process-step text-center"
-            >
-              <div class="process-icon">
-                <i data-lucide="shopping-cart"></i>
+          <ol class="row g-4 list-unstyled mb-0">
+            <li class="col-md-3">
+              <div
+                class="p-4 bg-white rounded-4 border h-100 process-step text-center"
+              >
+                <div class="process-icon">
+                  <i data-lucide="shopping-cart"></i>
+                </div>
+                <h3 class="h5 mb-2">1) Objednávka</h3>
+                <p class="text-muted">
+                  Vyplňte online formulář nebo nás kontaktujte e-mailem.
+                </p>
               </div>
-              <h3 class="h5 mb-2">1) Objednávka</h3>
-              <p class="text-muted">
-                Vyplňte online formulář, zvolte panel, počet vzorků a fakturační
-                údaje.
-              </p>
-            </div>
-          </li>
+            </li>
 
-          <li class="col-md-3">
-            <div
-              class="p-4 bg-white rounded-4 border h-100 process-step text-center"
-            >
-              <div class="process-icon">
-                <i data-lucide="flask-conical"></i>
+            <li class="col-md-3">
+              <div
+                class="p-4 bg-white rounded-4 border h-100 process-step text-center"
+              >
+                <div class="process-icon">
+                  <i data-lucide="flask-conical"></i>
+                </div>
+                <h3 class="h5 mb-2">2) Odeslání vzorku</h3>
+                <p class="text-muted">
+                  Připravte, bezpečně zabalte a odešlete vzorek.
+                </p>
               </div>
-              <h3 class="h5 mb-2">2) Příprava vzorku</h3>
-              <p class="text-muted">
-                Zabalte dle pokynů a přiložte formulář CoC. Využijte náš svoz
-                nebo pošlete kurýrem.
-              </p>
-            </div>
-          </li>
+            </li>
 
-          <li class="col-md-3">
-            <div
-              class="p-4 bg-white rounded-4 border h-100 process-step text-center"
+            <li class="col-md-3">
+              <div
+                class="p-4 bg-white rounded-4 border h-100 process-step text-center"
+              >
+                <div class="process-icon"><i data-lucide="beaker"></i></div>
+                <h3 class="h5 mb-2">3) Analýza</h3>
+                <p class="text-muted">
+                  Vzorek je pečlivě zpracován v naší GMP certifikované
+                  laboratoři
+                </p>
+              </div>
+            </li>
+
+            <li class="col-md-3">
+              <div
+                class="p-4 bg-white rounded-4 border h-100 process-step text-center"
+              >
+                <div class="process-icon">
+                  <i data-lucide="file-check-2"></i>
+                </div>
+                <h3 class="h5 mb-2">4) Výsledky</h3>
+                <p class="text-muted">
+                  Obdržíte jasný a srozumitelný report s výsledky.
+                </p>
+              </div>
+            </li>
+          </ol>
+
+          <div class="d-flex flex-wrap justify-content-center gap-3 mt-4">
+            <a href="kontakt.html#form-contact" class="btn btn-accent-proces"
+              >Objednat analýzu</a
             >
-              <div class="process-icon"><i data-lucide="beaker"></i></div>
-              <h3 class="h5 mb-2">3) Analýza</h3>
-              <p class="text-muted">
-                Vzorek je kódován a analyzován validovanými metodami pod QA
-                kontrolou.
-              </p>
-            </div>
-          </li>
-
-          <li class="col-md-3">
-            <div
-              class="p-4 bg-white rounded-4 border h-100 process-step text-center"
+            <a href="#ke-stazeni" class="btn btn-outline-secondary"
+              >Stáhnout formuláře</a
             >
-              <div class="process-icon"><i data-lucide="file-check-2"></i></div>
-              <h3 class="h5 mb-2">4) Výsledky</h3>
-              <p class="text-muted">
-                Obdržíte PDF certifikát a data (na vyžádání i surová). Nabízíme
-                konzultaci výsledků.
-              </p>
-            </div>
-          </li>
-        </ol>
-
-        <div class="d-flex flex-wrap justify-content-center gap-3 mt-4">
-          <a href="kontakt.html" class="btn btn-accent-proces"
-            >Objednat analýzu</a
-          >
-          <a href="#ke-stazeni" class="btn btn-outline-secondary"
-            >Stáhnout formuláře</a
-          >
+          </div>
         </div>
+      </section>
 
-        <p class="small text-muted text-center mt-3">
-          *CoC = Chain of Custody. Formuláře a pokyny najdete v sekci
-          <a href="#ke-stazeni">Ke stažení</a>.
-        </p>
-      </div>
-    </section>
+      <!-- =========================================================
+         POŽADAVKY NA VZOREK
+         - Info k množství, balení, dopravě
+    ========================================================== -->
+      <section id="pozadavky" class="pozadavky-bg py-5">
+        <div class="container">
+          <h2 class="text-center mb-4">Požadavky na vzorek</h2>
+          <p class="text-center text-muted mb-5">
+            Správná příprava vzorku je klíčová pro spolehlivost výsledků.
+            Postupujte podle pokynů pro jednotlivé typy analýz.
+          </p>
 
-    <!-- =========================================
-         5️⃣ POŽADAVKY NA VZOREK
-    ========================================== -->
-    <section id="pozadavky" class="pozadavky-bg py-5">
-      <div class="container">
-        <h2 class="text-center mb-4">Požadavky na vzorek</h2>
-        <p class="text-center text-muted mb-5">
-          Správná příprava vzorku je klíčová pro spolehlivost výsledků.
-          Postupujte podle pokynů pro jednotlivé typy analýz.
-        </p>
-
-        <div class="row g-4">
-          <div class="col-md-4">
-            <div class="p-4 bg-white rounded-4 border h-100 shadow-sm">
-              <h3 class="h5 mb-2">Množství vzorku</h3>
-              <p class="text-muted mb-0">
-                <strong>Minimálně 3 g</strong> rostlinného materiálu (suchý
-                květ). Pro vícenásobné analýzy doporučujeme
-                <strong>5–10 g</strong>.
-              </p>
+          <div class="row g-4">
+            <div class="col-md-4">
+              <div class="p-4 bg-white rounded-4 border h-100 shadow-sm">
+                <h3 class="h5 mb-2">Množství vzorku</h3>
+                <p class="text-muted mb-0">
+                  Informujte se kolik je požadované množství vzorku ke každé
+                  analýze (liší se dle typu testu).
+                </p>
+              </div>
             </div>
-          </div>
 
-          <div class="col-md-4">
-            <div class="p-4 bg-white rounded-4 border h-100 shadow-sm">
-              <h3 class="h5 mb-2">Balení a označení</h3>
-              <p class="text-muted mb-0">
-                Uzavřené, čisté a označené balení (ID vzorku, datum odběru).
-                Přiložte <strong>formulář CoC</strong> s číslem šarže.
-              </p>
+            <div class="col-md-4">
+              <div class="p-4 bg-white rounded-4 border h-100 shadow-sm">
+                <h3 class="h5 mb-2">Balení a označení</h3>
+                <p class="text-muted mb-0">
+                  Odešlete vzorek, který je správně zabalený a jasně označený.
+                </p>
+              </div>
             </div>
-          </div>
 
-          <div class="col-md-4">
-            <div class="p-4 bg-white rounded-4 border h-100 shadow-sm">
-              <h3 class="h5 mb-2">Doprava vzorků</h3>
-              <p class="text-muted mb-0">
-                Vzorky zasílejte kurýrem nebo využijte
-                <strong>svoz Genetia</strong>. Doručení doporučujeme do
-                <strong>48 hodin</strong> od odběru.
-              </p>
+            <div class="col-md-4">
+              <div class="p-4 bg-white rounded-4 border h-100 shadow-sm">
+                <h3 class="h5 mb-2">Doprava vzorků</h3>
+                <p class="text-muted mb-0">
+                  Zvolte si vhodný způsob doručení a ověřte podmínky přepravy.
+                </p>
+              </div>
             </div>
           </div>
         </div>
+      </section>
 
-        <p class="small text-muted text-center mt-4">
-          *Formulář CoC (Chain of Custody) je součástí sekce
-          <a href="#ke-stazeni">Ke stažení</a>.
-        </p>
-      </div>
-    </section>
+      <!-- =========================================================
+         KE STAŽENÍ
+         - PDF formuláře a pokyny pro vzorky
+    ========================================================== -->
+      <section id="ke-stazeni" class="ke-stazeni-bg py-5">
+        <div class="container text-center">
+          <h2 class="section-title mb-4">Ke stažení</h2>
+          <p class="text-muted mb-5">
+            Stáhněte si potřebné formuláře pro zaslání vzorků a objednávku
+            analýz.
+          </p>
 
-    <!-- =========================================
-         6️⃣ KE STAŽENÍ
-    ========================================== -->
-    <section id="ke-stazeni" class="ke-stazeni-bg py-5">
-      <div class="container text-center">
-        <h2 class="section-title mb-4">Ke stažení</h2>
-        <p class="text-muted mb-5">
-          Stáhněte si potřebné formuláře pro zaslání vzorků a objednávku analýz.
-        </p>
+          <div class="row justify-content-center g-4">
+            <div class="col-md-4 col-sm-6">
+              <a
+                href="assets/docs/Genetia-Formular-objednavka.pdf"
+                class="download-card"
+                target="_blank"
+              >
+                <div class="download-icon">
+                  <i data-lucide="clipboard-list"></i>
+                </div>
 
-        <div class="row justify-content-center g-4">
-          <!-- 1) Objednávkový formulář -->
-          <div class="col-md-4 col-sm-6">
-            <a
-              href="assets/docs/Genetia-Formular-objednavka.pdf"
-              class="download-card"
-              target="_blank"
-            >
-              <div class="download-icon">
-                <i data-lucide="clipboard-list"></i>
-              </div>
-
-              <h3>Objednávkový formulář</h3>
-              <p>Vyplňte pro objednávku analýzy.</p>
-            </a>
-          </div>
-
-          <!-- 2) CoC -->
-          <div class="col-md-4 col-sm-6">
-            <a
-              href="assets/docs/Genetia-CoC.pdf"
-              class="download-card"
-              target="_blank"
-            >
-              <div class="download-icon">
-                <i data-lucide="search-check"></i>
-              </div>
-
-              <h3>Chain of Custody (CoC)</h3>
-              <p>Formulář pro sledování vzorků.</p>
-            </a>
-          </div>
-
-          <!-- 3) Pokyny -->
-          <div class="col-md-4 col-sm-6">
-            <a
-              href="assets/docs/Genetia-Pokyny-pro-vzorky.pdf"
-              class="download-card"
-              target="_blank"
-            >
-              <div class="download-icon">
-                <i data-lucide="package"></i>
-              </div>
-
-              <h3>Pokyny pro odběr a balení</h3>
-              <p>Správná příprava a zaslání vzorků.</p>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- =========================================
-         7️⃣ FAQ - často kladené otázky
-    ========================================== -->
-    <section id="faq" class="py-5 faq-bg">
-      <div class="container">
-        <h2 class="section-title text-center mb-4">
-          Často kladené otázky (FAQ)
-        </h2>
-
-        <div class="faq-wrapper mx-auto" style="max-width: 800px">
-          <!-- FAQ ITEM 1 -->
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-              Jak dlouho trvá zpracování analýzy?
-              <span class="faq-caret">›</span>
-            </button>
-
-            <div class="faq-answer">
-              <p>
-                Standardní doba je <strong>5 pracovních dnů</strong>. Expresní
-                režim (do 48 hodin) je dostupný po předchozí dohodě.
-              </p>
+                <h3>Objednávkový formulář</h3>
+                <p>Vyplňte pro objednávku analýzy.</p>
+              </a>
             </div>
-          </div>
 
-          <!-- FAQ ITEM 2 -->
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-              Jaké platební metody akceptujete?
-              <span class="faq-caret">›</span>
-            </button>
+            <div class="col-md-4 col-sm-6">
+              <a
+                href="assets/docs/Genetia-Pokyny-pro-vzorky.pdf"
+                class="download-card"
+                target="_blank"
+              >
+                <div class="download-icon">
+                  <i data-lucide="package"></i>
+                </div>
 
-            <div class="faq-answer">
-              <p>
-                Platba převodem na fakturu nebo přes partnerský účet v Klientské
-                zóně.
-              </p>
-            </div>
-          </div>
-
-          <!-- FAQ ITEM 3 -->
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-              Je možné zaslat vzorky ze zahraničí?
-              <span class="faq-caret">›</span>
-            </button>
-
-            <div class="faq-answer">
-              <p>
-                Ano, po dohodě s naším logistickým oddělením. Vzorky musí
-                splňovat legislativní podmínky přepravy biologického materiálu.
-              </p>
-            </div>
-          </div>
-
-          <!-- FAQ ITEM 4 -->
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-              Poskytujete výsledky v elektronické podobě?
-              <span class="faq-caret">›</span>
-            </button>
-
-            <div class="faq-answer">
-              <p>
-                Ano, výsledky jsou k dispozici v PDF certifikátu a na vyžádání i
-                v datovém formátu.
-              </p>
+                <h3>Pokyny pro odběr a balení</h3>
+                <p>Správná příprava a zaslání vzorků.</p>
+              </a>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- =========================================
-         8️⃣ ANALYTICKÉ METODY
+      <!-- =========================================================
+         FAQ
+         - Accordion (custom JS)
+    ========================================================== -->
+      <section id="faq" class="py-5 faq-bg">
+        <div class="container">
+          <h2 class="section-title text-center mb-4">
+            Často kladené otázky (FAQ)
+          </h2>
+
+          <div class="faq-wrapper mx-auto" style="max-width: 800px">
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                Jak dlouho trvá zpracování analýzy?
+                <span class="faq-caret">›</span>
+              </button>
+
+              <div class="faq-answer">
+                <p>
+                  Standardní doba je <strong>5 pracovních dnů</strong>. Expresní
+                  režim (do 48 hodin) je dostupný po předchozí dohodě.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                Jaké platební metody akceptujete?
+                <span class="faq-caret">›</span>
+              </button>
+
+              <div class="faq-answer">
+                <p>
+                  Platba převodem na fakturu nebo přes partnerský účet v
+                  Klientské zóně.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                Je možné zaslat vzorky ze zahraničí?
+                <span class="faq-caret">›</span>
+              </button>
+
+              <div class="faq-answer">
+                <p>
+                  Ano, po dohodě s naším logistickým oddělením. Vzorky musí
+                  splňovat legislativní podmínky přepravy biologického
+                  materiálu.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                Poskytujete výsledky v elektronické podobě?
+                <span class="faq-caret">›</span>
+              </button>
+
+              <div class="faq-answer">
+                <p>
+                  Ano, výsledky jsou k dispozici v PDF certifikátu a na vyžádání
+                  i v datovém formátu.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================
+          ANALYTICKÉ METODY
     ========================================== -->
-    <section class="methods-section py-5 methods-bg" id="analyticke-metody">
+      <!--<section class="methods-section py-5 methods-bg" id="analyticke-metody">
       <div class="container">
         <h2 class="section-title text-center mb-4">Analytické metody</h2>
         <p class="section-subtitle text-center mb-5">
@@ -610,34 +573,42 @@
           </div>
         </div>
       </div>
-    </section>
+    </section>-->
 
-    <!-- =========================================
-         9️⃣ CTA – Kontaktujte nás
-    ========================================== -->
-    <section class="cta-section text-center py-5 cta-bg">
-      <div class="container">
-        <h2>Začněme spolu tvořit přesné výsledky?</h2>
-        <p class="mb-4">
-          Kontaktujte nás pro individuální nabídku testů nebo informace o
-          připravovaných metodách.
-        </p>
-        <a href="kontakt.html" class="btn btn-accent btn-cta"
-          >Kontaktujte nás</a
-        >
-      </div>
-    </section>
-
-    <!-- =========================================
+      <!-- =========================================================
+         CTA
+         - Kontakt / lead capture
+    ========================================================== -->
+      <section class="cta-section text-center py-5 cta-bg">
+        <div class="container">
+          <h2>Začněme spolu tvořit přesné výsledky?</h2>
+          <p class="mb-4">
+            Kontaktujte nás pro individuální nabídku testů nebo informace o
+            připravovaných metodách.
+          </p>
+          <a href="kontakt.html" class="btn btn-accent btn-cta"
+            >Kontaktujte nás</a
+          >
+        </div>
+      </section>
+    </main>
+    <!-- =========================================================
          FOOTER
-    ========================================== -->
+    ========================================================== -->
     <footer class="footer">
       <div class="container">
         <small>© <span id="year"></span> Genetia s.r.o.</small>
       </div>
     </footer>
 
-    <!-- Scripts -->
+    <!-- =========================================================
+         SCRIPTS (Multi-entry)
+         - Bootstrap bundle
+         - Global main.js
+         - Page entry analyticke-sluzby.js
+         - Lucide icons
+         - Year helper
+    ========================================================== -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module" src="js/main.js"></script>
     <script
@@ -645,7 +616,7 @@
       src="js/pages/analyticke-sluzby/analyticke-sluzby.js"
     ></script>
 
-    <!-- Lucide ikony -->
+    <!-- Lucide icons -->
     <script type="module">
       import {
         createIcons,
@@ -654,13 +625,15 @@
       createIcons({ icons });
     </script>
 
+    <!-- Year -->
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
     </script>
 
-    <!-- ======================================================
-     GENETIA – DETAIL TESTOVACÍHO PANELU (Bootstrap Modal)
-    ====================================================== -->
+    <!-- =========================================================
+         MODAL: DETAIL TESTOVACÍHO PANELU (Bootstrap Modal)
+         - Obsah se plní z JSON datasetu podle data-panel-id
+    ========================================================== -->
     <div
       class="modal fade"
       id="panelDetailModal"
@@ -700,7 +673,11 @@
           </div>
 
           <div class="modal-footer">
-            <button id="panelOrderBtn" class="btn btn-accent-panel" data-open-order>
+            <button
+              id="panelOrderBtn"
+              class="btn btn-accent-panel"
+              data-open-order
+            >
               Objednat
             </button>
             <button class="btn btn-secondary-panel" data-bs-dismiss="modal">

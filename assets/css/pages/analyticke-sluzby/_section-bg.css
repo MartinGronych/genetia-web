@@ -1,11 +1,35 @@
 /* ==================================================
-   GENETIA – SECTION BACKGROUNDS & GRADIENTS (v3.0)
+   GENETIA – SECTION BACKGROUNDS & GRADIENTS (v3.1)
    Autor: Martin Gronych
    --------------------------------------------------
    ▸ Jednotné stylování pozadí všech sekcí
-   ▸ Vychází z Genetia Brand Color System
-   ▸ Použití: .xxx-bg přímo na <section>
+   ▸ Fix: odstranění “čar/švů” mezi sekcemi na mobile
 ================================================== */
+
+/* ==================================================
+   0️⃣ ANTI-SEAM FIX (globální)
+   --------------------------------------------------
+   ▸ Na některých displejích vzniká 1px “šev” mezi
+     gradienty kvůli subpixel renderingu.
+   ▸ Řešení: mikropřekrytí sekcí + vypnutí borderů.
+================================================== */
+
+/* všechny sekce s utility pozadím */
+.page-analyticke-sluzby
+  :is(.usp-bar-bg, .test-panels-bg, .proces-bg, .pozadavky-bg, .ke-stazeni-bg, .faq-bg, .methods-bg, .cta-bg) {
+  position: relative;
+  /* mikropřekrytí: eliminuje 1px švy mezi gradienty */
+  margin-top: -1px;
+  padding-top: 15px;
+  /* jistota: žádný border “od Bootstrapu / tříd” */
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+}
+
+/* Bootstrap helper třída border-bottom ti dělá linku (v HTML máš usp-bar-bg border-bottom) */
+.page-analyticke-sluzby .border-bottom {
+  border-bottom: 0 !important;
+}
 
 /* ==================================================
    1️⃣ BASE BRAND BACKGROUNDS (utility)
@@ -40,19 +64,17 @@
 
 /* ==================================================
    2️⃣ USP BAR (usp-bar-bg)
-   --------------------------------------------------
-   ▸ Kontrastní sekce, krátká, silný brand
 ================================================== */
 
 .usp-bar-bg {
+  
   background-color: var(--brand-800);
+  border-radius: 25px 26px 0px 0px;
   color: #fff;
 }
 
 /* ==================================================
    3️⃣ TEST PANELY (test-panels-bg)
-   --------------------------------------------------
-   ▸ Laboratorní světlo → čisté → navazuje na metody
 ================================================== */
 
 .test-panels-bg {
@@ -61,22 +83,14 @@
 
 /* ==================================================
    4️⃣ PROCES (proces-bg)
-   --------------------------------------------------
-   ▸ Procesní sekce má být čistá, neutrální
 ================================================== */
 
 .proces-bg {
-  background: linear-gradient(
-    180deg,
-    #ffffff 0%,
-    var(--brand-100) 50%
-  ) !important;
+  background: linear-gradient(180deg, #ffffff 0%, var(--brand-100) 50%) !important;
 }
 
 /* ==================================================
    5️⃣ POŽADAVKY (pozadavky-bg)
-   --------------------------------------------------
-   ▸ Světlé pastelové laboratorní pozadí
 ================================================== */
 
 .pozadavky-bg {
@@ -85,29 +99,22 @@
 
 /* ==================================================
    6️⃣ KE STAŽENÍ (ke-stazeni-bg)
-   --------------------------------------------------
-   ▸ Jemný horizontální gradient — zvýrazněná sekce
 ================================================== */
 
 .ke-stazeni-bg {
-  background: linear-gradient(180deg, #ffffff 0%, var(--gene-light-70) 90% );
+  background: linear-gradient(180deg, #ffffff 0%, var(--gene-light-70) 90%);
 }
 
 /* ==================================================
    7️⃣ FAQ (faq-bg)
-   --------------------------------------------------
-   ▸ Těžký text → neutrální podklad → čitelnost
 ================================================== */
 
 .faq-bg {
-  background: linear-gradient(180deg, var(--gene-light-70) 0%, #ffffff 90% );
+  background: linear-gradient(180deg, var(--gene-light-70) 0%, #ffffff 90%);
 }
-
 
 /* ==================================================
    8️⃣ METODY (methods-bg)
-   --------------------------------------------------
-   ▸ Stejný styl jako Test Panely → vizuální návaznost
 ================================================== */
 
 .methods-bg {
@@ -116,8 +123,6 @@
 
 /* ==================================================
    9️⃣ CTA (cta-bg)
-   --------------------------------------------------
-   ▸ Ultra-clean pharma CTA
 ================================================== */
 
 .cta-bg {
@@ -126,9 +131,6 @@
 
 /* ==================================================
    🔟 UNIVERSAL SECTION FADE (Bottom to White)
-   --------------------------------------------------
-   ▸ .section-fade-bottom přidej na sekci, která má
-     plynule mizet do bílé u spodního okraje
 ================================================== */
 
 .section-fade-bottom {

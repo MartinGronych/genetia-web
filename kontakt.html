@@ -86,40 +86,92 @@
         </form>
       </div>
     </div>
-
-    <section class="section">
+   
+    <section class="form-contact" id="form-contact">
       <div class="container">
-        <div class="row g-4">
-          <div class="col-lg-5">
-            <div class="p-4 border rounded-4 h-100">
-              <h2 class="h5">Genetia s.r.o.</h2>
-              <ul class="list-unstyled small text-secondary mb-0">
-                <li>Adresa: Lorem street 1, Praha</li>
-                <li>E‑mail: info@example.com</li>
-                <li>Telefon: +420 123 456 789</li>
-              </ul>
-            </div>
-          </div>
+        <div class="row justify-content-center">
+          <!-- Pravý blok: formulář (AJAX-ready) -->
           <div class="col-lg-7">
-            <div class="p-4 border rounded-4 h-100">
-              <form class="row g-3">
+            <form
+              id="contactForm"
+              class="contact-form card-base p-4 shadow-sm"
+              method="POST"
+              data-endpoint="https://formspree.io/f/mdkyngvb"
+            >
+              <!-- Honeypot (antispam) -->
+              <input
+                type="text"
+                name="_gotcha"
+                tabindex="-1"
+                autocomplete="off"
+                style="position: absolute; left: -9999px"
+                aria-hidden="true"
+              />
+
+              <div class="row g-3">
+                <!-- Jméno -->
                 <div class="col-md-6">
-                  <label class="form-label">Jméno</label
-                  ><input class="form-control" type="text" required />
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="name"
+                    placeholder="Jméno a příjmení"
+                    autocomplete="name"
+                    required
+                  />
                 </div>
+
+                <!-- E-mail -->
                 <div class="col-md-6">
-                  <label class="form-label">E‑mail</label
-                  ><input class="form-control" type="email" required />
+                  <input
+                    type="email"
+                    class="form-control"
+                    name="_replyto"
+                    placeholder="E-mail"
+                    autocomplete="email"
+                    required
+                  />
                 </div>
+
+                <!-- Předmět -->
                 <div class="col-12">
-                  <label class="form-label">Zpráva</label
-                  ><textarea class="form-control" rows="4" required></textarea>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="subject"
+                    placeholder="Předmět zprávy (volitelné)"
+                    autocomplete="off"
+                  />
                 </div>
+
+                <!-- Zpráva -->
                 <div class="col-12">
-                  <button class="btn btn-brand" type="submit">Odeslat</button>
+                  <textarea
+                    class="form-control"
+                    name="message"
+                    rows="5"
+                    placeholder="Vaše zpráva..."
+                    required
+                  ></textarea>
                 </div>
-              </form>
-            </div>
+
+                <!-- reCAPTCHA tlačítko -->
+                <div class="col-12 text-end">
+                  <button class="btn btn-accent px-4 py-2" type="submit">
+                    Odeslat zprávu
+                  </button>
+                </div>
+
+                <!-- Inline fallback místo modalu -->
+                <div class="col-12">
+                  <div
+                    id="formInlineMessage"
+                    class="form-inline-message"
+                    hidden
+                  ></div>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>

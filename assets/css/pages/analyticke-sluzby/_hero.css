@@ -1,19 +1,25 @@
 /* ==================================================
-   GENETIA – ANALYTICKÉ SLUŽBY HERO (v6.0 Final)
-   Mobile-first + fallback foto → video od 426px
-   Čisté gradienty, jednotný overlay, sjednocený CTA
+   GENETIA – ANALYTICKÉ SLUŽBY HERO (v7.0)
+   Mobile-first
+   - Hero je obsahová vrstva nad scrolly videem
+   - Pseudo prvky jsou jen overlay/fade (neřeší výšku)
 ================================================== */
-
 
 /* ==================================================
-   1️⃣ HERO WRAPPER – MOBILE FIRST (0–425px)
+   0️⃣ (Volitelné) Klientská zóna – disabled
 ================================================== */
-
 #openClientModal {
   pointer-events: none;
   cursor: not-allowed;
 }
 
+/* ==================================================
+   1️⃣ HERO WRAPPER – MOBILE FIRST
+   --------------------------------------------------
+   DŮLEŽITÉ:
+   - žádné min-height: 55/65/85/90vh (to nafukovalo hero)
+   - výšku určuje obsah + padding
+================================================== */
 
 .page-analyticke-sluzby .hero-analyticke {
   position: relative;
@@ -21,101 +27,44 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  overflow: hidden;
+  border-radius: 28px 28px 0 0;
 
-  min-height: calc(62vh - var(--nav-height));
-  padding-inline: 1.2rem;
-
-  /* Fallback foto pro mobily */
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.02) 0%,
-      rgba(255, 255, 255, 0.05) 40%,
-      rgba(255, 255, 255, 0.10) 100%
-    ),
-    url("/assets/images/section/analyticke-hero-fallback-mobile.png")
-      center/cover no-repeat;
-
+  /* ✅ obsahová výška */
+  padding: 2.25rem 1.2rem 2.25rem;
   color: var(--brand-50);
-  z-index: 1;
+  z-index: 2; /* nad video vrstvou */
 }
 
-/* Video skryté na mobilech */
+/* Video uvnitř hero (pokud někde zůstalo v HTML) – na analytických už nechceme */
 .page-analyticke-sluzby .hero-analyticke video {
-  display: none;
+  display: none !important;
 }
-
 
 /* ==================================================
-   2️⃣ OVERLAYS
+   2️⃣ OVERLAYS – pouze vizuální vrstvy
 ================================================== */
 
-/* Jemný overlay (univerzální film přes obraz i video) */
 .page-analyticke-sluzby .hero-analyticke::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.02) 0%,
-    rgba(255, 255, 255, 0.06) 40%,
-    rgba(255, 255, 255, 0.12) 100%
-  );
-  z-index: 1;
+  pointer-events: none;
+  z-index: 0;
 }
 
-/* Fade do další sekce */
 .page-analyticke-sluzby .hero-analyticke::after {
   content: "";
   position: absolute;
-  inset-inline: 0;
+  left: 0;
+  right: 0;
   bottom: -2px;
-  height: 40px;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.0001) 0%,
-    rgba(255, 255, 255, 0.10) 40%,
-    rgba(255, 255, 255, 0.22) 70%,
-    rgba(255, 255, 255, 0.32) 100%
-  );
-  z-index: 2;
+  height: 44px;
   pointer-events: none;
+  z-index: 1;
 }
 
-
 /* ==================================================
-   3️⃣ VIDEO BACKGROUND – OD 426 PX
-================================================== */
-
-@media (min-width: 426px) {
-  .page-analyticke-sluzby .hero-analyticke {
-    background: none; /* vypnout foto */
-  }
-
-  .page-analyticke-sluzby .hero-analyticke video {
-    display: block;
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-
-    /* Jemné laboratorní ztmavení */
-    filter: brightness(85%) contrast(102%);
-
-    z-index: 0;
-  }
-
-  .page-analyticke-sluzby .hero-analyticke {
-    position: relative;
-    min-height: calc(55vh - var(--nav-height));
-  }
-}
-
-
-/* ==================================================
-   4️⃣ CONTENT
+   3️⃣ CONTENT WRAPPER
 ================================================== */
 
 .page-analyticke-sluzby .hero-analyticke .container {
@@ -125,39 +74,43 @@
   margin-inline: auto;
 }
 
-
 /* ==================================================
-   5️⃣ TYPOGRAPHY
+   4️⃣ TYPOGRAPHY – plynulé škálování
 ================================================== */
 
 .page-analyticke-sluzby .hero-analyticke h1 {
   font-family: var(--ff-sans);
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  line-height: 1.2;
-  font-size: clamp(2rem, 3vw + 1rem, 3.2rem);
-  margin-bottom: 1.3rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+
+  /* ✅ mobile-first: menší start, plynule roste */
+  font-size: clamp(1.6rem, 4.2vw + 0.6rem, 3.2rem);
+
+  margin-inline: auto;
+  max-width: 980px;
   color: var(--brand-50);
 
-  /* jemnější a čistší stín */
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.45);
 }
 
 .page-analyticke-sluzby .hero-analyticke p.lead {
   font-family: "Inter", sans-serif;
   font-weight: 400;
   line-height: 1.55;
-  color: var(--brand-100);
-  font-size: 1.1rem;
-  max-width: 60ch;
-  margin: 0 auto 2rem;
 
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.32);
+  /* ✅ plynulé škálování popisu */
+  font-size: clamp(1rem, 1.1vw + 0.65rem, 1.25rem);
+
+  color: var(--brand-100);
+  max-width: 760px;
+  margin: 0 auto 1.75rem;
+
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.45);
 }
 
-
 /* ==================================================
-   6️⃣ CTA BUTTON (sjednocený s homepage)
+   5️⃣ CTA BUTTON (sjednocený)
 ================================================== */
 
 .page-analyticke-sluzby .hero-analyticke .btn-accent {
@@ -179,28 +132,51 @@
 }
 
 .page-analyticke-sluzby .hero-analyticke .btn-accent:active {
-  transform: scale(0.90);
+  transform: scale(0.97);
 }
 
-
 /* ==================================================
-   7️⃣ DESKTOP OPTIMALIZACE
+   6️⃣ Větší displeje – jen jemné úpravy spacingu
+   (žádné vh výšky)
 ================================================== */
 
 @media (min-width: 768px) {
   .page-analyticke-sluzby .hero-analyticke {
-    min-height: calc(52vh - var(--nav-height));
+    padding: 3rem 1.5rem 3rem;
+    transform: translateY(-35px);
   }
 }
 
-@media (min-width: 1200px) {
-  .page-analyticke-sluzby .hero-analyticke video {
-    filter: brightness(88%) contrast(104%);
+@media (min-width: 1024px) {
+  #scrolly-video {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  #scrolly-video .scrolly-video_sticky,
+  #scrolly-video .scrolly-video_media {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  #scrolly-video .scrolly-video_media {
+    display: block;
   }
 }
 
 @media (min-width: 1440px) {
-  .page-analyticke-sluzby .hero-analyticke {
-    min-height: 48vh;
+  #scrolly-video .scrolly-video_sticky {
+    height: calc(100vh - 50px);
   }
+}
+
+
+/* ==================================================
+   7️⃣ HERO uvnitř scrolly-video
+   --------------------------------------------------
+   Pozadí řeší video, hero je jen textová vrstva.
+================================================== */
+
+.page-analyticke-sluzby #scrolly-video .hero-analyticke {
+  background: transparent !important;
 }

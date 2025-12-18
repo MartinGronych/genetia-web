@@ -20,14 +20,15 @@
 /* ==================================================
    1️⃣ COMPONENTS – Navigace a modální okna
 ================================================== */
-@import url("../../components/_navbar.css");  /* Navigace a hamburger menu */
-@import url("../../components/_modal.css");   /* Klientská zóna – přihlašovací modal */
+@import url("../../components/_navbar.css"); /* Navigace a hamburger menu */
+@import url("../../components/_modal.css"); /* Klientská zóna – přihlašovací modal */
+@import url("../analyticke-sluzby/_scrolly-video.css"); /* Scrolovaní videa*/
 
 /* ==================================================
    2️⃣ HERO & USP – Úvodní sekce a klíčové benefity
 ================================================== */
-@import url("./_hero.css");        /* Úvodní hero s videem */
-@import url("./_usp-bar.css");     /* Krátké benefity pod hero sekcí */
+@import url("./_hero.css"); /* Úvodní hero s videem */
+@import url("./_usp-bar.css"); /* Krátké benefity pod hero sekcí */
 
 /* ==================================================
    3️⃣ TEST PANELY – Nabídka analytických testů
@@ -80,3 +81,12 @@
 @import url("../../theme/_dark.css");
 
 @import url("./_panel-detail-modal.css");
+
+/* ==================================================
+   Typography scope – pouze stránka Analytické služby
+================================================== */
+.page-analyticke-sluzby {
+  --ff-sans: "IBM Plex Sans", "Inter", system-ui, -apple-system, "Segoe UI",
+    sans-serif;
+    
+}

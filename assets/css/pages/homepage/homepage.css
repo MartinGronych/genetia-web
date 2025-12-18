@@ -19,8 +19,9 @@
    SECTIONS (Homepage + Globální)
 ================================ */
 
-/* === Navigace === */
-@import url("../../components/_navbar.css");
+/* === COMPONENTS - navigace a modální okno === */
+@import url("../../components/_navbar.css"); /*Navigace a hamburger menu*/
+@import url("../../components/_cta.css"); /* === Contact sekce === */
 
 /* === Hero sekce === */
 @import url("./_hero.css");
@@ -34,8 +35,8 @@
 /* === Products sekce === */
 @import url("./_products.css");
 
-/* === Contact sekce === */
-@import url("./_cta.css");
+/*=== Formulář ===*/
+@import url("./_form-contact.css");
 
 /* === Footer === */
 @import url("../../components/_footer.css");
