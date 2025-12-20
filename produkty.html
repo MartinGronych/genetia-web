@@ -47,23 +47,21 @@
             Klientská zóna
           </button>
 
-          <!-- Hamburger -->
-          <div class="hamburger-wrapper d-lg-none">
+          <!-- Mobile hamburger + rychlé menu -->
+          <label class="hamburger-wrapper d-lg-none">
             <input type="checkbox" id="menu-toggle" />
-            <label for="menu-toggle" class="menu">
+            <span class="menu">
               <span class="hamburger"></span>
-            </label>
-
-            <!-- Mobile nav -->
+            </span>
             <ul class="mobile-nav">
               <li><a href="index.html">Domů</a></li>
               <li><a href="o-spolecnosti.html">O společnosti</a></li>
               <li><a href="produkty.html">Produkty</a></li>
+              <li><a href="vyvoj-vyzkum.html">Vývoj a výzkum</a></li>
               <li><a href="analyticke-sluzby.html">Analytické služby</a></li>
               <li><a href="kontakt.html">Kontakt</a></li>
             </ul>
-          </div>
-          <!-- /hamburger-wrapper -->
+          </label>
         </div>
         <!-- /container -->
 
@@ -428,6 +426,9 @@
 =================================== -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+    </script>
     <script type="module" src="js/main.js"></script>
     <script type="module" src="js/pages/produkty/index.js"></script>
 

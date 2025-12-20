@@ -1,72 +1,162 @@
 /* ==================================================
-   GENETIA – USP BAR (Final v5.1)
-   ▸ 5 položek – grid podle breakpointů
-   ▸ Tablet: 2 sloupce, 5. položka přes oba sloupce (ŠIRŠÍ)
-   ▸ Notebook: 3 sloupce + větší písmo, 5. položka uprostřed
-   ▸ Velký notebook: 5 sloupců
+   GENETIA – USP BAR (Final)
+   ▸ JS render (uspGrid) + modal trigger
+   ▸ klikatelné karty + hint “Zjistit více”
+   ▸ reveal animace (IntersectionObserver)
+   ▸ breakpointy pro 5 položek
 ================================================== */
 
-
 /* ==================================================
-   1️⃣ WRAPPER
+   1) WRAPPER
 ================================================== */
 
 .usp-bar {
   position: relative;
-  padding-block: var(--space-4);
+  padding-block: clamp(2rem, 6vw, 4rem);
   z-index: 2;
+  color: var(--text-800);
+ 
 }
 
-
 /* ==================================================
-   2️⃣ GRID – mobile-first
+   2) GRID – mobile-first
 ================================================== */
 
 .usp-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-3);
+  gap: var(--space-4);
+  margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
 }
-
-/* ≥ 500px → 2 sloupce */
-@media (min-width: 500px) {
-  .usp-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
 
 /* ==================================================
-   3️⃣ USP ITEM
+   3) USP ITEM – card look (homepage style) + struktura
 ================================================== */
 
 .usp-item {
-  font-size: 0.9rem;         /* stabilní mobile default */
-  font-weight: 500;
-  color: var(--brand-black);
-
+  background: #fff;
+  border: none;
+  border-radius: var(--radius-md); /* menší než dřív */
+  padding: 0.85rem 1rem;           /* 🔽 menší výška */
+  box-shadow: var(--elevation-card);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+  cursor: pointer;
   display: flex;
-  align-items: flex-start;
-  gap: 0.2rem;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100%;
 
-  white-space: normal;
-  line-height: 1.45;
-  padding-inline: var(--space-1);
-
-  transition: color 0.5s ease, transform 0.5s ease;
 }
+.usp-item_text {
+  flex-grow: 1;
+}
+
+
 .usp-item:hover {
-  color: var(--gene-light-90);
-  transform: scale(1.1);
+  transform: translateY(-4px);
+  box-shadow: var(--elevation-card-hover);
+}
+
+.usp-item:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 3px rgba(173, 192, 72, 0.3),
+    0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+
+/* interní struktura (JS render) */
+.usp-item_text {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.usp-item_title {
+  text-align: center;
+  font-size: 1.05rem;     
+  font-weight: 600;
+  color: var(--brand-800);
+  margin-bottom: 0.35rem;
+  line-height: 1.3;
+}
+
+.usp-item_subtitle {
+  color: var(--text);
+  text-align:center;
+  font-size: 0.88rem;      
+  margin-top: auto;
+  margin-bottom: 0.6rem;
+  line-height: 1.45;
+}
+
+/* hint jako pill */
+.usp-item_hint {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--brand-800);
+  width: 30%;
+  min-width: 140px;
+  max-width: 220px;
+  margin: 0.75rem auto 0;
+  padding: 0.55rem 1.2rem;
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+
+  transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease,
+    box-shadow 0.25s ease;
+
+  box-shadow: var(--elevation-card);
+}
+
+.usp-item:hover .usp-item_hint {
+  background: var(--brand-600);
+  color: var(--brand-black);
+  transform: translateY(-1px);
+  box-shadow: var(--elevation-card-hover);
 }
 
 /* ==================================================
-   5️⃣ BREAKPOINTS – 5 položek
+   4) REVEAL – třídy z JS
 ================================================== */
 
-/* === 768px — tablet ===
-   2 sloupce + 5. položka vycentrovaná přes oba sloupce (ŠIRŠÍ)
-*/
+.usp-item.is-reveal-ready {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.usp-item.is-reveal-ready.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 420ms ease, transform 420ms ease, box-shadow 0.35s ease,
+    background-color 0.35s ease, border-color 0.35s ease;
+  transition-delay: var(--usp-reveal-delay, 0ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .usp-item.is-reveal-ready,
+  .usp-item.is-reveal-ready.is-revealed {
+    transition: none;
+    transform: none;
+    opacity: 1;
+  }
+}
+
+/* ==================================================
+   5) BREAKPOINTY – layout 5 položek
+================================================== */
+
+/* 768px — tablet: 2 sloupce, dlouhá položka (4) přes oba sloupce */
 @media (min-width: 768px) {
   .usp-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -74,90 +164,55 @@
   }
 
   .usp-item {
-    font-size: 0.98rem;
+    font-size: 1rem;
   }
 
-  .usp-grid .usp-item:nth-child(5) {
-    grid-column: 1 / -1;
-    justify-content: center;
-    text-align: center;
-    max-width: 860px;
-    margin-inline: auto;
-  }
-}
-
-/* === 1024px — ntb ===
-   3 sloupce + 5. položka vycentrovaná přes oba sloupce (ŠIRŠÍ)
-*/
-@media (min-width: 1024px) {
+  /* „metody“ (4. položka) je nejdelší → přes oba sloupce */
   .usp-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 18px 22px;
   }
-
-  .usp-item {
-    font-size: 1.06rem;
-    line-height: 1.4;
-  }
-
-  .usp-grid .usp-item:nth-child(5) {
-    grid-column: 2;
-    justify-content: center;
-    text-align: center;
-    max-width: none;
-    margin-inline: 0;
-  }
 }
 
-/* === 1024px — velký notebook ===
-   1. řada: 3 položky (1–2–3)
-   2. řada: 2 položky vsazené mezi (1–2) a (2–3)
-*/
+/* 1024px — notebook: 3 sloupce, dlouhá položka (4) doprostřed */
 @media (min-width: 1024px) {
   .usp-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 18px 22px;
-  }
-
-  .usp-item {
-    font-size: 1.06rem;
-    line-height: 1.4;
-  }
-
-  .usp-grid .usp-item:nth-child(5) {
-    grid-column: 2;
-    justify-content: center;
-    text-align: center;
-    max-width: none;
-    margin-inline: 0;
-  }
-}
-
-/* === 1440px — ultra wide ===
-   žádné posouvání gridu (to dělalo rozpad layoutu)
-*/
-@media (min-width: 1440px) {
-  .usp-grid {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 18px 20px;
   }
 
   .usp-item {
-    font-size: 1.08rem;
+    font-size: 1.06rem;
+    line-height: 1.4;
+    padding: 1.1rem 1.25rem;
   }
 
-  /* 1. řada */
-  .usp-grid .usp-item:nth-child(1) { grid-column: 1 / span 2; }
-  .usp-grid .usp-item:nth-child(2) { grid-column: 3 / span 2; }
-  .usp-grid .usp-item:nth-child(3) { grid-column: 5 / span 2; }
-
-  /* 2. řada – vsazené */
-  .usp-grid .usp-item:nth-child(4) { grid-column: 2 / span 2; }
-  .usp-grid .usp-item:nth-child(5) { grid-column: 4 / span 2; }
-
-  .usp-grid .usp-item:nth-child(5) {
-    justify-content: flex-start;
-    text-align: left;
+  .usp-item_title {
+    font-size: 1.15rem;
   }
+
+    .usp-item_subtitle {
+    font-size: 0.95rem;
+  }
+
+  
 }
 
+/* 1440px — ultra wide: 5 sloupců (1 položka = 1 sloupec) */
+@media (min-width: 1440px) {
+  .usp-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 18px 20px;
+  }
+
+  .usp-item {
+    font-size: 1.05rem;
+  }
+
+  /* na široku už nic “nevsazujeme” */
+  .usp-grid .usp-item:nth-child(4) {
+    grid-column: auto;
+    text-align: left;
+    justify-content: space-between;
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "items": [
+    {
+      "id": "gmp",
+      "order": 1,
+      "title": "GMP certifikovaná laboratoř – testování podle farmaceutických standardů",
+      "subtitle": "Testujeme podle nejpřísnějších farmaceutických standardů.",
+      "lead": "Zajišťujeme konzistentní kvalitu, dohledatelnost a kontrolu kritických kroků.",
+      "paragraphs": [
+        "Pracujeme v režimu řízené kvality a sledovatelnosti procesů napříč celým workflow.",
+        "Důraz klademe na dokumentaci, validaci a kontrolu klíčových parametrů tak, aby výsledky obstály v praxi i při auditu."
+      ],
+      "bullets": [
+        "Reprodukovatelné a důvěryhodné výsledky",
+        "Jasná dokumentace a dohledatelnost",
+        "Vhodné pro regulované prostředí"
+      ],
+      "anchor": "#gmp-detail",
+      "media": {
+        "type": "image",
+        "src": "/assets/images/section/gmp-lab.webp",
+        "alt": "Laboratorní prostředí s GMP standardy"
+      }
+    },
+    {
+      "id": "instruments",
+      "order": 2,
+      "title": "Špičkové analytické přístroje nejnovější generace",
+      "subtitle": "Nejnovější generace instrumentace pro vysokou citlivost a přesnost.",
+      "lead": "Moderní vybavení zvyšuje kvalitu měření i rychlost zpracování.",
+      "paragraphs": [
+        "Používáme přístroje určené pro náročnou laboratorní praxi a standardizované postupy.",
+        "Díky stabilnímu výkonu zvládáme rutinní i komplikované matice vzorků."
+      ],
+      "bullets": [
+        "Vyšší citlivost a přesnost",
+        "Stabilní výkon ve vysoké zátěži",
+        "Standardizované workflow"
+      ],
+      "anchor": "#instruments-detail",
+      "media": {
+        "type": "video",
+        "src": "/assets/video/Genetia_product.mp4",
+        "poster": "assets/img/usp/instruments-poster.webp",
+        "caption": "Ukázka laboratorní instrumentace"
+      }
+    },
+    {
+      "id": "coc",
+      "order": 3,
+      "title": "Široké spektrum nabízených analytických testů (CoC)",
+      "subtitle": "Výstupy připravené pro kontrolu kvality i interní dokumentaci.",
+      "lead": "Pokryjeme klíčové parametry a připravíme srozumitelné protokoly.",
+      "paragraphs": [
+        "Sestavy testů volíme podle typu materiálu a cíle analýzy.",
+        "Výstupy připravujeme tak, aby šly přímo použít ve vašich procesech."
+      ],
+      "bullets": [
+        "Široké pokrytí analytických potřeb",
+        "Možnost cílených balíčků",
+        "Srozumitelné a použitelné výstupy"
+      ],
+      "anchor": "#coc-detail"
+    },
+    {
+      "id": "methods",
+      "order": 4,
+      "title": "Výběr mezi osvědčenými lékopisnými metodami a vlastními validovanými postupy",
+      "subtitle": "Optimální volba metody podle matrice a požadované citlivosti.",
+      "lead": "Kombinujeme osvědčené metody s interně validovanými postupy.",
+      "paragraphs": [
+        "Volba metodiky vychází z povahy vzorku, účelu testu a požadované citlivosti.",
+        "Cílem je spolehlivý výsledek s jasně popsaným postupem a kontrolou kvality."
+      ],
+      "bullets": [
+        "Metodická jistota",
+        "Validace a kontrola kvality",
+        "Přesnost a konzistence"
+      ],
+      "anchor": "#methods-detail"
+    },
+    {
+      "id": "team",
+      "order": 5,
+      "title": "Špičkoví zaměstnanci s odbornou a farmaceutickou praxí",
+      "subtitle": "Zkušený tým pro interpretaci výsledků a konzistentní kvalitu.",
+      "lead": "Odbornost je pro nás stejně důležitá jako samotné měření.",
+      "paragraphs": [
+        "Spojujeme laboratorní praxi, kontrolu kvality a důraz na detail.",
+        "Zakládáme si na jasné komunikaci a rychlé zpětné vazbě."
+      ],
+      "bullets": [
+        "Odbornost a pečlivost",
+        "Konzistentní výstupy",
+        "Rychlá a jasná komunikace"
+      ],
+      "anchor": "#team-detail",
+      "media": {
+        "type": "image",
+        "src": "/assets/images/section/team.webp",
+        "alt": "Tým laboratoře"
+      }
+    }
+  ]
+}

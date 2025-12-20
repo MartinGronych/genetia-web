@@ -70,6 +70,7 @@
             <li><a href="index.html">Domů</a></li>
             <li><a href="o-spolecnosti.html">O společnosti</a></li>
             <li><a href="produkty.html">Produkty</a></li>
+            <li><a href="vyvoj-vyzkum.html">Vývoj a výzkum</a></li>
             <li><a href="analyticke-sluzby.html">Analytické služby</a></li>
             <li><a href="kontakt.html">Kontakt</a></li>
           </ul>
@@ -158,8 +159,7 @@
           <section class="hero-analyticke text-center">
             <div class="container position-relative">
               <h1 class="mb-3">
-                Laboratorní analýza léčebného konopí a
-                výrobků z něj
+                Laboratorní analýza léčebného konopí a výrobků z něj
               </h1>
               <p class="lead mx-auto" style="max-width: 720px">
                 Poskytujeme komplexní, rychlé a spolehlivé analýzy s využitím
@@ -172,28 +172,12 @@
           <!-- USP BAR: Klíčové benefity -->
           <section class="usp-bar usp-bar-bg border-bottom">
             <div class="container">
-              <div class="usp-grid">
-                <div class="usp-item">
-                  </span>GMP certifikovaná laboratoř -
-                  testujeme podle nejpřísnějších farmaceutických standardů
-                </div>
-                <div class="usp-item">
-                  </span>Špičkové analytické přístroje
-                  nejnovější generace
-                </div>
-                <div class="usp-item">
-                  </span>Široké spektrum nabízených
-                  testů (CoC)
-                </div>
-                <div class="usp-item">
-                  </span>Špičkový zaměstnanci
-                </div>
-                <div class="usp-item">
-                  </span>Výběr mezi osvědčenými
-                  lékopisnými metodami a našimi vlastními validovanými postupy
-                  pro maximální přesnost.
-                </div>
-              </div>
+              <div
+                id="uspGrid"
+                class="usp-grid"
+                data-bs-toggle="usp"
+                aria-label="Klíčové benefity"
+              ></div>
             </div>
           </section>
 
@@ -616,19 +600,51 @@
       src="js/pages/analyticke-sluzby/analyticke-sluzby.js"
     ></script>
 
-    <!-- Lucide icons -->
-    <script type="module">
-      import {
-        createIcons,
-        icons,
-      } from "https://unpkg.com/lucide@latest/dist/esm/lucide.js";
-      createIcons({ icons });
-    </script>
+    <!-- Lucide icons (true selective import) -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+  lucide.createIcons();
+</script>
+
 
     <!-- Year -->
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
     </script>
+
+    <!-- USP MODAL (Bootstrap) -->
+    <div
+      class="modal fade"
+      id="uspDetailModal"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content panel-detail-modal">
+          <div class="modal-header">
+            <h5 class="modal-title" id="uspModalTitle"></h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+
+          <div class="modal-body">
+            <p id="uspModalLead" class="mb-3"></p>
+            <div id="uspModalMedia" class="mb-3"></div>
+            <div id="uspModalBody"></div>
+          </div>
+
+          <div class="modal-footer">
+
+            <button class="btn btn-secondary-panel" data-bs-dismiss="modal">
+              Zavřít
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- =========================================================
          MODAL: DETAIL TESTOVACÍHO PANELU (Bootstrap Modal)

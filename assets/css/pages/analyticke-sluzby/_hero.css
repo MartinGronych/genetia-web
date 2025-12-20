@@ -89,24 +89,24 @@
 
   margin-inline: auto;
   max-width: 980px;
-  color: var(--brand-50);
+  color: var(--brand-800);
 
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.45);
+  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.45);
 }
 
 .page-analyticke-sluzby .hero-analyticke p.lead {
   font-family: "Inter", sans-serif;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1.55;
 
   /* ✅ plynulé škálování popisu */
   font-size: clamp(1rem, 1.1vw + 0.65rem, 1.25rem);
 
-  color: var(--brand-100);
+  color: var(--gene-dark-40);
   max-width: 760px;
   margin: 0 auto 1.75rem;
 
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.45);
+  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.45);
 }
 
 /* ==================================================
