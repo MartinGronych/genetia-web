@@ -34,14 +34,22 @@ const cardHTML = (panel) => {
 export async function initPanelsGrid(options = {}) {
   const {
     gridId = "testPanelsGrid",
-    dataUrl = "/data/panels.json", // uprav, pokud máš jinou cestu
+    dataUrl = "/data/panels.json",
   } = options;
 
   const grid = document.getElementById(gridId);
   if (!grid) return;
 
+  // === BASE PATH FIX (GitHub Pages vs local) ===
+  const BASE =
+    location.hostname.endsWith("github.io")
+      ? `/${location.pathname.split("/")[1]}`
+      : "";
+
+  const resolvedUrl = `${BASE}${dataUrl}`;
+
   try {
-    const res = await fetch(dataUrl, { cache: "no-store" });
+    const res = await fetch(resolvedUrl, { cache: "no-store" });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
     const data = await res.json();
@@ -55,10 +63,11 @@ export async function initPanelsGrid(options = {}) {
 
     grid.innerHTML = panels.map(cardHTML).join("");
 
-    // A11y: ENTER/SPACE = klik (modal/logiku řešíš v initPanelDetailModal)
+    // A11y: ENTER / SPACE = klik
     grid.addEventListener("keydown", (e) => {
-      const card = e.target.closest?.(".panel-card");
+      const card = e.target.closest(".panel-card");
       if (!card) return;
+
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
         card.click();
@@ -70,3 +79,4 @@ export async function initPanelsGrid(options = {}) {
       '<p class="text-center opacity-75 mb-0">Služby se nepodařilo načíst.</p>';
   }
 }
+

@@ -1,10 +1,22 @@
 // ==================================================
-// USP BAR – render z JSON do #uspGrid
+// USP BAR – render z JSON do #uspGrid (Pages-safe)
 // ==================================================
 
 const GRID_ID = "uspGrid";
-const DATA_URL = "data/usp.json"; 
+const DATA_URL = "/data/usp.json"; // doporučeno jako root-relative (vyřešíme base prefixem)
 const MODAL_ID = "uspDetailModal";
+
+// === BASE PATH FIX (GitHub Pages vs local) ===
+const BASE =
+  location.hostname.endsWith("github.io")
+    ? `/${location.pathname.split("/")[1]}`
+    : "";
+
+const resolveUrl = (url) => {
+  // podporuje "/data/..." i "data/..."
+  const clean = url.startsWith("/") ? url : `/${url}`;
+  return `${BASE}${clean}`;
+};
 
 const escapeHtml = (s) =>
   String(s ?? "")
@@ -15,7 +27,7 @@ const escapeHtml = (s) =>
     .replaceAll("'", "&#039;");
 
 async function fetchJson(url) {
-  const res = await fetch(url, { cache: "no-store" });
+  const res = await fetch(resolveUrl(url), { cache: "no-store" });
   if (!res.ok) throw new Error(`USP JSON load failed: ${res.status}`);
   return res.json();
 }
