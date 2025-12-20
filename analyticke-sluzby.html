@@ -182,9 +182,8 @@
           </section>
 
           <!-- =========================================================
-             Naše SLUŽBY (klik → detail v Bootstrap modalu)
-             - Karty mají data-panel-id (mapuje se na JSON dataset)
-        ========================================================== -->
+          Naše SLUŽBY (render z panels.json → JS)
+          ========================================================== -->
           <section
             id="testovaci-panely"
             class="test-panels-section test-panels-bg section-fade-bottom"
@@ -192,73 +191,12 @@
             <div class="container">
               <h2 class="section-title mb-4 text-center">Naše služby</h2>
 
-              <div class="test-panels-grid">
-                <div class="panel-card" data-panel-id="kanabinoidni-profil">
-                  <h3>Kanabinoidní profil (HPLC/GC)</h3>
-                  <p>
-                    THC, THCA, CBD, CBDA, CBG, CBGA, CBN a další (až 14
-                    sloučenin).
-                  </p>
-                  <div class="panel-meta">
-                    <span>Délka zpracování: 24–48 h</span>
-                    <a href="#objednat" class="btn-panel">více informací</a>
-                  </div>
-                </div>
-
-                <div class="panel-card" data-panel-id="terpenovy-profil">
-                  <h3>Terpenový profil (GC-MS)</h3>
-                  <p>
-                    Až 30 terpenů – limonen, myrcen, beta-karyofylen, linalool
-                    aj.
-                  </p>
-                  <div class="panel-meta">
-                    <span>Délka zpracování: 24–72 h</span>
-                    <a href="#objednat" class="btn-panel">více informací</a>
-                  </div>
-                </div>
-
-                <div class="panel-card" data-panel-id="rezidua-pesticidu">
-                  <h3>Rezidua pesticidů (LC-MS/MS)</h3>
-                  <p>Multireziduální screening dle EU – &gt; 200 látek.</p>
-                  <div class="panel-meta">
-                    <span>Délka zpracování: 3–5 dní</span>
-                    <a href="#objednat" class="btn-panel">více informací</a>
-                  </div>
-                </div>
-
-                <div class="panel-card" data-panel-id="tezke-kovy">
-                  <h3>Těžké kovy (ICP-MS)</h3>
-                  <p>Pb, Cd, Hg, As – limity dle Ph. Eur.</p>
-                  <div class="panel-meta">
-                    <span>Délka zpracování: 2–4 dny</span>
-                    <a href="#objednat" class="btn-panel">více informací</a>
-                  </div>
-                </div>
-
-                <div class="panel-card" data-panel-id="mikrobiologie">
-                  <h3>Mikrobiologie</h3>
-                  <p>
-                    TPC, kvasinky/plísně, E. coli, Salmonella,
-                    Enterobacteriaceae.
-                  </p>
-                  <div class="panel-meta">
-                    <span>Délka zpracování: 3–5 dní</span>
-                    <a href="#objednat" class="btn-panel">více informací</a>
-                  </div>
-                </div>
-
-                <div class="panel-card" data-panel-id="rezidualni-rozpoustedla">
-                  <h3>Reziduální rozpouštědla &amp; stabilita</h3>
-                  <p>
-                    GC-FID/MS pro IPA/EtOH/Heptan aj., krátké stabilitní studie
-                    (30/60/90 dní).
-                  </p>
-                  <div class="panel-meta">
-                    <span>Délka zpracování: dle rozsahu</span>
-                    <a href="#objednat" class="btn-panel">více informací</a>
-                  </div>
-                </div>
-              </div>
+              <!-- sem se karty vyrenderují z JS -->
+              <div
+                id="testPanelsGrid"
+                class="test-panels-grid"
+                aria-live="polite"
+              ></div>
             </div>
           </section>
 
@@ -266,10 +204,10 @@
         </div>
       </section>
 
-      <!-- =========================================================
+        <!-- =========================================================
          PROCES OBJEDNÁVKY A TESTOVÁNÍ
          - 4 kroky + CTA tlačítka
-    ========================================================== -->
+        ========================================================== -->
       <section id="proces" class="py-5 proces-bg" data-scrolly-end>
         <div class="container">
           <h2 class="text-center mb-4">Průběh testování</h2>
@@ -601,11 +539,10 @@
     ></script>
 
     <!-- Lucide icons (true selective import) -->
-<script src="https://unpkg.com/lucide@latest"></script>
-<script>
-  lucide.createIcons();
-</script>
-
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+    </script>
 
     <!-- Year -->
     <script>
@@ -637,7 +574,6 @@
           </div>
 
           <div class="modal-footer">
-
             <button class="btn btn-secondary-panel" data-bs-dismiss="modal">
               Zavřít
             </button>

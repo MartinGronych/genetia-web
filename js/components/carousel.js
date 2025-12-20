@@ -104,9 +104,19 @@ export async function initCarousel() {
   function createItem(product) {
     const li = document.createElement("li");
     li.style.backgroundImage = `url(${product.image})`;
+    li.dataset.productId = product.id;
+
+    li.innerHTML = `
+    <div class="carousel-item-content">
+      <h3 class="carousel-product-title">${product.name}</h3>
+      <button class="carousel-product-link">
+        Zobrazit produkt
+      </button>
+    </div>
+  `;
+
     return li;
   }
-
   function getIndex(i) {
     const len = products.length;
     return (i + len) % len;
@@ -114,15 +124,53 @@ export async function initCarousel() {
 
   // === Aktivace ovládání ===
   function activateCarousel() {
-    const swipe = new Hammer($(".swipe"));
+    const swipeEl = $(".swipe");
     const slider = $(".carousel-list");
 
-    slider.onclick = (e) => {
-      if (e.target.classList.contains("next")) next();
-      else if (e.target.classList.contains("prev")) prev();
-    };
+    if (!slider || !swipeEl) {
+      console.warn("⚠️ Carousel swipe elements not found");
+      return;
+    }
 
-    swipe.on("swipeleft", () => next());
-    swipe.on("swiperight", () => prev());
+    const hammer = new Hammer(swipeEl);
+
+    // =========================
+    // KLIKY MYŠÍ (delegace)
+    // =========================
+    slider.addEventListener("click", (e) => {
+      // 1️⃣ CTA / produktový proklik (má prioritu)
+      const productBtn = e.target.closest(".carousel-product-link");
+      if (productBtn) {
+        e.preventDefault();
+
+        const item = productBtn.closest("li");
+        const productId = item?.dataset?.productId;
+
+        if (!productId) {
+          console.warn("⚠️ Missing productId on carousel item");
+          return;
+        }
+
+        // 👉 přesměrování (gate řešíš globálně)
+        window.location.href = `produkty.html?product=${productId}`;
+        return;
+      }
+
+      // 2️⃣ Navigace carouselu (klik na pozice)
+      const li = e.target.closest("li");
+      if (!li) return;
+
+      if (li.classList.contains("next")) {
+        next();
+      } else if (li.classList.contains("prev")) {
+        prev();
+      }
+    });
+
+    // =========================
+    // SWIPE GESTA
+    // =========================
+    hammer.on("swipeleft", () => next());
+    hammer.on("swiperight", () => prev());
   }
 }

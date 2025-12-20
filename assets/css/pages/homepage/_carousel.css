@@ -75,6 +75,52 @@
   stroke: #444;
   transform: scale(1.12);
 }
+.carousel-product-title {
+  font-size: clamp(1.5rem, 1.3vw, 1.35rem);
+  font-weight: 700;
+  color: var(--brand-800);          
+  margin-top: 1rem;
+  text-align: center;
+  letter-spacing: 0.2px;
+}
+.carousel-product-link {
+  font-family: "Inter", sans-serif;
+
+  background: var(--brand-800);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+
+  padding: 0.55rem 1.1rem; /* menší než hero */
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+
+  transition: background 0.35s ease, color 0.35s ease,
+    box-shadow 0.35s ease, transform 0.25s ease;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(4px);
+  will-change: transform;
+}
+
+.carousel-product-link:hover {
+  background: var(--brand-600);
+  color: var(--brand-black);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  transform: scale(1.03);
+}
+
+.carousel-product-link:active {
+  transform: scale(0.95); /* jemnější než hero */
+}
+
+
+
 
 
 /* === Carousel === */
@@ -132,10 +178,10 @@
 
 /* === Swipe zóna === */
 .swipe {
-  width: 300px;
-  height: 320px;
+  width: 260px;
+  height: 260px;
   position: absolute;
-  top: 50%;
+  top: 75%;
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: var(--radius-lg);

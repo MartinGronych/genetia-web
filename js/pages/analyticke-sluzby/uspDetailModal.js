@@ -55,11 +55,14 @@ function fillModal(item) {
   document.getElementById("uspModalBody").innerHTML = `${paragraphs}${bullets}`;
 
   const anchorBtn = document.getElementById("uspModalAnchorBtn");
-  if (item.anchor) {
-    anchorBtn.href = item.anchor;
-    anchorBtn.classList.remove("d-none");
-  } else {
-    anchorBtn.classList.add("d-none");
+
+  if (anchorBtn) {
+    if (item.anchor) {
+      anchorBtn.href = item.anchor;
+      anchorBtn.classList.remove("d-none");
+    } else {
+      anchorBtn.classList.add("d-none");
+    }
   }
 }
 

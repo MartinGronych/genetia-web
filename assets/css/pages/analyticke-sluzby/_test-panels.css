@@ -119,9 +119,11 @@
   background: var(--brand-800);
   color: #fff;
   border: none;
-  border-radius: var(--radius-md);
-  padding: 0.55rem 1.2rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  padding: 0.3rem 0.5rem;
   font-weight: 600;
+  line-height: 1;
   letter-spacing: 0.02em;
   text-decoration: none;
   cursor: pointer;
@@ -216,3 +218,53 @@
 
 @media (min-width: 1440px) {
 }
+
+/* ==================================================
+   9️⃣ COMPACT MODE – jen název + tlačítko (v kartě)
+   (původní <p> a .panel-meta už nechceme v kartě)
+================================================== */
+
+/* Karta: layout title + button */
+.panel-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+
+  padding: 1rem 1.05rem; /* trochu kompaktnější */
+}
+
+/* Nadpis: bez spodního marginu, ať není "díra" */
+.panel-card h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--brand-800);
+}
+
+/* Skryj starý text a meta v kartě (zůstane jen button) */
+.panel-card p,
+.panel-meta > span {
+  display: none !important;
+}
+
+/* Panel meta držíme jen jako wrapper pro tlačítko */
+.panel-meta {
+  margin-top: 0 !important;
+  justify-content: flex-end;
+}
+
+/* Tlačítko: jemnější (aby nebylo moc “těžké”) */
+.btn-panel {
+  
+  padding: 0.55rem 1rem;
+  border-radius: 999px; /* pill */
+  box-shadow: none;     /* čistší pharma UI */
+}
+
+/* Hover karty: jemnější posun + stín */
+.panel-card:hover {
+  transform: translateY(-1px);
+}
+

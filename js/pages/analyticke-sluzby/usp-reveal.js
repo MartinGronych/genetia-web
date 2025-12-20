@@ -21,7 +21,7 @@ export function initUspReveal() {
 
         // stagger: podle pořadí v DOM (už je seřazené orderem z JSON)
         items.forEach((el, i) => {
-  const delay = i === 0 ? 0 : i * 55;
+  const delay = i === 0 ? 0 : i * 485;
   el.style.setProperty("--usp-reveal-delay", `${delay}ms`);
   el.classList.add("is-revealed");
 });
@@ -29,7 +29,7 @@ export function initUspReveal() {
         io.disconnect();
       });
     },
-    { threshold: 0.08, rootMargin: "0px 0px -10% 0px" }
+    { threshold: 0.2, rootMargin: "0px 0px -10% 0px" }
   );
 
   io.observe(grid);

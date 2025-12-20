@@ -3,15 +3,12 @@
 // Autor: Martin Gronych
 // ==================================================
 
-import { initNavigation } from "../../components/nav.js";
 import { initModal } from "../../components/modal.js";
-import { initCardHover } from "../../components/cardHover.js";
 import { initProductsGate } from "./gate.js";
 
-document.addEventListener("DOMContentLoaded", async () => {
 
-  // Navigace
-  await initNavigation();
+document.addEventListener("DOMContentLoaded", async () => {
+  
 
   // Lucide ikony (pro statické ikony – např. veřejnost sekce)
   if (window.lucide) {
@@ -20,10 +17,17 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // Global UI skripty
   initModal();
-  initCardHover();
+  
 
   // 🔒 Odborný gate
   initProductsGate();
+  const params = new URLSearchParams(window.location.search);
+  const deepProductId = params.get("product");
+
+  if (deepProductId) {
+    // uložíme si požadovaný produkt, otevře se až po gate
+    sessionStorage.setItem("genetia_deeplink_product", deepProductId);
+  }
 
   console.log("✅ Produkty – entry načten (gate + nav + modal)");
 });

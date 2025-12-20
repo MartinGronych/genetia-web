@@ -8,6 +8,17 @@
 // ==================================================
 
 import { openProductDetail } from "./detail.js";
+window.openProductDetailById = async function (productId) {
+  const res = await fetch("data/products.json");
+  const products = await res.json();
+  const product = products.find((p) => p.id === productId);
+
+  if (product) {
+    openProductDetail(product);
+  } else {
+    console.warn("❌ Produkt nenalezen:", productId);
+  }
+};
 
 export async function initProducts() {
   const grid = document.getElementById("hcp-products-section");

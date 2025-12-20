@@ -8,15 +8,18 @@ import { initScrollyVideo } from "./scrolly-video.js";
 import { initUspBar } from "./usp-render.js";
 import { initUspDetailModal } from "./uspDetailModal.js";
 import { initUspReveal } from "./usp-reveal.js";
+import { initPanelsGrid } from "./panels-render.js";
 
 
 document.addEventListener("DOMContentLoaded", async () => {
   await initNavigation();
   initFaqFade();  
+  initPanelsGrid();
   initPanelDetailModal();
   initScrollyVideo();
   await initUspBar();
   initUspDetailModal();
   initUspReveal();
+  
   console.log("✅ Analytické služby – logika načtena");
 });
