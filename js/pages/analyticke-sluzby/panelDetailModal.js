@@ -1,15 +1,23 @@
 // ==================================================
-// GENETIA – Testovací panely → Detail Modal Loader
+// GENETIA – Testovací panely → Detail Modal Loader (Pages-safe)
 // Autor: Martin Gronych
 // ==================================================
 
+const DATA_URL = "/data/panels.json";
+
+// === BASE PATH FIX (GitHub Pages vs local) ===
+const BASE =
+  location.hostname.endsWith("github.io")
+    ? `/${location.pathname.split("/")[1]}`
+    : "";
+
+const resolveUrl = (url) => {
+  const clean = url.startsWith("/") ? url : `/${url}`;
+  return `${BASE}${clean}`;
+};
+
 export async function initPanelDetailModal() {
   console.log("PanelDetailModal načten");
-
-  // Načtení JSON datasetu
-  const response = await fetch("/data/panels.json");
-  const data = await response.json();
-  const panels = data.panels;
 
   const modalEl = document.getElementById("panelDetailModal");
   if (!modalEl) return;
@@ -32,35 +40,52 @@ export async function initPanelDetailModal() {
     return;
   }
 
+  // Načtení JSON datasetu (Pages-safe)
+  let panels = [];
+  try {
+    const response = await fetch(resolveUrl(DATA_URL), { cache: "no-store" });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+    const data = await response.json();
+    panels = Array.isArray(data) ? data : data?.panels || [];
+  } catch (err) {
+    console.error("[panelDetailModal] JSON load failed:", err);
+    panels = [];
+  }
+
   // Delegace kliků (funguje i pro dynamicky renderované karty)
   document.addEventListener("click", (e) => {
     const card = e.target.closest(".panel-card");
     if (!card) return;
 
     const panelId = card.dataset.panelId;
+    if (!panelId || !panels.length) return;
+
     const panelData = panels.find((p) => p.id === panelId);
     if (!panelData) return;
 
     // Naplnění modalu
     title.textContent = panelData.title || "";
     desc.textContent = panelData.description || "";
-    method.textContent = panelData.method || "—";
-    instr.textContent = panelData.instrumentation || "—";
-    turnaround.textContent = panelData.turnaround || "—";
-    price.textContent = panelData.price || "—";
+    if (method) method.textContent = panelData.method || "—";
+    if (instr) instr.textContent = panelData.instrumentation || "—";
+    if (turnaround) turnaround.textContent = panelData.turnaround || "—";
+    if (price) price.textContent = panelData.price || "—";
 
-    measures.innerHTML = "";
-    (panelData.what_we_measure || []).forEach((item) => {
-      const li = document.createElement("li");
-      li.textContent = item;
-      measures.appendChild(li);
-    });
+    if (measures) {
+      measures.innerHTML = "";
+      (panelData.what_we_measure || []).forEach((item) => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        measures.appendChild(li);
+      });
+    }
 
     modalInstance.show();
   });
 
   // ✅ OBJEDNÁVKA → KONTAKTNÍ FORMULÁŘ
   orderBtn.addEventListener("click", () => {
-    window.location.href = "kontakt.html#form-contact";
+    window.location.href = `${BASE}/kontakt.html#form-contact`;
   });
 }
