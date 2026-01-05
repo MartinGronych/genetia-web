@@ -14,22 +14,26 @@
   border-radius: 18px;
   padding: 1.6rem;
   text-align: center;
-  box-shadow: 0 6px 22px rgba(0,0,0,0.06);
-  border: 1px solid rgba(0,0,0,0.04);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.04);
   transition: all 0.25s ease;
   cursor: pointer;
 }
 
 .hcp-product-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 26px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.1);
 }
 
-.hcp-product-card img {
-  width: auto;
-  height: 160px;
-  object-fit: contain;
+.hcp-product-card > img {
+  width: 100%;
+  height: 170px;
+  border-radius: var(--radius-md);
+  display: block;
+  object-fit:cover;
+  object-position: 50% 85%;
   margin-bottom: 1rem;
+  box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.226);
 }
 
 .hcp-product-card h3 {
@@ -47,6 +51,7 @@
   color: var(--brand-700);
   font-weight: 600;
   font-size: 0.85rem;
+  width: 50%
 }
 
 .hcp-product-card p {
@@ -54,3 +59,4 @@
   opacity: 0.9;
   font-size: 0.95rem;
 }
+

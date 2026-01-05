@@ -37,3 +37,10 @@
   color: white;
   box-shadow: 0 5px 14px rgba(0,0,0,0.12);
 }
+
+#pro-odborniky-tab {
+  background: var(--brand-800);
+}
+#pro-odborniky-tab:hover {
+  color: var(--brand-black);
+}

@@ -20,6 +20,7 @@
   top: 0;
   height: calc(100svh - var(--nav-height, 72px));
   z-index: 1;
+  
 }
 
 /* aktivní stav – video fyzicky existuje */

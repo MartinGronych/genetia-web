@@ -1,13 +1,10 @@
 // ==================================================
-// GENETIA – Produkty Expert Gate (FINAL)
+// GENETIA – Produkty Expert Gate (STABLE + DEEPLINK SAFE)
 // Autor: Martin Gronych
 // --------------------------------------------------
 // ▸ Zamyká panel "Pro lékaře a lékárny"
-// ▸ Gate se otevře pouze při deep-linku
-// ▸ Po potvrzení:
-//    - odemkne HCP tab
-//    - načte produkty
-//    - otevře detail produktu (modal)
+// ▸ Gate funguje při kliknutí i automaticky při deeplinku
+// ▸ Deeplink otevře detail produktu, běžný vstup jen zobrazí produkty
 // ==================================================
 
 import { initProducts } from "./products.js";
@@ -26,83 +23,101 @@ export function initProductsGate() {
   // 🔒 výchozí stav – odborný panel je zamčený
   hcpPane.classList.add("hcp-locked");
 
-  hcpTab.addEventListener("click", (e) => {
-    const deepProductId = sessionStorage.getItem("genetia_deeplink_product");
+  // ✅ vezmeme deeplink i přímo z URL (nezávisle na index.js)
+  const params = new URLSearchParams(window.location.search);
+  const deepFromUrl = params.get("product");
+  if (deepFromUrl) {
+    sessionStorage.setItem("genetia_deeplink_product", deepFromUrl);
+  }
 
-    // ❌ žádný deep-link → gate se nespouští
-    if (!deepProductId) return;
+  /**
+   * SPOLEČNÝ KONEC FLOW
+   * - vždy zobrazí odborný panel
+   * - vždy načte produkty
+   * - detail otevře jen pokud existuje deeplink
+   */
+  const proceed = async () => {
+    // 1️⃣ odemkneme panel
+    hcpPane.classList.remove("hcp-locked");
+    hcpPane.classList.add("show", "active");
 
-    e.preventDefault();
-    e.stopPropagation();
+    // 2️⃣ přepneme tab
+    const tabInstance = new bootstrap.Tab(hcpTab);
+    tabInstance.show();
 
+    // 3️⃣ načteme produkty (VŽDY)
+    await initProducts();
+
+    // 4️⃣ otevřeme detail jen pokud existuje deeplink
+    const productId = sessionStorage.getItem("genetia_deeplink_product");
+    if (productId && typeof window.openProductDetailById === "function") {
+      sessionStorage.removeItem("genetia_deeplink_product");
+      setTimeout(() => window.openProductDetailById(productId), 50);
+    }
+  };
+
+  /**
+   * GATE FLOW
+   * - funguje při kliknutí i automaticky
+   */
+  const openGateFlow = async (e) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    const isVerified = sessionStorage.getItem("genetia_hcp_verified") === "1";
+
+    // ✅ už ověřen → rovnou pokračuj
+    if (isVerified) {
+      await proceed();
+      return;
+    }
+
+    // jinak zobraz gate modal
     const modal = new bootstrap.Modal(gateModal);
     modal.show();
 
     const continueBtn = gateModal.querySelector("[data-continue]");
     const denyBtn = gateModal.querySelector("#denyAccess");
 
-    // =========================
-    // 🟢 ANO – vstoupit
-    // =========================
     if (continueBtn) {
       continueBtn.addEventListener(
         "click",
         async () => {
+          // uložíme ověření pro session
+          sessionStorage.setItem("genetia_hcp_verified", "1");
+
           modal.hide();
 
-          // 🔴 kompletní teardown gate modalu
+          // cleanup bootstrap modalu
           document.body.classList.remove("modal-open");
-          document
-            .querySelectorAll(".modal-backdrop")
-            .forEach((el) => el.remove());
+          document.querySelectorAll(".modal-backdrop").forEach((el) => el.remove());
 
-          // 1) Odemkneme HCP panel
-          hcpPane.classList.remove("hcp-locked");
-          hcpPane.classList.add("show", "active");
-
-          // 2) Přepneme TAB přes Bootstrap
-          const tabInstance = new bootstrap.Tab(hcpTab);
-          tabInstance.show();
-
-          // 3) Načteme produkty
-          await initProducts();
-
-          // 4) Otevřeme produktový modal (POUZE 1×)
-          const productId =
-            sessionStorage.getItem("genetia_deeplink_product");
-
-          if (
-            productId &&
-            typeof window.openProductDetailById === "function"
-          ) {
-            // ⛔️ zrušíme deep-link OKAMŽITĚ
-            sessionStorage.removeItem("genetia_deeplink_product");
-
-            // ⏱️ mikro-delay kvůli Bootstrap / DOM
-            setTimeout(() => {
-              window.openProductDetailById(productId);
-            }, 50);
-          }
+          await proceed();
         },
         { once: true }
       );
     }
 
-    // =========================
-    // ❌ NE – odejít
-    // =========================
     if (denyBtn) {
       denyBtn.addEventListener(
         "click",
         () => {
           modal.hide();
-
-          // návrat na veřejný tab
           const publicInstance = new bootstrap.Tab(publicTab);
           publicInstance.show();
         },
         { once: true }
       );
     }
-  });
+  };
+
+  // 🔘 ruční klik na TAB
+  hcpTab.addEventListener("click", openGateFlow);
+
+  // ⚡ AUTO-START jen pokud existuje deeplink
+  if (sessionStorage.getItem("genetia_deeplink_product")) {
+    setTimeout(() => openGateFlow(), 0);
+  }
 }

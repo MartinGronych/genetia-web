@@ -178,8 +178,8 @@
 
 /* === Swipe zóna === */
 .swipe {
-  width: 260px;
-  height: 260px;
+  width: 160px !important;
+  height: 160px !important;
   position: absolute;
   top: 75%;
   left: 50%;

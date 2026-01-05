@@ -50,10 +50,12 @@ export async function initProducts() {
 function productCard(product) {
   return `
     <div class="hcp-product-card">
-      <img src="${product.image}" alt="${product.name}">
-      <h3>${product.name}</h3>
-      <span class="ratio">${product.ratio}</span>
-      <p>${product.description}</p>
+     
+        <img src="${product.image}" alt="${product.name}">
+        <h3>${product.name}</h3>
+        <span class="ratio">${product.ratio}</span>
+        <p>${product.description}</p>
+      
     </div>
   `;
 }
