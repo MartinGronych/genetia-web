@@ -35,6 +35,11 @@ export function initCarouselLock() {
       </svg>
     `;
   }
+  const moveFocusOutOfModal = () => {
+    document.activeElement?.blur?.();
+    document.body.setAttribute("tabindex", "-1");
+    document.body.focus({ preventScroll: true});
+  }
 
   const eyeIcon = lockWrapper.querySelector(".eye-icon-static");
   if (!eyeIcon) {
@@ -66,28 +71,48 @@ export function initCarouselLock() {
   lock();
 
   // === Kliknutí na oko otevře modal ===
-  eyeIcon.addEventListener("click", () => {
-    const modal = new bootstrap.Modal(gateModal);
-    modal.show();
+eyeIcon.addEventListener("click", () => {
+  const modal = bootstrap.Modal.getOrCreateInstance(gateModal);
+  modal.show();
 
-    gateModal.querySelector("[data-continue]")?.addEventListener(
-      "click",
-      () => {
-        modal.hide();
-        setTimeout(() => unlock(), 200);
-      },
-      { once: true }
-    );
+  const continueBtn = gateModal.querySelector("[data-continue]");
+  const denyBtn = gateModal.querySelector("#denyAccess");
 
-    gateModal.querySelector("#denyAccess")?.addEventListener(
-      "click",
-      () => {
-        modal.hide();
-        setTimeout(() => (window.location.href = "index.html"), 250);
-      },
-      { once: true }
-    );
-  });
+  continueBtn?.addEventListener(
+    "click",
+    () => {
+      moveFocusOutOfModal();
+      gateModal.addEventListener(
+        "hidden.bs.modal",
+        () => {
+          unlock();
+        },
+        { once: true }
+      );
 
-  console.log("🔒 Carousel Lock initialized with static eye");
+      modal.hide();
+    },
+    { once: true }
+  );
+
+  denyBtn?.addEventListener(
+    "click",
+    () => {
+      moveFocusOutOfModal();
+      gateModal.addEventListener(
+        "hidden.bs.modal",
+        () => {
+          window.location.href = "index.html";
+        },
+        { once: true }
+      );
+
+      modal.hide();
+    },
+    { once: true }
+  );
+});
+
+console.info("[GENETIA][homepage][carousel-lock] initialized");
+
 }

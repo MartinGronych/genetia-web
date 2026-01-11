@@ -1,42 +1,63 @@
 /* ==================================================
-   GENETIA – PRODUCTS CAROUSEL (v4.5 Final)
-   --------------------------------------------------
-   ▸ Jedno centrální oko (odemknutí obsahu)
-   ▸ Blur pouze na carousel část
-   ▸ Oko vždy klikatelné, nad všemi vrstvami
-   ▸ Plná responzivita a čisté vrstvy
+   GENETIA – PRODUCTS CAROUSEL (production clean)
+   Breakpoints: base → 768 → 1024 → 1440
+   JS hooks preserved:
+   .products-carousel-section, .carousel-list, li + classes:
+   .act .prev .next .hide .new-next, .carousel-lock, .swipe, .is-locked
 ================================================== */
 
-/* === Sekce === */
+/* ---------- SECTION ---------- */
 .products-carousel-section {
   position: relative;
   text-align: center;
   background: linear-gradient(180deg, var(--brand-50) 0%, #fff 100%);
   padding-block: clamp(4rem, 8vw, 7rem);
   overflow: hidden;
-  transition: filter 0.35s ease, opacity 0.35s ease;
+
+  /* zabrání vizuálním kolizím (text vs. absolutní vrstvy) */
+  display: flow-root;
 }
 
-/* === Nadpis a popis === */
+/* Title */
 .products-carousel-section h2 {
   font-size: clamp(2rem, 4vw, 2.6rem);
   color: var(--brand-800);
   font-weight: 700;
-  margin-bottom: var(--space-3);
+  margin: 0 0 var(--space-3);
   position: relative;
   z-index: 5;
 }
 
+/* Subtitle / intro */
 .products-carousel-section .section-desc {
   color: var(--brand-600);
   max-width: 50ch;
-  margin: 0 auto var(--space-6);
+  margin: 0 auto clamp(1.25rem, 2vw, 2rem);
   font-size: 1.1rem;
+  line-height: 1.5;
   position: relative;
   z-index: 5;
 }
 
-/* === Blur – pouze carousel, ne text === */
+/* ---------- SIZING VARS (base) ---------- */
+.products-carousel-section {
+  --carousel-card-w: 240px;
+  --carousel-card-h: 320px;
+
+  /* vzdálenost pro prev/next */
+  --carousel-shift: 260px;
+  --carousel-shift-far: 480px;
+
+  /* swipe zóna */
+  --swipe-w: 160px;
+  --swipe-h: 160px;
+
+  /* ratio (1440 má vlastní úpravu níže) */
+  --ratio-size: 1.25rem;
+  --ratio-raise: 0px;
+}
+
+/* ---------- LOCK / BLUR ---------- */
 .products-carousel-section.is-locked .carousel-list,
 .products-carousel-section.is-locked .swipe {
   filter: blur(8px) brightness(0.95);
@@ -45,29 +66,26 @@
   transition: filter 0.35s ease, opacity 0.35s ease;
 }
 
-/* === Wrapper === */
+/* lock wrapper (oko) */
 .carousel-lock {
   position: absolute;
   bottom: 29%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 6;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
   pointer-events: all;
 }
 
+/* eye icon */
 .carousel-lock .eye-icon-static {
   width: 72px;
   height: 72px;
   opacity: 0.75;
   stroke: #777;
   cursor: pointer;
-  transition:
-    opacity 0.35s ease,
-    stroke 0.35s ease,
-    transform 0.35s ease;
+  transition: opacity 0.35s ease, stroke 0.35s ease, transform 0.35s ease;
 }
 
 .carousel-lock .eye-icon-static:hover {
@@ -75,59 +93,12 @@
   stroke: #444;
   transform: scale(1.12);
 }
-.carousel-product-title {
-  font-size: clamp(1.5rem, 1.3vw, 1.35rem);
-  font-weight: 700;
-  color: var(--brand-800);          
-  margin-top: 1rem;
-  text-align: center;
-  letter-spacing: 0.2px;
-}
-.carousel-product-link {
-  font-family: "Inter", sans-serif;
 
-  background: var(--brand-800);
-  color: #fff;
-  border: none;
-  border-radius: var(--radius-md);
-
-  padding: 0.55rem 1.1rem; /* menší než hero */
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-
-  text-decoration: none;
-  cursor: pointer;
-  white-space: nowrap;
-
-  transition: background 0.35s ease, color 0.35s ease,
-    box-shadow 0.35s ease, transform 0.25s ease;
-
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(4px);
-  will-change: transform;
-}
-
-.carousel-product-link:hover {
-  background: var(--brand-600);
-  color: var(--brand-black);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
-  transform: scale(1.03);
-}
-
-.carousel-product-link:active {
-  transform: scale(0.95); /* jemnější než hero */
-}
-
-
-
-
-
-/* === Carousel === */
+/* ---------- CAROUSEL LIST ---------- */
 .carousel-list {
   list-style: none;
-  height: 320px;
   position: relative;
+  height: var(--carousel-card-h);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -135,12 +106,15 @@
   margin: 0;
   padding: 0;
   z-index: 1;
+
+  /* jistota: vždy odsadit od textu */
+  margin-top: clamp(0.5rem, 1.6vw, 1.25rem);
 }
 
 .carousel-list li {
   position: absolute;
-  width: 240px;
-  height: 320px;
+  width: var(--carousel-card-w);
+  height: var(--carousel-card-h);
   border-radius: var(--radius-lg);
   background-size: cover;
   background-position: center;
@@ -152,7 +126,7 @@
   z-index: 2;
 }
 
-/* === Blur overlay (jen při locku) === */
+/* blur overlay (jen při locku) */
 .carousel-list li::after {
   content: "";
   position: absolute;
@@ -162,6 +136,7 @@
   opacity: 0;
   transition: opacity 0.6s ease;
 }
+
 .products-carousel-section.is-locked .carousel-list li::after {
   opacity: 1;
   backdrop-filter: blur(6px);
@@ -169,19 +144,36 @@
   background: rgba(255, 255, 255, 0.15);
 }
 
-/* === Pozice snímků === */
-.carousel-list .act { opacity: 1; transform: translateX(0) scale(1); z-index: 3; }
-.carousel-list .prev { transform: translateX(-260px) scale(0.9); opacity: 0.7; }
-.carousel-list .next { transform: translateX(260px) scale(0.9); opacity: 0.7; }
-.carousel-list .hide { transform: translateX(-480px) scale(0.8); opacity: 0; }
-.carousel-list .new-next { transform: translateX(480px) scale(0.8); opacity: 0; }
+/* positions (JS přidává třídy) */
+.carousel-list .act {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+  z-index: 3;
+}
+.carousel-list .prev {
+  transform: translateX(calc(-1 * var(--carousel-shift))) scale(0.9);
+  opacity: 0.7;
+}
+.carousel-list .next {
+  transform: translateX(var(--carousel-shift)) scale(0.9);
+  opacity: 0.7;
+}
+.carousel-list .hide {
+  transform: translateX(calc(-1 * var(--carousel-shift-far))) scale(0.8);
+  opacity: 0;
+}
+.carousel-list .new-next {
+  transform: translateX(var(--carousel-shift-far)) scale(0.8);
+  opacity: 0;
+}
 
-/* === Swipe zóna === */
+/* ---------- SWIPE ZONE ---------- */
 .swipe {
-  width: 160px !important;
-  height: 160px !important;
+  width: 195px;
+  height: 180px;
+  pointer-events: none;
   position: absolute;
-  top: 75%;
+  top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: var(--radius-lg);
@@ -190,32 +182,144 @@
   z-index: 3; /* nižší než oko */
 }
 
-/* === Responsivita === */
-@media (max-width: 768px) {
-  .carousel-list {
-    height: 260px;
+/* ==================================================
+   CARD CONTENT – TOP / MIDDLE / BOTTOM
+================================================== */
+.carousel-item-content {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  justify-items: center;
+  text-align: center;
+
+  padding-top: 1.4rem;
+  padding-inline: 1rem;
+  padding-bottom: 1.2rem; /* prostor pro ratio dole */
+}
+
+/* title (TOP) */
+.carousel-product-title {
+  margin: 0;
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--brand-800);
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  max-width:9ch;
+  text-align: center;
+  
+}
+
+/* CTA chip (TOP) */
+.products-carousel-section .btn-brand {
+  font-size: 0.75rem;
+  max-height: 1.4rem;
+  margin-top: 0.4rem;
+  padding: 0.2rem 0.8rem;
+  line-height: 1;
+}
+
+/* ratio (BOTTOM) */
+.carousel-item-content .ratio {
+  grid-row: 3;
+  font-size: var(--ratio-size);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  color: var(--brand-800);
+  opacity: 0.95;
+  transform: translateY(var(--ratio-raise));
+}
+
+/* ==================================================
+   BREAKPOINTS
+================================================== */
+
+/* ≥ 768 */
+@media (min-width: 768px) {
+  .products-carousel-section {
+    --carousel-card-w: 220px;
+    --carousel-card-h: 300px;
+    --carousel-shift: 220px;
+    --carousel-shift-far: 420px;
+
+    --swipe-w: 260px;
+    --swipe-h: 300px;
   }
-  .carousel-list li {
-    width: 180px;
-    height: 260px;
+
+  .carousel-item-content {
+    padding-top: 1.25rem;
+    padding-bottom: 0.5rem;
   }
-  .carousel-list .prev { transform: translateX(-180px) scale(0.9); }
-  .carousel-list .next { transform: translateX(180px) scale(0.9); }
-  .swipe {
-    width: 240px;
-    height: 260px;
+
+  .carousel-product-link {
+    padding: 0.22rem 0.55rem;
+    font-size: 0.72rem;
   }
 }
 
-@media (min-width: 1400px) {
-  .carousel-list li {
-    width: 280px;
-    height: 380px;
+/* ≥ 1024 (bez zásahů do layoutu – záměrně) */
+@media (min-width: 1024px) {
+  .products-carousel-section {
+    --carousel-card-w: 240px;
+    --carousel-card-h: 320px;
+    --carousel-shift: 240px;
+    --carousel-shift-far: 440px;
   }
-  .carousel-list .prev { transform: translateX(-300px) scale(0.9); }
-  .carousel-list .next { transform: translateX(300px) scale(0.9); }
-  .swipe {
-    width: 340px;
-    height: 380px;
+  .carousel-item-content {
+    padding-bottom: 1rem;
+  }
+}
+
+/* ≥ 1440 */
+@media (min-width: 1440px) {
+  .products-carousel-section {
+    --carousel-card-w: 280px;
+    --carousel-card-h: 380px;
+    --carousel-shift: 300px;
+    --carousel-shift-far: 560px;
+
+    --swipe-w: 340px;
+    --swipe-h: 380px;
+
+    --ratio-size: 1.44rem; /* 1.25 × 1.15 */
+    --ratio-raise: -20px;
+  }
+
+  .carousel-product-title {
+    font-size: 195%;
+  }
+  .carousel-item-content {
+    padding-bottom: 0.4rem;
+  }
+}
+
+@media (min-width: 2560px) {
+  .products-carousel-section {
+    --carousel-card-w: 360px;
+    --carousel-card-h: 460px;
+    --carousel-shift: 400px;
+    --carousel-shift-far: 640px;
+
+    --swipe-w: 340px;
+    --swipe-h: 380px;
+
+    --ratio-size: 1.64rem;
+    --ratio-raise: -10px;
+  }
+
+  .carousel-product-title {
+    font-size: 2.7rem;
+  }
+  .carousel-item-content {
+    padding-bottom: 0.4rem;
+  }
+  .products-carousel-section .btn.btn-accent {
+    font-size: 1.2rem;
+    max-height: 33px;
+    padding: 0.2rem 0.4rem;
+    
   }
 }

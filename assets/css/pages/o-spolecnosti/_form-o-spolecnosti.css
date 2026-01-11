@@ -1,0 +1,19 @@
+/* ==================================================
+   reCAPTCHA v3 notice (Google compliance)
+================================================== */
+
+.recaptcha-notice {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--text-muted, #6c757d);
+}
+
+.recaptcha-notice a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.recaptcha-notice a:hover {
+  text-decoration: none;
+}

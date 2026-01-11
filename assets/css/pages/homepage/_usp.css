@@ -1,181 +1,359 @@
 /* ==================================================
-   GENETIA – USP SECTION (v2.0 – Unified Hover)
-   Autor: Martin Gronych
-   --------------------------------------------------
-   ▸ Layout, grid a typografie
+   GENETIA – USP / PROČ GENETIA PRODUCTION
+   Source of truth: JS renderer (usp-production.js)
+   Scope: [data-usp-production]
+   Breakpoints (mobile-first): 768 / 1024 / 1440
 ================================================== */
 
-/* ===============================================
-   SEKCE – WRAPPER
-=============================================== */
-.usp-section {
+/* --------------------------------------------------
+   0) SECTION BASE
+-------------------------------------------------- */
+[data-usp-production] {
   position: relative;
-  z-index: 1;
-  background: var(--brand-800);
-  padding-block: var(--space-5);
-  text-align: center;
-  overflow: hidden;
+  padding-block: clamp(3rem, 6vw, 5rem);
+
+  background: hsla(69, 74%, 46%, 1);
+
+  background: linear-gradient(
+    45deg,
+    hsla(69, 74%, 46%, 1) 0%,
+    hsla(0, 0%, 98%, 1) 78%
+  );
+
+  background: -moz-linear-gradient(
+    45deg,
+    hsla(69, 74%, 46%, 1) 0%,
+    hsla(0, 0%, 98%, 1) 78%
+  );
+
+  background: -webkit-linear-gradient(
+    45deg,
+    hsla(69, 74%, 46%, 1) 0%,
+    hsla(0, 0%, 98%, 1) 78%
+  );
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#B0CB1F", endColorstr="#F9F9F9", GradientType=1 );
 }
 
-/* Jemné laboratorní pozadí dole */
-.usp-section::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(90%, 900px);
-  height: 360px;
-  background: var(--brand-800);
-  opacity: 0.35;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-  z-index: 0;
+/* Typografie */
+[data-usp-production] h2,
+[data-usp-production] h3 {
+  color: var(--brand-black);
 }
 
-/* Ujistíme se, že obsah sekce je nad pozadím */
-.usp-section > * {
-  position: relative;
-  z-index: 1;
-}
-
-/* ===============================================
-   NADPIS A ÚVODNÍ TEXT
-=============================================== */
-.usp-section h2 {
-  font-size: var(--fs-2);
-  font-weight: 500 !important;
-  color: var(--bg);
-  margin-bottom: var(--space-4) !important;
-  letter-spacing: -0.01em;
-}
-
-.usp-section p.section-intro {
-  color: var(--text-muted);
-  max-width: 65ch;
+[data-usp-production] .section-intro {
+  max-width: 68ch;
   margin-inline: auto;
-  margin-bottom: var(--space-5) !important;
-  font-size: 1rem;
-  line-height: 1.6;
 }
 
-/* ===============================================
-   GRID – MOBILE-FIRST
-=============================================== */
-.usp-grid {
+/* --------------------------------------------------
+   1) LAYOUT (WHY / HOW)
+-------------------------------------------------- */
+[data-usp-production] .usp-prod_layout {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  justify-content: center;
-  gap: 2rem;
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: start;
 }
 
-@media (min-width: 768px) {
-  .usp-grid {
-    grid-template-columns: repeat(2, 1fr);
+/* 1024+ = dva sloupce */
+@media (min-width: 1024px) {
+  [data-usp-production] .usp-prod_layout {
+    grid-template-columns: 1.1fr 0.9fr;
   }
-}
-
-@media (min-width: 992px) {
-  .usp-grid {
-    grid-template-columns: repeat(3, minmax(200px, 1fr));
-    gap: 2rem;
-    justify-content: center;
-  }
-
-  /* Horní trojice */
-  .usp-item:nth-child(1) { grid-column: 1; grid-row: 1; }
-  .usp-item:nth-child(2) { grid-column: 2; grid-row: 1; top: 130px; }
-  .usp-item:nth-child(3) { grid-column: 3; grid-row: 1; }
-
-  /* Spodní dvojice – vystředěně */
-  .usp-item:nth-child(4) {
-    grid-column: 1;
-    grid-row: 2;
-    justify-self: center;
-    max-width: 300px;
-  }
-  .usp-item:nth-child(5) {
-    grid-column: 3;
-    grid-row: 2;
-    justify-self: center;
-    max-width: 300px;
+  [data-usp-production] .usp-prod_how {
+    margin-top: 10.4rem; 
   }
 }
 
-/* ===============================================
-   USP ITEM – BOXY
-=============================================== */
-.usp-item {
+/* 1440+ = trochu víc vzduchu */
+@media (min-width: 1440px) {
+  [data-usp-production] .usp-prod_layout {
+    gap: clamp(2.5rem, 4vw, 5rem);
+  }
+}
+
+/* --------------------------------------------------
+   2) WHY – jedna dlouhá “neumo/soft UI” karta
+-------------------------------------------------- */
+[data-usp-production] .usp-prod_why-card {
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(16, 48, 34, 0.1);
+  overflow: hidden;
+
+  box-shadow: 18px 18px 40px rgba(0, 0, 0, 0.1),
+    -18px -18px 40px rgba(255, 255, 255, 0.55);
+}
+
+/* položky v kartě */
+[data-usp-production] .usp-prod_why-item {
   position: relative;
-  background: #ffffff;
-  border: 0.5px solid rgba(220, 220, 220, 0.6);
-  border-radius: var(--radius-md);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-  transition:
-    transform 0.35s ease,
-    box-shadow 0.35s ease,
-    background-color 0.35s ease,
-    border-color 0.35s ease;
-  z-index: 2;
+  margin: 0;
+  padding: 18px 18px;
+
+  display: grid;
+  grid-template-columns: 46px 1fr;
+  gap: 14px;
+  align-items: start;
+
+  background: transparent;
+  border-top: 1px solid rgba(16, 48, 34, 0.1);
+
+  transition: transform 220ms ease;
 }
 
-
-/* ===============================================
-   OBSAH BOXŮ
-=============================================== */
-.usp-item h5 {
-  font-family: "Inter", sans-serif;
-  font-weight: 600;
-  color: var(--brand-700);
-  margin-bottom: 0.75rem;
-  font-size: 1.15rem;
-  transition: color 0.3s ease;
+[data-usp-production] .usp-prod_why-item:first-child {
+  border-top: none;
 }
 
-.usp-item p {
-  color: var(--text-700);
-  line-height: 1.5;
-  font-size: 0.95rem;
-}
+/* ikona vlevo */
+[data-usp-production] .usp-prod_why-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 16px;
 
-/* ===============================================
-   IKONA 
-=============================================== */
-.usp-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: var(--radius-md);
-  background: var(--brand-100);
-  color: var(--brand-700);
   display: grid;
   place-items: center;
-  font-size: 1.75rem;
-  margin: 0 auto 1rem auto;
-  transition: background 0.3s ease, transform 0.3s ease;
+
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(16, 48, 34, 0.12);
+
+  box-shadow: 10px 10px 18px rgba(0, 0, 0, 0.1),
+    -10px -10px 18px rgba(255, 255, 255, 0.65);
 }
 
-/* ===============================================
-   RESPONSIVE SPACING
-=============================================== */
-@media (min-width: 1200px) {
-  .usp-section {
-    padding-block: calc(var(--space-8) + 0.15rem);
+[data-usp-production] .usp-prod_why-icon i {
+  width: 20px;
+  height: 20px;
+  color: var(--brand-800);
+}
+
+/* texty */
+[data-usp-production] .usp-prod_why-title {
+  margin: 0;
+  line-height: 1.2;
+  font-weight: 800;
+  color: var(--brand-900);
+}
+
+[data-usp-production] .usp-prod_why-text {
+  margin: 0.35rem 0 0;
+  opacity: 0.88;
+  line-height: 1.55;
+}
+
+/* Hover overlay – řeší “pruhy/mezery” (nebarvíme background přímo) */
+[data-usp-production] .usp-prod_why-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.26);
+  opacity: 0;
+  transition: opacity 220ms ease;
+  pointer-events: none;
+}
+
+[data-usp-production] .usp-prod_why-item:first-child::before {
+  border-top-left-radius: 22px;
+  border-top-right-radius: 22px;
+}
+
+[data-usp-production] .usp-prod_why-item:last-child::before {
+  border-bottom-left-radius: 22px;
+  border-bottom-right-radius: 22px;
+}
+
+/* Hover (desktop only) */
+@media (hover: hover) and (pointer: fine) {
+  [data-usp-production] .usp-prod_why-item:hover {
+    transform: translateY(-1px);
+  }
+
+  [data-usp-production] .usp-prod_why-item:hover::before {
+    opacity: 1;
+  }
+
+  [data-usp-production] .usp-prod_why-item:hover .usp-prod_why-icon {
+    /* pressed-in */
+    box-shadow: inset 10px 10px 18px rgba(0, 0, 0, 0.1),
+      inset -10px -10px 18px rgba(255, 255, 255, 0.65);
+  }
+
+  [data-usp-production] .usp-prod_why-item:hover .usp-prod_why-icon i {
+    color: var(--brand-900);
   }
 }
 
-@media (min-width: 1400px) {
-  .usp-section .container {
-    max-width: 1100px;
+/* --------------------------------------------------
+   3) HOW – nadpis + timeline
+-------------------------------------------------- */
+[data-usp-production] .usp-prod_how-title {
+  margin: 0 0 0.5rem;
+  font-weight: 900;
+  color: var(--brand-black);
+}
+
+[data-usp-production] .usp-prod_how-intro {
+  margin: 0 0 1.5rem;
+  opacity: 0.85;
+  line-height: 1.55;
+}
+
+/* řádek timeline */
+[data-usp-production] .usp-prod_step {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 1rem;
+  padding-block: 1rem;
+
+  border-bottom: 1px solid rgba(16, 48, 34, 0.08);
+}
+
+[data-usp-production] .usp-prod_step:last-child {
+  border-bottom: none;
+}
+
+/* badge: #01 nahoře, tečka pod tím */
+[data-usp-production] .usp-prod_step-badge {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  grid-auto-rows: min-content;
+  padding-top: 2px;
+}
+
+[data-usp-production] .usp-prod_step-num {
+  font-weight: 900;
+  color: var(--brand-black);
+  opacity: 0.9;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+[data-usp-production] .usp-prod_step-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  margin-top: 12px;
+
+  background: rgba(16, 48, 34, 0.18);
+  border: 1px solid rgba(16, 48, 34, 0.26);
+  box-shadow: 0 0 0 8px rgba(16, 48, 34, 0.06);
+}
+
+/* čárkovaná čára dolů (pro každý step zvlášť) */
+[data-usp-production] .usp-prod_step-badge::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 32px;
+  transform: translateX(-50%) scaleY(0);
+  transform-origin: top;
+
+  height: calc(100% - 16px);
+  border-left: 2px dashed rgba(16, 48, 34, 0.24);
+
+  opacity: 0;
+  transition: transform 680ms cubic-bezier(0.2, 0.9, 0.2, 1), opacity 480ms ease;
+}
+
+[data-usp-production] .usp-prod_step:last-child .usp-prod_step-badge::after {
+  display: none;
+}
+
+/* title + ikonka vpravo */
+[data-usp-production] .usp-prod_step-head {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  gap: 10px;
+  align-items: center;
+}
+
+[data-usp-production] .usp-prod_step-ico i {
+  width: 18px;
+  height: 18px;
+  color: var(--brand-800);
+  opacity: 0.92;
+}
+
+[data-usp-production] .usp-prod_step-content h5 {
+  margin: 0;
+  font-weight: 800;
+  color: var(--brand-900);
+}
+
+[data-usp-production] .usp-prod_step-content p {
+  margin: 0.25rem 0 0;
+  opacity: 0.85;
+  line-height: 1.55;
+}
+
+/* --------------------------------------------------
+   4) JS reveal / hide (timeline steps)
+-------------------------------------------------- */
+[data-usp-production] .usp-prod_step {
+  opacity: 0;
+  transform: translateY(18px);
+  filter: blur(8px);
+
+  transition: opacity 520ms ease, transform 720ms cubic-bezier(0.2, 0.9, 0.2, 1),
+    filter 720ms ease;
+  will-change: opacity, transform, filter;
+}
+
+[data-usp-production] .usp-prod_step.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+[data-usp-production] .usp-prod_step.is-visible .usp-prod_step-badge::after {
+  transform: translateX(-50%) scaleY(1);
+  opacity: 1;
+}
+
+[data-usp-production] .usp-prod_step-num,
+[data-usp-production] .usp-prod_step-dot {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 520ms ease, transform 720ms cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+
+[data-usp-production] .usp-prod_step.is-visible .usp-prod_step-num,
+[data-usp-production] .usp-prod_step.is-visible .usp-prod_step-dot {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hover jemně zvýrazní dot */
+@media (hover: hover) and (pointer: fine) {
+  [data-usp-production] .usp-prod_step:hover .usp-prod_step-dot {
+    background: rgba(16, 48, 34, 0.26);
+    border-color: rgba(16, 48, 34, 0.34);
   }
 }
 
-/* ===============================================
-   MOBILNÍ ÚPRAVY
-=============================================== */
-@media (max-width: 768px) {
-  .usp-section::after {
-    width: 95%;
-    height: 240px;
-    opacity: 0.45;
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  [data-usp-production] .usp-prod_step,
+  [data-usp-production] .usp-prod_step-badge::after,
+  [data-usp-production] .usp-prod_step-num,
+  [data-usp-production] .usp-prod_step-dot {
+    transition: none !important;
+    transform: none !important;
+    filter: none !important;
+    opacity: 1 !important;
   }
+}
+
+/* --------------------------------------------------
+   5) A11Y – focus (pokud budou položky někdy klikací)
+-------------------------------------------------- */
+[data-usp-production] .usp-prod_why-card:focus-within,
+[data-usp-production] .usp-prod_step:focus-within {
+  outline: 2px solid rgba(16, 48, 34, 0.28);
+  outline-offset: 4px;
 }

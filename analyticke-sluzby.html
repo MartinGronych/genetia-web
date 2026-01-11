@@ -4,84 +4,125 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Analytické služby – Genetia</title>
+    <meta
+      name="description"
+      content="Genetia – analytické služby, výzkum a odborné zázemí pro farmaceutickou kvalitu."
+    />
 
-    <!-- Fonts: IBM Plex Sans (Analytické služby) -->
+    <!-- Google Fonts – sjednocené -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
-    <!-- Bootstrap -->
+    <!-- Bootstrap (layout & utilities) -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
 
-    <!-- Page CSS (Analytické služby) -->
+    <!-- Globální styly (NAV + layout + tokens) -->
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <!-- Page styly -->
     <link
       rel="stylesheet"
       href="assets/css/pages/analyticke-sluzby/analyticke-sluzby.css"
     />
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/logo/favicon.png" type="image/png" />
   </head>
 
   <body class="page-analyticke-sluzby">
-    <!-- =========================================================
-         NAVIGACE
-         - Sticky Top
-         - Desktop menu + mobile hamburger
-         - Tlačítko Klientská zóna
-    ========================================================== -->
-    <nav class="navbar navbar-expand-lg bg-white sticky-top shadow-sm">
-      <div class="container align-items-center justify-content-between">
-        <!-- Logo -->
-        <a
-          class="navbar-brand d-flex align-items-center gap-2"
-          href="index.html"
-        >
-          <img
-            src="assets/images/logo/GENETIA-LOGO.png"
-            alt="Genetia logo"
-            class="logo-img"
-          />
-        </a>
+    <header class="site-header">
+      <!-- NAVIGACE -->
+      <nav class="navbar" data-nav>
+        <div class="container align-items-center justify-content-between">
+          <!-- Logo -->
+          <a
+            class="navbar-brand d-flex align-items-center gap-2"
+            href="index.html"
+          >
+            <img
+              src="assets/images/logo/GENETIA-LOGO.png"
+              alt="Genetia logo"
+              class="logo-img"
+            />
+          </a>
 
-        <!-- Desktop navigace (centrálně) -->
-        <div class="d-none d-lg-flex mx-auto nav-center">
-          <ul class="navbar-nav text-center gap-4"></ul>
+          <!-- Desktop navigace (JS render) -->
+          <div class="nav-center mx-auto">
+            <ul class="navbar-nav text-center gap-4" id="navDesktopList"></ul>
+          </div>
+
+          <!-- Pravá strana: hamburger -->
+          <div class="d-flex align-items-center gap-3 nav-actions">
+            <div class="hamburger-wrapper">
+              <input
+                type="checkbox"
+                id="navToggle"
+                aria-label="Otevřít navigaci"
+              />
+
+              <label class="menu" for="navToggle" aria-hidden="true">
+                <span class="hamburger"></span>
+              </label>
+
+              <!-- Mobile panel -->
+              <div class="mobile-nav" id="mobileNavPanel">
+                <!-- Mobile menu list (JS render) -->
+                <ul id="navMobileList"></ul>
+
+                <!-- Theme switch in mobile panel (utopený vpravo dole) -->
+                <div class="mobile-nav_theme">
+                  <label
+                    class="theme-switch theme-switch--panel"
+                    for="themeSwitch"
+                    aria-label="Přepnout světlý / tmavý režim"
+                  >
+                    <input
+                      id="themeSwitch"
+                      type="checkbox"
+                      class="theme-switch__checkbox"
+                    />
+                    <div class="theme-switch__container">
+                      <div class="theme-switch__clouds"></div>
+
+                      <div class="theme-switch__stars-container">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 144 55"
+                          fill="none"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M135.831 3.00688C135.055 3.85027 134.111 4.29946 133 4.35447C134.111 4.40947 135.055 4.85867 135.831 5.71123C136.607 6.55462 136.996 7.56303 136.996 8.72727C136.996 7.95722 137.172 7.25134 137.525 6.59129C137.886 5.93124 138.372 5.39954 138.98 5.00535C139.598 4.60199 140.268 4.39114 141 4.35447C139.88 4.2903 138.936 3.85027 138.16 3.00688C137.384 2.16348 136.996 1.16425 136.996 0C136.996 1.16425 136.607 2.16348 135.831 3.00688Z"
+                            fill="currentColor"
+                          ></path>
+                        </svg>
+                      </div>
+
+                      <div class="theme-switch__circle-container">
+                        <div class="theme-switch__sun-moon-container">
+                          <div class="theme-switch__moon">
+                            <div class="theme-switch__spot"></div>
+                            <div class="theme-switch__spot"></div>
+                            <div class="theme-switch__spot"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <!-- Klientská zóna (otevře custom modal) -->
-        <button
-          class="btn btn-accent d-none d-md-inline-block"
-          id="openClientModal"
-        >
-          Klientská zóna
-        </button>
-
-        <!-- Mobile hamburger + rychlé menu -->
-        <label class="hamburger-wrapper d-lg-none">
-          <input type="checkbox" id="menu-toggle" />
-          <span class="menu">
-            <span class="hamburger"></span>
-          </span>
-          <ul class="mobile-nav">
-            <li><a href="index.html">Domů</a></li>
-            <li><a href="o-spolecnosti.html">O společnosti</a></li>
-            <li><a href="produkty.html">Produkty</a></li>
-            <li><a href="vyvoj-vyzkum.html">Vývoj a výzkum</a></li>
-            <li><a href="analyticke-sluzby.html">Analytické služby</a></li>
-            <li><a href="kontakt.html">Kontakt</a></li>
-          </ul>
-        </label>
-      </div>
-
-      <!-- Mobile menu (Bootstrap collapse placeholder / nav se doplňuje skriptem) -->
-      <div class="collapse navbar-collapse" id="navMobile">
-        <ul class="navbar-nav text-center gap-3 py-3"></ul>
-      </div>
-    </nav>
+      </nav>
+    </header>
 
     <!-- =========================================================
          MODAL: KLIENTSKÁ ZÓNA (Custom modal)
@@ -126,85 +167,115 @@
     </div>
 
     <main id="main-content">
-      <!-- =========================================================
-         SCROLLY VIDEO (Sticky background)
-         - Video běží v sticky vrstvě
-         - Přes video scrolluje obsah v _content
-         - Overlay vrstva používá CSS proměnnou --sv-dim (ztmavení)
-    ========================================================== -->
-      <section class="scrolly-video" id="scrolly-video">
-        <!-- Sticky video vrstva -->
-        <div class="scrolly-video_sticky">
+      <!-- =================
+       HERO (stejné jako homepage)
+  ======================= -->
+      <section class="hero-section">
+        <!-- 🎬 Video pozadí (desktop/tablet) -->
+        <div class="hero-video-wrapper">
           <video
-            class="scrolly-video_media"
+            class="hero-video"
+            src="/assets/video/Genetia1080i_2min.mp4"
             autoplay
             muted
             loop
             playsinline
-            preload="auto"
-          >
-            <source src="assets/video/Genetia1080i_2min.mp4" type="video/mp4" />
-          </video>
-
-          <!-- Overlay vrstva pro ztmavení/zesvětlení -->
-          <div class="scrolly-video_overlay" aria-hidden="true"></div>
+            preload="metadata"
+          ></video>
         </div>
 
-        <!-- =========================================================
-           SCROLLY CONTENT (obsah, který scrolluje přes video)
-           - HERO + USP + Panely služeb
-      ========================================================== -->
-        <div class="scrolly-video_content">
-          <!-- HERO: Nadpis + perex (v rámci scrolly obsahu) -->
-          <section class="hero-analyticke text-center">
-            <div class="container position-relative">
-              <h1 class="mb-3">
-                Laboratorní analýza léčebného konopí a výrobků z něj
-              </h1>
-              <p class="lead mx-auto" style="max-width: 720px">
-                Poskytujeme komplexní, rychlé a spolehlivé analýzy s využitím
-                špičkového laboratorního vybavení. Naše laboratoř je držitelem
-                certifikátu GMP/SVP vydaného SOUKL.
-              </p>
+        <!-- Obsah HERO  -->
+        <div class="container">
+          <div class="hero-content text-center">
+            <h1>
+              Laboratorní analýza <span class="hero-highlight">konopí</span> a
+              výrobků z něj
+            </h1>
+            <p class="hero-lead mx-auto" style="max-width: 720px">
+              Poskytujeme komplexní, rychlé a spolehlivé analýzy s využitím
+              špičkového laboratorního vybavení. Naše laboratoř je držitelem
+              certifikátu GMP/SVP vydaného SÚKL.
+            </p>
+            <div class="hero-cta mt-4">
+
+              <a href="/kontakt.html" class="btn btn-brand btn-lg">
+                Objednat analýzu →
+              </a>
+
+              <a href="#proc-laborator" class="btn btn-secondary-panel btn-lg">
+                Zjistit více
+              </a>
             </div>
-          </section>
-
-          <!-- USP BAR: Klíčové benefity -->
-          <section class="usp-bar usp-bar-bg border-bottom">
-            <div class="container">
-              <div
-                id="uspGrid"
-                class="usp-grid"
-                data-bs-toggle="usp"
-                aria-label="Klíčové benefity"
-              ></div>
-            </div>
-          </section>
-
-          <!-- =========================================================
-          Naše SLUŽBY (render z panels.json → JS)
-          ========================================================== -->
-          <section
-            id="testovaci-panely"
-            class="test-panels-section test-panels-bg section-fade-bottom"
-          >
-            <div class="container">
-              <h2 class="section-title mb-4 text-center">Naše služby</h2>
-
-              <!-- sem se karty vyrenderují z JS -->
-              <div
-                id="testPanelsGrid"
-                class="test-panels-grid"
-                aria-live="polite"
-              ></div>
-            </div>
-          </section>
-
-          <!-- Placeholder: další sekce (proces, požadavky, ...) už jsou mimo scrolly wrapper -->
+          </div>
         </div>
       </section>
 
-        <!-- =========================================================
+      <!-- ====================
+       USP BAR: Proč si vybrat naši laboratoř?
+      ===================== -->
+      <section class="usp-bar usp-bar-bg border-bottom" id="proc-laborator">
+        <div class="container">
+          <header class="usp-bar_head text-center">
+            <h2 class="usp-bar_title">Proč si vybrat naši laboratoř?</h2>
+            <p class="usp-bar_subtitle mb-0">
+              Kombinujeme odbornost, moderní technologie a přísné standardy
+              kvality.
+            </p>
+          </header>
+
+          <div
+            id="uspGrid"
+            class="usp-grid"
+            data-bs-toggle="usp"
+            aria-label="Klíčové benefity"
+          ></div>
+        </div>
+      </section>
+
+      <!-- ==================================
+       DETAIL BENEFITY 
+      ================================== -->
+      <div id="benefitsMount"></div>
+
+      <!-- =========================================================
+       Naše SLUŽBY (render z panels.json → JS)
+      ========================================================== -->
+      <section
+        id="testovaci-panely"
+        class="test-panels-section test-panels-bg section-fade-bottom"
+      >
+        <div class="container">
+          <h2 class="section-title mb-4 text-center">Naše služby</h2>
+
+          <p class="test-panels-subtitle text-center mb-4">
+            Nabízíme komplexní portfolio analytických služeb pro konopí a
+            produkty z něj.
+          </p>
+
+          <!-- sem se karty vyrenderují z JS -->
+          <div
+            id="testPanelsGrid"
+            class="test-panels-grid"
+            aria-live="polite"
+          ></div>
+        </div>
+        <!-- Individuální přístup -->
+        <div class="container_pristup">
+          <div class="individual-approach_card text-center">
+            <div class="individual-approach_title">
+              <i data-lucide="sparkles" aria-hidden="true"></i>
+              Individuální přístup
+            </div>
+
+            <p class="mb-0">
+              Potřebujete analytickou metodu pro jiný typ matrice? Připravíme a
+              validujeme metody přesně podle vašich specifických požadavků.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
          PROCES OBJEDNÁVKY A TESTOVÁNÍ
          - 4 kroky + CTA tlačítka
         ========================================================== -->
@@ -212,14 +283,14 @@
         <div class="container">
           <h2 class="text-center mb-4">Průběh testování</h2>
           <p class="text-center text-muted mb-5">
-            Čtyři jasné kroky od objednávky po doručení certifikátu. Nabízíme
-            také expresní zpracování.
+            Čtyři jasné kroky od objednávky po doručení certifikátu.
           </p>
 
           <ol class="row g-4 list-unstyled mb-0">
             <li class="col-md-3">
               <div
                 class="p-4 bg-white rounded-4 border h-100 process-step text-center"
+                data-hover-card
               >
                 <div class="process-icon">
                   <i data-lucide="shopping-cart"></i>
@@ -234,6 +305,7 @@
             <li class="col-md-3">
               <div
                 class="p-4 bg-white rounded-4 border h-100 process-step text-center"
+                data-hover-card
               >
                 <div class="process-icon">
                   <i data-lucide="flask-conical"></i>
@@ -248,6 +320,7 @@
             <li class="col-md-3">
               <div
                 class="p-4 bg-white rounded-4 border h-100 process-step text-center"
+                data-hover-card
               >
                 <div class="process-icon"><i data-lucide="beaker"></i></div>
                 <h3 class="h5 mb-2">3) Analýza</h3>
@@ -261,6 +334,7 @@
             <li class="col-md-3">
               <div
                 class="p-4 bg-white rounded-4 border h-100 process-step text-center"
+                data-hover-card
               >
                 <div class="process-icon">
                   <i data-lucide="file-check-2"></i>
@@ -277,9 +351,10 @@
             <a href="kontakt.html#form-contact" class="btn btn-accent-proces"
               >Objednat analýzu</a
             >
+            <!--  ZAKOMENTOVÁNO - DOPLNIME JESTLI ANO NEBO NEBUDE
             <a href="#ke-stazeni" class="btn btn-outline-secondary"
               >Stáhnout formuláře</a
-            >
+            > -->
           </div>
         </div>
       </section>
@@ -298,7 +373,10 @@
 
           <div class="row g-4">
             <div class="col-md-4">
-              <div class="p-4 bg-white rounded-4 border h-100 shadow-sm">
+              <div
+                class="p-4 bg-white rounded-4 border h-100 shadow-sm"
+                data-hover-card
+              >
                 <h3 class="h5 mb-2">Množství vzorku</h3>
                 <p class="text-muted mb-0">
                   Informujte se kolik je požadované množství vzorku ke každé
@@ -308,7 +386,10 @@
             </div>
 
             <div class="col-md-4">
-              <div class="p-4 bg-white rounded-4 border h-100 shadow-sm">
+              <div
+                class="p-4 bg-white rounded-4 border h-100 shadow-sm"
+                data-hover-card
+              >
                 <h3 class="h5 mb-2">Balení a označení</h3>
                 <p class="text-muted mb-0">
                   Odešlete vzorek, který je správně zabalený a jasně označený.
@@ -317,7 +398,10 @@
             </div>
 
             <div class="col-md-4">
-              <div class="p-4 bg-white rounded-4 border h-100 shadow-sm">
+              <div
+                class="p-4 bg-white rounded-4 border h-100 shadow-sm"
+                data-hover-card
+              >
                 <h3 class="h5 mb-2">Doprava vzorků</h3>
                 <p class="text-muted mb-0">
                   Zvolte si vhodný způsob doručení a ověřte podmínky přepravy.
@@ -331,7 +415,7 @@
       <!-- =========================================================
          KE STAŽENÍ
          - PDF formuláře a pokyny pro vzorky
-    ========================================================== -->
+    ========================================================== 
       <section id="ke-stazeni" class="ke-stazeni-bg py-5">
         <div class="container text-center">
           <h2 class="section-title mb-4">Ke stažení</h2>
@@ -372,72 +456,64 @@
             </div>
           </div>
         </div>
-      </section>
+      </section>-->
 
-      <!-- =========================================================
-         FAQ
-         - Accordion (custom JS)
-    ========================================================== -->
+      <!-- ===================
+         Často kladené otázky
+      ======================== -->
       <section id="faq" class="py-5 faq-bg">
         <div class="container">
-          <h2 class="section-title text-center mb-4">
-            Často kladené otázky (FAQ)
-          </h2>
+          <h2 class="section-title text-center mb-4">Často kladené otázky</h2>
 
           <div class="faq-wrapper mx-auto" style="max-width: 800px">
             <div class="faq-item">
-              <button class="faq-question" aria-expanded="false">
+              <button class="faq-question" aria-expanded="false"data-hover-card >
                 Jak dlouho trvá zpracování analýzy?
                 <span class="faq-caret">›</span>
               </button>
 
               <div class="faq-answer">
                 <p>
-                  Standardní doba je <strong>5 pracovních dnů</strong>. Expresní
-                  režim (do 48 hodin) je dostupný po předchozí dohodě.
+                  Standardní doba zpracování je nejméně <strong>5 pracovních dnů</strong>.
                 </p>
               </div>
             </div>
 
             <div class="faq-item">
-              <button class="faq-question" aria-expanded="false">
+              <button class="faq-question" aria-expanded="false" data-hover-card>
                 Jaké platební metody akceptujete?
                 <span class="faq-caret">›</span>
               </button>
 
               <div class="faq-answer">
                 <p>
-                  Platba převodem na fakturu nebo přes partnerský účet v
-                  Klientské zóně.
+                  Akceptujeme platbu bankovním převodem na základě faktury. Pro firemní zákazníky nabízíme také možnost úhrady na dobírku nebo platbu kartou online.
                 </p>
               </div>
             </div>
 
             <div class="faq-item">
-              <button class="faq-question" aria-expanded="false">
+              <button class="faq-question" aria-expanded="false" data-hover-card>
                 Je možné zaslat vzorky ze zahraničí?
                 <span class="faq-caret">›</span>
               </button>
 
               <div class="faq-answer">
                 <p>
-                  Ano, po dohodě s naším logistickým oddělením. Vzorky musí
-                  splňovat legislativní podmínky přepravy biologického
-                  materiálu.
+                  Ano, po dohodě s naším logistickým oddělením. Vzorky musí splňovat legislativní podmínky přepravy biologického materiálu.
                 </p>
               </div>
             </div>
 
             <div class="faq-item">
-              <button class="faq-question" aria-expanded="false">
+              <button class="faq-question" aria-expanded="false" data-hover-card>
                 Poskytujete výsledky v elektronické podobě?
                 <span class="faq-caret">›</span>
               </button>
 
               <div class="faq-answer">
                 <p>
-                  Ano, výsledky jsou k dispozici v PDF certifikátu a na vyžádání
-                  i v datovém formátu.
+                  Ano, výsledky a CoA standardně posíláme elektronickou formou. V případě zájmu vám můžeme zaslat originál na požadovanou adresu.
                 </p>
               </div>
             </div>
@@ -445,81 +521,189 @@
         </div>
       </section>
 
-      <!-- =========================================
-          ANALYTICKÉ METODY
-    ========================================== -->
-      <!--<section class="methods-section py-5 methods-bg" id="analyticke-metody">
-      <div class="container">
-        <h2 class="section-title text-center mb-4">Analytické metody</h2>
-        <p class="section-subtitle text-center mb-5">
-          Přehled aktuálních a vyvíjených laboratorních metod, které jsou
-          dostupné nebo ve fázi validace v rámci Genetia Production.
-        </p>
+      <!-- =========================================================
+     CTA
+     - Kontakt / lead capture
+========================================================== -->
+<section class="cta-section text-center py-5 cta-bg">
+  <div class="container">
+    <h2>Začněme spolu měřit přesné výsledky?</h2>
+    <p class="mb-4">
+      Kontaktujte nás pro individuální nabídku testů nebo informace o
+      připravovaných metodách.
+    </p>
 
-        <div class="methods-grid">
-          <div class="method-card">
-            <h3>Chemické a fyzikálně-chemické zkoušky</h3>
-            <ul>
-              <li>Celkový popel</li>
-              <li>Síranový popel</li>
-              <li>Ztráta sušením</li>
-              <li>Stanovení peroxidového čísla</li>
-              <li>Stanovení čísla kyselosti</li>
-              <li>Stanovení lihovitosti</li>
-            </ul>
-          </div>
+    <button
+      type="button"
+      class="btn btn-accent btn-cta"
+      id="ctaEmailToggle"
+      aria-expanded="false"
+    >
+      Napsat e-mail
+    </button>
 
-          <div class="method-card">
-            <h3>Pesticidy (LC-MS/MS)</h3>
-            <ul>
-              <li>Pesticidy ve vysokopotentní odrůdě</li>
-              <li>Pesticidy ve středněpotentní odrůdě</li>
-              <li>Pesticidy v nízkopotentní odrůdě</li>
-              <li>Pesticidy dle lékopisu</li>
-            </ul>
-          </div>
+    <div class="cta-email mt-3 is-hidden" id="ctaEmail">
+      <a href="mailto:info@laborator.cz" class="cta-email_link">
+        info@laborator.cz
+      </a>
+    </div>
+  </div>
+</section>
 
-          <div class="method-card">
-            <h3>Molekulární & mikrobiologická analýza (qPCR)</h3>
-            <ul>
-              <li>Detekce mikroorganismů v KLP metodou qPCR</li>
-              <li>Detekce HLVd (Hop Latent Viroid)</li>
-            </ul>
-          </div>
+    </main>
+    <!-- ================================
+         FOOTER
+    =================================== -->
+    <footer class="site-footer" aria-labelledby="footerTitle">
+      <div class="site-footer_container">
+        <!-- Left: brand -->
+        <div class="site-footer_brand">
+          <h2 class="visually-hidden" id="footerTitle">Patička webu</h2>
 
-          <div class="method-card">
-            <h3>Metody ve vývoji</h3>
-            <ul>
-              <li>LC-MS/MS kanabinoidy (ve fázi validace)</li>
-            </ul>
+          <a
+            class="site-footer_logo"
+            href="index.html"
+            aria-label="Genetia – úvod"
+          >
+            <!-- Sem dáš logo (img nebo svg) -->
+            <img
+              src="assets/images/logo/GENETIA-LOGO.png"
+              alt="Genetia"
+              class="site-footer_logoImg"
+            />
+          </a>
+
+          <p class="site-footer_tagline">
+            Analytické služby a odborné zázemí pro farmaceutickou kvalitu.
+          </p>
+
+          <div class="site-footer_social" aria-label="Sociální sítě">
+            <a
+              class="site-footer_socialLink"
+              href="#"
+              target="_blank"
+              rel="noopener"
+              aria-label="LinkedIn"
+            >
+              <i data-lucide="linkedin"></i>
+            </a>
+            <a
+              class="site-footer_socialLink"
+              href="#"
+              target="_blank"
+              rel="noopener"
+              aria-label="Instagram"
+            >
+              <i data-lucide="instagram"></i>
+            </a>
           </div>
+        </div>
+
+        <!-- Columns -->
+        <div class="site-footer_cols">
+          <nav class="site-footer_col" aria-label="Odkazy – O společnosti">
+            <h3 class="site-footer_heading">Genetia Production</h3>
+            <ul class="site-footer_list">
+              <li>
+                <a class="site-footer_link" href="o-spolecnosti.html"
+                  >O společnosti</a
+                >
+              </li>
+              <li>
+                <a class="site-footer_link" href="kontakt.html">Kontakt</a>
+              </li>
+            </ul>
+          </nav>
+
+          <nav class="site-footer_col" aria-label="Odkazy – Služby">
+            <h3 class="site-footer_heading">Služby</h3>
+            <ul class="site-footer_list">
+              <li>
+                <a class="site-footer_link" href="analyticke-sluzby.html"
+                  >Analytické služby</a
+                >
+              </li>
+              <li>
+                <a
+                  class="site-footer_link"
+                  href="analyticke-sluzby.html#testovaci-panely"
+                  >Naše služby</a
+                >
+              </li>
+              <li>
+                <a class="site-footer_link" href="analytics.html#laborator"
+                  >Laboratoř &amp; zázemí</a
+                >
+              </li>
+            </ul>
+          </nav>
+
+          <nav class="site-footer_col" aria-label="Odkazy – Právní">
+            <h3 class="site-footer_heading">Právní</h3>
+            <ul class="site-footer_list">
+              <li><a class="site-footer_link" href="gdpr.html">GDPR</a></li>
+              <li>
+                <a class="site-footer_link" href="podminky-uziti.html"
+                  >Podmínky užití</a
+                >
+              </li>
+              <li>
+                <a class="site-footer_link" href="cookies.html">Cookies</a>
+              </li>
+            </ul>
+          </nav>
+
+          <address
+            class="site-footer_col site-footer_contact"
+            aria-label="Kontakt"
+          >
+            <h3 class="site-footer_heading">Kontakt</h3>
+            <ul class="site-footer_list">
+              <li>
+                <a
+                  class="site-footer_link"
+                  href="mailto:info@genetia.cz"
+                  aria-label="Napsat e-mail na info@genetia.cz"
+                >
+                  <i data-lucide="mail"></i>
+                  <span>info@genetia.cz</span>
+                </a>
+              </li>
+
+              <li>
+                <a class="site-footer_link" href="tel:+420000000000">
+                  <i data-lucide="phone"></i>
+                  <span>+420 000 000 000</span>
+                </a>
+              </li>
+              <li class="site-footer_text">
+                <a
+                  class="site-footer_link"
+                  href="https://maps.app.goo.gl/KSAFnAKaUEwaw8xv7"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Zobrazit adresu na mapě"
+                >
+                  <i data-lucide="map-pin"></i>
+                  <span>Inovační 122, Zlatníky – Hodkovice</span>
+                </a>
+              </li>
+            </ul>
+          </address>
         </div>
       </div>
-    </section>-->
 
-      <!-- =========================================================
-         CTA
-         - Kontakt / lead capture
-    ========================================================== -->
-      <section class="cta-section text-center py-5 cta-bg">
-        <div class="container">
-          <h2>Začněme spolu tvořit přesné výsledky?</h2>
-          <p class="mb-4">
-            Kontaktujte nás pro individuální nabídku testů nebo informace o
-            připravovaných metodách.
-          </p>
-          <a href="kontakt.html" class="btn btn-accent btn-cta"
-            >Kontaktujte nás</a
-          >
+      <div class="site-footer_bottom">
+        <div class="site-footer_bottomInner">
+          <small class="site-footer_copy">
+            © <span id="year"></span> Genetia Production s.r.o. Všechna práva
+            vyhrazena.
+          </small>
+
+          <small class="site-footer_dev">
+            Vyvinul: <span>Martin Gronych</span>
+          </small>
         </div>
-      </section>
-    </main>
-    <!-- =========================================================
-         FOOTER
-    ========================================================== -->
-    <footer class="footer">
-      <div class="container">
-        <small>© <span id="year"></span> Genetia s.r.o.</small>
       </div>
     </footer>
 
@@ -548,39 +732,6 @@
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
     </script>
-
-    <!-- USP MODAL (Bootstrap) -->
-    <div
-      class="modal fade"
-      id="uspDetailModal"
-      tabindex="-1"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content panel-detail-modal">
-          <div class="modal-header">
-            <h5 class="modal-title" id="uspModalTitle"></h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-            ></button>
-          </div>
-
-          <div class="modal-body">
-            <p id="uspModalLead" class="mb-3"></p>
-            <div id="uspModalMedia" class="mb-3"></div>
-            <div id="uspModalBody"></div>
-          </div>
-
-          <div class="modal-footer">
-            <button class="btn btn-secondary-panel" data-bs-dismiss="modal">
-              Zavřít
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- =========================================================
          MODAL: DETAIL TESTOVACÍHO PANELU (Bootstrap Modal)

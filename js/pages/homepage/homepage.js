@@ -1,45 +1,52 @@
 // ==================================================
-// GENETIA – Homepage (Final Clean v3.2)
+// GENETIA – Homepage (Final Clean v3.4)
 // --------------------------------------------------
-// ▸ Jednotné dynamické načítání form-success.js
-// ▸ Bez duplicitního importu
-// ▸ Vše se spouští po načtení DOMu
+// ▸ Bez pádu celé stránky při chybě jedné komponenty (safeInit)
 // ==================================================
 
-import { initNavigation } from "../../components/nav.js";
-import { initModal } from "../../components/modal.js";
 import { initCarousel } from "../../components/carousel.js";
 import { initCarouselLock } from "../../components/carousel-lock.js";
 import { initCardHover } from "../../components/cardHover.js";
+import { initUspProduction } from "./usp-production.js";
 
-// === Inicializace po načtení DOM ===
 document.addEventListener("DOMContentLoaded", async () => {
-  console.log("📁 homepage.js běží");
+  const PAGE = "homepage";
 
-  // === 1️⃣ Kontakt – dynamické načtení modulu ===
+  // izolovaná inicializace (async-safe + jednotné logy)
+  const safeInit = async (component, fn) => {
+    try {
+      await fn();
+      console.info(`[GENETIA][${PAGE}][${component}] initialized`);
+    } catch (err) {
+      console.error(`[GENETIA][${PAGE}][${component}] init failed`, err);
+    }
+  };
+
+  // 1) Kontakt – dynamické načtení modulu (safe)
   try {
     const formModule = await import("../../components/form-success.js");
-    console.log("📦 Dynamický import:", typeof formModule.initContactForm);
 
     if (typeof formModule.initContactForm === "function") {
       formModule.initContactForm();
-      console.log("🧩 Kontakt formulář inicializován ✅");
+      console.info(`[GENETIA][${PAGE}][form] initialized`);
     } else {
-      console.warn("⚠️ Funkce initContactForm nenalezena v modulu.");
+      console.warn(
+        `[GENETIA][${PAGE}][form] initContactForm not found in form-success.js`
+      );
     }
-  } catch (e) {
-    console.error("❌ Chyba při načítání form-success.js:", e);
+  } catch (err) {
+    console.warn(
+      `[GENETIA][${PAGE}][form] failed to load form-success.js`,
+      err
+    );
   }
 
-  // === 2️⃣ Ostatní komponenty ===
-  try {
-    initNavigation();
-    initModal();
-    initCarousel();
-    initCardHover();
-    initCarouselLock();
-    console.log("✅ Homepage – logika načtena");
-  } catch (e) {
-    console.error("❌ Chyba při inicializaci komponent:", e);
-  }
+  // 2) Ostatní komponenty – safe init po jedné
+
+  safeInit("carousel", initCarousel);
+  safeInit("carousel-lock", initCarouselLock);
+  safeInit("card-hover", initCardHover);
+  safeInit("usp-production", initUspProduction);
+
+  console.info(`[GENETIA][${PAGE}] ready`);
 });

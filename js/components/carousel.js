@@ -109,9 +109,10 @@ export async function initCarousel() {
     li.innerHTML = `
     <div class="carousel-item-content">
       <h3 class="carousel-product-title">${product.name}</h3>
-      <button class="carousel-product-link">
-        Zobrazit produkt
+      <button class="btn btn-brand">
+        odborné informace
       </button>
+      <div class="ratio">${product.ratio}</div>
     </div>
   `;
 
@@ -139,7 +140,7 @@ export async function initCarousel() {
     // =========================
     slider.addEventListener("click", (e) => {
       // 1️⃣ CTA / produktový proklik (má prioritu)
-      const productBtn = e.target.closest(".carousel-product-link");
+      const productBtn = e.target.closest(".products-carousel-section .btn.btn-brand");
       if (productBtn) {
         e.preventDefault();
 

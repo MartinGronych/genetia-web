@@ -3,6 +3,7 @@
     {
       "id": "kanabinoidni-profil",
       "title": "Kanabinoidní profil (HPLC/GC)",
+      "category": "Stanovení obsahu látek",
       "short": "THC, THCA, CBD, CBDA, CBG, CBGA, CBN a další (až 14 sloučenin).",
       "tat": "24–48 h",
       "price": "XXXX Kč",
@@ -22,6 +23,7 @@
     {
       "id": "terpenovy-profil",
       "title": "Terpenový profil (GC-MS)",
+      "category": "Stanovení obsahu látek",
       "short": "Až 30 terpenů – limonen, myrcen, beta-karyofylen…",
       "tat": "24–72 h",
       "price": "XXXX Kč",
@@ -42,6 +44,7 @@
     {
       "id": "rezidua-pesticidu",
       "title": "Rezidua pesticidů (LC-MS/MS)",
+      "category": "Limitní zkoušky",
       "short": "Multireziduální screening dle EU – > 200 látek.",
       "tat": "3–5 dní",
       "price": "XXXX Kč",
@@ -62,6 +65,7 @@
     {
       "id": "tezke-kovy",
       "title": "Těžké kovy (ICP-MS)",
+      "category": "Limitní zkoušky",
       "short": "Pb, Cd, Hg, As – limity dle Ph. Eur.",
       "tat": "2–4 dny",
       "price": "XXXX Kč",
@@ -79,6 +83,7 @@
     {
       "id": "mikrobiologie",
       "title": "Mikrobiologie",
+      "category": "Zkoušky mikrobiologické jakosti",
       "short": "TPC, kvasinky/plísně, E. coli, Salmonella, Enterobacteriaceae.",
       "tat": "3–5 dní",
       "price": "XXXX Kč",
@@ -97,6 +102,7 @@
     {
       "id": "rezidualni-rozpoustedla",
       "title": "Reziduální rozpouštědla & stabilita",
+      "category": "Limitní zkoušky",
       "short": "GC-FID/MS pro IPA/EtOH/Heptan aj., stabilitní studie 30/60/90 dní.",
       "tat": "dle rozsahu",
       "price": "na dotaz",
@@ -113,16 +119,16 @@
       ],
       "turnaround": "Individuálně dle typu vzorku a počtu měření."
     },
-
     {
       "id": "kanabinoidy-hplc-uvvis",
       "title": "Stanovení kanabinoidů (HPLC-UV/VIS)",
+      "category": "Stanovení obsahu látek",
       "short": "Kvantitativní i kvalitativní analýza THC, CBD a CBN dle Ph. Eur. 2.2.29.",
       "tat": "2–5 dní",
       "price": "XXXX Kč",
       "method": "HPLC-UV/VIS",
       "instrumentation": "HPLC systém s UV/VIS detekcí",
-      "description": "Kvantitativní a kvalitativní analýza kanabinoidů (THC, CBD, CBN) v léčebném konopí a ve výrobcích z něj metodou HPLC-UV/VIS. Postup v souladu s monografií Ph. Eur. 2.2.29.",
+      "description": "Kvantitativní a kvalitativní analýza kanabinoidů (THC, CBD, CBN) v léčebném konopí a ve výrobcích z něj metodou HPLC-UV/VIS.",
       "what_we_measure": [
         "THC",
         "CBD",
@@ -134,12 +140,13 @@
     {
       "id": "kanabinoidy-hplc-msms-16",
       "title": "Stanovení kanabinoidů (HPLC-MS/MS)",
-      "short": "Rozšířený panel až 16 kanabinoidů včetně kyselin (CBDVA, THCV, THC-A…).",
+      "category": "Stanovení obsahu látek",
+      "short": "Rozšířený panel až 16 kanabinoidů včetně kyselin.",
       "tat": "2–5 dní",
       "price": "XXXX Kč",
       "method": "HPLC-MS/MS",
       "instrumentation": "LC-MS/MS (triple quadrupole)",
-      "description": "Kvantitativní a kvalitativní analýza kanabinoidů (testujeme až 16 vybraných kanabinoidů) v léčebném konopí a ve výrobcích z něj metodou HPLC-MS/MS.",
+      "description": "Kvantitativní a kvalitativní analýza až 16 vybraných kanabinoidů metodou HPLC-MS/MS.",
       "what_we_measure": [
         "CBDVA",
         "CBDV",
@@ -156,22 +163,22 @@
         "CBL",
         "CBC",
         "THC-A",
-        "CBCA",
-        "Matrice: léčebné konopí, výrobky z léčebného konopí"
+        "CBCA"
       ],
       "turnaround": "Standardně 2–5 dní. Expresní zpracování na vyžádání."
     },
     {
       "id": "pesticidy-lc-msms-50",
       "title": "Stanovení pesticidů (HPLC-MS/MS)",
-      "short": "Cílený panel až 50 vybraných pesticidů (seznam na vyžádání).",
+      "category": "Limitní zkoušky",
+      "short": "Cílený panel až 50 vybraných pesticidů.",
       "tat": "2–5 dní",
       "price": "XXXX Kč",
       "method": "HPLC-MS/MS",
       "instrumentation": "LC-MS/MS (triple quadrupole)",
-      "description": "Kvantitativní a kvalitativní analýza pesticidů (testujeme až 50 vybraných pesticidů) v léčebném konopí metodou HPLC-MS/MS. Seznam analyzovaných pesticidů je k dispozici na vyžádání.",
+      "description": "Kvantitativní a kvalitativní analýza až 50 vybraných pesticidů metodou HPLC-MS/MS.",
       "what_we_measure": [
-        "Až 50 vybraných pesticidů (seznam na vyžádání)",
+        "Až 50 vybraných pesticidů",
         "Matrice: léčebné konopí"
       ],
       "turnaround": "Standardně 2–5 dní. Expresní zpracování na vyžádání."
@@ -179,129 +186,130 @@
     {
       "id": "mikrobiologie-qpcr",
       "title": "Mikrobiologické testování (qPCR)",
-      "short": "Kvantitativně: TAMC, TYMC, BTGN, TC&E. Kvalitativně: Listeria, E. coli (STEC), S. aureus, P. aeruginosa, Salmonella.",
+      "category": "Zkoušky mikrobiologické jakosti",
+      "short": "Kvantitativně i kvalitativně.",
       "tat": "2–5 dní",
       "price": "XXXX Kč",
       "method": "qPCR",
       "instrumentation": "qPCR systém",
-      "description": "Kvantitativní a kvalitativní analýza vybraných mikroorganizmů v léčebném konopí metodou qPCR. Umožňuje rychlé a citlivé vyhodnocení cílových skupin mikroorganizmů.",
+      "description": "Kvantitativní a kvalitativní analýza vybraných mikroorganizmů metodou qPCR.",
       "what_we_measure": [
         "TAMC",
         "TYMC",
         "BTGN",
         "TC&E",
-        "Listeria monocytogenes",
-        "Salmonella sp. a E. coli",
-        "Salmonella sp. a Shiga toxin produkující E. coli",
-        "Staphylococcus aureus a Pseudomonas aeruginosa",
-        "Matrice: léčebné konopí"
+        "Listeria",
+        "Salmonella",
+        "E. coli",
+        "Staphylococcus aureus",
+        "Pseudomonas aeruginosa"
       ],
       "turnaround": "Standardně 2–5 dní. Expresní zpracování na vyžádání."
     },
     {
       "id": "ztrata-susenim",
       "title": "Ztráta sušením",
-      "short": "Stanovení obsahu volné vody (H₂O) v léčebném konopí dle Ph. Eur. 2.2.32.",
+      "category": "Fyzikální a fyzikálně-chemické zkoušky",
+      "short": "Stanovení obsahu volné vody.",
       "tat": "2–5 dní",
       "price": "XXXX Kč",
       "method": "Ztráta sušením (LOD)",
       "instrumentation": "Sušárna / analytické váhy",
-      "description": "Stanovení ztráty sušením v léčebném konopí. V souladu s monografií Ph. Eur. 2.2.32.",
+      "description": "Stanovení ztráty sušením v léčebném konopí.",
       "what_we_measure": [
-        "H₂O (volná)",
-        "Matrice: léčebné konopí"
+        "H₂O (volná)"
       ],
-      "turnaround": "Standardně 2–5 dní. Expresní zpracování na vyžádání."
+      "turnaround": "Standardně 2–5 dní."
     },
     {
       "id": "peroxidove-cislo",
       "title": "Stanovení peroxidového čísla",
-      "short": "Hodnocení oxidace olejů/tuků v extraktech dle Ph. Eur. 2.5.5.",
+      "category": "Fyzikální a fyzikálně-chemické zkoušky",
+      "short": "Hodnocení oxidace olejů.",
       "tat": "2–5 dní",
       "price": "XXXX Kč",
       "method": "Peroxidové číslo",
-      "instrumentation": "Titrační / analytické vybavení",
-      "description": "Stanovení peroxidového čísla ve výrobcích z léčebného konopí (extraktech). V souladu s monografií Ph. Eur. 2.5.5.",
+      "instrumentation": "Titrační vybavení",
+      "description": "Stanovení peroxidového čísla v extraktech.",
       "what_we_measure": [
-        "Množství kyslíku vázaného v olejích a tucích ve formě peroxidů / hydroperoxidů",
-        "Matrice: výrobky z léčebného konopí (extrakty)"
+        "Oxidace olejů a tuků"
       ],
-      "turnaround": "Standardně 2–5 dní. Expresní zpracování na vyžádání."
+      "turnaround": "Standardně 2–5 dní."
     },
     {
       "id": "cislo-kyselosti",
       "title": "Stanovení čísla kyselosti",
-      "short": "Obsah volných mastných kyselin v olejích/extraktech dle Ph. Eur. 2.5.1.",
+      "category": "Fyzikální a fyzikálně-chemické zkoušky",
+      "short": "Obsah volných mastných kyselin.",
       "tat": "2–5 dní",
       "price": "XXXX Kč",
       "method": "Číslo kyselosti",
-      "instrumentation": "Titrační / analytické vybavení",
-      "description": "Stanovení čísla kyselosti ve výrobcích z léčebného konopí (extraktech). V souladu s monografií Ph. Eur. 2.5.1.",
+      "instrumentation": "Titrační vybavení",
+      "description": "Stanovení čísla kyselosti v extraktech.",
       "what_we_measure": [
-        "Obsah volných mastných kyselin přítomných v daném tuku či oleji",
-        "Matrice: výrobky z léčebného konopí (extrakty)"
+        "Volné mastné kyseliny"
       ],
-      "turnaround": "Standardně 2–5 dní. Expresní zpracování na vyžádání."
+      "turnaround": "Standardně 2–5 dní."
     },
     {
       "id": "siranovy-popel",
       "title": "Stanovení síranového popela",
-      "short": "Obsah anorganických (minerálních) látek po mineralizaci se H₂SO₄ dle Ph. Eur. 2.4.14.",
+      "category": "Fyzikální a fyzikálně-chemické zkoušky",
+      "short": "Obsah minerálních látek.",
       "tat": "2–5 dní",
       "price": "XXXX Kč",
       "method": "Síranový popel",
-      "instrumentation": "Muflová pec / laboratorní vybavení",
-      "description": "Stanovení síranového popela v léčebném konopí a produktech z něj. V souladu s monografií Ph. Eur. 2.4.14.",
+      "instrumentation": "Muflová pec",
+      "description": "Stanovení síranového popela.",
       "what_we_measure": [
-        "Anorganické (minerální) látky po úplné mineralizaci vzorku za přítomnosti kyseliny sírové",
-        "Matrice: léčebné konopí, výrobky z léčebného konopí (extrakty)"
+        "Minerální látky"
       ],
-      "turnaround": "Standardně 2–5 dní. Expresní zpracování na vyžádání."
+      "turnaround": "Standardně 2–5 dní."
     },
     {
       "id": "celkovy-popel",
       "title": "Stanovení celkového popela",
-      "short": "Obsah anorganických (minerálních) látek po úplné mineralizaci dle Ph. Eur. 2.4.16.",
+      "category": "Fyzikální a fyzikálně-chemické zkoušky",
+      "short": "Obsah minerálních látek.",
       "tat": "2–5 dní",
       "price": "XXXX Kč",
       "method": "Celkový popel",
-      "instrumentation": "Muflová pec / laboratorní vybavení",
-      "description": "Stanovení celkového popela v léčebném konopí a produktech z něj. V souladu s monografií Ph. Eur. 2.4.16.",
+      "instrumentation": "Muflová pec",
+      "description": "Stanovení celkového popela.",
       "what_we_measure": [
-        "Anorganické (minerální) látky, které zůstávají po úplné mineralizaci vzorku",
-        "Matrice: léčebné konopí, výrobky z léčebného konopí (extrakty)"
+        "Minerální látky"
       ],
-      "turnaround": "Standardně 2–5 dní. Expresní zpracování na vyžádání."
+      "turnaround": "Standardně 2–5 dní."
     },
     {
       "id": "cizi-primesi",
       "title": "Stanovení cizích příměsí",
-      "short": "Kontrola cizích příměsí v léčebném konopí a produktech z něj dle Ph. Eur. 2.8.2.",
+      "category": "Limitní zkoušky",
+      "short": "Kontrola cizích příměsí.",
       "tat": "2–5 dní",
       "price": "XXXX Kč",
       "method": "Stanovení cizích příměsí",
       "instrumentation": "Laboratorní vybavení",
-      "description": "Stanovení cizích příměsí v léčebném konopí a produktech z něj. V souladu s monografií Ph. Eur. 2.8.2.",
+      "description": "Stanovení cizích příměsí.",
       "what_we_measure": [
-        "Cizí příměsi",
-        "Matrice: léčebné konopí, výrobky z léčebného konopí (extrakty)"
+        "Cizí příměsi"
       ],
-      "turnaround": "Standardně 2–5 dní. Expresní zpracování na vyžádání."
+      "turnaround": "Standardně 2–5 dní."
     },
     {
       "id": "hptlc-identifikace",
       "title": "Identifikace kanabinoidů (HPTLC)",
-      "short": "Identifikace léčebného konopí a zařazení podle potence dle Ph. Eur. 2.8.25.",
+      "category": "Farmakognostické metody",
+      "short": "Identifikace léčebného konopí.",
       "tat": "2–5 dní",
       "price": "XXXX Kč",
       "method": "HPTLC",
       "instrumentation": "HPTLC systém",
-      "description": "Identifikace léčebného konopí a jeho zařazení podle potence metodou HPTLC. V souladu s monografií Ph. Eur. 2.8.25.",
+      "description": "Identifikace léčebného konopí a jeho zařazení podle potence.",
       "what_we_measure": [
-        "Potence léčebného konopí",
-        "Matrice: léčebné konopí"
+        "Potence léčebného konopí"
       ],
-      "turnaround": "Standardně 2–5 dní. Expresní zpracování na vyžádání."
+      "turnaround": "Standardně 2–5 dní."
     }
   ]
 }

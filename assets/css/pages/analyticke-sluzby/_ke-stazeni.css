@@ -8,18 +8,19 @@
 
 
 /* ==================================================
-   1️⃣ WRAPPER
+WRAPPER
 ================================================== */
 
 #ke-stazeni {
   padding-block: var(--space-6);
   position: relative;
   z-index: 1;
+  
 }
 
 
 /* ==================================================
-   2️⃣ SEKČNÍ NADPIS
+SEKČNÍ NADPIS
 ================================================== */
 
 #ke-stazeni .section-title {
@@ -33,86 +34,107 @@
 
 
 /* ==================================================
-   3️⃣ DOWNLOAD KARTY (hlavní UI blok)
+DOWNLOAD KARTY (hlavní UI blok)
 ================================================== */
 
 .download-card {
   background: #fff;
-  border: none;
+  border: 1px solid rgba(0,0,0,0.06);
   border-radius: var(--radius-lg);
-  padding: 2.2rem 1.8rem;
 
-  text-align: center;
-  position: relative;
+  padding: 1.4rem 1.4rem 1.2rem;
+
+  text-align: left;
   text-decoration: none;
+  color: inherit;
 
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 0.65rem;
 
   box-shadow: var(--elevation-card);
-  transition: all 0.35s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+
+  /* klíč: stejné výšky bez hacků */
+  min-height: 220px;
 }
 
 .download-card:hover {
   transform: translateY(-2px);
   box-shadow: var(--elevation-card-hover);
-  text-decoration: none;
+  border-color: rgba(0,0,0,0.10);
 }
 
-
 /* ==================================================
-   4️⃣ SVG IKONY — jemné pharma provedení
+SVG IKONY — jemné pharma provedení
 ================================================== */
 
+
 .download-icon {
-  position: absolute;
-  left: 1.2rem;
-  top: 50%;
-  transform: translateY(-50%);
+  position: static;
+  transform: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+
+  background: rgba(0,0,0,0.03);
 }
 
 .download-icon svg {
-  width: 35px !important;
-  height: 35px !important;
-
-  stroke: var(--brand-600) !important;
-  stroke-width: 1.6 !important;
-
-  opacity: 0.75 !important;
-  transition: opacity 0.25s ease, stroke 0.25s ease;
-}
-
-.download-card:hover .download-icon svg {
-  opacity: 1 !important;
+  width: 22px !important;
+  height: 22px !important;
   stroke: var(--brand-700) !important;
+  stroke-width: 1.8 !important;
+  opacity: 0.9 !important;
 }
 
 
 /* ==================================================
-   5️⃣ NADPIS DOKUMENTU
+NADPIS DOKUMENTU
 ================================================== */
-
 .download-card h3 {
+  margin: 0.1rem 0 0;
+  padding: 0;
+
   color: var(--brand-800);
-  font-weight: 600;
-  font-size: 1.3rem;
-  margin-bottom: var(--space-2);
-  padding-left: 1.4rem; /* aby text nebyl překryt ikonou */
-  padding-right: 1rem;
+  font-weight: 700;
+  font-size: 1.15rem;
+  line-height: 1.18;
 }
 
 
 /* ==================================================
-   6️⃣ POPIS
+POPIS
 ================================================== */
 
 .download-card p {
+  margin: 0;
+  padding: 0;
+
   color: var(--text-700);
-  text-decoration: underline;
   font-size: 0.95rem;
   line-height: 1.55;
-  margin-bottom: 0;
-  padding-left: 1.4rem;
-  padding-right: 1rem;
+
+  text-decoration: none; /* pryč podtržení */
+}
+
+/* ==================================================
+CTA – vždy dole (dorovná výšku karet)
+================================================== */
+
+.download-card::after {
+  content: "Stáhnout PDF";
+  margin-top: auto; /* posune CTA na spodek = konzistence */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--brand-700);
+  opacity: 0.95;
 }

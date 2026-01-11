@@ -1,5 +1,5 @@
 /* ==================================================
-   GENETIA – Analytické služby (Multi-entry)
+   GENETIA – Kontakt (Multi-entry)
    Autor: Martin Gronych
    --------------------------------------------------
    Struktura načítání stylů:
@@ -10,7 +10,7 @@
 ================================================== */
 
 /* ==================================================
-   0️⃣ BASE – Základy, proměnné, layout, komponenty
+   BASE – Základy, proměnné, layout, komponenty
 ================================================== */
 @import url("../../base/_tokens.css");
 @import url("../../base/_reset.css");
@@ -18,9 +18,20 @@
 @import url("../../base/_components.css");
 
 /* ==================================================
-   1️⃣ COMPONENTS – Navigace a modální okna
+   COMPONENTS – Navigace a modální okna
 ================================================== */
 @import url("../../components/_navbar.css"); /* Navigace a hamburger menu */
 @import url("../../components/_modal.css"); /* Klientská zóna – přihlašovací modal */
 @import url("../../components/_cta.css"); /* formulář */
+@import url("../../components/_footer.css");  /* Footer */  
+/* ==================================================
+   THEME – Tmavý režim a varianty vzhledu
+================================================== */
+@import url("../../theme/_dark.css");
+@import url("../../theme/_switch.css");
+/* ==================================================
+  KONTAKTY 
+================================================== */
+@import url("../../pages/kontakt/kontaky.css");
+
 

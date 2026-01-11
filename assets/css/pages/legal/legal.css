@@ -1,0 +1,94 @@
+/* ==================================================
+   GENETIA – Legal pages (GDPR / Cookies / Terms)
+   Mobile-first, light, clean
+================================================== */
+
+.legal-page {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(2.5rem, 4vw, 4rem);
+  background: linear-gradient(
+    180deg, var(--gene-light-80) 5%,
+    var(--gene-light-20) 100%
+  );
+}
+
+/* jemná „scientific“ textura (není nutná, ale dělá brand look) */
+.legal-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(560px 220px at 18% 10%, rgba(121, 193, 129, 0.14), transparent 60%),
+    radial-gradient(520px 210px at 85% 25%, rgba(70, 130, 180, 0.10), transparent 60%),
+    radial-gradient(760px 320px at 50% 115%, rgba(121, 193, 129, 0.08), transparent 55%);
+  opacity: 0.95;
+}
+
+/* obsah nad pozadím */
+.legal-page > .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* ==================================================
+   Typography
+================================================== */
+
+.legal-page h1 {
+  color: var(--brand-800);
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  display: inline-block;
+
+  /* ✅ underline efekt patří na h1 */
+  background-image: linear-gradient(to right, var(--brand-300), var(--brand-300));
+  background-size: 0% 3px;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+
+  transition: color 0.2s ease, background-size 0.35s ease;
+}
+
+.legal-page h1:hover {
+  color: var(--brand-900);
+  background-size: 100% 3px;
+}
+
+.legal-page h2 {
+  color: var(--brand-700);
+  font-weight: 600;
+  margin-top: 2.25rem;
+  margin-bottom: 0.75rem;
+  transition: color 0.2s ease;
+}
+
+.legal-page h2:hover {
+  color: var(--brand-900);
+}
+
+.legal-page p,
+.legal-page li {
+  line-height: 1.75;
+  max-width: 70ch;
+}
+
+/* ==================================================
+   Lists / links
+================================================== */
+
+.legal-page ul {
+  padding-left: 1.1rem;
+}
+
+.legal-page a {
+  color: var(--brand-800);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.legal-page a:hover {
+  color: var(--brand-600);
+}

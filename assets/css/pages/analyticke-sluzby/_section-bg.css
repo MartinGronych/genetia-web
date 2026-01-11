@@ -7,7 +7,7 @@
 ================================================== */
 
 /* ==================================================
-   0️⃣ ANTI-SEAM FIX (globální)
+   ANTI-SEAM FIX (globální)
    --------------------------------------------------
    ▸ Na některých displejích vzniká 1px “šev” mezi
      gradienty kvůli subpixel renderingu.
@@ -16,11 +16,25 @@
 
 /* všechny sekce s utility pozadím */
 .page-analyticke-sluzby
-  :is(.usp-bar-bg, .test-panels-bg, .proces-bg, .pozadavky-bg, .ke-stazeni-bg, .faq-bg, .methods-bg, .cta-bg) {
+  :is(
+    .usp-bar-bg,
+    .benefit-section--gmp,
+    .benefit-section--spectrum,
+    .benefit-section--instruments,
+    .benefit-section--validated,
+    .test-panels-bg,
+    .proces-bg,
+    .pozadavky-bg,
+    .ke-stazeni-bg,
+    .faq-bg,
+    .methods-bg,
+    .cta-bg
+  ) {
   position: relative;
   /* mikropřekrytí: eliminuje 1px švy mezi gradienty */
   margin-top: -1px;
   padding-top: 15px;
+  padding-bottom: 15px;
   /* jistota: žádný border “od Bootstrapu / tříd” */
   border-top: 0 !important;
   border-bottom: 0 !important;
@@ -32,7 +46,7 @@
 }
 
 /* ==================================================
-   1️⃣ BASE BRAND BACKGROUNDS (utility)
+BASE BRAND BACKGROUNDS (utility)
 ================================================== */
 
 .bg-brand-50 {
@@ -63,37 +77,88 @@
 }
 
 /* ==================================================
-   2️⃣ USP BAR (usp-bar-bg)
+USP BAR (usp-bar-bg)
+================================================== */
+.usp-bar-bg {
+  background: linear-gradient(
+    180deg, var(--gene-light-20) 5%,
+    var(--gene-light-80) 100%
+  );
+  color: inherit;
+}
+/* ==================================================
+   Benefit section – plynulé navazování (Genetia palette)
+   - sekce na sebe navazují koncovou barvou
+   - žádné viditelné "lajny" mezi sekcemi
 ================================================== */
 
-.usp-bar-bg {
-  
+/* 1) GMP – světlý náběh */
+.page-analyticke-sluzby .benefit-section--gmp {
   background: linear-gradient(
     180deg,
-    var(--gene-light-70) 0%,
-    var(--gene-light-20) 100%);
-  border-radius: 26px 26px 0px 0px;
-  color: #fff;
+    var(--gene-light-80) 0%,
+    var(--gene-light-60) 85%
+  );
+}
+
+/* 2) Instruments – klidová sekce (přebírá světlo z GMP) */
+.page-analyticke-sluzby .benefit-section--instruments {
+  background: linear-gradient(
+    180deg,
+    var(--gene-light-60) 0%,
+    var(--bg) 60%
+  );
+}
+
+/* 3) Spectrum – jemné ztmavení, stále světlé */
+.page-analyticke-sluzby .benefit-section--spectrum {
+  background: linear-gradient(
+    180deg,
+    var(--bg) 0%,
+    var(--gene-light-60) 40%,
+    var(--gene-light-50) 100%
+  );
+}
+
+/* 4) Validated – plynulý přechod do tmavé části */
+.page-analyticke-sluzby .benefit-section--validated {
+  background: linear-gradient(
+    180deg,
+    var(--gene-light-50) 0%,
+    var(--gene-light-60) 35%,
+    var(--gene-light-70) 70%,
+    var(--gene-light-80) 100%
+  );
 }
 
 /* ==================================================
-   3️⃣ TEST PANELY (test-panels-bg)
+TEST PANELY (test-panels-bg)
 ================================================== */
 
 .test-panels-bg {
-  background: linear-gradient(180deg, var(--brand-50) 0%, #ffffff 70%);
+  
+  background: linear-gradient(
+    180deg,
+    var(--gene-light-80) 0%,
+    var(--gene-light-60) 35%
+  );
 }
 
 /* ==================================================
-   4️⃣ PROCES (proces-bg)
+PROCES (proces-bg)
 ================================================== */
 
 .proces-bg {
-  background: linear-gradient(180deg, #ffffff 0%, var(--brand-100) 50%) !important;
+  background: linear-gradient(
+    180deg, var(--gene-light-20) 5%,
+    var(--gene-light-80) 100%
+  );
+  color: inherit;
+  
 }
 
 /* ==================================================
-   5️⃣ POŽADAVKY (pozadavky-bg)
+POŽADAVKY (pozadavky-bg)
 ================================================== */
 
 .pozadavky-bg {
@@ -101,7 +166,7 @@
 }
 
 /* ==================================================
-   6️⃣ KE STAŽENÍ (ke-stazeni-bg)
+KE STAŽENÍ (ke-stazeni-bg)
 ================================================== */
 
 .ke-stazeni-bg {
@@ -109,7 +174,7 @@
 }
 
 /* ==================================================
-   7️⃣ FAQ (faq-bg)
+FAQ (faq-bg)
 ================================================== */
 
 .faq-bg {
@@ -117,7 +182,7 @@
 }
 
 /* ==================================================
-   8️⃣ METODY (methods-bg)
+METODY (methods-bg)
 ================================================== */
 
 .methods-bg {
@@ -125,35 +190,13 @@
 }
 
 /* ==================================================
-   9️⃣ CTA (cta-bg)
+CTA (cta-bg)
 ================================================== */
 
 .cta-bg {
   background: var(--brand-800) !important;
 }
 
-/* ==================================================
-   🔟 UNIVERSAL SECTION FADE (Bottom to White)
-================================================== */
 
-.section-fade-bottom {
-  position: relative;
-  overflow: hidden;
-}
 
-.section-fade-bottom::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -1px;
-  height: 120px;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.55) 45%,
-    rgba(255, 255, 255, 1) 100%
-  );
-  pointer-events: none;
-  z-index: 1;
-}
+

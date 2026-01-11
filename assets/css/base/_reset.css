@@ -12,16 +12,19 @@
 
 html,
 body {
-  height: 100%;
+  height: auto;
   overflow-x: hidden;
 }
 
 html {
   font-size: 16px;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
+  min-height: 100vh;
+  overflow-x: hidden;
   margin: 0;
   font-family: var(--ff-sans);
   color: var(--text);

@@ -16,14 +16,14 @@ export function initProductsGate() {
   const hcpPane = document.getElementById("pro-odborniky");
 
   if (!gateModal || !hcpTab || !publicTab || !hcpPane) {
-    console.warn("⚠️ Gate: chybí některý z povinných prvků");
+    console.warn("[GENETIA][products][gate] missing required elements");
     return;
   }
 
   // 🔒 výchozí stav – odborný panel je zamčený
   hcpPane.classList.add("hcp-locked");
 
-  // ✅ vezmeme deeplink i přímo z URL (nezávisle na index.js)
+  // ✅ vezmeme deeplink i přímo z URL (nezávisle na entry)
   const params = new URLSearchParams(window.location.search);
   const deepFromUrl = params.get("product");
   if (deepFromUrl) {
@@ -75,38 +75,51 @@ export function initProductsGate() {
     }
 
     // jinak zobraz gate modal
-    const modal = new bootstrap.Modal(gateModal);
+    const modal = bootstrap.Modal.getOrCreateInstance(gateModal);
     modal.show();
 
     const continueBtn = gateModal.querySelector("[data-continue]");
     const denyBtn = gateModal.querySelector("#denyAccess");
 
+    // ✅ Continue: uložit verified → zavřít modal → po hidden pokračovat
     if (continueBtn) {
       continueBtn.addEventListener(
         "click",
-        async () => {
-          // uložíme ověření pro session
+        () => {
           sessionStorage.setItem("genetia_hcp_verified", "1");
 
+          gateModal.addEventListener(
+            "hidden.bs.modal",
+            async () => {
+              // pojistka: focus ven z modalu (eliminuje aria-hidden warning)
+              (document.querySelector("main") || document.body).focus?.();
+              await proceed();
+            },
+            { once: true }
+          );
+
           modal.hide();
-
-          // cleanup bootstrap modalu
-          document.body.classList.remove("modal-open");
-          document.querySelectorAll(".modal-backdrop").forEach((el) => el.remove());
-
-          await proceed();
         },
         { once: true }
       );
     }
 
+    // ❌ Deny: zavřít modal → po hidden přepnout na veřejnost
     if (denyBtn) {
       denyBtn.addEventListener(
         "click",
         () => {
+          gateModal.addEventListener(
+            "hidden.bs.modal",
+            () => {
+              const publicInstance = new bootstrap.Tab(publicTab);
+              publicInstance.show();
+              (document.querySelector("main") || document.body).focus?.();
+            },
+            { once: true }
+          );
+
           modal.hide();
-          const publicInstance = new bootstrap.Tab(publicTab);
-          publicInstance.show();
         },
         { once: true }
       );

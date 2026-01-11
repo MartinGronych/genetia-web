@@ -19,16 +19,27 @@ export function initUspReveal() {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
 
+        console.info("[USP REVEAL] intersect ✅", {
+          target: entry.target?.id || entry.target?.className,
+          ratio: entry.intersectionRatio,
+        });
+
         // stagger: podle pořadí v DOM (už je seřazené orderem z JSON)
         items.forEach((el, i) => {
-  const delay = i === 0 ? 0 : i * 485;
-  el.style.setProperty("--usp-reveal-delay", `${delay}ms`);
-  el.classList.add("is-revealed");
-});
+          const delay = i === 0 ? 0 : i * 485;
+          el.style.setProperty("--usp-reveal-delay", `${delay}ms`);
+          el.classList.add("is-revealed");
+        });
+
+        console.info("[USP REVEAL] revealed classes added ✅", {
+          items: items.length,
+          first: items[0]?.className,
+        });
 
         io.disconnect();
       });
     },
+
     { threshold: 0.2, rootMargin: "0px 0px -10% 0px" }
   );
 

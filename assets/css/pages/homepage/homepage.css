@@ -21,12 +21,18 @@
 /* === COMPONENTS - navigace a modální okno === */
 @import url("../../components/_navbar.css"); /*Navigace a hamburger menu*/
 @import url("../../components/_cta.css"); /* === Contact sekce === */
+/* ================================
+   INTERAKTIVNÍ EFEKTY
+================================ */
+@import url("./_carousel.css");
+@import url("../../components/_card.css");
 
 /* === Hero sekce === */
 @import url("./_hero.css");
 
 /* === Services sekce === */
 @import url("./_services.css");
+@import url("./_services-card.css");
 
 /* === USP sekce === */
 @import url("./_usp.css");
@@ -39,12 +45,6 @@
 
 /* === Footer === */
 @import url("../../components/_footer.css");
-
-/* ================================
-   INTERAKTIVNÍ EFEKTY
-================================ */
-@import url("./_carousel.css");
-@import url("../../components/_card.css");
 
 /* ================================
    MODAL (Klientská zóna)

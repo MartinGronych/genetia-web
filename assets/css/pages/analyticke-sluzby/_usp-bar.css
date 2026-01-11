@@ -1,220 +1,251 @@
 /* ==================================================
-   GENETIA – USP BAR (Final)
-   ▸ JS render (uspGrid) + modal trigger
-   ▸ klikatelné karty + hint “Zjistit více”
-   ▸ reveal animace (IntersectionObserver)
-   ▸ breakpointy pro 5 položek
+   GENETIA – USP BAR (Mobile-first, min-width only)
+   ▸ JS render (uspGrid)
+   ▸ klikatelné karty
+   ▸ cardHover kompatibilní
+   ▸ jednotná velikost buněk (nezávisle na délce textu)
 ================================================== */
 
 /* ==================================================
-   1) WRAPPER
+   WRAPPER
 ================================================== */
 
 .usp-bar {
   position: relative;
-  
   z-index: 2;
   color: var(--text-800);
-  padding-top: clamp(3.5rem, 6vw, 4.5rem);   /* ⬆️ lehce víc nahoře */
-  padding-bottom: clamp(1.8rem, 3vw, 2.4rem); /* ⬇️ méně dole */
- 
+  padding-top: clamp(3.5rem, 6vw, 4.5rem) !important;
+  padding-bottom: clamp(2rem, 4vw, 3rem) !important;
 }
 
 /* ==================================================
-   2) GRID – mobile-first
+   HEADER SEKCE
+================================================== */
+
+.usp-bar_head {
+  max-width: 760px;
+  margin-inline: auto;
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.usp-bar_title {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--brand-black);
+}
+
+.usp-bar_subtitle {
+  font-size: 1rem;
+  color: var(--brand-700);
+  opacity: 0.85;
+}
+
+/* ==================================================
+   GRID – mobile first
+   (rail = šířka celé mřížky, ne jednotlivých karet)
 ================================================== */
 
 .usp-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-4);
-  margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+  grid-template-columns: 1fr;   /* mobile */
+  gap: 1.25rem;
+
+  /* mobile: zúžit (aby buňky nebyly moc široké) */
+  max-width: 64%;
+  margin-inline: auto;
+
+  align-items: stretch; /* všechny buňky stejná výška */
 }
 
 /* ==================================================
-   3) USP ITEM – card look (homepage style) + struktura
+   USP ITEM (CARD) – shared
 ================================================== */
 
 .usp-item {
-  background: #fff;
-  border: none;
-  border-radius: var(--radius-md); /* menší než dřív */
-  padding: 0.85rem 1rem;           /* 🔽 menší výška */
-  box-shadow: var(--elevation-card);
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
   height: 100%;
+  display: flex;
+  align-items: stretch;
+  border-radius: var(--radius-lg);
+  background: var(--gene-dark-10);
+  border: 1px solid rgba(0, 0, 0, 0.05);
 
-}
-.usp-item_text {
-  flex-grow: 1;
-}
+  text-decoration: none;
+  color: inherit;
 
+  transition:
+    transform 0.45s ease,
+    box-shadow 0.45s ease,
+    background-color 0.45s ease;
+}
 
 .usp-item:hover {
   transform: translateY(-4px);
-  box-shadow: var(--elevation-card-hover);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.85);
+  transition: transform 0.6s ease-in-out;
 }
 
 .usp-item:focus-visible {
-  outline: none;
-  box-shadow:
-    0 0 0 3px rgba(173, 192, 72, 0.3),
-    0 10px 30px rgba(0, 0, 0, 0.08);
+  outline: 2px solid var(--brand-500);
+  outline-offset: 3px;
 }
 
+/* ==================================================
+   VNITŘNÍ RÁM – sjednocení výšky + layout (icon nad title)
+================================================== */
 
-/* interní struktura (JS render) */
-.usp-item_text {
-  min-width: 0;
+.usp-item_frame {
+  width: 100%;
+  min-height: 120px; /* mobile default */
+
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
-}
-
-.usp-item_title {
-  text-align: center;
-  font-size: 1.05rem;     
-  font-weight: 600;
-  color: var(--brand-800);
-  margin-bottom: 0.35rem;
-  line-height: 1.3;
-}
-
-.usp-item_subtitle {
-  color: var(--text);
-  text-align:center;
-  font-size: 0.88rem;      
-  margin-top: auto;
-  margin-bottom: 0.6rem;
-  line-height: 1.45;
-}
-
-/* hint jako pill */
-.usp-item_hint {
-  display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--brand-800);
-  width: 30%;
-  min-width: 140px;
-  max-width: 220px;
-  margin: 0.75rem auto 0;
-  padding: 0.55rem 1.2rem;
-  color: #fff;
-  border: none;
-  border-radius: var(--radius-md);
+
+  gap: 0.75rem;
+  text-align: center;
+}
+
+/* ==================================================
+   IKONA
+================================================== */
+
+.usp-item_icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+
+  display: grid;
+  place-items: center;
+
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.usp-item_icon:hover {
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+  background: var(--brand-500);
+  transform: scale(1.1);
+  transition: transform 1s ease-in-out;
+}
+
+.usp-item_icon svg {
+  width: 22px;
+  height: 22px;
+  stroke: var(--brand-700);
+}
+
+/* ==================================================
+   TITLE – fix na různou délku textu
+================================================== */
+
+.usp-item_title {
+  font-size: 0.98rem;
   font-weight: 600;
-  letter-spacing: 0.02em;
-  text-decoration: none;
-  cursor: pointer;
-  white-space: nowrap;
-
-  transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease,
-    box-shadow 0.25s ease;
-
-  box-shadow: var(--elevation-card);
-}
-
-.usp-item:hover .usp-item_hint {
-  background: var(--brand-600);
-  color: var(--brand-black);
-  transform: translateY(-1px);
-  box-shadow: var(--elevation-card-hover);
+  padding-inline: 0.5rem;
+  display: block;
+  min-height: calc(1.25em * 2); 
+  align-self: stretch;
+  text-align: center;
 }
 
 /* ==================================================
-   4) REVEAL – třídy z JS
+   BREAKPOINTS (min-width only)
 ================================================== */
 
-.usp-item.is-reveal-ready {
-  opacity: 0;
-  transform: translateY(10px);
-}
-
-.usp-item.is-reveal-ready.is-revealed {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 420ms ease, transform 420ms ease, box-shadow 0.35s ease,
-    background-color 0.35s ease, border-color 0.35s ease;
-  transition-delay: var(--usp-reveal-delay, 0ms);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .usp-item.is-reveal-ready,
-  .usp-item.is-reveal-ready.is-revealed {
-    transition: none;
-    transform: none;
-    opacity: 1;
-  }
-}
-
-/* ==================================================
-   5) BREAKPOINTY – layout 5 položek
-================================================== */
-
-/* 768px — tablet: 2 sloupce, dlouhá položka (4) přes oba sloupce */
+/* 768px:  */
 @media (min-width: 768px) {
   .usp-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px 18px;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 68%;
   }
 
-  .usp-item {
-    font-size: 1rem;
-  }
-
-  /* „metody“ (4. položka) je nejdelší → přes oba sloupce */
-  .usp-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 18px 22px;
+  .usp-item_frame {
+    min-height: 130px;
   }
 }
 
-/* 1024px — notebook: 3 sloupce, dlouhá položka (4) doprostřed */
+/* 1024px:  */
 @media (min-width: 1024px) {
   .usp-grid {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 18px 20px;
+    max-width: 64%;
+  }
+
+  .usp-item_frame {
+    min-height: 140px;
+  }
+}
+
+/* 1440px:  */
+@media (min-width: 1440px) {
+  .usp-grid {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 80%;
+  }
+}
+
+/* 2560px: */
+@media (min-width: 2560px) {
+  .usp-grid {
+    max-width: 100%;
+    gap: 6rem;
   }
 
   .usp-item {
-    font-size: 1.06rem;
-    line-height: 1.4;
-    padding: 1.1rem 1.25rem;
+    padding: 1.6rem 1.2rem;
+    border-radius: 1.4rem;
+  }
+
+  .usp-item_frame {
+    min-height: 220px;
+    gap: 1.2rem;
+  }
+
+  .usp-item_icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 18px;
+  }
+
+  .usp-item_icon svg {
+    width: 34px;
+    height: 34px;
   }
 
   .usp-item_title {
-    font-size: 1.15rem;
+    font-size: 1.6rem;
+    min-height: calc(1.25em * 2);
   }
-
-    .usp-item_subtitle {
-    font-size: 0.95rem;
-  }
-
-  
 }
 
-/* 1440px — ultra wide: 5 sloupců (1 položka = 1 sloupec) */
-@media (min-width: 1440px) {
-  .usp-grid {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 18px 20px;
-  }
+/* ==================================================
+   USP BAR – Reveal animace (jen Analytické služby)
+   Navázané na usp-reveal.js: .is-reveal-ready / .is-revealed
+================================================== */
 
-  .usp-item {
-    font-size: 1.05rem;
-  }
+.usp-bar #uspGrid .usp-item.is-reveal-ready {
+  opacity: 0;
+  transform: translateY(12px);
+}
 
-  /* na široku už nic “nevsazujeme” */
-  .usp-grid .usp-item:nth-child(4) {
-    grid-column: auto;
-    text-align: left;
-    justify-content: space-between;
+.usp-bar #uspGrid .usp-item.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 600ms ease var(--usp-reveal-delay, 0ms),
+    transform 600ms ease var(--usp-reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+/* Respektuj preferenci uživatele */
+@media (prefers-reduced-motion: reduce) {
+  .usp-bar #uspGrid .usp-item.is-reveal-ready,
+  .usp-bar #uspGrid .usp-item.is-revealed {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
   }
 }

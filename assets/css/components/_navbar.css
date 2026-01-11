@@ -1,18 +1,22 @@
 /* ==================================================
-   GENETIA – NAVBAR & HAMBURGER MENU (v3.0 Final Unified)
-   Autor: Martin Gronych
-   --------------------------------------------------
-   ▸ Mobile-first architektura
-   ▸ Plně sjednocené breakpoints
-   ▸ Responsivní hamburger s glass efektem
-   ▸ Optimalizováno pro 768px, 1200px, 1440px+
+   GENETIA – NAVBAR & HAMBURGER MENU (Production)
 ================================================== */
 
 /* ===============================================
-   1️⃣  ZÁKLADNÍ NASTAVENÍ (Mobile-first)
+   1) ZÁKLAD (mobile-first)
 =============================================== */
 :root {
   --nav-height: 70px;
+
+  /* mobile panel sizing */
+  --nav-panel-width: 60vw;
+  --nav-panel-padding-y: 2.2rem;
+  --nav-panel-padding-x: 1rem;
+
+  /* switch in panel (ONLY mobile panel) */
+  --nav-switch-scale: 0.55;
+  --nav-switch-right: 0.75rem;
+  --nav-switch-bottom: 0.75rem;
 }
 
 .navbar {
@@ -21,7 +25,7 @@
   left: 0;
   width: 100%;
   height: var(--nav-height);
-  background: var(--surface);
+  background: var(--bg);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -53,29 +57,13 @@
   opacity: 0.9;
 }
 
-/* Accent button */
-.btn-accent {
-  background: var(--brand-800);
-  color: #fff;
-  border: none;
-  padding: 0.5rem 1.2rem;
-  border-radius: var(--radius-md);
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
-}
-.btn-accent:hover {
-  background: var(--brand-600);
-  transform: translateY(-2px);
-}
-
-/* Desktop menu (hidden on mobile) */
+/* Desktop menu wrapper (hidden on mobile) */
 .nav-center {
   display: none;
 }
 
 /* ===============================================
-   2️⃣  HAMBURGER MENU (Mobile ≤991px)
+   2) HAMBURGER (≤1023)
 =============================================== */
 .hamburger-wrapper {
   position: relative;
@@ -87,7 +75,7 @@
   display: none;
 }
 
-/* Ikona hamburgeru */
+/* Button */
 .hamburger-wrapper .menu {
   width: 42px;
   height: 42px;
@@ -132,7 +120,7 @@
   bottom: -6px;
 }
 
-/* Aktivní stav hamburgeru (X animace) */
+/* Active state (X) */
 .hamburger-wrapper input:checked + .menu {
   background: rgba(255, 255, 255, 0.3);
   box-shadow: none;
@@ -149,62 +137,121 @@
   bottom: 0;
 }
 
-/* Mobilní navigace – glass panel */
+/* ===============================================
+   3) MOBILE GLASS PANEL (div.mobile-nav + ul#navMobileList)
+=============================================== */
 .hamburger-wrapper .mobile-nav {
   position: absolute;
   top: calc(100% + 6px);
-  right: 10px; /* mezera od pravého okraje */
-  width: 60vw;
+  right: 10px;
+  width: var(--nav-panel-width);
+
   background: rgba(255, 255, 255, 0.18);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
+
   border-radius: 0.9rem;
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  padding: 2.2rem 1rem;
-  list-style: none;
+
+  padding: var(--nav-panel-padding-y) var(--nav-panel-padding-x);
   opacity: 0;
   pointer-events: none;
   transform: translateY(-5px);
   transition: opacity 0.35s ease, transform 0.35s ease;
   z-index: 999;
+
+  overflow: hidden;
 }
 
-/* Aktivace menu */
+/* Open state */
 .hamburger-wrapper input:checked + .menu + .mobile-nav {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
 }
 
-/* Položky navigace */
-.hamburger-wrapper .mobile-nav li {
+/* UL reset (fix teček) */
+.mobile-nav #navMobileList {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+/* LI items */
+.mobile-nav #navMobileList li {
   width: 100%;
   text-align: center;
   padding: 5px;
   opacity: 0;
   transform: translateY(-10px);
 }
-.hamburger-wrapper input:checked + .menu + .mobile-nav li {
+
+/* Animate items when open */
+.hamburger-wrapper input:checked + .menu + .mobile-nav #navMobileList li {
   animation: navItemFade 0.4s forwards ease;
 }
-.hamburger-wrapper input:checked + .menu + .mobile-nav li:nth-child(1) { animation-delay: 0.1s; }
-.hamburger-wrapper input:checked + .menu + .mobile-nav li:nth-child(2) { animation-delay: 0.2s; }
-.hamburger-wrapper input:checked + .menu + .mobile-nav li:nth-child(3) { animation-delay: 0.3s; }
-.hamburger-wrapper input:checked + .menu + .mobile-nav li:nth-child(4) { animation-delay: 0.4s; }
-.hamburger-wrapper input:checked + .menu + .mobile-nav li:nth-child(5) { animation-delay: 0.5s; }
-
-@keyframes navItemFade {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+.hamburger-wrapper
+  input:checked
+  + .menu
+  + .mobile-nav
+  #navMobileList
+  li:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.hamburger-wrapper
+  input:checked
+  + .menu
+  + .mobile-nav
+  #navMobileList
+  li:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.hamburger-wrapper
+  input:checked
+  + .menu
+  + .mobile-nav
+  #navMobileList
+  li:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.hamburger-wrapper
+  input:checked
+  + .menu
+  + .mobile-nav
+  #navMobileList
+  li:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.hamburger-wrapper
+  input:checked
+  + .menu
+  + .mobile-nav
+  #navMobileList
+  li:nth-child(5) {
+  animation-delay: 0.5s;
 }
 
-/* Odkazy v menu */
-.hamburger-wrapper .mobile-nav a {
+@keyframes navItemFade {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Links */
+.mobile-nav #navMobileList a {
   display: inline-block;
   color: var(--brand-black);
   font-size: 1.1rem;
@@ -214,17 +261,42 @@
   text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   transition: color 0.25s ease, transform 0.25s ease;
 }
-.hamburger-wrapper .mobile-nav a:hover {
+.mobile-nav #navMobileList a:hover {
   color: var(--brand-600);
   transform: translateY(-2px);
 }
 
 /* ===============================================
-   3️⃣  TABLET (min-width: 768px)
+   4) THEME SWITCH
+   - Mobile: scaled in panel
+   - Desktop: NO global scale, no fixed height
+=============================================== */
+.mobile-nav_theme {
+  position: absolute;
+  right: var(--nav-switch-right);
+  bottom: var(--nav-switch-bottom);
+  z-index: 2;
+  opacity: 0.92;
+  transform: translateY(6px);
+  pointer-events: auto;
+}
+
+/* SCALE ONLY inside the mobile panel slot */
+.mobile-nav_theme .theme-switch {
+  transform: scale(0.35);
+  transform-origin: right bottom;
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+}
+
+/* ===============================================
+   5) TABLET (≥768)
 =============================================== */
 @media (min-width: 768px) {
   :root {
     --nav-height: 80px;
+    --nav-panel-width: 40vw;
   }
 
   .navbar {
@@ -234,16 +306,12 @@
   .logo-img {
     height: 55px;
   }
-
-  .hamburger-wrapper .mobile-nav {
-    width: 40vw;
-  }
 }
+
 /* ===============================================
-   4️⃣ NOTEBOOK VIEWPORT (min-width: 1024px and max-width: 1199px)
-   Optimalizace pro menší notebooky
+   6) DESKTOP (≥1024)
 =============================================== */
-@media (min-width: 1024px) and (max-width: 1199px) {
+@media (min-width: 1024px) {
   :root {
     --nav-height: 80px;
   }
@@ -251,73 +319,34 @@
   .navbar {
     padding: 0.5rem 2rem;
   }
-  .nav-center .nav-link {
-    color: var(--text);
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    font-size: 0.7rem;
-    padding: 0.3rem 0.5rem;
-    position: relative;
-    transition: color 0.3s ease;
-  }
 
   .logo-img {
     height: 65px;
   }
 
-  .hamburger-wrapper .menu {
-    width: 46px;
-    height: 46px;
-  }
-
-  .hamburger-wrapper .mobile-nav {
-    width: 35vw;
-    right: 12px; /* menší mezera pro širší viewport */
-    border-radius: 1rem;
-  }
-
-  .hamburger-wrapper .mobile-nav a {
-    font-size: 1.05rem;
-  }
-
-  .btn-accent {
-    font-size: 0.8rem;
-    padding: 0.35rem 0.9rem;
-    margin-left: 5%;
-  }
-}
-
-/* ===============================================
-   5️⃣  DESKTOP (min-width: 1200px)
-=============================================== */
-@media (min-width: 1200px) {
-  :root {
-    --nav-height: 90px;
-  }
-
-  .navbar {
-    padding: 0.8rem 2rem;
-  }
-
-  .logo-img {
-    height: 80px;
-  }
-
-  /* Zobrazit klasické menu */
   .nav-center {
     display: flex;
+    flex: 1 1 auto;
+    min-width: 0;
     justify-content: center;
-    gap: 1.75rem;
+  }
+
+  .nav-center .navbar-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.4rem; /* o něco menší, aby se vešlo i se switchem */
   }
 
   .nav-center .nav-link {
     color: var(--text);
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.02em;
-    font-size: 0.95rem;
-    padding: 0.4rem 0.6rem;
+    font-size: 0.78rem;
+    padding: 0.3rem 0.5rem;
     position: relative;
     transition: color 0.3s ease;
+    white-space: nowrap;
   }
 
   .nav-center .nav-link:hover,
@@ -342,35 +371,119 @@
     transform: translateX(-50%) scaleX(1);
   }
 
-  /* Skrýt hamburger */
+  /* Desktop: li wrapper pro switch */
+  .nav-center .navbar-nav .nav-item--theme {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-center .navbar-nav .nav-item--theme .theme-switch {
+    transform: none;
+    display: inline-flex;
+    align-items: center;
+    line-height: 0;
+    --toggle-size: 12px;
+  }
+
   .hamburger-wrapper {
     display: none;
   }
 }
 
 /* ===============================================
-   LARGE DESKTOP (min-width: 1440px)
+   7) LARGE DESKTOP (≥1200)
+=============================================== */
+@media (min-width: 1200px) {
+  :root {
+    --nav-height: 100px;
+  }
+
+  .navbar {
+    padding: 0.8rem 2rem;
+  }
+
+  .logo-img {
+    height: 80px;
+  }
+
+  .nav-center .navbar-nav {
+    gap: 1.75rem;
+  }
+
+  .nav-center .nav-link {
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.4rem 0.6rem;
+  }
+}
+
+/* ===============================================
+   8) XL DESKTOP (≥1440)
 =============================================== */
 @media (min-width: 1440px) {
+  :root {
+    --nav-height: 102px;
+  }
+
   .navbar .container {
     max-width: 2400px;
   }
-  .nav-center {
+
+  .nav-center .navbar-nav {
     gap: 2rem;
   }
+
   .nav-center .nav-link {
-    font-size: 1.0rem;
+    font-size: 1rem;
   }
 }
-/* ===============================================
-   LARGE DESKTOP (min-width: 2560px)
-=============================================== */
 
+/* ===============================================
+   9) 4K (≥2560)
+=============================================== */
 @media (min-width: 2560px) {
+  :root {
+    --nav-height: 150px;
+  }
+  .navbar {
+    padding: 1rem 2.5rem;
+  }
+
   .navbar .container {
     max-width: 2600px;
   }
+  .logo-img {
+    height: 96px;
+  }
+
   .nav-center .nav-link {
-    font-size: 1.25rem;
+    font-size: 1.9rem;
+    padding: 0.6rem 0.8rem;
+  }
+  .nav-center .nav-link::after {
+    height: 3px;
+  }
+
+  .nav-center .navbar-nav {
+    gap: 2.4rem;
+  }
+
+  /* Desktop: li wrapper pro switch */
+  .nav-center .navbar-nav .nav-item--theme {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-center .navbar-nav .nav-item--theme .theme-switch {
+    transform: none;
+    display: inline-flex;
+    align-items: center;
+    line-height: 0;
+    --toggle-size: 25px;
+    margin-left: 50px;
   }
 }

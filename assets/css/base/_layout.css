@@ -81,11 +81,6 @@ body.modal-open {
   padding-right: 0 !important;
 }
 
-html {
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
 :root {
   scroll-padding-top: var(--nav-height);
 }

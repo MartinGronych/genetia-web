@@ -1,10 +1,11 @@
 // ==================================================
-// USP BAR – render z JSON do #uspGrid (Pages-safe)
+// USP BAR – render z JSON do #uspGrid (NO modal)
+// - icon from JSON
+// - equal-height cards (fixed inner frame)
 // ==================================================
 
 const GRID_ID = "uspGrid";
-const DATA_URL = "/data/usp.json"; // doporučeno jako root-relative (vyřešíme base prefixem)
-const MODAL_ID = "uspDetailModal";
+const DATA_URL = "/data/usp.json";
 
 // === BASE PATH FIX (GitHub Pages vs local) ===
 const BASE =
@@ -13,7 +14,6 @@ const BASE =
     : "";
 
 const resolveUrl = (url) => {
-  // podporuje "/data/..." i "data/..."
   const clean = url.startsWith("/") ? url : `/${url}`;
   return `${BASE}${clean}`;
 };
@@ -34,33 +34,27 @@ async function fetchJson(url) {
 
 function renderItem(item) {
   const title = escapeHtml(item.title);
-  const subtitle = escapeHtml(item.subtitle || "");
-  const hasSubtitle = Boolean(subtitle);
+  const href = escapeHtml(item.href || item.target || "#");
+  const icon = escapeHtml(item.icon || "award"); // fallback
 
+  // ✅ FIXED FRAME: always same height (CSS will size .usp-item_frame)
   return `
-    <div
+    <a
       class="usp-item"
-      role="button"
-      tabindex="0"
+      href="${href}"
+      role="listitem"
       data-usp-id="${escapeHtml(item.id)}"
-      data-bs-toggle="modal"
-      data-bs-target="#${MODAL_ID}"
+      aria-label="${title}"
     >
-      <div class="usp-item_text">
-        <div class="usp-item_title">${title}</div>
-        ${hasSubtitle ? `<div class="usp-item_subtitle">${subtitle}</div>` : ""}
-      </div>
-      <div class="usp-item_hint" aria-hidden="true">Zjistit více</div>
-    </div>
-  `;
-}
+      <div class="usp-item_frame">
+        <span class="usp-item_icon" aria-hidden="true">
+          <i data-lucide="${icon}"></i>
+        </span>
 
-function attachA11yEnter(grid) {
-  grid.addEventListener("keydown", (e) => {
-    if (e.key !== "Enter") return;
-    const el = e.target.closest("[data-usp-id][role='button']");
-    if (el) el.click();
-  });
+        <div class="usp-item_title">${title}</div>
+      </div>
+    </a>
+  `;
 }
 
 export async function initUspBar() {
@@ -68,9 +62,13 @@ export async function initUspBar() {
   if (!grid) return;
 
   const data = await fetchJson(DATA_URL);
-  const items = Array.isArray(data.items) ? data.items.slice() : [];
+  const items = Array.isArray(data?.items) ? data.items.slice() : [];
   items.sort((a, b) => (a.order ?? 999) - (b.order ?? 999));
 
   grid.innerHTML = items.map(renderItem).join("");
-  attachA11yEnter(grid);
+
+  // ✅ render lucide icons for newly injected markup
+  if (window.lucide?.createIcons) {
+    window.lucide.createIcons();
+  }
 }

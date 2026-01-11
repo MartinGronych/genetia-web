@@ -1,23 +1,23 @@
 /* ==================================================
-   GENETIA – TESTOVACÍ PANELY (Final v5.0)
-   ▸ Čisté pharma UI
-   ▸ Sjednocené karty + tabulka
-   ▸ Sekční nadpis + linka navráceny a optimalizovány
+   GENETIA – TESTOVACÍ PANELY (Clean v6.0)
+   ▸ Lovable-like groups (5 karet)
+   ▸ Bez duplicit, bez legacy .panel-card / btn-panel
+   ▸ Tabulka zachována (pokud se používá)
 ================================================== */
 
 /* ==================================================
-   1️⃣ WRAPPER (pozadí řeší _section-bg.css přes .test-panels-bg)
+   1️⃣ WRAPPER
 ================================================== */
 
 .test-panels-section {
   position: relative;
-  padding-block: clamp(2rem, 6vw, 4rem);
+  padding-bottom: 0 !important;
   z-index: 1;
   color: var(--text-800);
 }
 
 /* ==================================================
-   2️⃣ SEKČNÍ NADPIS + LINKA (sjednocený systém)
+   2️⃣ SEKČNÍ NADPIS + LINKA
 ================================================== */
 
 .test-panels-section .section-title {
@@ -39,15 +39,26 @@
   border-radius: 50px;
 }
 
+/* Subtitle pod nadpisem */
+.test-panels-section .test-panels-subtitle {
+  max-width: 880px;
+  margin-inline: auto;
+  color: var(--text-700);
+  font-size: clamp(1rem, 1.2vw + 0.65rem, 1.15rem);
+  line-height: 1.6;
+}
+
 /* ==================================================
-   3️⃣ GRID
+   3️⃣ GRID = 5 group-karet
 ================================================== */
 
 .test-panels-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-4);
-  margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+  gap: clamp(1.2rem, 2.4vw, 1.8rem);
+
+  /* ⬇️ tady byla velká mezera (duplicitní definice + velký clamp) */
+  margin-bottom: clamp(1.25rem, 3vw, 2rem);
 }
 
 @media (min-width: 768px) {
@@ -56,94 +67,140 @@
   }
 }
 
+/* tvoje přání: když se vejde >1200 vedle sebe (zůstává 2 sloupce) */
 @media (min-width: 1200px) {
+  .test-panels-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1440px) {
   .test-panels-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 /* ==================================================
-   4️⃣ PANEL CARD
+   4️⃣ GROUP CARD (sekce kategorie)
 ================================================== */
 
-.panel-card {
-  background: #fff;
-  border: none;
+.panels-group {
+  background: rgba(255, 255, 255, 0.92);
   border-radius: var(--radius-lg);
-  padding: 1.1rem;
   box-shadow: var(--elevation-card);
-  transition: all 0.35s ease;
-  cursor: pointer;
+  padding: 1.2rem 1.2rem 1.15rem;
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-.panel-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--elevation-card-hover);
-}
-
-/* Nadpis panelu */
-.panel-card h3 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--brand-800);
-  margin-bottom: 0.5rem;
-}
-
-/* Text panelu */
-.panel-card p {
-  color: var(--text-700);
-  font-size: 0.95rem;
+.panels-group_header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 0.9rem;
   margin-bottom: 1rem;
-  line-height: 1.55;
+}
+
+.panels-group_icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+
+  background: rgba(156, 191, 76, 0.14);
+  color: var(--brand-black);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+}
+
+.panels-group_icon i,
+.panels-group_iconSvg {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+.panels-group_title {
+  margin: 0;
+  font-weight: 750;
+  color: var(--brand-800);
+  line-height: 1.15;
+  font-size: 1.15rem;
+}
+
+.panels-group_subtitle {
+  margin: 0.25rem 0 0;
+  color: var(--text-700);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+/* Items list */
+.panels-group_items {
+  display: grid;
+  gap: 0.65rem;
+  margin-top: 0.2rem;
 }
 
 /* ==================================================
-   5️⃣ META INFO
+   5️⃣ “CHIP” BUTTONS (klikací služby → modal)
 ================================================== */
 
-.panel-meta {
+.panel-card.panel-card--chip {
+  width: 100%;
+  text-align: left;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: var(--brand-600);
-  font-weight: 500;
-  font-size: 0.8rem;
-  margin-top: var(--space-2);
-}
+  gap: 0.75rem;
 
-/* ==================================================
-   6️⃣ BUTTON PANELU
-================================================== */
+  padding: 0.85rem 0.95rem;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
 
-.btn-panel {
-  background: var(--brand-800);
-  color: #fff;
-  border: none;
-  border-radius: var(--radius-sm);
-  font-size: 0.75rem;
-  padding: 0.3rem 0.5rem;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: 0.02em;
-  text-decoration: none;
+  background: #fff;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+
   cursor: pointer;
-  white-space: nowrap;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 
-  transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease,
-    box-shadow 0.25s ease;
-
-  box-shadow: var(--elevation-card);
+  /* reset button default */
+  appearance: none;
 }
 
-.btn-panel:hover {
-  background: var(--brand-600);
-  color: var(--brand-black);
+.panel-card.panel-card--chip .panel-title {
+  margin: 0;
+  font-size: 0.98rem;
+  font-weight: 650;
+  color: var(--text-800);
+  line-height: 1.25;
+}
+
+.panel-card.panel-card--chip .panel-chipArrow {
+  color: var(--brand-700);
+  font-size: 1.25rem;
+  line-height: 1;
+  transform: translateX(0);
+  transition: transform 0.25s ease;
+}
+
+.panel-card.panel-card--chip:hover {
   transform: translateY(-1px);
-  box-shadow: var(--elevation-card-hover);
+  border-color: rgba(156, 191, 76, 0.35);
+  box-shadow: 0 16px 28px rgba(0, 0, 0, 0.07);
+}
+
+.panel-card.panel-card--chip:hover .panel-chipArrow {
+  transform: translateX(2px);
+}
+
+.panel-card.panel-card--chip:focus-visible {
+  outline: 3px solid rgba(156, 191, 76, 0.35);
+  outline-offset: 2px;
 }
 
 /* ==================================================
-   7️⃣ TABULKA
+   6️⃣ TABULKA (pokud ji ještě používáš níže v sekci)
 ================================================== */
 
 .panels-table-wrapper {
@@ -160,7 +217,6 @@
   background: #fff;
   border-radius: var(--radius-md);
   overflow: hidden;
-
   box-shadow: var(--elevation-card);
 }
 
@@ -190,10 +246,6 @@
   background: rgba(156, 191, 76, 0.06);
 }
 
-/* ==================================================
-   8️⃣ POZNÁMKA TAT
-================================================== */
-
 .tat-note {
   font-size: 0.85rem;
   color: var(--text-muted);
@@ -202,69 +254,66 @@
 }
 
 /* ==================================================
-    Responzivita @media
-===================================================*/
-@media (min-width: 768px) {
-  .panel-meta {
-    font-size: 1rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .panel-meta {
-    font-size: 1rem;
-  }
-}
-
-@media (min-width: 1440px) {
-}
-
-/* ==================================================
-   9️⃣ COMPACT MODE – jen název + tlačítko (v kartě)
-   (původní <p> a .panel-meta už nechceme v kartě)
+   7️⃣ INDIVIDUÁLNÍ PŘÍSTUP (glass CTA)
+   - fix mezery: kontrolovaný odstup od gridu
 ================================================== */
 
-/* Karta: layout title + button */
-.panel-card {
-  display: flex;
+.container_pristup {
+  margin-top: clamp(1rem, 3vw, 1.75rem);
+}
+
+.individual-approach_card {
+  position: relative;
+  padding: clamp(1.4rem, 3vw, 2rem);
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+
+  background: linear-gradient(
+    180deg,
+    rgba(54, 173, 118, 0.212) 0%,
+    rgba(33, 100, 100, 0.35) 100%
+  );
+
+  border: 0.8px solid rgba(255, 255, 255, 0.14);
+
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+
+  color: var(--text-900);
+}
+
+.individual-approach_title {
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  gap: 0.6rem;
 
-  padding: 1rem 1.05rem; /* trochu kompaktnější */
-}
+  margin-bottom: 0.75rem;
 
-/* Nadpis: bez spodního marginu, ať není "díra" */
-.panel-card h3 {
-  margin: 0;
-  font-size: 1.05rem;
   font-weight: 700;
-  line-height: 1.25;
+  font-size: 2.15rem;
   color: var(--brand-800);
+  text-shadow: 1px 1px 3px var(--brand-black);
 }
 
-/* Skryj starý text a meta v kartě (zůstane jen button) */
-.panel-card p,
-.panel-meta > span {
-  display: none !important;
+.individual-approach_title i {
+  width: 28px;
+  height: 28px;
+  color: var(--brand-700);
 }
 
-/* Panel meta držíme jen jako wrapper pro tlačítko */
-.panel-meta {
-  margin-top: 0 !important;
-  justify-content: flex-end;
+.individual-approach_title .lucide-sparkles {
+  width: 40px;
+  height: 40px;
+  color: var(--bg);
 }
 
-/* Tlačítko: jemnější (aby nebylo moc “těžké”) */
-.btn-panel {
-  
-  padding: 0.55rem 1rem;
-  border-radius: 999px; /* pill */
-  box-shadow: none;     /* čistší pharma UI */
+.individual-approach_card p {
+  max-width: 760px;
+  margin-inline: auto;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--text-800);
 }
-
-/* Hover karty: jemnější posun + stín */
-.panel-card:hover {
-  transform: translateY(-1px);
-}
-

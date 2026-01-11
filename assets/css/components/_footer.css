@@ -1,34 +1,233 @@
 /* ==================================================
-   GENETIA – Footer
-   Autor: Martin Gronych
+   GENETIA – Footer (Scientific Dark)
+   Mobile-first, Lucide icons, brand-safe
 ================================================== */
 
-.footer {
-  background: var(--surface);
-  border-top: 1px solid var(--border);
-  color: var(--text-muted);
-  padding-block: var(--space-5);
-  font-size: 0.95rem;
+.site-footer {
+  background: linear-gradient(
+    180deg,
+    var(--gene-dark-70) 0%,
+    var(--gene-dark-80) 38%,
+    var(--gene-dark-90) 100%
+  );
+  position: relative;
+}
+.site-footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    1200px 500px at 15% 0%,
+    rgba(185, 209, 56, 0.80) 0%,
+    rgba(185, 209, 56, 0.20) 60%
+  );
+  z-index: 1;
 }
 
-.footer small {
-  color: var(--text-muted);
+.site-footer_container {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding: 3.25rem 1.25rem 2.5rem;
+  display: grid;
+  gap: 2.25rem;
+  
 }
 
-.footer a {
-  color: var(--brand-600);
+.site-footer_brand {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+.site-footer_logo {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
   text-decoration: none;
-  transition: color 0.3s ease;
 }
 
-.footer a:hover {
-  color: var(--brand-700);
+.site-footer_logoImg {
+  height: 38px;
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.35));
 }
 
-/* Responsivní zarovnání */
-@media (max-width: 768px) {
-  .footer {
-    text-align: center;
-    flex-direction: column;
+.site-footer_tagline {
+  margin: 0;
+  max-width: 34ch;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.site-footer_social {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.site-footer_socialLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.8);
+  transition: transform 160ms ease, border-color 160ms ease,
+    background 160ms ease;
+}
+
+.site-footer_socialLink:hover {
+  transform: translateY(-1px);
+  border-color: rgba(201, 211, 163, 0.7); /* jemný brand akcent */
+  background: rgba(201, 211, 163, 0.1);
+}
+
+.site-footer_socialLink i {
+  width: 18px;
+  height: 18px;
+}
+
+.site-footer_cols {
+  display: grid;
+  gap: 1.75rem;
+}
+
+.site-footer_col {
+  display: grid;
+  gap: 0.75rem;
+  align-content: start;
+}
+
+.site-footer_heading {
+  margin: 0;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  color: var(--gene-dark-90);
+  font-weight: 600;
+}
+
+.site-footer_list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.site-footer_link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 160ms ease, transform 160ms ease;
+}
+
+.site-footer_link:hover {
+  color: rgba(201, 211, 163, 0.95); /* brand hover */
+  transform: translateX(2px);
+}
+
+.site-footer_link i {
+  width: 16px;
+  height: 16px;
+  opacity: 0.85;
+}
+
+.site-footer_text {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.site-footer_text i {
+  width: 16px;
+  height: 16px;
+  opacity: 0.85;
+  margin-top: 2px;
+}
+
+.site-footer_bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  
+}
+
+.site-footer_bottomInner {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding: 1.15rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  
+}
+
+.site-footer_copy,
+.site-footer_dev {
+  color: rgba(255, 255, 255, 0.55);
+  margin-right: 5%;
+}
+
+/* Utility: visually hidden (pokud už máte v projektu, tuto část vynech) */
+.visually-hidden {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
+.site-footer_container,
+.site-footer_bottomInner {
+  position: relative;
+  z-index: 2;
+}
+
+/* ==================================================
+   Breakpoints
+================================================== */
+
+/* ≥768px: 2 sloupce – brand vlevo, odkazy vpravo */
+@media (min-width: 768px) {
+  .site-footer_container {
+    grid-template-columns: 1fr 2fr;
+    align-items: start;
+    gap: 2.75rem;
+    padding-top: 3.75rem;
   }
+
+  .site-footer_cols {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+  }
+
+  .site-footer_bottomInner {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+
+/* ≥1024px: 4 sloupce vpravo */
+@media (min-width: 1024px) {
+  .site-footer_cols {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2.25rem;
+  }
+}
+
+/* Focus states (a11y) */
+.site-footer_link:focus-visible,
+.site-footer_socialLink:focus-visible {
+  outline: 2px solid rgba(201, 211, 163, 0.85);
+  outline-offset: 3px;
+  border-radius: 10px;
 }

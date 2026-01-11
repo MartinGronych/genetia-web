@@ -8,85 +8,41 @@
    ▸ SECTIONS    – sekce specifické pro stránku
    ▸ THEME       – barevné varianty (light/dark)
 ================================================== */
-
 /* ==================================================
-   0️⃣ BASE – Základy, proměnné, layout, komponenty
+   BASE – Základy, proměnné, layout, komponenty
 ================================================== */
 @import url("../../base/_tokens.css");
 @import url("../../base/_reset.css");
 @import url("../../base/_layout.css");
 @import url("../../base/_components.css");
-
 /* ==================================================
-   1️⃣ COMPONENTS – Navigace a modální okna
+   COMPONENTS – Navigace a modální okna
 ================================================== */
-@import url("../../components/_navbar.css"); /* Navigace a hamburger menu */
-@import url("../../components/_modal.css"); /* Klientská zóna – přihlašovací modal */
-@import url("../analyticke-sluzby/_scrolly-video.css"); /* Scrolovaní videa*/
+@import url("../../components/_navbar.css");  /* Navigace a hamburger menu */
+@import url("../../components/_footer.css");  /* Footer */ 
 
 /* ==================================================
-   2️⃣ HERO & USP – Úvodní sekce a klíčové benefity
+   COMPONENTS 
 ================================================== */
-@import url("./_hero.css"); /* Úvodní hero s videem */
-@import url("./_usp-bar.css"); /* Krátké benefity pod hero sekcí */
+
+@import url("./_panel-detail-modal.css");                /* Modal - detail panelu*/
+
+@import url("./_hero.css");                              /* Úvodní hero s videem */
+@import url("./_usp-bar.css");                           /* Krátké benefity pod hero sekcí */
+@import url("./_benefits.css");                          /* Detail Benefit sekce */
+@import url("./_test-panels.css");                       /* Grid a tabulky testovacích panelů */
+@import url("./_methods.css");                           /* Metody testování */
+@import url("./_section-bg.css");                        /* Pozadí jednotlivých sekcí */
+@import url("./_proces.css");                            /* Průběh objednávky a testování */
+@import url("./_pozadavky.css");                         /* Pokyny k přípravě vzorků */
+@import url("./_ke-stazeni.css");                        /* Formuláře a dokumenty */
+@import url("./_faq.css");                               /* FAQ – Často kladené otázky */
+@import url("./_cta.css");                               /* Výzva ke kontaktování */
 
 /* ==================================================
-   3️⃣ TEST PANELY – Nabídka analytických testů
-================================================== */
-@import url("./_test-panels.css"); /* Grid a tabulky testovacích panelů */
-
-/* ==================================================
-   4️⃣ METODY – Přehled laboratorních postupů
-================================================== */
-@import url("./_methods.css");
-
-/* ==================================================
-   3️⃣b SECTION BACKGROUNDS – Utility pro pozadí sekcí
-================================================== */
-@import url("./_section-bg.css");
-
-/* ==================================================
-   5️⃣ PROCES – Průběh objednávky a testování
-================================================== */
-@import url("./_proces.css");
-
-/* ==================================================
-   6️⃣ POŽADAVKY – Pokyny k přípravě vzorků
-================================================== */
-@import url("./_pozadavky.css");
-
-/* ==================================================
-   7️⃣ KE STAŽENÍ – Formuláře a dokumenty
-================================================== */
-@import url("./_ke-stazeni.css");
-
-/* ==================================================
-   8️⃣ FAQ – Často kladené otázky
-================================================== */
-@import url("./_faq.css");
-
-/* ==================================================
-   9️⃣ CTA – Výzva ke kontaktování
-================================================== */
-@import url("./_cta.css");
-
-/* ==================================================
-   🔟 FOOTER – Patička webu
-================================================== */
-@import url("../../components/_footer.css");
-
-/* ==================================================
-   🎨 THEME – Tmavý režim a varianty vzhledu
+   THEME – Tmavý režim a varianty vzhledu
 ================================================== */
 @import url("../../theme/_dark.css");
+@import url("../../theme/_switch.css");
 
-@import url("./_panel-detail-modal.css");
 
-/* ==================================================
-   Typography scope – pouze stránka Analytické služby
-================================================== */
-.page-analyticke-sluzby {
-  --ff-sans: "IBM Plex Sans", "Inter", system-ui, -apple-system, "Segoe UI",
-    sans-serif;
-    
-}

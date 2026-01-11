@@ -61,9 +61,18 @@
 }
 
 /* Tlačítko */
-.services-section .btn {
-  margin-top: 0.5rem;
+.services-section .btn .btn-brand {
+  
+  padding: 0.45rem 1.1rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1.2;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
+
 
 /* ==================================================
    4️⃣ POZADÍ SKLA (dekorativní vrstva)
@@ -124,4 +133,21 @@
     border-radius: var(--radius-sm);
     box-shadow: var(--shadow-sm);
   }
+}
+
+/* ==================================================
+   Services – CTA button (homepage cards)
+   ================================================== */
+
+.services-section .btn-brand {
+  padding: 0.45rem 1.1rem;   /* ↓ menší výška */
+  font-size: 0.85rem;        /* ↓ menší text */
+  font-weight: 500;          /* klidnější než hero CTA */
+  border-radius: 999px;      /* pill look zachován */
+  line-height: 1.2;
+}
+
+/* jemnější hover – bez „výskoku“ */
+.services-section .btn-brand:hover {
+  transform: none;
 }

@@ -1,112 +1,391 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="cs">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>O společnosti – Genetia</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/pages/o-spolecnosti/o-spolecnosti.css">
-</head>
-<body>
-    <!-- ================================
-         NAVIGACE
-    =================================== -->
-    <nav class="navbar navbar-expand-lg bg-white sticky-top shadow-sm">
-      <div class="container align-items-center justify-content-between">
-        <!-- Logo -->
-        <a
-          class="navbar-brand d-flex align-items-center gap-2"
-          href="index.html"
-        >
-          <img
-            src="assets/images/logo/GENETIA-LOGO.png"
-            alt="Genetia logo"
-            class="logo-img"
-          />
-        </a>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <!-- Desktop navigace (centrálně) -->
-        <div class="d-none d-lg-flex mx-auto nav-center">
-          <ul class="navbar-nav text-center gap-4"></ul>
+    <title>O společnosti | Genetia</title>
+    <meta
+      name="description"
+      content="Genetia – analytické služby, výzkum a odborné zázemí pro farmaceutickou kvalitu."
+    />
+
+    <!-- Google Fonts – sjednocené -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap (layout & utilities) -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Globální styly (NAV + layout + tokens) -->
+    <link rel="stylesheet" href="assets/css/styles.css" />
+
+    <!-- Page-specific CSS (pokud existuje) -->
+    <!--
+  <link rel="stylesheet" href="assets/css/pages/XXXX/XXXX.css" />
+  -->
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/logo/favicon.png" type="image/png" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <!-- NAVIGACE -->
+      <nav class="navbar" data-nav>
+        <div class="container align-items-center justify-content-between">
+          <!-- Logo -->
+          <a
+            class="navbar-brand d-flex align-items-center gap-2"
+            href="index.html"
+          >
+            <img
+              src="assets/images/logo/GENETIA-LOGO.png"
+              alt="Genetia logo"
+              class="logo-img"
+            />
+          </a>
+
+          <!-- Desktop navigace (JS render) -->
+          <div class="nav-center mx-auto">
+            <ul class="navbar-nav text-center gap-4" id="navDesktopList"></ul>
+          </div>
+
+          <!-- Pravá strana: hamburger -->
+          <div class="d-flex align-items-center gap-3 nav-actions">
+            <div class="hamburger-wrapper">
+              <input
+                type="checkbox"
+                id="navToggle"
+                aria-label="Otevřít navigaci"
+              />
+
+              <label class="menu" for="navToggle" aria-hidden="true">
+                <span class="hamburger"></span>
+              </label>
+
+              <!-- Mobile panel -->
+              <div class="mobile-nav" id="mobileNavPanel">
+                <!-- Mobile menu list (JS render) -->
+                <ul id="navMobileList"></ul>
+
+                <!-- Theme switch in mobile panel (utopený vpravo dole) -->
+                <div class="mobile-nav_theme">
+                  <label
+                    class="theme-switch theme-switch--panel"
+                    for="themeSwitch"
+                    aria-label="Přepnout světlý / tmavý režim"
+                  >
+                    <input
+                      id="themeSwitch"
+                      type="checkbox"
+                      class="theme-switch__checkbox"
+                    />
+                    <div class="theme-switch__container">
+                      <div class="theme-switch__clouds"></div>
+
+                      <div class="theme-switch__stars-container">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 144 55"
+                          fill="none"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M135.831 3.00688C135.055 3.85027 134.111 4.29946 133 4.35447C134.111 4.40947 135.055 4.85867 135.831 5.71123C136.607 6.55462 136.996 7.56303 136.996 8.72727C136.996 7.95722 137.172 7.25134 137.525 6.59129C137.886 5.93124 138.372 5.39954 138.98 5.00535C139.598 4.60199 140.268 4.39114 141 4.35447C139.88 4.2903 138.936 3.85027 138.16 3.00688C137.384 2.16348 136.996 1.16425 136.996 0C136.996 1.16425 136.607 2.16348 135.831 3.00688Z"
+                            fill="currentColor"
+                          ></path>
+                        </svg>
+                      </div>
+
+                      <div class="theme-switch__circle-container">
+                        <div class="theme-switch__sun-moon-container">
+                          <div class="theme-switch__moon">
+                            <div class="theme-switch__spot"></div>
+                            <div class="theme-switch__spot"></div>
+                            <div class="theme-switch__spot"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <!-- Klientská zóna -->
-        <button class="btn btn-accent" id="openClientModal">
-          Klientská zóna
-        </button>
-
-        <!-- Mobile toggle -->
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navMobile"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </div>
-
-      <!-- Mobile menu (collapse) -->
-      <div class="collapse navbar-collapse" id="navMobile">
-        <ul class="navbar-nav text-center gap-3 py-3"></ul>
-      </div>
-    </nav>
-
-    <!-- ================================
-         MODAL – KLIENTSKÁ ZÓNA
-    =================================== -->
-    <div id="clientModal" class="modal">
+      </nav>
+    </header>
+    <div class="modal" id="clientModal">
       <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Přihlášení do klientské zóny</h2>
+        <button class="close-modal" aria-label="Zavřít">&times;</button>
+        <h2>Klientská zóna</h2>
         <form id="clientForm">
           <label for="email">E-mail:</label>
-          <input type="email" id="email" name="email" required />
+          <input id="email" type="email" required />
 
           <label for="password">Heslo:</label>
-          <input type="password" id="password" name="password" required />
+          <input id="password" type="password" required />
 
-          <label for="certUpload">Nahrát certifikát:</label>
-          <input
-            type="file"
-            id="certUpload"
-            name="certUpload"
-            accept=".crt,.pem,.pfx"
-          />
-
-          <button type="submit" class="btn btn-accent w-100 mt-3">
-            Ověřit přístup
+          <button type="submit" class="btn btn-brand w-100 mt-3">
+            Přihlásit
           </button>
+
+          <p id="formInlineMessage" class="form-inline-message"></p>
+
+          <div class="mt-3">
+            <label for="certUpload">Nahrát certifikát</label>
+            <input id="certUpload" type="file" accept=".pdf,.jpg,.png" />
+          </div>
         </form>
       </div>
     </div>
 
-  <header class="hero">
-    <div class="container">
-      <h1 class="display-6 mb-3">O společnosti</h1>
-      <p class="lead">Krátké lorem ipsum o historii, misi a hodnotách. Prolink na Analytické služby a Produkty.</p>
-    </div>
-  </header>
+    <main>
+      <!-- obsah stránky -->
+      <div id="aboutCompanyMount"></div>
+    </main>
 
-  <section class="section">
-    <div class="container">
-      <div class="row g-4 align-items-center">
-        <div class="col-lg-6"><img class="img-fluid rounded-4" src="https://picsum.photos/900/600?random=21" alt="Tým"></div>
-        <div class="col-lg-6">
-          <h2>Kdo jsme</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras blandit, dui nec aliquet pharetra, orci neque mattis magna.</p>
-          <div class="d-flex gap-2">
-            <a class="btn btn-brand" href="analyticke-sluzby.html">Naše laboratoř</a>
-            <a class="btn btn-outline-secondary" href="produkty.html">Produkty</a>
+    <div
+      class="modal fade"
+      id="gateModal"
+      tabindex="-1"
+      aria-hidden="true"
+      aria-labelledby="gateModalLabel"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title w-100 text-center" id="gateModalLabel">
+              JSTE ODBORNÝ PRACOVNÍK VE ZDRAVOTNICTVÍ?
+            </h5>
+
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Zavřít"
+            ></button>
+          </div>
+
+          <div class="modal-body">
+            <p>
+              Jsem odborníkem ve smyslu §2a Zákona č. 40/1995 Sb. o regulaci
+              reklamy, ve znění pozdějších předpisů, čili jsem osobou oprávněnou
+              předepisovat léčivé přípravky nebo osobou vydávat léčivé
+              přípravky.
+            </p>
+
+            <p>
+              Potvrzuji, že jsem se seznámil/a s definicí odborníka dle zákona
+              č. 40/1995 Sb.
+            </p>
+
+            <p class="mb-4">
+              Potvrzuji, že jsem se seznámil/a s riziky, jimž se jiná osoba než
+              odborník vystavuje, vstoupím-li na stránky určené převážně pro
+              odborníky.
+            </p>
+
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+              <button type="button" class="btn btn-brand px-4" data-continue>
+                ANO, VSTOUPIT
+              </button>
+
+              <button
+                type="button"
+                class="btn btn-outline-secondary px-4"
+                id="denyAccess"
+              >
+                NE, ODEJÍT
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
 
-  <footer class="footer"><div class="container"><small>© <span id="year"></span> Genetia s.r.o.</small></div></footer>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="js/main.js"></script>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
-</body>
+    <!-- ================================
+         FOOTER
+    =================================== -->
+    <footer class="site-footer" aria-labelledby="footerTitle">
+      <div class="site-footer_container">
+        <!-- Left: brand -->
+        <div class="site-footer_brand">
+          <h2 class="visually-hidden" id="footerTitle">Patička webu</h2>
+
+          <a
+            class="site-footer_logo"
+            href="index.html"
+            aria-label="Genetia – úvod"
+          >
+            <!-- Sem dáš logo (img nebo svg) -->
+            <img
+              src="assets/images/logo/GENETIA-LOGO.png"
+              alt="Genetia"
+              class="site-footer_logoImg"
+            />
+          </a>
+
+          <p class="site-footer_tagline">
+            Analytické služby a odborné zázemí pro farmaceutickou kvalitu.
+          </p>
+
+          <div class="site-footer_social" aria-label="Sociální sítě">
+            <a
+              class="site-footer_socialLink"
+              href="#"
+              target="_blank"
+              rel="noopener"
+              aria-label="LinkedIn"
+            >
+              <i data-lucide="linkedin"></i>
+            </a>
+            <a
+              class="site-footer_socialLink"
+              href="#"
+              target="_blank"
+              rel="noopener"
+              aria-label="Instagram"
+            >
+              <i data-lucide="instagram"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Columns -->
+        <div class="site-footer_cols">
+          <nav class="site-footer_col" aria-label="Odkazy – O společnosti">
+            <h3 class="site-footer_heading">Genetia Production</h3>
+            <ul class="site-footer_list">
+              <li>
+                <a class="site-footer_link" href="o-spolecnosti.html"
+                  >O společnosti</a
+                >
+              </li>
+              <li>
+                <a class="site-footer_link" href="kontakt.html">Kontakt</a>
+              </li>
+            </ul>
+          </nav>
+
+          <nav class="site-footer_col" aria-label="Odkazy – Služby">
+            <h3 class="site-footer_heading">Služby</h3>
+            <ul class="site-footer_list">
+              <li>
+                <a class="site-footer_link" href="analyticke-sluzby.html"
+                  >Analytické služby</a
+                >
+              </li>
+              <li>
+                <a
+                  class="site-footer_link"
+                  href="analyticke-sluzby.html#testovaci-panely"
+                  >Naše služby</a
+                >
+              </li>
+              <li>
+                <a class="site-footer_link" href="analytics.html#laborator"
+                  >Laboratoř &amp; zázemí</a
+                >
+              </li>
+            </ul>
+          </nav>
+
+          <nav class="site-footer_col" aria-label="Odkazy – Právní">
+            <h3 class="site-footer_heading">Právní</h3>
+            <ul class="site-footer_list">
+              <li><a class="site-footer_link" href="gdpr.html">GDPR</a></li>
+              <li>
+                <a class="site-footer_link" href="podminky-uziti.html"
+                  >Podmínky užití</a
+                >
+              </li>
+              <li>
+                <a class="site-footer_link" href="cookies.html">Cookies</a>
+              </li>
+            </ul>
+          </nav>
+
+          <address
+            class="site-footer_col site-footer_contact"
+            aria-label="Kontakt"
+          >
+            <h3 class="site-footer_heading">Kontakt</h3>
+            <ul class="site-footer_list">
+              <li>
+                <a
+                  class="site-footer_link"
+                  href="mailto:info@genetia.cz"
+                  aria-label="Napsat e-mail na info@genetia.cz"
+                >
+                  <i data-lucide="mail"></i>
+                  <span>info@genetia.cz</span>
+                </a>
+              </li>
+
+              <li>
+                <a class="site-footer_link" href="tel:+420000000000">
+                  <i data-lucide="phone"></i>
+                  <span>+420 000 000 000</span>
+                </a>
+              </li>
+              <li class="site-footer_text">
+                <a
+                  class="site-footer_link"
+                  href="https://maps.app.goo.gl/KSAFnAKaUEwaw8xv7"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Zobrazit adresu na mapě"
+                >
+                  <i data-lucide="map-pin"></i>
+                  <span>Inovační 122, Zlatníky – Hodkovice</span>
+                </a>
+              </li>
+            </ul>
+          </address>
+        </div>
+      </div>
+
+      <div class="site-footer_bottom">
+        <div class="site-footer_bottomInner">
+          <small class="site-footer_copy">
+            © <span id="year"></span> Genetia Production s.r.o. Všechna práva
+            vyhrazena.
+          </small>
+
+          <small class="site-footer_dev">
+            Vyvinul: <span>Martin Gronych</span>
+          </small>
+        </div>
+      </div>
+    </footer>
+    <!-- entry JS pro tuto stránku -->
+    <script src="https://hammerjs.github.io/dist/hammer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script type="module" src="js/main.js"></script>
+    <script
+      type="module"
+      src="js/pages/o-spolecnosti/o-spolecnosti.js"
+    ></script>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+
+    <script>
+      const yearEl = document.getElementById("year");
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+    </script>
+  </body>
 </html>

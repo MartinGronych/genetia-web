@@ -35,23 +35,13 @@
    ▸ sekce      → oddělené moduly (např. _hero.css, _usp.css, ...)
 ================================================== */
 
-/* === 🏠 HOMEPAGE === */
-@import url("pages/homepage/homepage.css"); /* Úvodní stránka (hero, služby, produkty, kontakt) */
-
-/* === 🧬 O SPOLEČNOSTI === */
-@import url("pages/o-spolecnosti/o-spolecnosti.css"); /* Informace o společnosti, mise, tým, certifikace */
-
-/* === 🧪 ANALYTICKÉ SLUŽBY === */
-@import url("pages/analyticke-sluzby/analyticke-sluzby.css"); /* Analýzy, tabulky, přehled metod, CTA sekce */
-
-/* === ⚗️ VÝVOJ & VÝZKUM === */
-@import url("pages/vyvoj-vyzkum/vyvoj-vyzkum.css"); /* Vývoj API, technologie, laboratorní procesy */
-
-/* === 💊 PRODUKTY === */
-@import url("pages/produkty/produkty.css"); /* Nabídka produktů pro lékárny, 3D carousel, detailní popisy */
-
-/* === ✉️ KONTAKT === */
-@import url("pages/kontakt/kontakt.css"); /* Kontaktní formulář, mapa, obchodní informace */
+@import url("pages/homepage/homepage.css");                    /* Úvodní stránka (hero, služby, produkty, kontakt) */
+@import url("pages/o-spolecnosti/o-spolecnosti.css");          /* Informace o společnosti, mise, tým, certifikace */
+@import url("pages/analyticke-sluzby/analyticke-sluzby.css");  /* Analýzy, tabulky, přehled metod, CTA sekce */
+@import url("pages/vyvoj-vyzkum/vyvoj-vyzkum.css");            /* Vývoj API, technologie, laboratorní procesy */
+@import url("pages/produkty/produkty.css");                    /* Nabídka produktů pro lékárny, 3D carousel, detailní popisy */
+@import url("pages/kontakt/kontakt.css");                      /* Kontaktní formulář, mapa, obchodní informace */
+@import url("pages/legal/legal.css");                          /* GDPR, Podmínky užití, Cookies
 
 
 /* ==================================================
