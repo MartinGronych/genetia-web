@@ -1,0 +1,221 @@
+/* ==================================================
+   GENETIA – VÝVOJ & VÝZKUM
+   HERO SECTION (Scientific / Pharma)
+================================================== */
+
+.vyvoj-hero {
+  position: relative;
+  isolation: isolate;
+  padding-block: clamp(3rem, 6vw, 5.5rem);
+
+  background: linear-gradient(
+    180deg,
+    var(--gene-light-80) 0%,
+    var(--gene-light-90) 45%,
+    var(--surface) 100%
+  );
+}
+
+/* ==================================================
+   Background – scientific glow
+================================================== */
+
+.vyvoj-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+
+  background: radial-gradient(
+    900px 420px at 75% 30%,
+    rgba(185, 209, 56, 0.18),
+    rgba(185, 209, 56, 0.06) 45%,
+    rgba(185, 209, 56, 0) 70%
+  );
+}
+
+/* Jemný mikro-grain */
+.vyvoj-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.12;
+
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(0, 0, 0, 0.015) 0px,
+    rgba(0, 0, 0, 0.015) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+/* ==================================================
+   HERO – Text intro
+================================================== */
+
+.vyvoj-hero_intro {
+  position: relative;
+  padding-left: 1.4rem;
+}
+
+/* Vertikální scientific marker */
+.vyvoj-hero_intro::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.45em;
+  width: 3px;
+  height: calc(100% - 0.45em);
+  border-radius: 2px;
+
+  background: linear-gradient(
+    180deg,
+    var(--brand-800),
+    var(--brand-600),
+    transparent
+  );
+}
+
+/* ==================================================
+   Kicker
+================================================== */
+
+.vyvoj-hero_kicker {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+
+  color: var(--brand-700);
+}
+
+/* ==================================================
+   Title
+================================================== */
+
+.vyvoj-hero_title {
+  margin: 0 0 1rem 0;
+  max-width: 18ch;
+
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+
+  background: linear-gradient(180deg, var(--text) 0%, var(--gene-dark-30) 100%);
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ==================================================
+   Subtitle
+================================================== */
+
+.vyvoj-hero_subtitle {
+  max-width: 60ch;
+  margin: 0;
+
+  font-size: 1rem;
+  line-height: 1.65;
+
+  color: var(--text-muted);
+}
+
+/* ==================================================
+   HERO – Media (video)
+================================================== */
+
+.vyvoj-hero_media {
+  position: relative;
+  overflow: hidden;
+
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-soft);
+
+  background: var(--surface-glass);
+  box-shadow: var(--elevation-card);
+}
+
+.vyvoj-hero_video {
+  width: 100%;
+  height: 100%;
+  display: block;
+
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+/* ==================================================
+   Responsive tuning
+================================================== */
+
+@media (min-width: 768px) {
+  .vyvoj-hero_media {
+    max-width: 90%;
+    margin-left: auto;
+    margin-top: 0.25rem;
+  }
+  .vyvoj-hero .row.align-items-center {
+    align-items: flex-start !important;
+  }
+  .vyvoj-hero_subtitle {
+    font-size: 1.05rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .vyvoj-hero_media {
+    max-width: 90%;
+    margin-left: auto;
+  }
+  .vyvoj-hero_video {
+    aspect-ratio: 4 / 3;
+  }
+  .vyvoj-hero::before {
+    background: radial-gradient(
+      1100px 520px at 72% 28%,
+      rgba(185, 209, 56, 0.22),
+      rgba(185, 209, 56, 0.08) 50%,
+      rgba(185, 209, 56, 0) 75%
+    );
+  }
+}
+
+@media (min-width: 1440px) {
+  .vyvoj-hero {
+    background: linear-gradient(
+      180deg,
+      var(--gene-light-70) 0%,
+      var(--gene-light-85) 45%,
+      var(--surface) 100%
+    );
+  }
+  .vyvoj-hero_title {
+    max-width: 20ch;
+  }
+
+  .vyvoj-hero_subtitle {
+    font-size: 1.1rem;
+  }
+}
+
+@media (min-width: 2560px) {
+  .vyvoj-hero::before {
+    background: radial-gradient(
+      1600px 700px at 70% 25%,
+      rgba(185, 209, 56, 0.25),
+      rgba(185, 209, 56, 0.1) 55%,
+      rgba(185, 209, 56, 0) 80%
+    );
+  }
+  .vyvoj-hero {
+    padding-block: 7rem;
+  }
+}

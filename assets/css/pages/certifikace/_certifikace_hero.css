@@ -1,0 +1,349 @@
+/* ==================================================
+   CERTIFIKACE – HERO (badge, title, subtitle, cards)
+   - HERO badge centered (flex axis)
+   - Card badges on edge (50% out) + unified across 1024/1440
+================================================== */
+
+.certifikace-page {
+  /* page-local tokens */
+  --cert-max: 1160px;
+
+  --cert-muted: rgba(17, 24, 39, 0.64);
+
+  --cert-card-bg: rgba(255, 255, 255, 0.86);
+  --cert-card-border: rgba(17, 24, 39, 0.08);
+  --cert-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+
+  --cert-radius-xl: 18px;
+
+  /* HERO gradient (světlé) */
+  --cert-hero-bg-1: rgba(247, 248, 243, 1);
+  --cert-hero-bg-2: rgba(241, 243, 236, 1);
+  --cert-hero-bg-3: rgba(236, 240, 230, 1);
+}
+
+/* =========================================
+   HERO layout – centered axis (fix badge align)
+========================================= */
+.certifikace_hero {
+  padding: 42px 0 56px;
+  background: linear-gradient(
+    to bottom,
+    var(--gene-light-20) 0%,
+    var(--gene-light-90) 100%
+  );
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.certifikace_hero .container {
+  max-width: var(--cert-max);
+}
+
+/* hero badge (nadpis badge nahoře v hero) */
+.certifikace_heroBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  margin: 0 0 18px;
+  padding: 5px 10px;
+
+  border-radius: 999px;
+  background: rgba(158, 187, 43, 0.849);
+  border: 1px solid rgba(150, 170, 70, 0.18);
+  color: rgba(22, 26, 18, 0.82);
+
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  font-size: 0.95rem;
+}
+
+.certifikace_heroBadge svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* headline */
+.certifikace_title {
+  text-align: center;
+  margin: 0 auto 12px;
+  max-width: 18ch;
+  font-weight: 760;
+  letter-spacing: -0.02em;
+  line-height: 1.03;
+  font-size: clamp(2.2rem, 4.4vw, 3.6rem);
+  color: var(--brand-black);
+}
+
+.certifikace_subtitle {
+  text-align: center;
+  margin: 0 auto 32px;
+  max-width: 72ch;
+  color: var(--brand-black);
+  line-height: 1.55;
+  font-size: 1.02rem;
+}
+
+/* =========================================
+   Cards grid
+========================================= */
+.certifikace_cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+
+  /* prostor navíc, aby “badge ven” nebyly uříznuté */
+  padding: 22px 0 0;
+}
+
+/* card reset (button card) */
+.cert-card {
+  appearance: none;
+  border: 1px solid var(--cert-card-border);
+  background: var(--cert-card-bg);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.02);
+  border-radius: var(--cert-radius-xl);
+  text-align: left;
+
+  cursor: pointer;
+  position: relative;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  transition: transform 180ms ease, box-shadow 180ms ease,
+    border-color 180ms ease;
+
+  /* jednotný “header space” pro badge */
+  padding: 64px 18px 16px;
+  min-height: 240px;
+}
+
+.cert-card:focus-visible {
+  outline: 3px solid rgba(150, 170, 70, 0.35);
+  outline-offset: 3px;
+}
+
+.cert-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--cert-shadow);
+  border-color: rgba(150, 170, 70, 0.24);
+}
+
+/* =========================================
+   BADGES – on edge (50% out)
+   NOTE: only 2 badges types used: GMP 1 / GMP 2
+========================================= */
+.cert-card_badges {
+  position: absolute;
+  top: 0;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 0;
+  z-index: 2;
+}
+
+/* base badge */
+.cert-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 750;
+  font-size: 0.82rem;
+  letter-spacing: 0.2px;
+
+  color: rgba(22, 26, 18, 0.84);
+  background: var(--brand-500);
+  border: 1px solid rgba(150, 170, 70, 0.18);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
+}
+
+/* “Unikát v ČR” */
+.cert-badge--accent {
+  background: rgb(245, 159, 11);
+  border-color: rgba(245, 158, 11, 0.35);
+  color: rgba(120, 68, 0, 0.95);
+  animation: certBadgePulse 2.6s ease-in-out infinite;
+}
+
+@keyframes certBadgePulse {
+  0% {
+    opacity: 0.75;
+    box-shadow: 0 0 0 rgba(245, 158, 11, 0);
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 18px rgba(222, 245, 11, 0.87);
+    transform: scale(1.13);
+  }
+
+  100% {
+    opacity: 0.78;
+    box-shadow: 0 0 0 rgba(245, 158, 11, 0);
+    transform: scale(1);
+  }
+}
+
+/* star */
+.cert-badge--star {
+  gap: 8px;
+}
+.cert-badge--star svg {
+  width: 16px;
+  height: 16px;
+  color: rgba(229, 245, 11, 0.911);
+}
+
+/* icon block */
+.cert-card_icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: rgba(150, 170, 70, 0.1);
+  border: 1px solid rgba(150, 170, 70, 0.16);
+  display: grid;
+  place-items: center;
+  margin-top: 4px;
+}
+
+.cert-card_icon svg {
+  width: 26px;
+  height: 26px;
+  color: rgba(110, 130, 45, 0.95);
+}
+
+/* meta */
+.cert-card_meta {
+  font-size: 0.88rem;
+  letter-spacing: 0.16em;
+  font-weight: 750;
+  color: var(--brand-800);
+  margin-top: 6px;
+}
+
+/* title – 2 lines, fixed height */
+.cert-card_title {
+  margin: 0;
+  font-weight: 760;
+  letter-spacing: -0.01em;
+  line-height: 1.18;
+  font-size: 1.16rem;
+  color: rgba(22, 26, 18, 0.92);
+
+  min-height: calc(1.18em * 2);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* desc – 3 lines, fixed height */
+.cert-card_desc {
+  margin: 0;
+  color: var(--cert-muted);
+  line-height: 1.55;
+  font-size: 0.98rem;
+  max-width: 46ch;
+
+  min-height: calc(1.55em * 3);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* CTA bottom */
+.cert-card_cta {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(110, 130, 45, 0.95);
+  font-weight: 750;
+  font-size: 0.95rem;
+}
+.cert-card_cta svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* =========================================
+   BREAKPOINTS
+   - unify badge inset + card padding
+========================================= */
+
+/* 768 */
+@media (min-width: 768px) {
+  .certifikace_cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+  }
+
+  .cert-card {
+    padding: 68px 20px 18px;
+    min-height: 260px;
+  }
+
+  .cert-card_badges {
+    left: 20px;
+  }
+}
+
+/* 1024 (4 columns) */
+@media (min-width: 1024px) {
+  .certifikace_hero {
+    padding: 52px 0 72px;
+  }
+
+  .certifikace_subtitle {
+    margin-bottom: 38px;
+  }
+
+  .certifikace_cards {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 22px;
+  }
+
+  /* IMPORTANT: unify */
+  .cert-card {
+    padding: 72px 22px 20px;
+    min-height: 280px;
+  }
+
+  .cert-card_badges {
+    left: 22px;
+  }
+}
+
+/* 1440 */
+@media (min-width: 1440px) {
+  .cert-card {
+    padding: 76px 24px 22px;
+  }
+
+  .cert-card_badges {
+    left: 24px;
+  }
+}
+
+/* 2560 */
+@media (min-width: 2560px) {
+  .certifikace_title {
+    font-size: 4.2rem;
+  }
+  .certifikace_subtitle {
+    font-size: 1.15rem;
+  }
+}

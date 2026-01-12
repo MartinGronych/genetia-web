@@ -1,0 +1,100 @@
+/* ==================================================
+   GENETIA – VÝVOJ & VÝZKUM
+   SECTION: Běžící projekty (no effects, subtle lift)
+================================================== */
+
+.vyvoj-projects {
+  position: relative;
+  isolation: isolate;
+  background: var(--surface);
+  margin-top: 0 !important;
+}
+
+.vyvoj-projects h2 {
+  font-weight: 700;
+  letter-spacing: -0.025em;
+
+  background: linear-gradient(
+    180deg,
+    var(--text) 0%,
+    var(--gene-dark-30) 100%
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Karty: jen lehce vystouplé */
+.vyvoj-projects .card {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+  transform: none;
+  transition: none; /* žádné efekty */
+}
+
+/* Zrušíme globální hover lift/scale jen pro tuto sekci */
+.vyvoj-projects .card:hover {
+  transform: none !important;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Pokud někde používáš globální ::before glow (card hover), vypneme */
+.vyvoj-projects .card::before {
+  display: none !important;
+}
+
+/* Subtitle v kartě */
+.vyvoj-projects .project-subtitle {
+  margin-top: 0.25rem;
+  margin-bottom: 1rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+/* Badge s rokem – výraznější, blíž ke žluté */
+.vyvoj-projects .project-year {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+
+  background: var(--brand-800); /* žluto-zelený akcent */
+  color: var(--brand-black);
+
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  font-size: 0.85rem;
+
+  box-shadow: 0 10px 18px rgba(185, 209, 56, 0.22);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* CTA button – červené jako v gate modalu */
+.vyvoj-projects .btn-research {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+
+  background: #e93c3c; 
+  color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+}
+
+.vyvoj-projects .btn-research:hover {
+  background: #a51111; /* jemně tmavší */
+  color: #fff;
+  transform: none; /* žádné efekty */
+  box-shadow: 0 10px 18px rgba(177, 55, 55, 0.18);
+}

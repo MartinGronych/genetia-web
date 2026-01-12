@@ -224,7 +224,7 @@
     {
       "id": "peroxidove-cislo",
       "title": "Stanovení peroxidového čísla",
-      "category": "Fyzikální a fyzikálně-chemické zkoušky",
+      "category": "Stanovení obsahu látek",
       "short": "Hodnocení oxidace olejů.",
       "tat": "2–5 dní",
       "price": "XXXX Kč",
@@ -239,7 +239,7 @@
     {
       "id": "cislo-kyselosti",
       "title": "Stanovení čísla kyselosti",
-      "category": "Fyzikální a fyzikálně-chemické zkoušky",
+      "category": "Stanovení obsahu látek",
       "short": "Obsah volných mastných kyselin.",
       "tat": "2–5 dní",
       "price": "XXXX Kč",

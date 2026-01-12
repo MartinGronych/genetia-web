@@ -1,0 +1,137 @@
+/* ==================================================
+   GENETIA – VÝVOJ & VÝZKUM
+   SECTION: Zaměření výzkumu (photo cards)
+================================================== */
+
+.vyvoj-focus_head {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 1rem;
+  align-items: start;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.vyvoj-focus h2 {
+  color: var(--brand-800);
+  font-size: 2rem;
+  /* důležité: zabrání roztahování buňky */
+  min-width: 0;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.vyvoj-focus p {
+  /* stejné chování jako nadpis */
+  min-width: 0;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.vyvoj-focus_media {
+  width: 72px;
+  height: 72px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border-soft);
+  background: var(--surface);
+}
+
+.vyvoj-focus_media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(1.05) contrast(1.02);
+}
+
+.vyvoj-focus_desc {
+  color: var(--text-muted);
+  line-height: 1.55;
+  font-size: 0.98rem;
+
+  /* pojistka proti přetékání */
+  min-width: 0;
+}
+
+.vyvoj-focus_list {
+  padding-left: 1.1rem;
+  margin-top: 0.25rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.vyvoj-focus_list li {
+  color: var(--text);
+  opacity: 0.9;
+}
+
+/* CTA */
+.vyvoj-focus_cta {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+/* Mobile: tlačítka přes celou šířku */
+@media (max-width: 767px) {
+  .vyvoj-focus_cta .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ==================================================
+   ≥768 – FIX PRO PŘETÉKÁNÍ TEXTU
+================================================== */
+
+@media (min-width: 768px) {
+  
+  /* hlavička už není 2 sloupce, ale stack */
+  .vyvoj-focus_head {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+
+  /* zrušíme "rozsekávání" slov na 768 */
+  .vyvoj-focus h2,
+  .vyvoj-focus p,
+  .vyvoj-focus_desc {
+    min-width: 0;
+    word-break: normal;
+    overflow-wrap: normal;
+    hyphens: auto;
+  }
+
+  /* fotka se přesune POD text (nadpis+subtitle) */
+  .vyvoj-focus_media {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border-radius: 14px;
+    order: 3;
+  }
+
+  .vyvoj-focus_media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* textový blok bude první (pokud je to druhý child v head) */
+  .vyvoj-focus_head > :not(.vyvoj-focus_media) {
+    order: 1;
+  }
+
+  /* drobné zmenšení typografie, aby karta nebyla "nafouklá" */
+  .vyvoj-focus h2 {
+    font-size: 2.35rem;
+    line-height: 1.15;
+  }
+
+  .vyvoj-focus_desc {
+    font-size: 0.95rem;
+    line-height: 1.45;
+  }
+}

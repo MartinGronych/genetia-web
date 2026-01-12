@@ -1,0 +1,29 @@
+{
+  "items": {
+    "gmp-release": {
+      "title": "Propouštění šarží léčivého přípravku",
+      "meta": "GMP certifikát • GMP 1",
+      "description": "Certifikát opravňující k propouštění šarží v souladu se standardy GMP 1.",
+      "icon": "shield"
+    },
+    "gmp-lab": {
+      "title": "Kontrolní laboratoř",
+      "meta": "GMP certifikát • GMP 1",
+      "description": "Certifikát pro kontrolní laboratoř v souladu se standardy GMP 1.",
+      "icon": "badge-check"
+    },
+    "gmp-api-pack": {
+      "title": "Balení API",
+      "meta": "GMP certifikát • GMP 2",
+      "description": "Certifikát opravňující k balení API v souladu se standardy GMP 2.",
+      "icon": "file-check"
+    },
+    "gmp-api-extract": {
+      "title": "Extrakce API",
+      "meta": "GMP certifikát • GMP 2",
+      "description": "Povolení k extrakci API v souladu se standardy GMP 2.",
+      "icon": "award"
+    }
+  }
+}
+

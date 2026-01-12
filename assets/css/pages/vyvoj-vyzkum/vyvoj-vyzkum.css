@@ -15,12 +15,23 @@
 @import url("../../base/_reset.css");
 @import url("../../base/_layout.css");
 @import url("../../base/_components.css");
+
 /* ==================================================
-   COMPONENTS – Navigace a modální okna
+   COMPONENTS – Navigace 
 ================================================== */
 @import url("../../components/_navbar.css");  /* Navigace a hamburger menu */
 @import url("../../components/_footer.css");  /* Footer */ 
 
+
+/* ==================================================
+▸ SECTIONS
+================================================== */
+@import url("../../pages/vyvoj-vyzkum/vyvoj_bg.css");       /* pozadí jednotlivých sekcí */
+@import url("../../pages/vyvoj-vyzkum/vyvoj_hero.css");     /* hero, video */
+@import url("../../pages/vyvoj-vyzkum/vyvoj_focus.css");    /* zaměření výzkumu */
+@import url("../../pages/vyvoj-vyzkum/vyvoj_projekty.css"); /* běžící projekty */ 
+@import url("../../pages/vyvoj-vyzkum/vyvoj_metodika.css"); /* metodika */
+@import url("../../pages/vyvoj-vyzkum/vyvoj_publikace.css"); /* publikace a spolupráce */ 
 /* ==================================================
    THEME – Tmavý režim a varianty vzhledu
 ================================================== */

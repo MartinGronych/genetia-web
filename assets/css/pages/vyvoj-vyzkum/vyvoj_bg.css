@@ -1,0 +1,232 @@
+/* ==================================================
+   GENETIA – VÝVOJ & VÝZKUM
+   HERO BACKGROUND 
+================================================== */
+
+.vyvoj-hero {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(
+    180deg,
+    var(--gene-light-80) 0%,
+    var(--gene-light-90) 40%,
+    var(--surface) 100%
+  );
+}
+
+.vyvoj-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+
+  background: radial-gradient(
+    900px 420px at 75% 30%,
+    rgba(185, 209, 56, 0.18),
+    rgba(185, 209, 56, 0.06) 45%,
+    rgba(185, 209, 56, 0) 70%
+  );
+}
+
+.vyvoj-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.12;
+
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(0, 0, 0, 0.015) 0px,
+    rgba(0, 0, 0, 0.015) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+/* ================
+   ZAMĚŘENÍ VÝZKUMU   
+=================== */
+.vyvoj-focus {
+  position: relative;
+  isolation: isolate;
+
+  background: linear-gradient(
+    180deg,
+    var(--surface) 0%,
+    var(--gene-light-90) 55%,
+    var(--surface) 100%
+  );
+}
+
+/* Jemný laboratorní akcent */
+.vyvoj-focus::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+
+  background: radial-gradient(
+    1100px 420px at 50% 0%,
+    rgba(248, 250, 235, 0.85),
+    /* gene-light-90 */ rgba(248, 250, 235, 0.45) 45%,
+    rgba(248, 250, 235, 0) 70%
+  );
+}
+
+/* ================
+   BĚŽÍCÍ PROJEKTY   
+=================== */
+
+.vyvoj-projects {
+  position: relative;
+  isolation: isolate;
+
+  background: linear-gradient(
+    180deg,
+    var(--surface) 0%,
+    var(--gene-light-90) 50%,
+    var(--surface) 100%
+  );
+}
+
+/* Jemné horní světlo – klidnější než u HERO */
+.vyvoj-projects::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+
+  background: radial-gradient(
+    1200px 320px at 50% 0%,
+    rgba(248, 250, 235, 0.75),
+    rgba(248, 250, 235, 0.35) 45%,
+    rgba(248, 250, 235, 0) 70%
+  );
+}
+
+/* =====
+METODIKA
+======== */
+.vyvoj-method + .vyvoj-lab {
+  margin-top: 0 !important;
+}
+
+.vyvoj-method {
+  position: relative;
+  isolation: isolate;
+
+  background: linear-gradient(
+    180deg,
+    var(--surface) 0%,
+    var(--gene-light-90) 45%,
+    var(--surface) 100%
+  );
+}
+
+/* Horní jemné laboratorní světlo */
+.vyvoj-method::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+
+  background: radial-gradient(
+    1100px 360px at 50% 0%,
+    rgba(248, 250, 235, 0.85),
+    /* gene-light-90 */ rgba(248, 250, 235, 0.45) 45%,
+    rgba(248, 250, 235, 0) 70%
+  );
+}
+
+/* Jemná hloubka ve spodní části (přechod k lab sekci) */
+.vyvoj-method::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+
+  background: radial-gradient(
+    900px 260px at 50% 100%,
+    rgba(201, 211, 163, 0.18),
+    /* brand-300 nádech */ rgba(201, 211, 163, 0.08) 40%,
+    rgba(201, 211, 163, 0) 70%
+  );
+}
+.vyvoj-lab {
+  position: relative;
+  isolation: isolate;
+
+  background: linear-gradient(
+    180deg,
+    var(--surface) 0%,
+    var(--gene-light-90) 40%,
+    var(--gene-light-80) 60%,
+    var(--surface) 100%
+  );
+}
+
+/* Jemné horní laboratorní světlo */
+.vyvoj-lab::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+
+  background: radial-gradient(
+    1200px 420px at 50% 0%,
+    rgba(248, 250, 235, 0.85),
+    /* gene-light-90 */ rgba(248, 250, 235, 0.45) 45%,
+    rgba(248, 250, 235, 0) 70%
+  );
+}
+
+/* Jemná spodní hloubka – ukotví slider */
+.vyvoj-lab::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+
+  background: radial-gradient(
+    1000px 320px at 50% 100%,
+    rgba(201, 211, 163, 0.25),
+    /* brand-300 nádech */ rgba(201, 211, 163, 0.1) 40%,
+    rgba(201, 211, 163, 0) 70%
+  );
+}
+.metodika-slider_track {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  
+
+  /* nové pozadí panelu */
+  background: linear-gradient(
+    180deg,
+    var(--gene-dark-40) 0%,
+    var(--surface) 55%,
+    var(--gene-dark-40) 100%
+  );
+}
+/* ====================
+publikace a  spolupráce
+===================== */
+.vyvoj-publications {
+background:
+    linear-gradient(
+      180deg,
+      var(--gene-light-90) 0%,
+      var(--gene-light-60) 45%,
+      var(--gene-dark-20) 70%, 
+      var(--gene-dark-30) 100%
+    );
+}

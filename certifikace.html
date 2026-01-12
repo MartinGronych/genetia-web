@@ -151,34 +151,256 @@
         </form>
       </div>
     </div>
-    <section class="section">
-      <div class="container">
-        <div class="row g-4">
-          <div class="col-md-6">
-            <div class="p-4 border rounded-4 h-100">
-              <h3 class="h5 mb-1">ISO 9001</h3>
-              <small class="text-secondary d-block mb-3"
-                >Kvalitativní management</small
-              >
-              <a class="btn btn-sm btn-outline-secondary" href="#"
-                >Zobrazit certifikát (PDF)</a
-              >
-            </div>
+
+    <main class="page-main certifikace-page">
+      <!-- =====================================
+       CERTIFIKACE – HERO
+  ====================================== -->
+      <section class="certifikace_hero" id="certifikace-hero">
+        <div class="container">
+          <!-- badge -->
+          <div class="certifikace_heroBadge" aria-label="Certifikovaná kvalita">
+            <i data-lucide="badge-check" aria-hidden="true"></i>
+            <span>Certifikovaná kvalita</span>
           </div>
-          <div class="col-md-6">
-            <div class="p-4 border rounded-4 h-100">
-              <h3 class="h5 mb-1">Oprávnění SÚKL</h3>
-              <small class="text-secondary d-block mb-3"
-                >Výroba / distribuce</small
-              >
-              <a class="btn btn-sm btn-outline-secondary" href="#"
-                >Zobrazit oprávnění (PDF)</a
-              >
+
+          <!-- headline -->
+          <h1 class="certifikace_title">Naše certifikace</h1>
+
+          <!-- subtitle -->
+          <p class="certifikace_subtitle">
+            Držíme GMP certifikáty vydané SÚKL, pro farmaceutickou výrobu a
+            kontrolní laboratoř. Naše výroba i kontrolní laboratoř splňují
+            přísné standardy GMP.
+          </p>
+
+          <!-- cards grid -->
+          <div
+            class="certifikace_cards"
+            id="certifikaceCards"
+            aria-label="Seznam certifikací"
+          >
+            <!-- CARD 1 (2 badges) -->
+            <button
+              type="button"
+              class="cert-card"
+              data-cert-card
+              data-cert-id="gmp-release"
+              aria-haspopup="dialog"
+              aria-expanded="false"
+            >
+              <div class="cert-card_badges">
+                <span class="cert-badge cert-badge--accent cert-badge--star">
+                  <i data-lucide="star" aria-hidden="true"></i>
+                  Unikát v ČR
+                </span>
+                <span class="cert-badge">GMP 1</span>
+              </div>
+
+              <div class="cert-card_icon" aria-hidden="true">
+                <i data-lucide="shield" aria-hidden="true"></i>
+              </div>
+
+              <div class="cert-card_meta">GMP CERTIFIKÁT</div>
+              <h3 class="cert-card_title">
+                Propouštění šarží léčivého přípravku
+              </h3>
+              <p class="cert-card_desc">
+                Certifikát opravňující k propouštění šarží v souladu se
+                standardy GMP 1
+              </p>
+
+              <div class="cert-card_cta" aria-hidden="true">
+                <span>Zobrazit detail</span>
+                <i data-lucide="chevron-right" aria-hidden="true"></i>
+              </div>
+            </button>
+
+            <!-- CARD 2 -->
+            <button
+              type="button"
+              class="cert-card"
+              data-cert-card
+              data-cert-id="gmp-lab"
+              aria-haspopup="dialog"
+              aria-expanded="false"
+            >
+              <div class="cert-card_badges">
+                <span class="cert-badge">GMP 1</span>
+              </div>
+
+              <div class="cert-card_icon" aria-hidden="true">
+                <i data-lucide="badge-check" aria-hidden="true"></i>
+              </div>
+
+              <div class="cert-card_meta">GMP CERTIFIKÁT</div>
+              <h3 class="cert-card_title">Kontrolní laboratoř</h3>
+              <p class="cert-card_desc">
+                Certifikát pro kontrolní laboratoř v souladu se standardy GMP 1
+              </p>
+
+              <div class="cert-card_cta" aria-hidden="true">
+                <span>Zobrazit detail</span>
+                <i data-lucide="chevron-right" aria-hidden="true"></i>
+              </div>
+            </button>
+
+            <!-- CARD 3 -->
+            <button
+              type="button"
+              class="cert-card"
+              data-cert-card
+              data-cert-id="gmp-api-pack"
+              aria-haspopup="dialog"
+              aria-expanded="false"
+            >
+              <div class="cert-card_badges">
+                <span class="cert-badge">GMP 2</span>
+              </div>
+
+              <div class="cert-card_icon" aria-hidden="true">
+                <i data-lucide="file-check" aria-hidden="true"></i>
+              </div>
+
+              <div class="cert-card_meta">GMP CERTIFIKÁT</div>
+              <h3 class="cert-card_title">Balení API</h3>
+              <p class="cert-card_desc">
+                Certifikát opravňující k balení API v souladu se standardy GMP 2
+              </p>
+
+              <div class="cert-card_cta" aria-hidden="true">
+                <span>Zobrazit detail</span>
+                <i data-lucide="chevron-right" aria-hidden="true"></i>
+              </div>
+            </button>
+
+            <!-- CARD 4 -->
+            <button
+              type="button"
+              class="cert-card"
+              data-cert-card
+              data-cert-id="gmp-api-extract"
+              aria-haspopup="dialog"
+              aria-expanded="false"
+            >
+              <div class="cert-card_badges">
+                <span class="cert-badge">GMP 2</span>
+              </div>
+
+              <div class="cert-card_icon" aria-hidden="true">
+                <i data-lucide="award" aria-hidden="true"></i>
+              </div>
+
+              <div class="cert-card_meta">GMP CERTIFIKÁT</div>
+              <h3 class="cert-card_title">Extrakce API</h3>
+              <p class="cert-card_desc">
+                Povolení k extrakci API v souladu se standardy GMP 2
+              </p>
+
+              <div class="cert-card_cta" aria-hidden="true">
+                <span>Zobrazit detail</span>
+                <i data-lucide="chevron-right" aria-hidden="true"></i>
+              </div>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================
+       CERTIFIKACE – DETAILS
+  ====================================== -->
+      <section class="certifikace_details" id="certifikace-details">
+        <div class="container">
+          <div class="certifikace_detailsHead">
+            <div class="certifikace_detailsIcon" aria-hidden="true">
+              <i data-lucide="shield-check" aria-hidden="true"></i>
+            </div>
+
+            <h2 class="certifikace_detailsTitle">
+              Proč jsou certifikace důležité?
+            </h2>
+
+            <p class="certifikace_detailsSubtitle">
+              GMP (Good Manufacturing Practice) certifikace garantují, že naše
+              procesy splňují nejpřísnější farmaceutické standardy. Díky tomu
+              můžete mít jistotu, že vaše produkty jsou vyráběny a testovány v
+              souladu s mezinárodními normami.
+            </p>
+          </div>
+
+          <div class="certifikace_pills" aria-label="Přehled standardů">
+            <div class="cert-pill">
+              <div class="cert-pill_title">GMP</div>
+              <div class="cert-pill_text">Certifikovaná výroba</div>
+            </div>
+
+            <div class="cert-pill">
+              <div class="cert-pill_title">EU</div>
+              <div class="cert-pill_text">Evropské standardy</div>
             </div>
           </div>
         </div>
+      </section>
+
+      <!-- =====================================
+       POPOVER (anchored, not modal)
+       - jeden společný pro všechny karty
+  ====================================== -->
+      <div
+        class="cert-popover"
+        id="certPopover"
+        role="dialog"
+        aria-modal="false"
+        aria-hidden="true"
+      >
+        <div class="cert-popover_inner" role="document">
+          <button
+            type="button"
+            class="cert-popover_close"
+            data-popover-close
+            aria-label="Zavřít"
+          >
+            <i data-lucide="x" aria-hidden="true"></i>
+          </button>
+
+          <div class="cert-popover_header">
+            <div class="cert-popover_icon" aria-hidden="true">
+              <i data-lucide="award" aria-hidden="true"></i>
+            </div>
+
+            <div class="cert-popover_headText">
+              <div class="cert-popover_title" id="certPopoverTitle">
+                Extrakce API
+              </div>
+              <div class="cert-popover_meta" id="certPopoverMeta">
+                GMP Certifikát • GMP 2
+              </div>
+            </div>
+          </div>
+
+          <p class="cert-popover_text" id="certPopoverText">
+            Povolení k extrakci API v souladu se standardy GMP 2
+          </p>
+
+          <div class="cert-popover_notice">
+            <div class="cert-popover_noticeTop">
+              <i data-lucide="file-text" aria-hidden="true"></i>
+              <span>Certifikáty k nahlédnutí na vyžádání</span>
+            </div>
+
+            <div class="cert-popover_noticeBottom">
+              <span>Pro získání kopie certifikátu nás prosím</span>
+              <a class="cert-popover_cta" href="kontakt.html#contactForm"
+                >kontaktujte nás</a
+              >
+            </div>
+          </div>
+
+          <!-- šipka (pozicuje JS/CSS) -->
+          <div class="cert-popover_arrow" aria-hidden="true"></div>
+        </div>
       </div>
-    </section>
+    </main>
 
     <!-- ================================
          FOOTER
@@ -337,6 +559,8 @@
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/pages/certifikace/certifikace.js"></script>
+
     <!-- Lucide icons (true selective import) -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>

@@ -22,6 +22,12 @@
 @import url("../../components/_footer.css");  /* Footer */ 
 
 /* ==================================================
+   SECTIONS - hero, details, popovers
+================================================== */
+@import url("./_certifikace_hero.css");      /* Hero sekce */
+@import url("./_certifikace_details.css");   /* Details sekce*/
+@import url("./_certifikace_popovers.css");  /* Popovers */
+/* ==================================================
    THEME – Tmavý režim a varianty vzhledu
 ================================================== */
 @import url("../../theme/_dark.css");

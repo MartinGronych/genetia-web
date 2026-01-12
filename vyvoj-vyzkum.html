@@ -5,39 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Genetia – Vývoj a výzkum</title>
     <meta
-    name="description"
-    content="Genetia – analytické služby, výzkum a odborné zázemí pro farmaceutickou kvalitu."
-  />
+      name="description"
+      content="Genetia – analytické služby, výzkum a odborné zázemí pro farmaceutickou kvalitu."
+    />
 
-  <!-- Google Fonts – sjednocené -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
+    <!-- Google Fonts – sjednocené -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Bootstrap (layout & utilities) -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-  />
+    <!-- Bootstrap (layout & utilities) -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
 
-  <!-- Globální styly (NAV + layout + tokens) -->
-  <link rel="stylesheet" href="assets/css/styles.css" />
+    <!-- Globální styly (NAV + layout + tokens) -->
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="assets/css/pages/vyvoj-vyzkum/vyvoj-vyzkum.css"
+    />
 
-  <!-- Page-specific CSS (pokud existuje) -->
-  <!--
-  <link rel="stylesheet" href="assets/css/pages/XXXX/XXXX.css" />
-  -->
-
-  <!-- Favicon -->
-  <link
-    rel="icon"
-    href="assets/images/logo/favicon.png"
-    type="image/png"
-  />
-</head>
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/logo/favicon.png" type="image/png" />
+  </head>
 
   <body>
     <header class="site-header">
@@ -161,62 +156,107 @@
     =================================== -->
     <main>
       <!-- HERO -->
-      <section class="hero py-5">
+      <section class="vyvoj-hero py-5">
         <div class="container">
           <div class="row align-items-center g-4">
-            <div class="col-lg-7">
-              <h1 class="display-5 mb-3">
-                Inovace, validace metod a aplikovaný výzkum
-              </h1>
-              <p class="lead mb-0">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                lobortis, mi vitae scelerisque fringilla, sem tortor tempor
-                libero, vitae suscipit arcu urna quis elit.
-              </p>
+            <div class="col-md-7 col-lg-7">
+              <div class="vyvoj-hero_intro">
+                <span class="vyvoj-hero_kicker">Vývoj & výzkum</span>
+
+                <h1 class="display-5 vyvoj-hero_title">
+                  Inovace, validace metod a aplikovaný výzkum
+                </h1>
+
+                <p class="vyvoj-hero_subtitle">
+                  Propojujeme laboratorní data s požadavky farmaceutické
+                  kvality. Ověřujeme analytické postupy, stabilitu a
+                  reprodukovatelnost výsledků v reálném výrobním prostředí.
+                </p>
+              </div>
             </div>
-            <div class="col-lg-5">
-              <img
-                class="img-fluid rounded-4 shadow-md"
-                src="https://picsum.photos/960/640?random=21"
-                alt="Research hero placeholder"
-              />
+
+            <div class="col-md-5 col-lg-5">
+              <div class="vyvoj-hero_media rounded-4">
+                <video
+                  class="vyvoj-hero_video"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="metadata"
+                >
+                  <source
+                    src="assets/video/Genetia_product.mp4"
+                    type="video/mp4"
+                  />
+                </video>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       <!-- ZAMĚŘENÍ VÝZKUMU -->
-      <section class="section">
+      <section class="section vyvoj-focus" id="vyzkum-zamereni">
         <div class="container">
           <h2 class="mb-4">Zaměření výzkumu</h2>
+
           <div class="row g-4">
+            <!-- 1 -->
             <div class="col-md-4">
-              <div class="card h-100 border-0 shadow-sm">
-                <div class="card-body p-4">
-                  <div class="card-icon mb-3">🧬</div>
-                  <h3 class="h5">Validace metod</h3>
-                  <p class="text-secondary">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Aenean malesuada libero quis.
-                  </p>
-                  <ul class="mb-0">
-                    <li>Metodiky LC-MS/MS</li>
-                    <li>Linearity, LOD/LOQ</li>
-                    <li>Robustnost & přesnost</li>
+              <div class="card vyvoj-focus_card h-100">
+                <div class="card-body p-4" data-hover-card>
+                  <div class="vyvoj-focus_head">
+                    <div class="vyvoj-focus_media" aria-hidden="true">
+                      <img
+                        src="assets/images/vyvoj/validace_metod.webp"
+                        alt="Validace analytických metod v laboratoři"
+                        loading="lazy"
+                      />
+                    </div>
+
+                    <div class="vyvoj-focus_text">
+                      <h3 class="h5 mb-2">Validace metod</h3>
+                      <p class="vyvoj-focus_desc mb-0">
+                        Ověřujeme přesnost, citlivost a reprodukovatelnost
+                        měření tak, aby výsledky obstály v rutinním provozu i
+                        při auditu.
+                      </p>
+                    </div>
+                  </div>
+
+                  <ul class="vyvoj-focus_list mb-0">
+                    <li>LC-MS/MS metodiky</li>
+                    <li>Linearita, LOD/LOQ</li>
+                    <li>Robustnost a přesnost</li>
                   </ul>
                 </div>
               </div>
             </div>
+
+            <!-- 2 -->
             <div class="col-md-4">
-              <div class="card h-100 border-0 shadow-sm">
-                <div class="card-body p-4">
-                  <div class="card-icon mb-3">🧪</div>
-                  <h3 class="h5">Formulace & stabilita</h3>
-                  <p class="text-secondary">
-                    Integer vehicula magna eget euismod luctus. Proin tempor
-                    orci a metus dignissim.
-                  </p>
-                  <ul class="mb-0">
+              <div class="card vyvoj-focus_card h-100">
+                <div class="card-body p-4" data-hover-card>
+                  <div class="vyvoj-focus_head">
+                    <div class="vyvoj-focus_media" aria-hidden="true">
+                      <img
+                        src="assets/images/vyvoj/formulace_stabilita.webp"
+                        alt="Stabilitní testování a práce se vzorky"
+                        loading="lazy"
+                      />
+                    </div>
+
+                    <div class="vyvoj-focus_text">
+                      <h3 class="h5 mb-2">Formulace a stabilita</h3>
+                      <p class="vyvoj-focus_desc mb-0">
+                        Sledujeme stabilitu účinných látek v čase, vliv matrice
+                        a podmínek skladování pro bezpečné škálování.
+                      </p>
+                    </div>
+                  </div>
+
+                  <ul class="vyvoj-focus_list mb-0">
                     <li>Studie stability</li>
                     <li>Matriční efekty</li>
                     <li>Škálování výroby</li>
@@ -224,18 +264,33 @@
                 </div>
               </div>
             </div>
+
+            <!-- 3 -->
             <div class="col-md-4">
-              <div class="card h-100 border-0 shadow-sm">
-                <div class="card-body p-4">
-                  <div class="card-icon mb-3">🌿</div>
-                  <h3 class="h5">Cannabinoidní profil</h3>
-                  <p class="text-secondary">
-                    Vivamus placerat massa at scelerisque facilisis. Cras porta,
-                    ex et vulputate.
-                  </p>
-                  <ul class="mb-0">
+              <div class="card vyvoj-focus_card h-100">
+                <div class="card-body p-4" data-hover-card>
+                  <div class="vyvoj-focus_head">
+                    <div class="vyvoj-focus_media" aria-hidden="true">
+                      <img
+                        src="assets/images/vyvoj/cannabinoidni_profil.webp"
+                        alt="Profilace kanabinoidů a kontrola čistoty"
+                        loading="lazy"
+                      />
+                    </div>
+
+                    <div class="vyvoj-focus_text">
+                      <h3 class="h5 mb-2">Cannabinoidní profil</h3>
+                      <p class="vyvoj-focus_desc mb-0">
+                        Standardizujeme šarže a hlídáme kvalitu pomocí
+                        profilace, kontroly nečistot a sledování degradačních
+                        trendů.
+                      </p>
+                    </div>
+                  </div>
+
+                  <ul class="vyvoj-focus_list mb-0">
                     <li>Standardizace šarží</li>
-                    <li>Kontaminanty & čistota</li>
+                    <li>Kontaminanty a čistota</li>
                     <li>Stabilitní křivky</li>
                   </ul>
                 </div>
@@ -243,8 +298,11 @@
             </div>
           </div>
 
-          <div class="d-flex flex-wrap gap-2 mt-4">
-            <a href="kontakt.html" class="btn btn-brand">Konzultace výzkumu</a>
+          <div class="vyvoj-focus_cta mt-4">
+            <a href="kontakt.html#kontaktForm" class="btn btn-brand">
+              Konzultace výzkumu
+            </a>
+
             <a href="analyticke-sluzby.html" class="btn btn-outline">
               Analytické služby
             </a>
@@ -253,49 +311,58 @@
       </section>
 
       <!-- BĚŽÍCÍ PROJEKTY -->
-      <section class="section">
+      <section class="section vyvoj-projects" id="bezici-projekty">
         <div class="container">
           <h2 class="mb-4">Běžící projekty</h2>
+
           <div class="row g-4">
+            <!-- Projekt A -->
             <div class="col-lg-6">
-              <div class="card h-100 border-0 shadow-sm">
+              <div class="card h-100">
                 <div class="card-body p-4">
                   <div
-                    class="d-flex justify-content-between align-items-start mb-2"
+                    class="d-flex justify-content-between align-items-start gap-3 mb-2"
                   >
                     <h3 class="h5 mb-0">Projekt A – Optimalizace LC-MS</h3>
-                    <span class="badge text-bg-dark">2025</span>
+                    <span class="project-year">2025</span>
                   </div>
-                  <p class="text-secondary mb-3">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Praesent interdum, nisl id pellentesque gravida, arcu risus
-                    posuere.
+
+                  <p class="project-subtitle">
+                    Zpřesňujeme kvantifikaci a zvyšujeme robustnost měření
+                    napříč matricemi. Ladíme citlivost, opakovatelnost a
+                    provozní stabilitu metod pro rutinní laboratorní workflow.
                   </p>
+
                   <ul class="mb-0">
                     <li>Cíl: zkrácení analýz o 30 %</li>
                     <li>Výstup: interní SOP + validace</li>
-                    <li>Partner: lorem ipsum s.r.o.</li>
+                    <li>Partner: lorem ipsum s.r.o.<strong>DOPLNIT</strong></li>
                   </ul>
                 </div>
               </div>
             </div>
+
+            <!-- Projekt B -->
             <div class="col-lg-6">
-              <div class="card h-100 border-0 shadow-sm">
+              <div class="card h-100">
                 <div class="card-body p-4">
                   <div
-                    class="d-flex justify-content-between align-items-start mb-2"
+                    class="d-flex justify-content-between align-items-start gap-3 mb-2"
                   >
                     <h3 class="h5 mb-0">Projekt B – Stabilita extraktů</h3>
-                    <span class="badge text-bg-dark">2025</span>
+                    <span class="project-year">2025</span>
                   </div>
-                  <p class="text-secondary mb-3">
-                    Integer mattis, risus in tempor bibendum, dolor est
-                    pellentesque dui, ut tincidunt sapien lorem quis tortor.
+
+                  <p class="project-subtitle">
+                    Ověřujeme stabilitu účinných látek v čase a napříč
+                    skladovacími podmínkami. Sledujeme degradační trendy, vliv
+                    matrice a definujeme parametry pro bezpečné škálování.
                   </p>
+
                   <ul class="mb-0">
                     <li>Cíl: definice stabilitních křivek</li>
                     <li>Výstup: report + doporučení balení</li>
-                    <li>Partner: University Lab</li>
+                    <li>Partner: University Lab <strong>DOPLNIT</strong></li>
                   </ul>
                 </div>
               </div>
@@ -303,7 +370,7 @@
           </div>
 
           <div class="text-center mt-4">
-            <a href="kontakt.html" class="btn btn-outline">
+            <a href="kontakt.html#kontaktForm" class="btn-research">
               Spolupracujme na výzkumu
             </a>
           </div>
@@ -311,137 +378,273 @@
       </section>
 
       <!-- METODIKY A VYBAVENÍ -->
-      <section class="section">
+
+      <section class="section vyvoj-method">
         <div class="container">
-          <h2 class="mb-4">Metodiky a laboratorní vybavení</h2>
+          <h2 class="mb-3">Metodika</h2>
+          <p class="vyvoj-section_lead mb-4">
+            Pracujeme s metodikou postavenou na validovaných postupech,
+            konzistentní přípravě vzorků a kontrolovaných podmínkách měření.
+            Důraz klademe na reprodukovatelnost a auditovatelnost dat.
+          </p>
+
           <div class="row g-4">
-            <div class="col-md-6">
-              <div class="card h-100 border-0 shadow-sm">
+            <div class="col-lg-6">
+              <div class="card vyvoj-info_card h-100">
                 <div class="card-body p-4">
-                  <h3 class="h6 text-uppercase text-muted mb-3">Metodiky</h3>
+                  <h3 class="h5 mb-2">Validované postupy</h3>
                   <ul class="mb-0">
-                    <li>LC-MS/MS – kvantifikace vybraných markerů</li>
-                    <li>GC-FID – profil těkavých látek</li>
-                    <li>HPLC-DAD – čistota a stabilita</li>
-                    <li>ICP-MS – anorganické kontaminanty</li>
+                    <li>Standardizace přípravy vzorků a dokumentace</li>
+                    <li>Kontrolní vzorky, slepé vzorky, interní standardy</li>
+                    <li>Traceability a konzistence napříč šaržemi</li>
                   </ul>
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="card h-100 border-0 shadow-sm">
-                <div class="card-body p-4">
-                  <h3 class="h6 text-uppercase text-muted mb-3">Vybavení</h3>
-                  <ul class="mb-0">
-                    <li>Vysoce citlivé LC-MS/MS</li>
-                    <li>HPLC s více detektory</li>
-                    <li>Stabilitní komory</li>
-                    <li>Validovaná měřicí infrastruktura</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
 
-          <div class="row g-3 mt-3">
-            <div class="col-6 col-md-3">
-              <img
-                class="img-fluid rounded-3"
-                src="https://picsum.photos/400/300?random=31"
-                alt=""
-              />
-            </div>
-            <div class="col-6 col-md-3">
-              <img
-                class="img-fluid rounded-3"
-                src="https://picsum.photos/400/300?random=32"
-                alt=""
-              />
-            </div>
-            <div class="col-6 col-md-3">
-              <img
-                class="img-fluid rounded-3"
-                src="https://picsum.photos/400/300?random=33"
-                alt=""
-              />
-            </div>
-            <div class="col-6 col-md-3">
-              <img
-                class="img-fluid rounded-3"
-                src="https://picsum.photos/400/300?random=34"
-                alt=""
-              />
+            <div class="col-lg-6">
+              <div class="card vyvoj-info_card h-100">
+                <div class="card-body p-4">
+                  <h3 class="h5 mb-2">Kvalita dat</h3>
+                  <ul class="mb-0">
+                    <li>Kontrola linearity, citlivosti a selektivity</li>
+                    <li>Opakovatelnost a robustnost v rutinním provozu</li>
+                    <li>Vyhodnocení trendů a odchylek v čase</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- PUBLIKACE -->
-      <section class="section">
+      <!-- LABORATORNÍ VYBAVENÍ -->
+      <section class="section vyvoj-lab">
         <div class="container">
-          <h2 class="mb-4">Publikace a výstupy</h2>
-          <div class="list-group shadow-sm">
-            <a
-              href="#"
-              class="list-group-item list-group-item-action d-flex justify-content-between align-items-start"
-            >
-              <div class="me-3">
-                <h3 class="h6 mb-1">Lorem ipsum – titul publikace (2025)</h3>
-                <p class="mb-0 text-secondary small">
-                  Auctor A., B auctor B. – Journal of Applied Research, 12(3),
-                  123–130.
-                </p>
+          <h2 class="mb-3">Laboratorní vybavení</h2>
+          <p class="vyvoj-section_lead mb-4">
+            Využíváme přístrojové vybavení a workflow navržené pro rutinní
+            analytiku i vývoj metod. Výsledky jsou připravené pro interní
+            rozhodování i externí auditní požadavky.
+          </p>
+
+          <div class="row g-4">
+            <div class="col-lg-6">
+              <div class="card vyvoj-info_card h-100">
+                <div class="card-body p-4">
+                  <h3 class="h5 mb-2">Přístrojová analytika</h3>
+                  <ul class="mb-0">
+                    <li>LC-MS/MS a chromatografické workflow</li>
+                    <li>
+                      Kalibrační křivky, kontrolní běhy, systémová vhodnost
+                    </li>
+                    <li>Standardy, referenční materiály, práce s matricemi</li>
+                  </ul>
+                </div>
               </div>
-              <span class="badge text-bg-dark">PDF</span>
-            </a>
-            <a
-              href="#"
-              class="list-group-item list-group-item-action d-flex justify-content-between align-items-start"
-            >
-              <div class="me-3">
-                <h3 class="h6 mb-1">Dolor sit amet – interní report (2025)</h3>
-                <p class="mb-0 text-secondary small">
-                  Genetia s.r.o. – Interní dokument, verze 1.0.
-                </p>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="card vyvoj-info_card h-100">
+                <div class="card-body p-4">
+                  <h3 class="h5 mb-2">Stabilita a práce se vzorky</h3>
+                  <ul class="mb-0">
+                    <li>Kontrolované skladovací podmínky a časové body</li>
+                    <li>Vialky, obaly a kompatibilita materiálů</li>
+                    <li>Degradační trendy a interpretace změn profilu</li>
+                  </ul>
+                </div>
               </div>
-              <span class="badge text-bg-dark">Report</span>
-            </a>
+            </div>
+          </div>
+
+          <!-- MARQUEE SLIDER (Metodika fotografie) -->
+          <div
+            class="metodika-slider"
+            aria-label="Galerie metodiky a laboratorního vybavení"
+          >
+            <div class="metodika-slider_track">
+              <!-- 4 originály -->
+              <div class="metodika-slider_slide">
+                <img
+                  src="assets/images/vyvoj/metodika_1.webp"
+                  alt="Metodika – fotografie 1"
+                  loading="lazy"
+                />
+              </div>
+              <div class="metodika-slider_slide">
+                <img
+                  src="assets/images/vyvoj/metodika_2.webp"
+                  alt="Metodika – fotografie 2"
+                  loading="lazy"
+                />
+              </div>
+              <div class="metodika-slider_slide">
+                <img
+                  src="assets/images/vyvoj/metodika_3.webp"
+                  alt="Metodika – fotografie 3"
+                  loading="lazy"
+                />
+              </div>
+              <div class="metodika-slider_slide">
+                <img
+                  src="assets/images/vyvoj/metodika_4.webp"
+                  alt="Metodika – fotografie 4"
+                  loading="lazy"
+                />
+              </div>
+
+              <!-- 4 duplicity (pro nekonečný loop) -->
+              <div class="metodika-slider_slide" aria-hidden="true">
+                <img
+                  src="assets/images/vyvoj/metodika_1.jpg"
+                  alt=""
+                  loading="lazy"
+                />
+              </div>
+              <div class="metodika-slider_slide" aria-hidden="true">
+                <img
+                  src="assets/images/vyvoj/metodika_2.jpg"
+                  alt=""
+                  loading="lazy"
+                />
+              </div>
+              <div class="metodika-slider_slide" aria-hidden="true">
+                <img
+                  src="assets/images/vyvoj/metodika_3.jpg"
+                  alt=""
+                  loading="lazy"
+                />
+              </div>
+              <div class="metodika-slider_slide" aria-hidden="true">
+                <img
+                  src="assets/images/vyvoj/metodika_4.jpg"
+                  alt=""
+                  loading="lazy"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
-
-      <!-- SPOLUPRÁCE -->
-      <section class="section">
+      <!-- PUBLIKACE + SPOLUPRÁCE (JEDNA SEKCE) -->
+      <section class="section vyvoj-publications">
         <div class="container">
-          <h2 class="mb-4">Spolupráce a partneři</h2>
+          <!-- Publikace -->
+          <header class="vyvoj-publications_head mb-4">
+            <h2 class="mb-2">Publikace a výstupy</h2>
+            <p class="text-secondary mb-0">
+              Ověřitelné zdroje a veřejné materiály, které pomáhají s
+              interpretací výsledků a rozhodováním ve vývoji.
+            </p>
+          </header>
+
+          <div class="list-group vyvoj-publications_list shadow-sm">
+            <!-- 1) Reálná publikace -->
+            <a
+              href="https://pubs.rsc.org/en/content/articlelanding/2025/ay/d4ay01946f"
+              class="list-group-item list-group-item-action d-flex justify-content-between align-items-start"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div class="me-3">
+                <h3 class="h6 mb-1">
+                  Validated LC-MS/MS methodology for quantification of CBD and
+                  controlled cannabinoids (2025)
+                </h3>
+                <p class="mb-0 text-secondary small">
+                  Peer-reviewed článek – validace LC-MS/MS metodiky pro přesné
+                  stanovení kanabinoidů a stopových kontrolovaných látek.
+                </p>
+              </div>
+              <span class="badge vyvoj-badge">WEB</span>
+            </a>
+
+            <!-- 2) Metodický brief – rozbalovací info -->
+            <div class="list-group-item list-group-item-action vyvoj-brief">
+              <button
+                class="vyvoj-brief_toggle d-flex justify-content-between align-items-start w-100"
+                type="button"
+                aria-expanded="false"
+              >
+                <div class="me-3 text-start">
+                  <h3 class="h6 mb-1">
+                    Metodický brief: Jak číst výsledky LC-MS analýzy kanabinoidů
+                    (2025)
+                  </h3>
+                  <p class="mb-0 text-secondary small">
+                    Veřejný přehled pro klienty – interpretace výsledků, limity
+                    metody, stabilita.
+                  </p>
+                </div>
+                <span class="badge vyvoj-badge-right">INFO</span>
+              </button>
+
+              <div class="vyvoj-brief_panel" hidden>
+                <div class="vyvoj-brief_panelInner">
+                  <p class="mb-2">
+                    Tento metodický brief slouží jako orientační průvodce pro
+                    čtení výsledků LC-MS analýzy kanabinoidů. Vysvětluje význam
+                    jednotek, limitů detekce (LOD/LOQ) a základní principy
+                    interpretace naměřených hodnot.
+                  </p>
+                  <p class="mb-3">
+                    Dokument nepopisuje interní postupy ani laboratorní know-how
+                    společnosti Genetia. Je určen pro klienty a partnery, kteří
+                    potřebují lépe porozumět analytickým výstupům.
+                  </p>
+
+                  <a
+                    href="assets/docs/Jak_cist_vysledky_LC-MS.pdf"
+                    class="btn btn-sm btn-outline"
+                  >
+                    Stáhnout metodický brief (PDF)
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Divider spacing mezi částmi (v jedné sekci) -->
+          <div class="vyvoj-publications_divider"></div>
+
+          <!-- Spolupráce -->
           <div class="row g-4 align-items-center">
             <div class="col-md-8">
+              <h2 class="mb-3">Spolupráce a partneři</h2>
               <p class="mb-3 text-secondary">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Phasellus ut lorem vitae augue fermentum dictum. Pellentesque et
-                rutrum urna. Cras luctus, ipsum sed luctus dignissim, justo arcu
-                interdum lorem, vitae efficitur massa ipsum eu erat.
+                Spolupracujeme s týmy, které potřebují opřít rozhodování o data
+                – od vývoje metodiky a nastavení měření až po interpretaci
+                výsledků pro škálování a kontrolu kvality. Preferujeme jasně
+                definovaný cíl, transparentní výstupy a komunikaci, která
+                obstojí i při formální kontrole.
               </p>
-              <a href="kontakt.html" class="btn btn-brand">
-                Navázat spolupráci
-              </a>
+              <a href="kontakt.html" class="btn btn-brand"
+                >Navázat spolupráci</a
+              >
             </div>
-            <div class="col-md-4">
-              <div class="d-flex gap-3 flex-wrap">
+
+            <div class="col-md-4 vyvoj-collab_media">
+              <div
+                class="d-flex gap-3 flex-wrap justify-content-md-end vyvoj-collab_mediaGrid"
+              >
                 <img
-                  src="https://picsum.photos/120/60?random=41"
+                  src="assets/images/metodika/spoluprace_1.jpg"
                   class="img-fluid rounded-2 border"
-                  alt="Partner 1"
+                  alt="Spolupráce – partner 1"
+                  loading="lazy"
                 />
                 <img
-                  src="https://picsum.photos/120/60?random=42"
+                  src="assets/images/metodika/spoluprace_2.jpg"
                   class="img-fluid rounded-2 border"
-                  alt="Partner 2"
+                  alt="Spolupráce – partner 2"
+                  loading="lazy"
                 />
                 <img
-                  src="https://picsum.photos/120/60?random=43"
+                  src="assets/images/metodika/spoluprace_3.jpg"
                   class="img-fluid rounded-2 border"
-                  alt="Partner 3"
+                  alt="Spolupráce – partner 3"
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -611,6 +814,7 @@
     =================================== -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/pages/vyvoj-vyzkum/vyvoj-vyzkum.js"></script>
     <!-- Lucide icons (true selective import) -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
