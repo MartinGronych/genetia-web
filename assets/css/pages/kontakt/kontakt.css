@@ -1,37 +1,400 @@
 /* ==================================================
-   GENETIA – Kontakt (Multi-entry)
-   Autor: Martin Gronych
-   --------------------------------------------------
-   Struktura načítání stylů:
-   ▸ BASE        – základní proměnné a reset
-   ▸ COMPONENTS  – opakovaně použitelné prvky
-   ▸ SECTIONS    – sekce specifické pro stránku
-   ▸ THEME       – barevné varianty (light/dark)
+   GENETIA – Kontakt (PAGE ONLY / multi-entry)
+   - Navazuje na kontakt.html (contact-page, contact-card, contact-form, contact-map)
+   - Brand look: clean, glass, jemné stíny, zelený akcent
+   - Mapa klidná: žádné rušivé hover/transform
 ================================================== */
 
-/* ==================================================
-   BASE – Základy, proměnné, layout, komponenty
-================================================== */
-@import url("../../base/_tokens.css");
-@import url("../../base/_reset.css");
-@import url("../../base/_layout.css");
-@import url("../../base/_components.css");
+/* =========================
+   Page wrapper
+========================= */
+
+.contact-page {
+  /* Pozadí + jemná textura (bez rušení) */
+  background: linear-gradient(
+    180deg,
+    var(--gene-light-80) 5%,
+    var(--gene-dark-30) 100%
+  );
+  color: inherit;
+}
+
+.contact-page .container {
+  max-width: 1120px;
+}
+
+/* =========================
+   Head (nadpis + linka)
+========================= */
+
+/* Nadpis + linka */
+.contact-page_head {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin: 0;
+  padding-bottom: 1rem;
+}
+
+.contact-page_title {
+  letter-spacing: -0.02em;
+  font-weight: 800;
+  line-height: 1.05;
+  color: var(--brand-black);
+  font-size: clamp(1.8rem, 3vw, 2.35rem);
+}
+
+.contact-page_rule {
+  height: 6px;
+  flex: 1;
+  background: var(--brand-600, #2f7a4b);
+  border-radius: var(--radius-lg);
+  opacity: 0.4;
+}
+
+/* =========================
+   Karty (firma + formulář)
+   (používáš card-base + shadow-sm z globálu; tady jen brand polish)
+========================= */
+
+.contact-card,
+.contact-form,
+.contact-map_frame {
+  border-radius: 18px;
+  border: 1px solid rgba(15, 28, 18, 0.08);
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.06);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .contact-card,
+  .contact-form,
+  .contact-map_frame {
+    backdrop-filter: none;
+    background: rgba(255, 255, 255, 0.95);
+  }
+}
+
+/* Jemný “brand” okraj při focusu uvnitř */
+.contact-card:focus-within,
+.contact-form:focus-within {
+  border-color: rgba(47, 122, 75, 0.25);
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================
+   Kontaktní údaje (bloky)
+========================= */
+
+.contact-card_block {
+  padding: 12px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.contact-card_block:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.contact-card_label {
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(8, 20, 12, 0.55);
+  margin-bottom: 6px;
+}
+
+.contact-card_value {
+  color: rgba(8, 20, 12, 0.92);
+  font-weight: 600;
+}
+
+/* Odkazy v kartě */
+.contact-link {
+  color: rgba(13, 61, 36, 0.95);
+  text-decoration: none;
+  font-weight: 650;
+}
+
+.contact-link:hover,
+.contact-link:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Row link s ikonou (lucide) */
+.contact-link--row {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: rgba(47, 122, 75, 0.06);
+  border: 1px solid rgba(47, 122, 75, 0.12);
+}
+
+.contact-link--row i,
+.contact-link--row svg {
+  width: 18px;
+  height: 18px;
+  opacity: 0.9;
+}
+
+.contact-link--row:hover,
+.contact-link--row:focus-visible {
+  background: rgba(47, 122, 75, 0.1);
+  border-color: rgba(47, 122, 75, 0.18);
+  text-decoration: none;
+}
+
+/* =========================
+   Formulář (brand input look)
+========================= */
+
+.contact-form .form-control {
+  border-radius: 14px;
+  border: 1px solid rgba(15, 28, 18, 0.12);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: none;
+}
+
+.contact-form .form-control:focus {
+  border-color: rgba(47, 122, 75, 0.35);
+  outline: 3px solid rgba(47, 122, 75, 0.15);
+  outline-offset: 1px;
+}
+
+/* Menší texty pod formulářem */
+.recaptcha-notice {
+  font-size: 0.85rem;
+  color: rgba(8, 20, 12, 0.55);
+  line-height: 1.45;
+}
+
+.recaptcha-notice a {
+  color: rgba(13, 61, 36, 0.92);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.form-inline-message {
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(47, 122, 75, 0.18);
+  background: rgba(47, 122, 75, 0.06);
+  color: rgba(8, 20, 12, 0.75);
+}
+
+/* =========================
+   Mapa – klidná, statická
+========================= */
+
+.contact-map {
+  width: 100%;
+}
+
+/* frame už má glass styl přes společný blok nahoře */
+.contact-map_frame {
+  overflow: hidden;
+}
+
+/* Canvas (div) pro Google mapu */
+.contact-map_canvas {
+  width: 100%;
+  height: 380px;
+  display: block;
+  position: relative;
+
+  /* jemný loading fallback */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.6),
+    rgba(245, 248, 246, 0.55)
+  );
+}
+
+/* Responsive výšky */
+@media (min-width: 768px) {
+  .contact-map_canvas {
+    height: 440px;
+  }
+}
+@media (min-width: 1440px) {
+  .contact-map_canvas {
+    height: 480px;
+  }
+}
+
+/* Přístupnost */
+.contact-map_canvas:focus-visible {
+  outline: 3px solid rgba(47, 122, 75, 0.28);
+  outline-offset: -3px;
+}
+
+/* =========================
+   Google Maps overrides
+========================= */
+
+.gm-style {
+  font-family: inherit;
+}
+
+.gm-style img {
+  max-width: none;
+}
+
+.gm-style,
+.gm-style * {
+  transition: none !important;
+}
+/* horní lišta */
+.gm-style-iw-ch {
+  padding: 10px 12px 6px;
+  justify-content: center;
+}
+
+/* samotný nadpis */
+.gm-style-iw-ch > div {
+  font-size: 1.3rem; /* +30 % */
+  font-weight: 600;
+  text-align: center;
+  color: var(--brand-900, #1a1a1a);
+}
+
+/* zavírací křížek – klidnější */
+.gm-style-iw-ch button {
+  opacity: 0.5;
+  transform: scale(0.9);
+}
+
+.gm-style-iw-ch button:hover {
+  opacity: 0.8;
+}
+
+/* =========================
+   Marker badge (logo) + InfoWindow
+   (navazuje na google-map.js)
+========================= */
+
+.map-markerBadge {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(15, 28, 18, 0.1);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
+
+  cursor: pointer;
+  padding: 0;
+  appearance: none;
+  outline: none;
+  transform: none !important;
+  pointer-events: auto;
+  touch-action: manipulation;
+}
+
+.map-markerBadge_logo {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Jemné zvýraznění (ne translate/zoom celé mapy) */
+.map-markerBadge.is-active,
+.map-markerBadge:hover,
+.map-markerBadge:focus-visible {
+  transform: none !important;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
+  border-color: rgba(47, 122, 75, 0.26);
+}
+
+/* Pro jistotu: Google vrstvy a pointer events */
+.gm-style .map-markerBadge,
+.gm-style .map-markerBadge * {
+  pointer-events: auto;
+}
+
+/* InfoWindow obsah */
+.map-iw {
+  max-width: 230px; /* užší */
+  text-align: center;
+  padding: 2px 2px 6px;
+}
+
+.map-iw_title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 0.4rem;
+  color: var(--brand-900, #1a1a1a);
+}
+
+.map-iw_addr {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: var(--brand-700, #444);
+  margin-bottom: 0.6rem;
+}
+
+.map-iw_link {
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--brand-500, #156eb8);
+}
+
+.map-iw_link:hover,
+.map-iw_link:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.map-iw_actions {
+  display: flex;
+  justify-content: center;
+}
 
 /* ==================================================
-   COMPONENTS – Navigace a modální okna
+   GENETIA – Google Maps Zoom Controls
 ================================================== */
-@import url("../../components/_navbar.css"); /* Navigace a hamburger menu */
-@import url("../../components/_modal.css"); /* Klientská zóna – přihlašovací modal */
-@import url("../../components/_cta.css"); /* formulář */
-@import url("../../components/_footer.css");  /* Footer */  
-/* ==================================================
-   THEME – Tmavý režim a varianty vzhledu
-================================================== */
-@import url("../../theme/_dark.css");
-@import url("../../theme/_switch.css");
-/* ==================================================
-  KONTAKTY 
-================================================== */
-@import url("../../pages/kontakt/kontaky.css");
 
+/* obal ovládání */
+#contactMap .gm-control-active {
+  background: rgba(255, 255, 255, 0.014)tra;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  margin: 8px;
+}
+
+/* jednotlivá tlačítka + / - */
+#contactMap .gm-control-active button {
+  width: 40px;
+  height: 40px;
+  background: transparent;
+}
+
+/* ikony */
+#contactMap .gm-control-active button span {
+  filter: grayscale(100%);
+  opacity: 0.85;
+}
+
+/* hover */
+#contactMap .gm-control-active button:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+/* aktivní stav */
+#contactMap .gm-control-active button:active {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+/* focus (a11y) */
+#contactMap .gm-control-active button:focus-visible {
+  outline: 2px solid var(--brand-600, #2f7d6b);
+  outline-offset: 2px;
+}
 

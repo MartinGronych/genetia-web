@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Ostatní může běžet paralelně
   safeInit("faq-fade", () => initFaqFade());
   safeInit("panels-grid", () => initPanelsGrid());
-  safeInit("panel-detail-modal", () => initPanelDetailModal());
+  // safeInit("panel-detail-modal", () => initPanelDetailModal()); // TEMP OFF – detaily vypnuté
 
   // USP sekce (zachovat pořadí!)
   await safeInit("usp-bar", () => initUspBar());

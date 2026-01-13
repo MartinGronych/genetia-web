@@ -220,6 +220,8 @@
   margin-top: 0.4rem;
   padding: 0.2rem 0.8rem;
   line-height: 1;
+  background: var(--brand-500);
+  color: var(--brand-black);
 }
 
 /* ratio (BOTTOM) */

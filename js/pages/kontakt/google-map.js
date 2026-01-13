@@ -1,69 +1,295 @@
 // ==================================================
-// GENETIA – Google Maps (Kontakt)
-// - Dynamic library import
-// - AdvancedMarkerElement s vlastním logem
+// GENETIA – Google Maps (Kontakt) – PROD
+// - Dynamic inline bootstrap loader (oficiální pattern) => importLibrary() spolehlivě
+// - loading=async => bez performance warningu
+// - importLibrary("maps") + importLibrary("marker")
+// - AdvancedMarkerElement s HTML <button> (logo) + a11y (click/Enter/Space)
+// - Fallback na klasický google.maps.Marker
+// - Klidná “statická” mapa (žádné scroll/drag/zoom/keyboard zkraty)
 // ==================================================
-/*
-const MAPS_API_KEY = "VLOZ_SEM_API_KEY";
-const MAP_ID = "VLOZ_SEM_MAP_ID"; // doporučeno pro Advanced Markers
 
-// Souřadnice (Zlatníky–Hodkovice) – můžeš později upřesnit přes geocoding
-const GENETIA_POS = { lat: 49.9819, lng: 14.4172 };
+const MAPS_API_KEY = "AIzaSyDysMbJoUojF8kutq-R6FRRC2AQFv02rUs";
+const MAP_ID = "3f2111e9c014ca11609f9c3b";
 
+// Správné souřadnice – Inovační 122
+const GENETIA_POS = { lat: 49.9729909, lng: 14.4754774 };
+
+// Texty do InfoWindow
+const GENETIA_TITLE = "Genetia Production";
+const GENETIA_ADDR = "Inovační 122, 252 41 Zlatníky-Hodkovice";
+const GENETIA_GMAPS_URL =
+  "https://www.google.com/maps/place/Inova%C4%8Dn%C3%AD+122,+252+41+Zlatn%C3%ADky-Hodkovice-Doln%C3%AD+B%C5%99e%C5%BEany/@49.9729943,14.4728971,17z/data=!3m1!4b1!4m6!3m5!1s0x470b904e424d16b1:0x48444570d4a0bdf!8m2!3d49.9729909!4d14.4754774!16s%2Fg%2F11gmfs43r1";
+
+let _gmapsBootstrapPromise;
+
+/**
+ * Oficiální inline bootstrap loader:
+ * - nainstaluje google.maps.importLibrary synchronně
+ * - samotný JS načte až při prvním importLibrary()
+ * - safe singleton (opakované volání nic nerozbije)
+ */
 function loadGoogleMaps(apiKey) {
-  // Google doporučuje inline bootstrap loader (dynamic import). :contentReference[oaicite:0]{index=0}
-  return new Promise((resolve, reject) => {
-    if (window.google?.maps?.importLibrary) return resolve();
+  if (window.google?.maps?.importLibrary) return Promise.resolve();
+  if (_gmapsBootstrapPromise) return _gmapsBootstrapPromise;
 
-    const script = document.createElement("script");
-    script.async = true;
-    script.defer = true;
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(
-      apiKey
-    )}&v=weekly`;
+  _gmapsBootstrapPromise = new Promise((resolve, reject) => {
+    try {
+      ((g) => {
+        let h, a, k;
+        const p = "The Google Maps JavaScript API";
+        const c = "google";
+        const l = "importLibrary";
+        const q = "__ib__";
+        const m = document;
+        let b = window;
 
-    script.onload = () => resolve();
-    script.onerror = () => reject(new Error("Google Maps API load failed"));
-    document.head.appendChild(script);
+        b = b[c] || (b[c] = {});
+        const d = b.maps || (b.maps = {});
+        const r = new Set();
+        const e = new URLSearchParams();
+
+        const u = () =>
+          h ||
+          (h = new Promise((f, n) => {
+            a = m.createElement("script");
+
+            // libraries param se skládá z toho, co se importuje přes importLibrary()
+            e.set("libraries", [...r].join(","));
+
+            for (k in g) {
+              const v = g[k];
+              if (v == null) continue;
+
+              // mapIds musí být CSV nebo array -> převedeme na CSV
+              const value = Array.isArray(v) ? v.join(",") : String(v);
+
+              e.set(
+                k.replace(/[A-Z]/g, (t) => "_" + t[0].toLowerCase()),
+                value
+              );
+            }
+
+            e.set("callback", `${c}.maps.${q}`);
+            a.src = `https://maps.${c}apis.com/maps/api/js?` + e.toString();
+
+            d[q] = f;
+            a.onerror = () => n(new Error(p + " could not load."));
+
+            // loading=async => bez warningu
+            a.async = true;
+
+            // CSP nonce (pokud používáš)
+            a.nonce = m.querySelector("script[nonce]")?.nonce || "";
+
+            m.head.appendChild(a);
+          }));
+
+        if (d[l]) {
+          // pokud někdo načetl API jinak, nechceme to duplikovat
+          console.warn(p + " only loads once. Ignoring:", g);
+        } else {
+          d[l] = (f, ...n) => (r.add(f), u().then(() => d[l](f, ...n)));
+        }
+      })({
+        key: apiKey,
+        v: "weekly",
+        loading: "async",
+        mapIds: MAP_ID ? [MAP_ID] : undefined,
+      });
+
+      // importLibrary je k dispozici ihned po bootstrapu
+      if (window.google?.maps?.importLibrary) resolve();
+      else
+        reject(
+          new Error("[GENETIA][MAP] importLibrary not installed by bootstrap")
+        );
+    } catch (err) {
+      reject(err);
+    }
   });
+
+  return _gmapsBootstrapPromise;
+}
+
+function buildInfoHtml() {
+  return `
+    <div class="map-iw">
+      <div class="map-iw_addr">
+        Inovační 122, 252 41 Zlatníky-Hodkovice
+      </div>
+      <div class="map-iw_actions">
+        <a class="map-iw_link"
+           href="${GENETIA_GMAPS_URL}"
+           target="_blank"
+           rel="noopener">
+          Otevřít v Google Maps
+        </a>
+      </div>
+    </div>
+  `;
 }
 
 export async function initContactMap() {
   const el = document.getElementById("contactMap");
-  if (!el) return;
+  if (!el) {
+    console.warn("[GENETIA][MAP] Missing element #contactMap in HTML");
+    return;
+  }
 
-  await loadGoogleMaps(MAPS_API_KEY);
+  // 1) načti bootstrap (nainstaluje importLibrary)
+  try {
+    await loadGoogleMaps(MAPS_API_KEY);
+  } catch (err) {
+    console.error("[GENETIA][MAP] Google Maps bootstrap failed", err);
+    return;
+  }
 
-  // Načti knihovny
-  const { Map } = await google.maps.importLibrary("maps"); :contentReference[oaicite:1]{index=1}
-  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker"); :contentReference[oaicite:2]{index=2}
+  // 2) import knihoven
+  let Map;
+  try {
+    ({ Map } = await google.maps.importLibrary("maps"));
+  } catch (err) {
+    console.error("[GENETIA][MAP] importLibrary('maps') failed", err);
+    return;
+  }
 
-  const map = new Map(el, {
+  let AdvancedMarkerElement = null;
+  try {
+    const markerLib = await google.maps.importLibrary("marker");
+    AdvancedMarkerElement = markerLib?.AdvancedMarkerElement || null;
+  } catch (err) {
+    // OK – fallback na klasický Marker
+    AdvancedMarkerElement = null;
+  }
+
+  // 3) init map (klidná/statická)
+  const mapOptions = {
     center: GENETIA_POS,
-    zoom: 16,
-    mapId: MAP_ID, // doporučeno pro advanced markers :contentReference[oaicite:3]{index=3}
+    zoom: 15,
+    heading: 0,
+    tilt: 0,
+
+    // "statická" mapa bez rušivých interakcí:
     gestureHandling: "cooperative",
+    draggable: true,
+    scrollwheel: true,
+    gestureHandling: "greedy",
+    disableDoubleClickZoom: true,
+    keyboardShortcuts: false,
+
+    // UI vypnout (čisté)
     fullscreenControl: false,
-    streetViewControl: false,
+    streetViewControl: true,
     mapTypeControl: false,
+    zoomControl: true,
+  };
+
+  if (MAP_ID && MAP_ID !== "VLOZ_SEM_MAP_ID") mapOptions.mapId = MAP_ID;
+
+  let map;
+  try {
+    map = new Map(el, mapOptions);
+  } catch (err) {
+    console.error("[GENETIA][MAP] Map init failed (check Map ID?)", err);
+    return;
+  }
+  const iwHeader = document.createElement("div");
+  iwHeader.className = "map-iw_header";
+  iwHeader.textContent = GENETIA_TITLE;
+
+  // 4) InfoWindow
+  const info = new google.maps.InfoWindow({
+    headerContent: iwHeader, // 👈 vlastní DIV
+    content: buildInfoHtml(),
   });
 
-  // Logo pin (vlastní content)
+  const badge = document.createElement("button");
+  badge.type = "button";
+  badge.className = "map-markerBadge";
+  badge.title = GENETIA_TITLE;
+  badge.setAttribute("aria-label", `${GENETIA_TITLE} – zobrazit adresu`);
+
+  // důležité: overlay musí být clickable
+  badge.style.pointerEvents = "auto";
+  badge.style.cursor = "pointer";
+
   const logo = document.createElement("img");
-  logo.src = "assets/images/logo/GENETIA-LOGO.png"; // uprav cestu, pokud máš jinou
+  logo.src = "assets/images/logo/GENETIA-LOGO.png";
   logo.alt = "Genetia";
-  logo.width = 44;
-  logo.height = 44;
-  logo.style.borderRadius = "12px";
-  logo.style.boxShadow = "0 10px 25px rgba(0,0,0,0.18)";
-  logo.style.background = "rgba(255,255,255,0.9)";
-  logo.style.padding = "6px";
+  logo.className = "map-markerBadge_logo";
+  badge.appendChild(logo);
 
-  new AdvancedMarkerElement({
-    map,
-    position: GENETIA_POS,
-    title: "Genetia Production s.r.o.",
-    content: logo, // vlastní grafika markeru :contentReference[oaicite:4]{index=4}
+  // otevření InfoWindow (anchor preferovaný, když existuje)
+  const openInfo = (anchor) => {
+    // zavři případně jiné IW (bez blikání)
+    info.close();
+
+    if (anchor) {
+      info.open({ map, anchor });
+    } else {
+      info.open({ map, position: GENETIA_POS });
+    }
+  };
+
+  // a11y: click + Enter/Space na <button>
+  badge.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    openInfo(); // anchor doplníme z marker eventu
   });
+
+  badge.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      e.stopPropagation();
+      openInfo();
+    }
+  });
+
+  // 5) Marker (AdvancedMarker -> fallback)
+  try {
+    if (AdvancedMarkerElement) {
+      const advMarker = new AdvancedMarkerElement({
+        map,
+        position: GENETIA_POS,
+        title: GENETIA_TITLE,
+        content: badge,
+        gmpClickable: true,
+      });
+
+      // důležité: AdvancedMarker používá DOM event "gmp-click"
+      advMarker.addEventListener("gmp-click", (e) => {
+        e?.stopPropagation?.();
+        openInfo(advMarker);
+      });
+
+      // doplníme anchor i při kliknutí přímo na badge
+      badge.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        openInfo(advMarker);
+      });
+
+      badge.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          e.stopPropagation();
+          openInfo(advMarker);
+        }
+      });
+
+      console.info("[GENETIA][MAP] AdvancedMarkerElement OK");
+    } else {
+      const marker = new google.maps.Marker({
+        map,
+        position: GENETIA_POS,
+        title: GENETIA_TITLE,
+      });
+
+      marker.addListener("click", () => openInfo(marker));
+      console.info("[GENETIA][MAP] Fallback Marker OK");
+    }
+  } catch (err) {
+    console.error("[GENETIA][MAP] Marker init failed", err);
+  }
 }
-*/

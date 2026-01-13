@@ -40,8 +40,8 @@
 @import url("pages/analyticke-sluzby/analyticke-sluzby.css");  /* Analýzy, tabulky, přehled metod, CTA sekce */
 @import url("pages/vyvoj-vyzkum/vyvoj-vyzkum.css");            /* Vývoj API, technologie, laboratorní procesy */
 @import url("pages/produkty/produkty.css");                    /* Nabídka produktů pro lékárny, 3D carousel, detailní popisy */
-@import url("pages/kontakt/kontakt.css");                      /* Kontaktní formulář, mapa, obchodní informace */
-@import url("pages/legal/legal.css");                          /* GDPR, Podmínky užití, Cookies
+              /* Kontaktní formulář, mapa, obchodní informace */
+@import url("pages/legal/legal.css");                          /* GDPR, Podmínky užití, Cookies */
 
 
 /* ==================================================

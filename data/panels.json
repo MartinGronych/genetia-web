@@ -1,6 +1,132 @@
 {
   "panels": [
     {
+      "id": "makroskopicke-mikroskopicke-vysetreni",
+      "title": "Makroskopické a mikroskopické vyšetření",
+      "category": "Farmakognostické metody"
+    },
+    {
+      "id": "stanoveni-cizorodych-primesi",
+      "title": "Stanovení cizorodých příměsí",
+      "category": "Farmakognostické metody"
+    },
+    {
+      "id": "rezidua-pesticidu-50",
+      "title": "Stanovení reziduí pesticidů (více než 50 pesticidů)",
+      "category": "Farmakognostické metody"
+    },
+    {
+      "id": "mykotoxiny",
+      "title": "Stanovení mykotoxinů (ochratoxin A, aflatoxin B1, B2, G1, G2)",
+      "category": "Farmakognostické metody"
+    },
+    {
+      "id": "hptlc-identifikace",
+      "title": "Identifikace pomocí tenkovrstvé chromatografie s vysokým rozlišením (HPTLC)",
+      "category": "Farmakognostické metody"
+    },
+
+    {
+      "id": "ztrata-susenim",
+      "title": "Ztráta sušením",
+      "category": "Fyzikální a fyzikálně-chemické zkoušky"
+    },
+    {
+      "id": "stanoveni-obsahu-kanabinoidu",
+      "title": "Stanovení obsahu kanabinoidů",
+      "short": "Kanabinoidní profil, až 16 kanabinoidů",
+      "category": "Fyzikální a fyzikálně-chemické zkoušky"
+    },
+
+    {
+      "id": "tezke-kovy",
+      "title": "Stanovení těžkých kovů",
+      "short": "Pb, Cd, Hg, As, Zn, Ni",
+      "category": "Limitní zkoušky"
+    },
+    {
+      "id": "celkovy-popel",
+      "title": "Stanovení celkového popela",
+      "category": "Limitní zkoušky"
+    },
+    {
+      "id": "siranovy-popel",
+      "title": "Stanovení síranového popela",
+      "category": "Limitní zkoušky"
+    },
+
+    {
+      "id": "tamc",
+      "title": "TAMC",
+      "short": "Celkový počet aerobních mikroorganismů",
+      "category": "Zkoušky mikrobiologické jakosti"
+    },
+    {
+      "id": "tymc",
+      "title": "TYMC",
+      "short": "Celkový počet kvasinek a plísní",
+      "category": "Zkoušky mikrobiologické jakosti"
+    },
+    {
+      "id": "btgn",
+      "title": "BTGN",
+      "short": "Gramnegativní bakterie tolerantní k žluči",
+      "category": "Zkoušky mikrobiologické jakosti"
+    },
+    {
+      "id": "tce",
+      "title": "TC&E",
+      "short": "Celkové koliformy a enterobakterie",
+      "category": "Zkoušky mikrobiologické jakosti"
+    },
+    {
+      "id": "escherichia-coli",
+      "title": "Escherichia coli",
+      "category": "Zkoušky mikrobiologické jakosti"
+    },
+    {
+      "id": "stec",
+      "title": "STEC",
+      "short": "Escherichia coli produkující Shiga toxin",
+      "category": "Zkoušky mikrobiologické jakosti"
+    },
+    {
+      "id": "salmonella-spp",
+      "title": "Salmonella spp.",
+      "category": "Zkoušky mikrobiologické jakosti"
+    },
+    {
+      "id": "staphylococcus-aureus",
+      "title": "Staphylococcus aureus",
+      "category": "Zkoušky mikrobiologické jakosti"
+    },
+    {
+      "id": "pseudomonas-aeruginosa",
+      "title": "Pseudomonas aeruginosa",
+      "category": "Zkoušky mikrobiologické jakosti"
+    },
+    {
+      "id": "listeria-monocytogenes",
+      "title": "Listeria monocytogenes",
+      "category": "Zkoušky mikrobiologické jakosti"
+    },
+
+    {
+      "id": "peroxidove-cislo",
+      "title": "Stanovení peroxidového čísla",
+      "category": "Stanovení obsahu látek"
+    },
+    {
+      "id": "cislo-kyselosti",
+      "title": "Stanovení čísla kyselosti",
+      "category": "Stanovení obsahu látek"
+    }
+  ],
+
+
+
+  "catalog": [
+    {
       "id": "kanabinoidni-profil",
       "title": "Kanabinoidní profil (HPLC/GC)",
       "category": "Stanovení obsahu látek",

@@ -4,12 +4,7 @@
 ================================================== */
 
 .site-footer {
-  background: linear-gradient(
-    180deg,
-    var(--gene-dark-70) 0%,
-    var(--gene-dark-80) 38%,
-    var(--gene-dark-90) 100%
-  );
+  background: #2E392D;
   position: relative;
 }
 .site-footer::before {
@@ -17,11 +12,7 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(
-    1200px 500px at 15% 0%,
-    rgba(185, 209, 56, 0.80) 0%,
-    rgba(185, 209, 56, 0.20) 60%
-  );
+ 
   z-index: 1;
 }
 
@@ -32,6 +23,11 @@
   display: grid;
   gap: 2.25rem;
   
+}
+
+.site-footer h3 {
+  font-size: 1.2rem;
+  color: var(--brand-600);
 }
 
 .site-footer_brand {

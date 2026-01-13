@@ -4,7 +4,7 @@
 // =====================
 
 const PAGE = "contact";
-import { initContactMap } from "./google-map";
+import { initContactMap } from "./google-map.js";
 
 // izolovaná inicializace (async-safe + jednotné logy)
 const safeInit = async (component, fn) => {
@@ -20,8 +20,8 @@ const safeInit = async (component, fn) => {
 };
 
 document.addEventListener("DOMContentLoaded", async () => {
-  // Nav je základ (async render z nav.json) → počkat
-  // safeInit("GoogleMap", () => initContactMap());
+  
+  safeInit("google-map", () => initContactMap());
   
   console.info(`[GENETIA][${PAGE}] ready`);
 });

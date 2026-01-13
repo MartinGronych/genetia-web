@@ -1,12 +1,5 @@
 /* ==================================================
-   GENETIA – TESTOVACÍ PANELY (Clean v6.0)
-   ▸ Lovable-like groups (5 karet)
-   ▸ Bez duplicit, bez legacy .panel-card / btn-panel
-   ▸ Tabulka zachována (pokud se používá)
-================================================== */
-
-/* ==================================================
-   1️⃣ WRAPPER
+   GENETIA – TESTOVACÍ PANELY
 ================================================== */
 
 .test-panels-section {
@@ -16,14 +9,11 @@
   color: var(--text-800);
 }
 
-/* ==================================================
-   2️⃣ SEKČNÍ NADPIS + LINKA
-================================================== */
-
+/* Nadpis + subtitle */
 .test-panels-section .section-title {
   font-size: clamp(1.9rem, 5vw, 3.1rem);
   font-weight: 700;
-  color: var(--brand-800);
+  color: var(--brand-black);
   margin-bottom: var(--space-2);
   text-align: center;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
@@ -39,26 +29,24 @@
   border-radius: 50px;
 }
 
-/* Subtitle pod nadpisem */
 .test-panels-section .test-panels-subtitle {
   max-width: 880px;
   margin-inline: auto;
-  color: var(--text-700);
+  color: var(--brand-700);
   font-size: clamp(1rem, 1.2vw + 0.65rem, 1.15rem);
   line-height: 1.6;
 }
 
 /* ==================================================
-   3️⃣ GRID = 5 group-karet
+   GRID
 ================================================== */
 
 .test-panels-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: clamp(1.2rem, 2.4vw, 1.8rem);
-
-  /* ⬇️ tady byla velká mezera (duplicitní definice + velký clamp) */
   margin-bottom: clamp(1.25rem, 3vw, 2rem);
+  align-items: start;
 }
 
 @media (min-width: 768px) {
@@ -67,21 +55,50 @@
   }
 }
 
-/* tvoje přání: když se vejde >1200 vedle sebe (zůstává 2 sloupce) */
 @media (min-width: 1200px) {
   .test-panels-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
+/* default: na širokých 3 sloupce */
 @media (min-width: 1440px) {
   .test-panels-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
+/* ✅ když jsou jen 4 sekce, 2 sloupce vypadají lépe */
+@media (min-width: 1440px) {
+  .test-panels-grid[data-count="4"] {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 1200px;
+    margin-inline: auto;
+  }
+}
+
+/* ✅ když je 5 sekcí: 3 nahoře + 2 centrované dole */
+@media (min-width: 1440px) {
+  .test-panels-grid[data-count="5"] {
+    /* 6 sloupců: 1 sekce = span 2 → nahoře vyplní 6, dole zbydou 2 */
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .test-panels-grid[data-count="5"] > .panels-group {
+    grid-column: span 2;
+  }
+
+  /* centrování spodních dvou karet do středu řádku */
+  .test-panels-grid[data-count="5"] > .panels-group:nth-child(4) {
+    grid-column: 2 / span 2;
+  }
+  .test-panels-grid[data-count="5"] > .panels-group:nth-child(5) {
+    grid-column: 4 / span 2;
+  }
+}
+
 /* ==================================================
-   4️⃣ GROUP CARD (sekce kategorie)
+   GROUP CARD
 ================================================== */
 
 .panels-group {
@@ -90,14 +107,19 @@
   box-shadow: var(--elevation-card);
   padding: 1.2rem 1.2rem 1.15rem;
   border: 1px solid rgba(0, 0, 0, 0.05);
+
 }
 
 .panels-group_header {
   display: grid;
   grid-template-columns: auto 1fr;
-  align-items: center;
+  align-items: start;
   gap: 0.9rem;
   margin-bottom: 1rem;
+  height: fit-content;
+  align-self: start;
+  /* ✅ jednotná výška hlavičky napříč sekcemi */
+  min-height: 86px;
 }
 
 .panels-group_icon {
@@ -106,10 +128,10 @@
   border-radius: 14px;
   display: grid;
   place-items: center;
-
   background: rgba(156, 191, 76, 0.14);
   color: var(--brand-black);
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+  margin-top: 2px;
 }
 
 .panels-group_icon i,
@@ -119,22 +141,29 @@
   display: block;
 }
 
+.panels-group_headText {
+  /* drží text “stejně” vysoký, i když se subtitle zalomí */
+  min-height: 86px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .panels-group_title {
   margin: 0;
   font-weight: 750;
-  color: var(--brand-800);
+  color: var(--brand-black);
   line-height: 1.15;
   font-size: 1.15rem;
 }
 
 .panels-group_subtitle {
   margin: 0.25rem 0 0;
-  color: var(--text-700);
+  color: var(--brand-700);
   font-size: 0.92rem;
   line-height: 1.45;
 }
 
-/* Items list */
 .panels-group_items {
   display: grid;
   gap: 0.65rem;
@@ -142,13 +171,12 @@
 }
 
 /* ==================================================
-   5️⃣ “CHIP” BUTTONS (klikací služby → modal)
+   CHIPS (služby)
 ================================================== */
 
 .panel-card.panel-card--chip {
   width: 100%;
   text-align: left;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -164,16 +192,31 @@
   cursor: pointer;
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 
-  /* reset button default */
   appearance: none;
+}
+
+.panel-card.panel-card--chip .panel-chipText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
 }
 
 .panel-card.panel-card--chip .panel-title {
   margin: 0;
   font-size: 0.98rem;
-  font-weight: 650;
+  font-weight: 500;
   color: var(--text-800);
   line-height: 1.25;
+  transition: color 0.2s ease;
+}
+
+.panel-card.panel-card--chip .panel-subtitle {
+  font-size: 0.9rem;
+  line-height: 1.35;
+  color: var(--brand-700);
+  font-weight: 400;
+  margin: 0;
 }
 
 .panel-card.panel-card--chip .panel-chipArrow {
@@ -190,6 +233,10 @@
   box-shadow: 0 16px 28px rgba(0, 0, 0, 0.07);
 }
 
+.panel-card.panel-card--chip:hover .panel-title {
+  color: var(--brand-800);
+}
+
 .panel-card.panel-card--chip:hover .panel-chipArrow {
   transform: translateX(2px);
 }
@@ -200,91 +247,31 @@
 }
 
 /* ==================================================
-   6️⃣ TABULKA (pokud ji ještě používáš níže v sekci)
-================================================== */
-
-.panels-table-wrapper {
-  overflow-x: auto;
-  margin-top: 0.5rem;
-}
-
-.panels-table {
-  position: relative;
-  left: 10%;
-  width: 80%;
-  min-width: 600px;
-  border-collapse: collapse;
-  background: #fff;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  box-shadow: var(--elevation-card);
-}
-
-.panels-table thead {
-  background: var(--brand-100);
-}
-
-.panels-table th {
-  padding: 0.9rem 1rem;
-  color: var(--brand-700);
-  font-weight: 600;
-  text-align: left;
-  border-bottom: 1px solid var(--brand-100);
-}
-
-.panels-table td {
-  padding: 0.85rem 1rem;
-  color: var(--text-700);
-  border-bottom: 1px solid var(--brand-100);
-}
-
-.panels-table tbody tr:last-child td {
-  border-bottom: none;
-}
-
-.panels-table tbody tr:hover {
-  background: rgba(156, 191, 76, 0.06);
-}
-
-.tat-note {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  margin-top: var(--space-3);
-  text-align: center;
-}
-
-/* ==================================================
-   7️⃣ INDIVIDUÁLNÍ PŘÍSTUP (glass CTA)
-   - fix mezery: kontrolovaný odstup od gridu
+   INDIVIDUÁLNÍ PŘÍSTUP – CALLOUT
 ================================================== */
 
 .container_pristup {
-  margin-top: clamp(1rem, 3vw, 1.75rem);
+  padding-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
 }
 
 .individual-approach_card {
-  position: relative;
-  padding: clamp(1.4rem, 3vw, 2rem);
-  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  width: 100%;
+  max-width: 960px;
 
-  background: linear-gradient(
-    180deg,
-    rgba(54, 173, 118, 0.212) 0%,
-    rgba(33, 100, 100, 0.35) 100%
-  );
+  padding: clamp(1.6rem, 3vw, 2.2rem);
+  border-radius: 24px;
 
-  border: 0.8px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.55); /* jemný světlý box */
+  border: 1px solid rgba(156, 191, 76, 0.25);
 
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
 
-  box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.18);
-
-  color: var(--text-900);
+  text-align: center;
 }
 
+/* === Nadpis === */
 .individual-approach_title {
   display: inline-flex;
   align-items: center;
@@ -293,27 +280,27 @@
   margin-bottom: 0.75rem;
 
   font-weight: 700;
-  font-size: 2.15rem;
+  font-size: 1.15rem;
+  line-height: 1.2;
+
   color: var(--brand-800);
-  text-shadow: 1px 1px 3px var(--brand-black);
 }
 
+/* Ikona */
 .individual-approach_title i {
-  width: 28px;
-  height: 28px;
+  width: 22px;
+  height: 22px;
   color: var(--brand-700);
 }
 
-.individual-approach_title .lucide-sparkles {
-  width: 40px;
-  height: 40px;
-  color: var(--bg);
-}
-
+/* === Text === */
 .individual-approach_card p {
+  margin: 0;
   max-width: 760px;
   margin-inline: auto;
-  font-size: 0.98rem;
-  line-height: 1.6;
-  color: var(--text-800);
+
+  font-size: 0.95rem;
+  line-height: 1.55;
+
+  color: var(--text-700);
 }

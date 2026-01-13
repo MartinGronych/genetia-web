@@ -25,7 +25,8 @@
 
     <!-- Globální styly (NAV + layout + tokens) -->
     <link rel="stylesheet" href="assets/css/styles.css" />
-    <link rel="stylesheet" href="assets/css/pages/kontakt/kontakt.css">
+    <!-- Lokální styly-->
+    <link rel="stylesheet" href="assets/css/pages/kontakt/kontakt.css" />
 
     <!-- Favicon -->
     <link rel="icon" href="assets/images/logo/favicon.png" type="image/png" />
@@ -320,16 +321,11 @@
         <!-- Mapa pod oběma sloupci -->
         <div class="contact-map mt-5">
           <div class="contact-map_frame card-base shadow-sm">
-            <iframe
-              title="Mapa – Genetia Production"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              src="https://www.google.com/maps?q=Inova%C4%8Dn%C3%AD%20122%2C%20Zlatn%C3%ADky%20%E2%80%93%20Hodkovice&output=embed"
-              width="100%"
-              height="360"
-              style="border: 0"
-              allowfullscreen=""
-            ></iframe>
+            <div
+              id="contactMap"
+              class="contact-map_canvas"
+              aria-label="Mapa – Genetia Production"
+            ></div>
           </div>
         </div>
       </div>
@@ -492,6 +488,7 @@
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/pages/kontakt/kontakt.js"></script>
     <!-- Lucide icons (true selective import) -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
