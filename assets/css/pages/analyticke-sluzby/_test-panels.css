@@ -1,22 +1,28 @@
 /* ==================================================
-   GENETIA – TESTOVACÍ PANELY
+   GENETIA – TESTOVACÍ PANELY (FINAL)
+   - 0–1023: Masonry (columns) bez děr
+   - 1024+: Řízený grid 3 sloupce:
+       Sloupec 1: Farmakognostické + Fyzikální
+       Sloupec 2: Mikrobiologie (span 2 řady)
+       Sloupec 3: Limitní + Obsah (stack, bez pevných řádků)
+================================================== */
+
+/* ==================================================
+   SECTION HEADER
 ================================================== */
 
 .test-panels-section {
   position: relative;
-  padding-bottom: 0 !important;
   z-index: 1;
   color: var(--text-800);
 }
 
-/* Nadpis + subtitle */
 .test-panels-section .section-title {
   font-size: clamp(1.9rem, 5vw, 3.1rem);
   font-weight: 700;
   color: var(--brand-black);
   margin-bottom: var(--space-2);
   text-align: center;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
 }
 
 .test-panels-section .section-title::after {
@@ -29,7 +35,7 @@
   border-radius: 50px;
 }
 
-.test-panels-section .test-panels-subtitle {
+.test-panels-subtitle {
   max-width: 880px;
   margin-inline: auto;
   color: var(--brand-700);
@@ -38,67 +44,102 @@
 }
 
 /* ==================================================
-   GRID
+   LAYOUT: MASONRY (DEFAULT)
 ================================================== */
 
 .test-panels-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: clamp(1.2rem, 2.4vw, 1.8rem);
+  column-count: 1;
+  column-gap: clamp(1.2rem, 2.4vw, 1.8rem);
   margin-bottom: clamp(1.25rem, 3vw, 2rem);
-  align-items: start;
 }
 
+/* columns item */
+.test-panels-grid > .panels-group {
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 clamp(1.2rem, 2.4vw, 1.8rem);
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+}
+
+/* 768+ : 2 sloupce (masonry) */
 @media (min-width: 768px) {
   .test-panels-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1200px) {
-  .test-panels-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* default: na širokých 3 sloupce */
-@media (min-width: 1440px) {
-  .test-panels-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* ✅ když jsou jen 4 sekce, 2 sloupce vypadají lépe */
-@media (min-width: 1440px) {
-  .test-panels-grid[data-count="4"] {
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 1200px;
-    margin-inline: auto;
-  }
-}
-
-/* ✅ když je 5 sekcí: 3 nahoře + 2 centrované dole */
-@media (min-width: 1440px) {
-  .test-panels-grid[data-count="5"] {
-    /* 6 sloupců: 1 sekce = span 2 → nahoře vyplní 6, dole zbydou 2 */
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-  }
-
-  .test-panels-grid[data-count="5"] > .panels-group {
-    grid-column: span 2;
-  }
-
-  /* centrování spodních dvou karet do středu řádku */
-  .test-panels-grid[data-count="5"] > .panels-group:nth-child(4) {
-    grid-column: 2 / span 2;
-  }
-  .test-panels-grid[data-count="5"] > .panels-group:nth-child(5) {
-    grid-column: 4 / span 2;
+    column-count: 2;
   }
 }
 
 /* ==================================================
-   GROUP CARD
+   1024+ : ŘÍZENÝ GRID (3 sloupce)
+================================================== */
+
+@media (min-width: 1024px) {
+  /* vypnutí masonry + přepnutí na grid */
+  .test-panels-grid {
+    column-count: initial;
+    column-gap: initial;
+
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1.2rem, 2vw, 1.8rem);
+    align-items: start;
+  }
+
+  /* reset items (už nejsou columns items) */
+  .test-panels-grid > .panels-group,
+  .test-panels-grid > .panels-col {
+    display: block;
+    width: auto;
+    margin: 0;
+    break-inside: auto;
+    -webkit-column-break-inside: auto;
+  }
+
+  /* Sloupec 1 */
+  .test-panels-grid > .panels-group--farmakognosticke {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .test-panels-grid > .panels-group--fyzikalni {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  /* Sloupec 2 – mikro přes dvě řady */
+  .test-panels-grid > .panels-group--mikrobiologie {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+
+  /* Sloupec 3 – wrapper (limitní + obsah jako stack) */
+  .test-panels-grid > .panels-col--right {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.2rem, 2vw, 1.8rem);
+  }
+
+  /* pojistka: uvnitř wrapperu už žádné grid pozice */
+  .test-panels-grid .panels-col--right .panels-group--limitni,
+  .test-panels-grid .panels-col--right .panels-group--obsah {
+    grid-column: auto;
+    grid-row: auto;
+  }
+}
+
+
+/* 1440+ : jemnější rozestupy */
+@media (min-width: 1440px) {
+  .test-panels-grid {
+    gap: clamp(1.4rem, 1.8vw, 2.1rem);
+  }
+}
+
+/* ==================================================
+   PANELS GROUP (CARD)
 ================================================== */
 
 .panels-group {
@@ -107,19 +148,15 @@
   box-shadow: var(--elevation-card);
   padding: 1.2rem 1.2rem 1.15rem;
   border: 1px solid rgba(0, 0, 0, 0.05);
-
 }
 
 .panels-group_header {
   display: grid;
   grid-template-columns: auto 1fr;
-  align-items: start;
   gap: 0.9rem;
   margin-bottom: 1rem;
-  height: fit-content;
-  align-self: start;
-  /* ✅ jednotná výška hlavičky napříč sekcemi */
   min-height: 86px;
+  align-items: start;
 }
 
 .panels-group_icon {
@@ -129,7 +166,6 @@
   display: grid;
   place-items: center;
   background: rgba(156, 191, 76, 0.14);
-  color: var(--brand-black);
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
   margin-top: 2px;
 }
@@ -142,8 +178,6 @@
 }
 
 .panels-group_headText {
-  /* drží text “stejně” vysoký, i když se subtitle zalomí */
-  min-height: 86px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -151,7 +185,7 @@
 
 .panels-group_title {
   margin: 0;
-  font-weight: 750;
+  font-weight: 700;
   color: var(--brand-black);
   line-height: 1.15;
   font-size: 1.15rem;
@@ -167,59 +201,58 @@
 .panels-group_items {
   display: grid;
   gap: 0.65rem;
-  margin-top: 0.2rem;
 }
 
 /* ==================================================
-   CHIPS (služby)
+   CHIP CARDS
 ================================================== */
 
-.panel-card.panel-card--chip {
+.panel-card.panel-card--chip,
+.panel-card--chip {
   width: 100%;
   text-align: left;
+
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   gap: 0.75rem;
 
   padding: 0.85rem 0.95rem;
   border-radius: 16px;
-  border: 1px solid rgba(0, 0, 0, 0.06);
 
+  border: 1px solid rgba(0, 0, 0, 0.06);
   background: #fff;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
 
   cursor: pointer;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-
+  transition: transform 0.25s ease, box-shadow 0.25s ease,
+    border-color 0.25s ease;
   appearance: none;
 }
 
-.panel-card.panel-card--chip .panel-chipText {
+.panel-chipText {
   display: flex;
   flex-direction: column;
   gap: 4px;
   min-width: 0;
 }
 
-.panel-card.panel-card--chip .panel-title {
+.panel-title {
   margin: 0;
   font-size: 0.98rem;
   font-weight: 500;
   color: var(--text-800);
   line-height: 1.25;
-  transition: color 0.2s ease;
 }
 
-.panel-card.panel-card--chip .panel-subtitle {
+.panel-subtitle {
+  margin: 0;
   font-size: 0.9rem;
   line-height: 1.35;
   color: var(--brand-700);
-  font-weight: 400;
-  margin: 0;
 }
 
-.panel-card.panel-card--chip .panel-chipArrow {
+.panel-chipArrow {
   color: var(--brand-700);
   font-size: 1.25rem;
   line-height: 1;
@@ -227,27 +260,23 @@
   transition: transform 0.25s ease;
 }
 
-.panel-card.panel-card--chip:hover {
+.panel-card--chip:hover {
   transform: translateY(-1px);
   border-color: rgba(156, 191, 76, 0.35);
   box-shadow: 0 16px 28px rgba(0, 0, 0, 0.07);
 }
 
-.panel-card.panel-card--chip:hover .panel-title {
-  color: var(--brand-800);
-}
-
-.panel-card.panel-card--chip:hover .panel-chipArrow {
+.panel-card--chip:hover .panel-chipArrow {
   transform: translateX(2px);
 }
 
-.panel-card.panel-card--chip:focus-visible {
+.panel-card--chip:focus-visible {
   outline: 3px solid rgba(156, 191, 76, 0.35);
   outline-offset: 2px;
 }
 
 /* ==================================================
-   INDIVIDUÁLNÍ PŘÍSTUP – CALLOUT
+   INDIVIDUÁLNÍ PŘÍSTUP
 ================================================== */
 
 .container_pristup {
@@ -263,7 +292,7 @@
   padding: clamp(1.6rem, 3vw, 2.2rem);
   border-radius: 24px;
 
-  background: rgba(255, 255, 255, 0.55); /* jemný světlý box */
+  background: rgba(255, 255, 255, 0.55);
   border: 1px solid rgba(156, 191, 76, 0.25);
 
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
@@ -271,7 +300,6 @@
   text-align: center;
 }
 
-/* === Nadpis === */
 .individual-approach_title {
   display: inline-flex;
   align-items: center;
@@ -286,14 +314,6 @@
   color: var(--brand-800);
 }
 
-/* Ikona */
-.individual-approach_title i {
-  width: 22px;
-  height: 22px;
-  color: var(--brand-700);
-}
-
-/* === Text === */
 .individual-approach_card p {
   margin: 0;
   max-width: 760px;

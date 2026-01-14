@@ -56,21 +56,9 @@
   letter-spacing: -0.01em;
   line-height: 1.2;
   font-size: clamp(2rem, 3vw + 1rem, 3.2rem);
-  margin-bottom: 1.2rem;
+  
   padding: 0.55rem 0.5rem;
-  border-radius: var(--radius-lg);
-  background: linear-gradient(
-    180deg,
-    rgba(54, 173, 118, 0.212) 0%,
-    rgba(33, 100, 100, 0.35) 100%
-  );
-
-  border: 0.8px solid rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-
-  color: rgba(255, 255, 255, 0.92);
-  text-shadow: 1px 2px 16px rgba(0, 0, 0, 0.55);
+  color: var(bg);
 }
 
 .hero-section .hero-lead {
@@ -78,19 +66,8 @@
   max-width: 58ch;
   margin-top: 0.75rem;
   padding: 0.65rem 0.95rem;
-  border-radius: var(--radius-md);
-  background: linear-gradient(
-    180deg,
-    rgba(54, 173, 118, 0.212) 0%,
-    rgba(33, 100, 100, 0.35) 100%
-  );
-
-  border: 0.8px solid rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-
-  color: rgba(255, 255, 255, 0.92);
-  text-shadow: 1px 2px 16px rgba(0, 0, 0, 0.55);
+  
+  color: var(--bg);  
 }
 
 .hero-buttons {

@@ -82,9 +82,10 @@ const cardHTML = (panel) => {
   `;
 };
 
-const groupSectionHTML = ({ label, subtitle, icon }, cardsHtml) => {
+const groupSectionHTML = ({ key = "", label, subtitle, icon }, cardsHtml) => {
+  const groupClass = key ? ` panels-group--${esc(key)}` : "";
   return `
-    <section class="panels-group" aria-label="${esc(label)}">
+    <section class="panels-group${groupClass}" aria-label="${esc(label)}">
       <header class="panels-group_header">
         <div class="panels-group_icon" aria-hidden="true">
           ${renderGroupIcon(icon)}
@@ -92,7 +93,11 @@ const groupSectionHTML = ({ label, subtitle, icon }, cardsHtml) => {
 
         <div class="panels-group_headText">
           <h3 class="panels-group_title">${esc(label)}</h3>
-          ${subtitle ? `<p class="panels-group_subtitle">${esc(subtitle)}</p>` : ""}
+          ${
+            subtitle
+              ? `<p class="panels-group_subtitle">${esc(subtitle)}</p>`
+              : ""
+          }
         </div>
       </header>
 
@@ -110,10 +115,9 @@ export async function initPanelsGrid(options = {}) {
   if (!grid) return;
 
   // BASE PATH FIX (GitHub Pages vs local)
-  const BASE =
-    location.hostname.endsWith("github.io")
-      ? `/${location.pathname.split("/")[1]}`
-      : "";
+  const BASE = location.hostname.endsWith("github.io")
+    ? `/${location.pathname.split("/")[1]}`
+    : "";
 
   const resolvedUrl = `${BASE}${dataUrl}`;
 
@@ -131,41 +135,64 @@ export async function initPanelsGrid(options = {}) {
       return;
     }
 
-    // Group by category
+    // Group by category (category text)
     const buckets = new Map();
     for (const p of panels) {
       const category = (p?.category || p?.group || "").trim();
-      const key = category || "Ostatní";
-      if (!buckets.has(key)) buckets.set(key, []);
-      buckets.get(key).push(p);
+      const bucketKey = category || "Ostatní";
+      if (!buckets.has(bucketKey)) buckets.set(bucketKey, []);
+      buckets.get(bucketKey).push(p);
     }
 
     // Render in defined order + unknown at end
+    // Render in defined order + unknown at end
     const htmlParts = [];
+    const rightColParts = []; // limitni + obsah bude v jednom wrapperu
 
     for (const cat of CATEGORY_ORDER) {
       const list = buckets.get(cat.label);
 
-      // ✅ jen naplněné sekce (žádné prázdné karty)
+      // ✅ jen naplněné sekce
       if (!list || list.length === 0) continue;
 
       const cardsHtml = list.map(cardHTML).join("");
-      htmlParts.push(groupSectionHTML(cat, cardsHtml));
+      const sectionHtml = groupSectionHTML(cat, cardsHtml);
+
+      // ✅ Pravý sloupec: limitni + obsah do jednoho wrapperu
+      if (cat.key === "limitni" || cat.key === "obsah") {
+        rightColParts.push(sectionHtml);
+      } else {
+        htmlParts.push(sectionHtml);
+      }
+
       buckets.delete(cat.label);
+    }
+
+    // ✅ Vložit pravý sloupec jako jeden grid item (pokud existuje)
+    if (rightColParts.length) {
+      htmlParts.push(`
+    <div class="panels-col panels-col--right">
+      ${rightColParts.join("")}
+    </div>
+  `);
     }
 
     // unknown categories → end (only if they have items)
     for (const [label, list] of buckets.entries()) {
       if (!list || list.length === 0) continue;
+
       const cardsHtml = list.map(cardHTML).join("");
       htmlParts.push(
-        groupSectionHTML({ label, subtitle: "", icon: "grid-2x2" }, cardsHtml)
+        groupSectionHTML(
+          { key: "other", label, subtitle: "", icon: "grid-2x2" },
+          cardsHtml
+        )
       );
     }
 
     grid.innerHTML = htmlParts.join("");
 
-    // ✅ pro CSS layout (3 nahoře + 2 centrované)
+    // pro CSS layout
     grid.dataset.count = String(htmlParts.length);
 
     if (window.lucide?.createIcons) window.lucide.createIcons();

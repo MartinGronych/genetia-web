@@ -5,6 +5,8 @@
 
 const PAGE = "contact";
 import { initContactMap } from "./google-map.js";
+import { initContactRouting } from "./kontakt_form.js"
+
 
 // izolovaná inicializace (async-safe + jednotné logy)
 const safeInit = async (component, fn) => {
@@ -22,6 +24,6 @@ const safeInit = async (component, fn) => {
 document.addEventListener("DOMContentLoaded", async () => {
   
   safeInit("google-map", () => initContactMap());
-  
+  safeInit("kontakt_form", () => initContactRouting ());
   console.info(`[GENETIA][${PAGE}] ready`);
 });

@@ -50,10 +50,6 @@ export async function initBenefitsRender() {
       <div class="benefit-grid ${isReverse ? "benefit-grid--reverse" : ""}">
 
         <div class="benefit-text">
-          
-          <div class="benefit-kicker " >
-            <i data-lucide="${escapeAttr(icon)}" aria-hidden="true"></i>
-          </div>
 
           <h2 class="benefit-title">${escapeHtml(title)}</h2>
           <p class="benefit-subtitle">${escapeHtml(subtitle)}</p>

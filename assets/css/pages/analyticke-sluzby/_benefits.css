@@ -35,19 +35,20 @@ TEXT
   padding: 0;
 }
 
+
 /* ==================================================
 KICKER
 ================================================== */
-
+/*
 .benefit-kicker {
   width: 80%;
-  height: 48px;              /* ⬇️ bylo 58px */
+  height: 48px;              
   display: flex;
   align-items: center;
   justify-content: flex-end;
 
   padding-inline: 1.15rem;
-  margin-bottom: 0.6rem;    /* ⬇️ menší mezera */
+  margin-bottom: 0.6rem;    
 
   border-radius: var(--radius-md);
 
@@ -68,15 +69,14 @@ KICKER
   stroke: var(--brand-700);
   stroke-width: 2;
 }
+ */
 
 /* ==================================================
 TYPO
 ================================================== */
 
 .benefit-title {
-  margin-top: 0.45rem;      /* ⬇️ zklidnění */
   margin-bottom: 0.5rem;
-
   font-size: clamp(1.45rem, 1.9vw, 2.05rem);
   line-height: 1.15;
   font-weight: 700;
@@ -85,7 +85,7 @@ TYPO
 }
 
 .benefit-subtitle {
-  margin: 0 0 1.05rem 0;    /* ⬇️ menší odstup */
+  margin: 0 0 1.05rem 0;    
   color: var(--text-700);
   line-height: 1.6;
   font-size: clamp(0.98rem, 0.85vw + 0.72rem, 1.12rem);
@@ -141,7 +141,7 @@ MEDIA
   place-items: center;
   overflow: hidden;
   background: transparent;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
 }
 
 .benefit-mediaFrame {
