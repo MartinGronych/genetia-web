@@ -21,19 +21,25 @@
 
 .page-analyticke-sluzby main {
   /* základ */
-  background:
-    radial-gradient(
-      900px 700px at 10% 0%,
-      rgba(255, 255, 255, 0.75) 0%,
-      rgba(255, 255, 255, 0.15) 45%,
-      rgba(255, 255, 255, 0) 70%
-    ),
-    linear-gradient(
-      135deg,
-      var(--gene-light-80) 0%,
-      var(--gene-light-60) 35%,
-      var(--brand-800) 100%
-    );
+  background: hsla(69, 74%, 46%, 1);
+
+  background: linear-gradient(
+    45deg,
+    hsla(69, 74%, 46%, 1) 0%,
+    hsla(0, 0%, 98%, 1) 88%
+  );
+
+  background: -moz-linear-gradient(
+    45deg,
+    hsla(69, 74%, 46%, 1) 0%,
+    hsla(0, 0%, 98%, 1) 88%
+  );
+
+  background: -webkit-linear-gradient(
+    45deg,
+    hsla(69, 74%, 46%, 1) 0%,
+    hsla(0, 0%, 98%, 1) 88%
+  );
 
   /* aby gradient “dýchal” i na dlouhé stránce */
   background-repeat: no-repeat;

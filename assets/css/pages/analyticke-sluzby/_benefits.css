@@ -1,65 +1,53 @@
 /* ==================================================
-   GENETIA – BENEFITS (Detail benefity pod USP)
-   Mobile-first | min-width only
-   ▸ Render z /data/benefits.json (benefits-render.js)
-   ▸ Kicker card připravená pro cardHover.js (js-card-hover)
-================================================== */
-
-/* ==================================================
-WRAPPER
+   GENETIA – BENEFITS
 ================================================== */
 
 .benefit-section {
   position: relative;
   z-index: 1;
-  
   color: var(--text-800);
 }
 
-/* aby fade overlay nelezl přes obsah */
 .benefit-section > .container {
   position: relative;
   z-index: 2;
 }
 
 /* ==================================================
-GRID – mobile: stacked
+GRID
 ================================================== */
 
 .benefit-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: clamp(1.25rem, 4vw, 2.25rem);
+  gap: clamp(1.1rem, 3vw, 2rem);
   align-items: start;
 }
 
 /* ==================================================
-TEXT BLOCK
+TEXT
 ================================================== */
 
 .benefit-text {
   max-width: 70ch;
   display: flex;
   flex-direction: column;
-  
+  padding: 0;
 }
 
 /* ==================================================
-KICKER CARD (hover compatible)
-- ikona vpravo (směr k obrázku)
-- samotný card styl i bez JS
+KICKER
 ================================================== */
 
 .benefit-kicker {
-  width: 100%;
-  height: 58px; /* +30 % */
-
+  width: 80%;
+  height: 48px;              /* ⬇️ bylo 58px */
   display: flex;
   align-items: center;
   justify-content: flex-end;
 
-  padding-inline: 1.25rem;
-  margin-bottom: 0.75rem;
+  padding-inline: 1.15rem;
+  margin-bottom: 0.6rem;    /* ⬇️ menší mezera */
 
   border-radius: var(--radius-md);
 
@@ -72,55 +60,41 @@ KICKER CARD (hover compatible)
   border: 0.8px solid rgba(255, 255, 255, 0.14);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  flex: 0 0 auto;
-  margin-bottom: 1rem;
 }
 
-/* ikona */
 .benefit-kicker svg {
-  width: 26px; /* +20 % */
-  height: 26px;
+  width: 24px;
+  height: 24px;
   stroke: var(--brand-700);
   stroke-width: 2;
-  opacity: 1;
 }
 
-/* focus (kdyby se z toho někdy stal button/link) */
-.benefit-kickerCard:focus-visible {
-  outline: 2px solid var(--brand-500);
-  outline-offset: 3px;
-}
-
-/* ==
+/* ==================================================
 TYPO
-====*/
+================================================== */
 
 .benefit-title {
-  margin-top: 0.6rem;
-  margin-bottom: 0.6rem;
+  margin-top: 0.45rem;      /* ⬇️ zklidnění */
+  margin-bottom: 0.5rem;
 
-  /* méně agresivní růst + lepší čitelnost */
   font-size: clamp(1.45rem, 1.9vw, 2.05rem);
   line-height: 1.15;
   font-weight: 700;
   letter-spacing: -0.01em;
-
   color: var(--brand-800);
 }
 
 .benefit-subtitle {
-  margin: 0 0 1.2rem 0;
+  margin: 0 0 1.05rem 0;    /* ⬇️ menší odstup */
   color: var(--text-700);
   line-height: 1.6;
-
-  /* trochu zklidnit */
   font-size: clamp(0.98rem, 0.85vw + 0.72rem, 1.12rem);
+  text-align: justify;
 }
 
-
-/* ===========
-LIST (detaily)
-============ */
+/* ==================================================
+LIST
+================================================== */
 
 .benefit-list {
   list-style: none;
@@ -132,7 +106,7 @@ LIST (detaily)
 
 .benefit-list li {
   position: relative;
-  padding-left: 1.5rem;
+  padding-left: 1.45rem;
   color: var(--text-800);
   line-height: 1.55;
   font-size: 0.98rem;
@@ -142,18 +116,18 @@ LIST (detaily)
   content: "";
   position: absolute;
   left: 0;
-  top: 0.58rem;
+  top: 0.55rem;
 
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   border-radius: 999px;
   background: var(--brand-600);
   box-shadow: 0 0 0 3px rgba(102, 125, 61, 0.12);
 }
 
-/* ========================
-MEDIA FRAME (velký rámeček)
-========================= */
+/* ==================================================
+MEDIA
+================================================== */
 
 .benefit-media {
   width: 100%;
@@ -162,62 +136,43 @@ MEDIA FRAME (velký rámeček)
 .benefit-mediaFrame {
   margin: 0;
   width: 100%;
-  border-radius: var(--radius-lg);
-
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.75),
-    rgba(255, 255, 255, 0.45)
-  );
-  border: 1px solid rgba(0, 0, 0, 0.06);
-
-  box-shadow: var(--elevation-card);
-  overflow: hidden;
-  min-height: 260px;
+  min-height: 220px;
   display: grid;
   place-items: center;
-  
-  
+  overflow: hidden;
+  background: transparent;
+  border-radius: var(--radius-md);
 }
 
+.benefit-mediaFrame {
+  padding: 1.1rem;
+}
 
 .benefit-image {
   width: 100%;
   height: 100%;
   display: block;
   object-fit: cover;
+  border-radius: inherit;
+  transform: scale(1);
   transition: transform 0.6s ease-out;
-  
-}
-.benefit-image:hover {
-  transition: transform 0.5s ease-in;
-  transform: scale(1.2);
+  will-change: transform;
 }
 
-.benefit-placeholder {
-  width: 100%;
-  height: 100%;
-  display: grid;
-  place-items: center;
-  opacity: 0.55;
+.benefit-mediaFrame:hover .benefit-image {
+  transform: scale(1.08);
 }
 
-.benefit-placeholder svg {
-  width: 34px;
-  height: 34px;
-  stroke: var(--brand-600);
-  stroke-width: 1.7;
-}
 
-/* ================================
-   8️⃣ BREAKPOINTS (min-width only)
-================================ */
+/* ==================================================
+BREAKPOINTS
+================================================== */
 
-/* 768: jen jemně zvětšit media rám */
 @media (min-width: 768px) {
   .benefit-grid {
-    grid-template-columns: 0.95fr 1.05fr; /* text širší než fotka */
+    grid-template-columns: 0.95fr 1.05fr;
     align-items: stretch;
+    
   }
 
   .benefit-grid--reverse {
@@ -231,88 +186,33 @@ MEDIA FRAME (velký rámeček)
     order: 1;
   }
 
-  /* zmenšit “kartu” a kicker, aby to nepůsobilo přerostle */
   .benefit-text {
-    padding: 1.25rem;
+    padding: 1.1rem;
   }
 
-  .benefit-kicker {
-    height: 52px;
+  .benefit-media {
+    height: 100%;
+    display: flex;
   }
 
   .benefit-mediaFrame {
-    min-height: 320px;
+    flex: 1;
+    height: auto;        /* ⬅️ důležité */
+    min-height: 100%;
+  }
+  .benefit-image {
+    flex: 1;
   }
 }
 
-/* 1024: 2 sloupce + reverse */
 @media (min-width: 1024px) {
- .benefit-mediaFrame {
-    width: 100%;
-    aspect-ratio: 16 / 10;
-    min-height: unset;
+  .benefit-mediaFrame {
+    aspect-ratio: auto;
   }
 }
 
-/* 1440: víc vzduchu */
 @media (min-width: 1440px) {
   .benefit-grid {
-    gap: 2.5rem;
+    gap: 2.3rem;
   }
-
-  .benefit-mediaFrame {
-    min-height: 440px;
-  }
-}
-
-/* 2560: větší rámeček + typografie */
-@media (min-width: 2560px) {
-  .benefit-section {
-    padding-block: 5.5rem;
-  }
-
-  /* FIX: kickerCard -> kicker */
-  .benefit-kicker {
-    height: 56px;
-    border-radius: 16px;
-    padding-inline: 1.4rem;
-  }
-
-  .benefit-kicker svg {
-    width: 28px;
-    height: 28px;
-  }
-
-  /* zklidnit obří nadpisy */
-  .benefit-title {
-    font-size: 2.4rem;
-  }
-
-  .benefit-subtitle {
-    font-size: 1.22rem;
-  }
-
-  .benefit-list li {
-    font-size: 1.08rem;
-  }
-
-  .benefit-mediaFrame {
-    min-height: 600px;
-  }
-}
-
-/* ==================================================
-   9️⃣ REVEAL HOOKS (zatím připravené)
-   - aktivujeme později přes benefits-reveal.js
-================================================== */
-
-.benefit-section.is-reveal-ready .benefit-grid {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-
-.benefit-section.is-reveal-ready.is-revealed .benefit-grid {
-  opacity: 1;
-  transform: translateY(0);
 }
