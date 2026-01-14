@@ -24,6 +24,6 @@ const safeInit = async (component, fn) => {
 document.addEventListener("DOMContentLoaded", async () => {
   
   safeInit("google-map", () => initContactMap());
-  safeInit("kontakt_form", () => initKontaktFormRouting ());
+  safeInit("kontakt_form", () => initKontaktFormRouting());
   console.info(`[GENETIA][${PAGE}] ready`);
 });

@@ -1,5 +1,7 @@
 /* ==================================================
-   GENETIA – Panels Grid render (from panels.json)
+   GENETIA – Panels Grid render (from panels.json) • HYBRID
+   - <1024: flat render (masonry/columns řeší CSS)
+   - ≥1024: wrapper pro 3. sloupec (.panels-col--right) pro řízený grid
 ================================================== */
 
 const esc = (s = "") =>
@@ -40,17 +42,19 @@ const CATEGORY_ORDER = [
     subtitle: "Stanovení fyzikálních vlastností a chemického složení",
     icon: "beaker",
   },
-  {
-    key: "limitni",
-    label: "Limitní zkoušky",
-    subtitle: "Kontrola limitních hodnot kontaminantů",
-    icon: "shield-check",
-  },
+  // Pozn.: Na desktopu (≥1024) bude mikro "řízeně" ve sloupci 2 přes CSS grid.
   {
     key: "mikrobiologie",
     label: "Zkoušky mikrobiologické jakosti",
     subtitle: "Mikrobiální čistota a detekce patogenů",
     icon: "bacteria",
+  },
+  // Tyto dvě kategorie na desktopu skládáme do wrapperu .panels-col--right (sloupec 3)
+  {
+    key: "limitni",
+    label: "Limitní zkoušky",
+    subtitle: "Kontrola limitních hodnot kontaminantů",
+    icon: "shield-check",
   },
   {
     key: "obsah",
@@ -108,6 +112,64 @@ const groupSectionHTML = ({ key = "", label, subtitle, icon }, cardsHtml) => {
   `;
 };
 
+const buildPanelsHTML = ({ panels, isDesktop }) => {
+  // Group by category (category text)
+  const buckets = new Map();
+  for (const p of panels) {
+    const category = (p?.category || p?.group || "").trim();
+    const bucketKey = category || "Ostatní";
+    if (!buckets.has(bucketKey)) buckets.set(bucketKey, []);
+    buckets.get(bucketKey).push(p);
+  }
+
+  const htmlParts = [];
+  const rightColParts = []; // pouze desktop: limitni + obsah jako stack
+
+  for (const cat of CATEGORY_ORDER) {
+    const list = buckets.get(cat.label);
+    if (!list || list.length === 0) continue;
+
+    const cardsHtml = list.map(cardHTML).join("");
+    const sectionHtml = groupSectionHTML(cat, cardsHtml);
+
+    if (isDesktop && (cat.key === "limitni" || cat.key === "obsah")) {
+      rightColParts.push(sectionHtml);
+    } else {
+      htmlParts.push(sectionHtml);
+    }
+
+    buckets.delete(cat.label);
+  }
+
+  // unknown categories → end (only if they have items)
+  for (const [label, list] of buckets.entries()) {
+    if (!list || list.length === 0) continue;
+
+    const cardsHtml = list.map(cardHTML).join("");
+    const otherHtml = groupSectionHTML(
+      { key: "other", label, subtitle: "", icon: "grid-2x2" },
+      cardsHtml
+    );
+
+    // neznámé: na desktopu je dáme taky do pravého sloupce (tolerovaná „zbytková“ oblast)
+    if (isDesktop) rightColParts.push(otherHtml);
+    else htmlParts.push(otherHtml);
+  }
+
+  if (isDesktop && rightColParts.length) {
+    htmlParts.push(`
+      <div class="panels-col panels-col--right">
+        ${rightColParts.join("")}
+      </div>
+    `);
+  }
+
+  return {
+    html: htmlParts.join(""),
+    count: isDesktop ? String(htmlParts.length) : String(htmlParts.length),
+  };
+};
+
 export async function initPanelsGrid(options = {}) {
   const { gridId = "testPanelsGrid", dataUrl = "/data/panels.json" } = options;
 
@@ -120,6 +182,37 @@ export async function initPanelsGrid(options = {}) {
     : "";
 
   const resolvedUrl = `${BASE}${dataUrl}`;
+
+  // breakpoint pro hybrid: 1024+
+  const mqDesktop = window.matchMedia("(min-width: 1024px)");
+
+  let panelsCache = null;
+
+  const render = (isDesktop) => {
+    if (!panelsCache) return;
+
+    const { html, count } = buildPanelsHTML({
+      panels: panelsCache,
+      isDesktop,
+    });
+
+    grid.innerHTML = html;
+    grid.dataset.count = count;
+
+    if (window.lucide?.createIcons) window.lucide.createIcons();
+  };
+
+  // A11y key handler – přidej jen jednou
+  if (!grid.dataset.kbdBound) {
+    grid.addEventListener("keydown", (e) => {
+      if (e.key !== "Enter" && e.key !== " ") return;
+      const btn = e.target.closest(".panel-card");
+      if (!btn) return;
+      e.preventDefault();
+      btn.click();
+    });
+    grid.dataset.kbdBound = "1";
+  }
 
   try {
     const res = await fetch(resolvedUrl, { cache: "no-store" });
@@ -135,76 +228,22 @@ export async function initPanelsGrid(options = {}) {
       return;
     }
 
-    // Group by category (category text)
-    const buckets = new Map();
-    for (const p of panels) {
-      const category = (p?.category || p?.group || "").trim();
-      const bucketKey = category || "Ostatní";
-      if (!buckets.has(bucketKey)) buckets.set(bucketKey, []);
-      buckets.get(bucketKey).push(p);
-    }
+    panelsCache = panels;
 
-    // Render in defined order + unknown at end
-    // Render in defined order + unknown at end
-    const htmlParts = [];
-    const rightColParts = []; // limitni + obsah bude v jednom wrapperu
+    // první render dle aktuální šířky
+    render(mqDesktop.matches);
 
-    for (const cat of CATEGORY_ORDER) {
-      const list = buckets.get(cat.label);
-
-      // ✅ jen naplněné sekce
-      if (!list || list.length === 0) continue;
-
-      const cardsHtml = list.map(cardHTML).join("");
-      const sectionHtml = groupSectionHTML(cat, cardsHtml);
-
-      // ✅ Pravý sloupec: limitni + obsah do jednoho wrapperu
-      if (cat.key === "limitni" || cat.key === "obsah") {
-        rightColParts.push(sectionHtml);
+    // přerender při překročení 1024 breakpointu (masonry <-> grid)
+    if (!grid.dataset.mqBound) {
+      const onChange = (e) => render(e.matches);
+      if (typeof mqDesktop.addEventListener === "function") {
+        mqDesktop.addEventListener("change", onChange);
       } else {
-        htmlParts.push(sectionHtml);
+        // Safari fallback
+        mqDesktop.addListener(onChange);
       }
-
-      buckets.delete(cat.label);
+      grid.dataset.mqBound = "1";
     }
-
-    // ✅ Vložit pravý sloupec jako jeden grid item (pokud existuje)
-    if (rightColParts.length) {
-      htmlParts.push(`
-    <div class="panels-col panels-col--right">
-      ${rightColParts.join("")}
-    </div>
-  `);
-    }
-
-    // unknown categories → end (only if they have items)
-    for (const [label, list] of buckets.entries()) {
-      if (!list || list.length === 0) continue;
-
-      const cardsHtml = list.map(cardHTML).join("");
-      htmlParts.push(
-        groupSectionHTML(
-          { key: "other", label, subtitle: "", icon: "grid-2x2" },
-          cardsHtml
-        )
-      );
-    }
-
-    grid.innerHTML = htmlParts.join("");
-
-    // pro CSS layout
-    grid.dataset.count = String(htmlParts.length);
-
-    if (window.lucide?.createIcons) window.lucide.createIcons();
-
-    // A11y: Enter/Space trigger click
-    grid.addEventListener("keydown", (e) => {
-      if (e.key !== "Enter" && e.key !== " ") return;
-      const btn = e.target.closest(".panel-card");
-      if (!btn) return;
-      e.preventDefault();
-      btn.click();
-    });
   } catch (err) {
     console.error("[panels-render] load failed:", err);
     grid.innerHTML =

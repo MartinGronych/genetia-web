@@ -85,7 +85,7 @@
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.12;
-  font-size: clamp(1.6rem, 4.2vw + 0.6rem, 3.2rem);
+  font-size: var(--fs-1);
   margin: 0 auto;
   max-width: 920px;
   color: var(--brand-black);
@@ -94,9 +94,9 @@
 
 .page-analyticke-sluzby .hero-section .hero-lead {
   font-family: "Inter", sans-serif;
-  font-weight: 600;
+  font-weight: 550;
   line-height: 1.55;
-  font-size: clamp(1rem, 1.1vw + 0.65rem, 1.25rem);
+  font-size: var(--fs-3);
   color: var(--brand-black);
   max-width: 920px !important;
   margin: 1.2rem auto clamp(0.95rem, 1.8vw, 1.25rem);

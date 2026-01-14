@@ -1,10 +1,10 @@
 /* ==================================================
-   GENETIA – TESTOVACÍ PANELY (FINAL)
+   GENETIA – TESTOVACÍ PANELY (HYBRID • FINAL)
    - 0–1023: Masonry (columns) bez děr
    - 1024+: Řízený grid 3 sloupce:
        Sloupec 1: Farmakognostické + Fyzikální
        Sloupec 2: Mikrobiologie (span 2 řady)
-       Sloupec 3: Limitní + Obsah (stack, bez pevných řádků)
+       Sloupec 3: Limitní + Obsah (stack)
 ================================================== */
 
 /* ==================================================
@@ -44,17 +44,18 @@
 }
 
 /* ==================================================
-   LAYOUT: MASONRY (DEFAULT)
+   0–1023: MASONRY (COLUMNS) – MOBILE FIRST
 ================================================== */
 
 .test-panels-grid {
-  column-count: 1;
+  column-count: 1; /* ✅ mobil */
   column-gap: clamp(1.2rem, 2.4vw, 1.8rem);
   margin-bottom: clamp(1.25rem, 3vw, 2rem);
 }
 
 /* columns item */
-.test-panels-grid > .panels-group {
+.test-panels-grid > .panels-group,
+.test-panels-grid > .panels-col {
   display: inline-block;
   width: 100%;
   margin: 0 0 clamp(1.2rem, 2.4vw, 1.8rem);
@@ -62,12 +63,42 @@
   -webkit-column-break-inside: avoid;
 }
 
-/* 768+ : 2 sloupce (masonry) */
+/* 768–1023: 2 sloupce (masonry) */
 @media (min-width: 768px) {
   .test-panels-grid {
     column-count: 2;
   }
 }
+/* 768–1023: řízený grid (aby nevznikala prázdná plocha vlevo dole) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .test-panels-grid {
+    column-count: initial;
+    column-gap: initial;
+    grid-auto-rows: minmax(30px, auto);
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1.2rem, 2vw, 1.8rem);
+    align-items: start;
+  }
+
+  .test-panels-grid > .panels-group {
+    display: block;
+    width: auto;
+    margin: 0;
+    break-inside: auto;
+    -webkit-column-break-inside: auto;
+  }
+
+  /* Levý sloupec: 4 bloky pod sebou */
+  .test-panels-grid > .panels-group--farmakognosticke { grid-column: 1; grid-row: 1; }
+  .test-panels-grid > .panels-group--fyzikalni        { grid-column: 1; grid-row: 3; }
+  .test-panels-grid > .panels-group--limitni          { grid-column: 1; grid-row: 2; }
+  .test-panels-grid > .panels-group--obsah            { grid-column: 2; grid-row: 3; }
+
+  /* Pravý sloupec: mikrobiologie jako dominantní blok */
+  .test-panels-grid > .panels-group--mikrobiologie    { grid-column: 2; grid-row: 1 / span 4; }
+}
+
 
 /* ==================================================
    1024+ : ŘÍZENÝ GRID (3 sloupce)
@@ -129,7 +160,6 @@
     grid-row: auto;
   }
 }
-
 
 /* 1440+ : jemnější rozestupy */
 @media (min-width: 1440px) {
@@ -283,6 +313,7 @@
   padding-bottom: 1.5rem;
   display: flex;
   justify-content: center;
+  margin: 1rem;
 }
 
 .individual-approach_card {
@@ -308,7 +339,7 @@
   margin-bottom: 0.75rem;
 
   font-weight: 700;
-  font-size: 1.15rem;
+  font-size: 2.15rem;
   line-height: 1.2;
 
   color: var(--brand-800);

@@ -364,7 +364,7 @@
 
 /* obal ovládání */
 #contactMap .gm-control-active {
-  background: rgba(255, 255, 255, 0.014)tra;
+  background: rgba(255, 255, 255, 0.014) tra;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
   margin: 8px;
 }
@@ -399,7 +399,7 @@
 }
 
 /* ==================================================
-   KONTAKT – Filtry zájmu (investor)
+   KONTAKT – Filtry zájmu 
 ================================================== */
 
 .contact-filters {
@@ -420,10 +420,10 @@
   margin: 0 0 0.75rem;
   padding: 0;
 
-  font-size: 0.95rem;
+  font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: 0.01em;
-
+  text-align: center;
   color: var(--brand-black);
 }
 
@@ -450,7 +450,7 @@
   display: flex;
   align-items: center;
   gap: 0.65rem;
-
+  height: 67px;
   padding: 0.85rem 0.95rem;
   border-radius: 16px;
 

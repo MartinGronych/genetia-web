@@ -216,10 +216,7 @@
               id="contactForm"
               class="contact-form card-base p-4 shadow-sm"
               method="POST"
-              data-endpoint="https://formspree.io/f/mdkyngvb"
-              data-endpoint-extrakty="https://formspree.io/f/EXTRAKTY_ID"
-              data-endpoint-analyzy="https://formspree.io/f/ANALYZY_ID"
-              data-endpoint-both="https://formspree.io/f/BOTH_ID"
+              novalidate
             >
               <!-- Honeypot (antispam) -->
               <input
@@ -232,12 +229,11 @@
               />
 
               <div class="row g-3">
-                
                 <!-- Filtry zájmu (investor) -->
                 <div class="col-12">
                   <fieldset class="contact-filters">
                     <legend class="contact-filters_title">
-                     S jakou službou Vám můžeme pomoci?
+                      S jakou službou Vám můžeme pomoci?
                     </legend>
 
                     <label class="contact-filter">

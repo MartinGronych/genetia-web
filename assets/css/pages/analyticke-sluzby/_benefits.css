@@ -77,11 +77,12 @@ TYPO
 
 .benefit-title {
   margin-bottom: 0.5rem;
-  font-size: clamp(1.45rem, 1.9vw, 2.05rem);
+  font-size: var(--fs-2);
   line-height: 1.15;
   font-weight: 700;
   letter-spacing: -0.01em;
   color: var(--brand-800);
+  
 }
 
 .benefit-subtitle {
@@ -204,6 +205,7 @@ BREAKPOINTS
     flex: 1;
   }
 }
+
 
 @media (min-width: 1024px) {
   .benefit-mediaFrame {
