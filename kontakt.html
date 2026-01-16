@@ -30,6 +30,11 @@
 
     <!-- Favicon -->
     <link rel="icon" href="assets/images/logo/favicon.png" type="image/png" />
+    <script
+      src="https://www.google.com/recaptcha/api.js?render=6LfQIessAAAAAN3DqeHfBorWfimvwwrAV8AL6J9"
+      async
+      defer
+    ></script>
   </head>
   <body>
     <header class="site-header">
@@ -218,6 +223,9 @@
               method="POST"
               novalidate
             >
+              <!-- reCaptcha v3 token -->
+              <input type="hidden" name="recaptcha_token" id="recaptchaToken" />
+
               <!-- Honeypot (antispam) -->
               <input
                 type="text"

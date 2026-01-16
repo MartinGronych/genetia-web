@@ -21,7 +21,7 @@ export function renderAboutCompany(targetSelector) {
       <div class="hero-video-wrapper">
         <video
           class="hero-video"
-          src="assets/video/Genetia_home.mp4"
+          src="assets/video/Genetia_home.webm"
           autoplay
           muted
           loop

@@ -1,13 +1,17 @@
 // ==================================================
-// GENETIA – Kontakt formulář (Google Forms submit)
+// GENETIA – Kontakt formulář (Google Forms submit + reCAPTCHA v3)
 // - bez reloadu stránky
 // - POST přes fetch() na Google Forms (mode: "no-cors")
 // - podpora checkboxů (multi-select) => stejný entry se posílá víckrát
 // - zachová stávající HTML strukturu i styly
+// - reCAPTCHA v3 token generovaný těsně před odesláním
 // ==================================================
 
 const GOOGLE_FORM_ACTION =
   "https://docs.google.com/forms/u/0/d/e/1FAIpQLScCwMmam2yAdZLizM7V1EQvxQPHZ5ptrWIZsi3dBQGKXX17kg/formResponse";
+
+const RECAPTCHA_SITE_KEY = "6LfQIEssAAAAAN3DqeHfBorWfimvwwrAV8AL6J9";
+const RECAPTCHA_ACTION = "kontakt_submit";
 
 // Mapování: HTML -> Google Forms entry.xxxxxx
 const ENTRY = {
@@ -16,6 +20,7 @@ const ENTRY = {
   EMAIL: "1394918679", // name="_replyto"
   SUBJECT: "1925485060", // name="subject"
   MESSAGE: "240623587", // name="message"
+  RECAPTCHA: "1208686841", // reCAPTCHA (předvyplněný odkaz -> entry.1208686841)
 };
 
 // Texty musí přesně odpovídat volbám v Google Form
@@ -31,22 +36,22 @@ function pickInterests(formEl) {
   const picked = [];
   if (cbExtr?.checked) picked.push(INTEREST_LABELS.EXTRAKTY);
   if (cbAnal?.checked) picked.push(INTEREST_LABELS.ANALYZY);
-  return picked; // může být i []
+  return picked;
 }
 
 function buildInterestSummary(interests) {
-  if (interests.length === 2) return "Výroba konopných extraktů + Analytické služby";
-  if (interests[0] === INTEREST_LABELS.EXTRAKTY) return "Výroba konopných extraktů";
+  if (interests.length === 2)
+    return "Výroba konopných extraktů + Analytické služby";
+  if (interests[0] === INTEREST_LABELS.EXTRAKTY)
+    return "Výroba konopných extraktů";
   if (interests[0] === INTEREST_LABELS.ANALYZY) return "Analytické služby";
   return "Nezvoleno";
 }
 
 function getInlineMessageEl(formEl) {
-  // používáme existující box z HTML (#formInlineMessage) :contentReference[oaicite:3]{index=3}
   const el = document.getElementById("formInlineMessage");
   if (el) return el;
 
-  // fallback (kdyby někdo box smazal)
   const fallback = document.createElement("div");
   fallback.id = "formInlineMessage";
   fallback.className = "form-inline-message";
@@ -59,7 +64,6 @@ function setInlineMessage(el, msg, type = "info") {
   el.hidden = false;
   el.textContent = msg;
 
-  // jemné odlišení bez zásahu do CSS (inline)
   el.style.borderColor =
     type === "success"
       ? "rgba(47, 122, 75, 0.25)"
@@ -83,7 +87,31 @@ function clearInlineMessage(el) {
   el.textContent = "";
 }
 
-function buildPayload(formEl) {
+function setRecaptchaHiddenValue(token) {
+  const tokenInput = document.getElementById("recaptchaToken");
+  if (tokenInput) tokenInput.value = token || "";
+}
+
+async function getRecaptchaToken() {
+  if (!window.grecaptcha) {
+    console.warn("[reCAPTCHA] grecaptcha not available (script not loaded?)");
+    return "";
+  }
+
+  try {
+    await new Promise((resolve) => window.grecaptcha.ready(resolve));
+    return await window.grecaptcha.execute(RECAPTCHA_SITE_KEY, {
+      action: RECAPTCHA_ACTION,
+    });
+  } catch (err) {
+    console.warn("[reCAPTCHA] Token generation failed", err);
+    return "";
+  }
+}
+
+
+
+function buildPayload(formEl, recaptchaToken) {
   const fd = new FormData(formEl);
 
   const name = (fd.get("name") || "").toString().trim();
@@ -94,7 +122,6 @@ function buildPayload(formEl) {
   const interests = pickInterests(formEl);
   const summary = buildInterestSummary(interests);
 
-  // souhrn do hidden pole (máš v HTML) :contentReference[oaicite:4]{index=4}
   const hidden = formEl.querySelector('input[name="interest_summary"]');
   if (hidden) hidden.value = summary;
 
@@ -104,13 +131,15 @@ function buildPayload(formEl) {
   params.set(`entry.${ENTRY.SUBJECT}`, subject);
   params.set(`entry.${ENTRY.MESSAGE}`, message);
 
-  // Checkbox multi-select: stejný entry id přidáme víckrát
   interests.forEach((val) => params.append(`entry.${ENTRY.INTEREST}`, val));
 
-  // minimální meta (bez cookies, bez dlut, bez partialResponse)
+  // ✅ reCAPTCHA token do Google Formu
+  if (recaptchaToken) {
+    params.set(`entry.${ENTRY.RECAPTCHA}`, recaptchaToken);
+  }
+
   params.set("fvv", "1");
   params.set("fbzx", String(Date.now()));
-
   return params;
 }
 
@@ -133,7 +162,6 @@ export function initKontaktFormRouting() {
   const msgEl = getInlineMessageEl(form);
   const submitBtn = form.querySelector('button[type="submit"]');
 
-  // při změně checkboxů smaž hlášku
   form.querySelectorAll("[data-interest]").forEach((cb) => {
     cb.addEventListener("change", () => clearInlineMessage(msgEl));
   });
@@ -142,18 +170,31 @@ export function initKontaktFormRouting() {
     e.preventDefault();
     clearInlineMessage(msgEl);
 
-    // respektujeme HTML5 validaci :contentReference[oaicite:5]{index=5}
+    // respektujeme HTML5 validaci
     if (!form.checkValidity()) {
       form.reportValidity();
       setInlineMessage(msgEl, "Zkontrolujte prosím vyplněná pole.", "error");
       return;
     }
 
-    // honeypot (antispam) :contentReference[oaicite:6]{index=6}
+    // honeypot (antispam)
     const gotcha = form.querySelector('input[name="_gotcha"]');
     if (gotcha && gotcha.value.trim().length) return;
 
-    const params = buildPayload(form);
+    // === reCAPTCHA v3 token (těsně před odesláním) ===
+    const recaptchaToken = await getRecaptchaToken();
+
+    // (volitelné) když chceš token vyžadovat, odkomentuj:
+    // if (!recaptchaToken) {
+    //   setInlineMessage(msgEl, "Ověření reCAPTCHA se nezdařilo. Zkuste to prosím znovu.", "error");
+    //   return;
+    // }
+
+    // volitelné: uložit token i do hidden inputu (pro debug / konzistenci)
+    setRecaptchaHiddenValue(recaptchaToken);
+
+    // payload (včetně tokenu do Google Forms přes entry.1208686841)
+    const params = buildPayload(form, recaptchaToken);
 
     // UX: disable během submitu
     if (submitBtn) {
@@ -174,9 +215,10 @@ export function initKontaktFormRouting() {
 
       form.reset();
 
-      // po resetu vrať hidden summary
-      const hidden = form.querySelector('input[name="interest_summary"]');
-      if (hidden) hidden.value = "Nezvoleno";
+      // po resetu vrať hidden summary + recaptcha token
+      const summaryHidden = form.querySelector('input[name="interest_summary"]');
+      if (summaryHidden) summaryHidden.value = "Nezvoleno";
+      setRecaptchaHiddenValue("");
     } catch (err) {
       console.error("[GENETIA][contact][form] submit failed", err);
       setInlineMessage(
@@ -187,7 +229,8 @@ export function initKontaktFormRouting() {
     } finally {
       if (submitBtn) {
         submitBtn.disabled = false;
-        submitBtn.textContent = submitBtn.dataset.originalText || "Odeslat zprávu";
+        submitBtn.textContent =
+          submitBtn.dataset.originalText || "Odeslat zprávu";
         delete submitBtn.dataset.originalText;
       }
     }
