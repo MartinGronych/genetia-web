@@ -93,21 +93,23 @@ function setRecaptchaHiddenValue(token) {
 }
 
 async function getRecaptchaToken() {
-  if (!window.grecaptcha) {
-    console.warn("[reCAPTCHA] grecaptcha not available (script not loaded?)");
+  if (!window.grecaptcha || !grecaptcha.execute) {
+    console.warn("[reCAPTCHA] grecaptcha not ready");
     return "";
   }
 
   try {
-    await new Promise((resolve) => window.grecaptcha.ready(resolve));
-    return await window.grecaptcha.execute(RECAPTCHA_SITE_KEY, {
-      action: RECAPTCHA_ACTION,
-    });
+    await grecaptcha.ready(() => {});
+    return await grecaptcha.execute(
+      "6LfQIessAAAAAN3DqeHfBorWfimvwwrAV8AL6J9",
+      { action: "kontakt_submit" }
+    );
   } catch (err) {
     console.warn("[reCAPTCHA] Token generation failed", err);
     return "";
   }
 }
+
 
 
 
