@@ -117,6 +117,13 @@
       "category": "Stanovení obsahu látek"
     },
     {
+  "id": "hlvd-viroid",
+  "title": "HLVd viroid",
+  "short": "Unikát v ČR",
+  "category": "Zkoušky viroidní jakosti"
+},
+
+    {
       "id": "cislo-kyselosti",
       "title": "Stanovení čísla kyselosti",
       "category": "Stanovení obsahu látek"
@@ -146,6 +153,23 @@
       ],
       "turnaround": "Standardně 24–48 h. Expresní zpracování na vyžádání."
     },
+    {
+  "id": "hlvd-viroid",
+  "title": "HLVd viroid",
+  "category": "Zkoušky viroidní jakosti",
+  "short": "Unikát v ČR",
+  "tat": "na dotaz",
+  "price": "na dotaz",
+  "method": "RT-qPCR (dle interní validované metody)",
+  "instrumentation": "qPCR systém",
+  "description": "Detekce Hop latent viroid (HLVd) pro ověření viroidní čistoty a kontrolu patogenů. Vhodné pro screening rostlinného materiálu i provozní kontrolu.",
+  "what_we_measure": [
+    "Přítomnost/absence HLVd",
+    "Kontrolní amplifikace (validace extrakce)"
+  ],
+  "turnaround": "TAT dle dohody (typicky jednotky dnů)."
+},
+
     {
       "id": "terpenovy-profil",
       "title": "Terpenový profil (GC-MS)",

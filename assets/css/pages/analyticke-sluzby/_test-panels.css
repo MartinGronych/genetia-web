@@ -4,7 +4,7 @@
    - 1024+: Řízený grid 3 sloupce:
        Sloupec 1: Farmakognostické + Fyzikální
        Sloupec 2: Mikrobiologie (span 2 řady)
-       Sloupec 3: Limitní + Obsah (stack)
+       Sloupec 3: Limitní + Obsah + Viroidní (stack, viroidní vždy na konci)
 ================================================== */
 
 /* ==================================================
@@ -90,15 +90,34 @@
   }
 
   /* Levý sloupec: 4 bloky pod sebou */
-  .test-panels-grid > .panels-group--farmakognosticke { grid-column: 1; grid-row: 1; }
-  .test-panels-grid > .panels-group--fyzikalni        { grid-column: 1; grid-row: 3; }
-  .test-panels-grid > .panels-group--limitni          { grid-column: 1; grid-row: 2; }
-  .test-panels-grid > .panels-group--obsah            { grid-column: 2; grid-row: 3; }
+  .test-panels-grid > .panels-group--farmakognosticke {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .test-panels-grid > .panels-group--fyzikalni {
+    grid-column: 1;
+    grid-row: 3;
+  }
+  .test-panels-grid > .panels-group--limitni {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .test-panels-grid > .panels-group--obsah {
+    grid-column: 2;
+    grid-row: 3;
+  }
+  .test-panels-grid > .panels-group--viroidni {
+    grid-column: 2;
+    grid-row: 4;
+  }
 
   /* Pravý sloupec: mikrobiologie jako dominantní blok */
-  .test-panels-grid > .panels-group--mikrobiologie    { grid-column: 2; grid-row: 1 / span 4; }
+  .test-panels-grid > .panels-group--mikrobiologie {
+    grid-column: 2;
+    /* necháme místo pro obsah + viroidní pod mikrobiologií */
+    grid-row: 1 / span 2;
+  }
 }
-
 
 /* ==================================================
    1024+ : ŘÍZENÝ GRID (3 sloupce)
@@ -143,10 +162,10 @@
     grid-row: 1 / span 2;
   }
 
-  /* Sloupec 3 – wrapper (limitní + obsah jako stack) */
+  /* Sloupec 3 – wrapper (limitní + obsah + viroidní jako stack) */
   .test-panels-grid > .panels-col--right {
     grid-column: 3;
-    grid-row: 1 / span 2;
+    grid-row: 1 / span 3;
 
     display: flex;
     flex-direction: column;
@@ -155,10 +174,33 @@
 
   /* pojistka: uvnitř wrapperu už žádné grid pozice */
   .test-panels-grid .panels-col--right .panels-group--limitni,
-  .test-panels-grid .panels-col--right .panels-group--obsah {
+  .test-panels-grid .panels-col--right .panels-group--obsah,
+  .test-panels-grid .panels-col--right .panels-group--viroidni {
     grid-column: auto;
     grid-row: auto;
   }
+}
+
+/* ==================================================
+   CHIP BADGE (např. "Unikát v ČR")
+================================================== */
+
+.panel-badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  margin-top: 6px;
+
+  padding: 4px 10px;
+  border-radius: 999px;
+
+  font-size: 0.75rem;
+  line-height: 1;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+
+  
+  color: var(--brand-600);
 }
 
 /* 1440+ : jemnější rozestupy */
@@ -166,6 +208,45 @@
   .test-panels-grid {
     gap: clamp(1.4rem, 1.8vw, 2.1rem);
   }
+}
+/* “Unikát v ČR” */
+.panel-badge--accent {
+  font-size: 0.7rem;
+  background: rgb(245, 159, 11);
+  border-radius: var(--radius-sm);
+  border-color: rgba(245, 158, 11, 0.35);
+  color: rgba(120, 68, 0, 0.95);
+  animation: panelBadgePulse 2.6s ease-in-out infinite;
+  text-align:center;
+}
+
+@keyframes panelBadgePulse {
+  0% {
+    opacity: 0.75;
+    box-shadow: 0 0 0 rgba(245, 158, 11, 0);
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 18px rgba(222, 245, 11, 0.87);
+    transform: scale(1.13);
+  }
+
+  100% {
+    opacity: 0.78;
+    box-shadow: 0 0 0 rgba(245, 158, 11, 0);
+    transform: scale(1);
+  }
+}
+/* star */
+.panel-badge--star {
+  gap: 8px;
+}
+.panel-badge--star svg {
+  width: 16px;
+  height: 16px;
+  color: rgba(229, 245, 11, 0.911);
 }
 
 /* ==================================================

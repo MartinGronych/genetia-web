@@ -49,7 +49,7 @@ const CATEGORY_ORDER = [
     subtitle: "Mikrobiální čistota a detekce patogenů",
     icon: "bacteria",
   },
-  // Tyto dvě kategorie na desktopu skládáme do wrapperu .panels-col--right (sloupec 3)
+  // Tyto kategorie na desktopu skládáme do wrapperu .panels-col--right (sloupec 3)
   {
     key: "limitni",
     label: "Limitní zkoušky",
@@ -61,6 +61,12 @@ const CATEGORY_ORDER = [
     label: "Stanovení obsahu látek",
     subtitle: "Kvantitativní analýza specifických parametrů",
     icon: "flask-conical",
+  },
+  {
+    key: "viroidni",
+    label: "Zkoušky viroidní jakosti",
+    subtitle: "Viroidní čistota a detekce patogenů",
+    icon: "microscope",
   },
 ];
 
@@ -78,10 +84,22 @@ const cardHTML = (panel) => {
     >
       <span class="panel-chipText">
         <span class="panel-title">${esc(title)}</span>
-        ${short ? `<span class="panel-subtitle">${esc(short)}</span>` : ""}
+        ${
+          short
+            ? short === "Unikát v ČR"
+              ? `
+        <span class="panel-badge panel-badge--accent panel-badge--star">
+        <i data-lucide="star" aria-hidden="true"></i>
+          ${esc(short)}
+        </span>
+      `
+              : `<span class="panel-badge">${esc(short)}</span>`
+            : ""
+        }
+
       </span>
 
-      <span class="panel-chipArrow" aria-hidden="true">›</span>
+      <span class="panel-chipArrow" aria-hidden="true"></span>
     </button>
   `;
 };
@@ -123,7 +141,7 @@ const buildPanelsHTML = ({ panels, isDesktop }) => {
   }
 
   const htmlParts = [];
-  const rightColParts = []; // pouze desktop: limitni + obsah jako stack
+  const rightColParts = []; // pouze desktop: 3. sloupec jako stack
 
   for (const cat of CATEGORY_ORDER) {
     const list = buckets.get(cat.label);
@@ -132,7 +150,10 @@ const buildPanelsHTML = ({ panels, isDesktop }) => {
     const cardsHtml = list.map(cardHTML).join("");
     const sectionHtml = groupSectionHTML(cat, cardsHtml);
 
-    if (isDesktop && (cat.key === "limitni" || cat.key === "obsah")) {
+    if (
+      isDesktop &&
+      (cat.key === "limitni" || cat.key === "obsah" || cat.key === "viroidni")
+    ) {
       rightColParts.push(sectionHtml);
     } else {
       htmlParts.push(sectionHtml);
